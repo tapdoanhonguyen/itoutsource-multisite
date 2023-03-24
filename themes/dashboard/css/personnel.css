@@ -1,0 +1,30 @@
+.info-box-content .count{
+	text-align:center;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 10px;
+}
+.marginTop10{
+	margin-top: 10px !important;
+}
+.padding0{
+	padding:0px !important;
+}
+.padding10{
+	padding: 10px !important;
+}
+.progress-description{
+	text-align:center
+}
+.height190{
+	min-height: 250px;
+}
+.height70{
+	min-height: 108px;
+}
+.info-box-content .fa-users{
+	text-align:center
+}
+.cardutline .card-header{
+	background:#f9f9f9f9
+}

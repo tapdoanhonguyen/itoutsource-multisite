@@ -1,0 +1,74 @@
+/*
+UploadiFive
+Copyright (c) 2012 Reactive Apps, Ronnie Garcia
+*/
+
+#queue {
+	border: 1px solid #E5E5E5;
+	/* height: 177px; */
+	overflow: auto;
+	margin-bottom: 10px;
+	padding: 0 3px 3px;
+	/* width: 344px; */
+	float: left;
+	clear: both;
+	display: none;
+}
+.uploadifive-button {
+	-moz-border-radius: 3px;
+	-moz-box-shadow: 0 1px 0 0 #acacac inset;
+	-ms-border-radius: 3px;
+	-ms-box-shadow: 0 1px 0 0 #acacac inset;
+	-o-border-radius: 3px;
+	-o-box-shadow: 0 1px 0 0 #acacac inset;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+	border: 1px solid #acacac;
+	background:#efefef;
+	color: #000;
+	font-weight: 700;
+	padding: 0px 4px;
+	text-align: center;
+	text-shadow: 0 -1px 0 #396715;
+	cursor: pointer;
+	float:left;
+	font-family: inherit;
+}
+.uploadifive-button:hover {
+	cursor:pointer;opacity:.85;
+	border: 1px solid #7eb4ea;
+	background:#deeefc;
+}
+.uploadifive-button input[type="file"]
+{
+	cursor: pointer;
+}
+.uploadifive-queue-item {
+	background-color: #F5F5F5;
+	border-bottom: 1px dotted #D5D5D5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font: 12px Arial, Helvetica, Sans-serif;
+	margin-top: 3px;
+	padding: 15px;
+}
+.uploadifive-queue-item .close {
+	background: url('uploadifive-cancel.png') 0 0 no-repeat;
+	display: block;
+	float: right;
+	height: 16px;
+	text-indent: -9999px;
+	width: 16px;
+}
+.uploadifive-queue-item .progress {
+	border: 1px solid #D0D0D0;
+	height: 3px;
+	margin-top: 5px;
+	width: 100%;
+}
+.uploadifive-queue-item .progress-bar {
+	background-color: #0072BC;
+	height: 3px;
+	width: 0;
+}

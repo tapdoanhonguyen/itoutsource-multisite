@@ -1,0 +1,6 @@
+[Sat, 31 Dec 2022 13:01:21 -0500] [45.227.254.38] [User Error(256): Your request is blocked] [FILE: /vendor/vinades/nukeviet/Core/Request.php] [LINE: 493] [AGENT: wp_is_mobile]
+[Sat, 07 Jan 2023 15:59:46 +0700] [147.78.47.24] [User Error(256): Your request is blocked] [FILE: /vendor/vinades/nukeviet/Core/Request.php] [LINE: 493] [AGENT: wp_is_mobile]
+[Sun, 08 Jan 2023 13:54:10 +0200] [78.128.113.142] [User Error(256): Your request is blocked] [FILE: /vendor/vinades/nukeviet/Core/Request.php] [LINE: 493] [AGENT: wp_is_mobile]
+[Thu, 02 Feb 2023 01:43:36 +0300] [81.19.135.24] [User Error(256): Your request is blocked] [FILE: /vendor/vinades/nukeviet/Core/Request.php] [LINE: 493] [AGENT: wp_is_mobile]
+[Sat, 04 Feb 2023 07:36:26 +0100] [185.190.24.90] [User Error(256): Your request is blocked] [FILE: /vendor/vinades/nukeviet/Core/Request.php] [LINE: 493] [AGENT: wp_is_mobile]
+[Sat, 25 Feb 2023 03:59:49 +0300] [81.19.135.24] [User Error(256): Your request is blocked] [FILE: /vendor/vinades/nukeviet/Core/Request.php] [LINE: 493] [AGENT: wp_is_mobile]

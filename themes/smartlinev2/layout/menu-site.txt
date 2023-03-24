@@ -1,0 +1,239 @@
+<ul id="meganavigator" class="clearfix navi ">
+							<li class="active level1 first havechild ">
+								<a title="Trang Chủ" class="active level1 first havechild  item-link" href="https://smartline.com.vn/"><span class="menu-title">Trang Chủ</span><i class="fa fa-angle-down"></i></a>	
+								<!-- open mega-content div -->
+								<div class="level2 mod mega-content" >
+									<div class="mega-content-inner clearfix" style="width:680px">
+										<div class="mega-col first one" style="width:100%;">
+											<div class="mega-module moduletable">
+												<div class="mega-module-content">
+													<div class="mega-feature">
+														<img src="/images/demo/icon_feature.png" alt="" />
+														<h3>Giới Thiệu</h3>
+														<p style="text-align: justify;">Smartline là một nhà cung cấp dịch vụ CNTT chuyên nghiệp tập trung cung cấp các giải pháp CNTT cho các doanh nghiệp vừa và nhỏ tại Việt Nam. Công việc của chúng tôi là cung cấp các giải pháp CNTT chiến lược, chất lượng cao, duy trì và bảo vệ cơ sở hạ tầng CNTT của các doanh nghiệp.</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+
+							<li class="level1 havechild ">
+								<a title="Truyền Thông" class="level1 havechild  item-link" href="/truyen-thong"><span class="menu-title">Truyền Thông</span><i class="fa fa-angle-down"></i></a>	
+								<!-- open mega-content div -->
+								<div class="level2 menu mega-content" >
+									<div class="mega-content-inner clearfix" >
+										<div class="mega-col first one" >
+											<ul class="subnavi level2">
+												<li class="level2 first ">
+													<a title="Tin Tức và Sự Kiện" class="level2 first  item-link" href="/truyen-thong/tin-tuc-va-su-kien"><span class="menu-title">Tin Tức và Sự Kiện</span></a>	
+												</li>
+
+											</ul>	
+										</div>
+								
+									</div>
+								</div>
+							</li>
+
+							<li class="level1 havechild ">
+								<a title="Dịch Vụ" class="level1 havechild  item-link" href="/dich-vu"><span class="menu-title">Dịch Vụ</span><i class="fa fa-angle-down"></i></a>	
+								<!-- open mega-content div -->
+								<div class="level2 menu mega-content" >
+									<div class="mega-content-inner clearfix" style="width:510px">
+										<div class="mega-col first more" style="width:50%;">
+											<ul class="subnavi level2">
+												<li class="level2 first ">
+													<a title="Tư vấn và triển khai hệ thống" class="level2 first  item-link" href="/dich-vu/tu-van-thiet-ke-he-thong-cntt"><span class="menu-title">Tư vấn và triển khai hệ thống</span></a>	
+												</li>
+
+												<li class="level2 ">
+													<a title="Dịch vụ máy văn phòng" class="level2  item-link" href="/dich-vu/dịch-vụ-máy-văn-phòng"><span class="menu-title">Dịch vụ máy văn phòng</span></a>	
+												</li>
+
+												<li class="level2 ">
+													<a title="Quản trị hệ thống" class="level2  item-link" href="/dich-vu/quan-tri-mang"><span class="menu-title">Quản trị hệ thống</span></a>	
+												</li>
+
+												<li class="level2 last ">
+													<a title="Bảo trì hệ thống" class="level2 last  item-link" href="/dich-vu/bao-tri-bao-duong-he-thong"><span class="menu-title">Bảo trì hệ thống</span></a>	
+												</li>
+
+											</ul>	
+										</div>
+										<div class="mega-col last more" style="width:50%;">
+											<ul class="subnavi level2">
+												<li class="level2 first ">
+												<a title="Bảo mật hệ thống" class="level2 first  item-link" href="/dich-vu/bảo-mật-hệ-thống"><span class="menu-title">Bảo mật hệ thống</span></a>	
+												</li>
+
+												<li class="level2 ">
+													<a title="Dịch vụ IT Outsource" class="level2  item-link" href="/dich-vu/dịch-vụ-it-outsource"><span class="menu-title">Dịch vụ IT Outsource</span></a>	
+													</li>
+
+												<li class="level2 ">
+													<a title="Thiết kế website và hosting" class="level2  item-link" href="/dich-vu/thiết-kế-website-và-hosting"><span class="menu-title">Thiết kế website và hosting</span></a>	
+													</li>
+
+												<li class="level2 last ">
+													<a title="Lập trình phần mềm ứng dụng" class="level2 last  item-link" href="/dich-vu/lập-trình-phần-mềm-ứng-dụng"><span class="menu-title">Lập trình phần mềm ứng dụng</span></a>	
+													</li>
+
+											</ul>			
+										</div>
+								
+									</div>
+								</div>
+							</li>
+
+							<li class="level1 havechild ">
+								<a title="Sản Phẩm" class="level1 havechild  item-link" href="/san-pham"><span class="menu-title">Sản Phẩm</span><i class="fa fa-angle-down"></i></a>	
+								<!-- open mega-content div -->
+								<div class="level2 menu mega-content" >
+									<div class="mega-content-inner clearfix" >
+										<div class="mega-col first one" >
+											<ul class="subnavi level2">
+												<li class="level2 first ">
+													<a title="Linh kiện máy văn phòng" class="level2 first  item-link" href="/san-pham/linh-kiện-máy-văn-phòng"><span class="menu-title">Linh kiện máy văn phòng</span></a>	
+													</li>
+
+												<li class="level2 ">
+													<a title="Thiết Bị Giải Trí Công Nghệ" class="level2  item-link" href="/san-pham/thiet-bi-giai-tri-cong-nghe"><span class="menu-title">Thiết Bị Giải Trí Công Nghệ</span></a>	
+													</li>
+
+												<li class="level2 ">
+													<a title="Thiết Bị Nhiếp Ảnh" class="level2  item-link" href="/san-pham/thiet-bi-nhiep-anh"><span class="menu-title">Thiết Bị Nhiếp Ảnh</span></a>	
+													</li>
+
+												<li class="level2 last havechild ">
+													<a title="Thiết Bị Công Nghệ Thông Tin" class="level2 last havechild  item-link" href="/san-pham/thiet-bi-cong-nghe-thong-tin-2"><span class="menu-title">Thiết Bị Công Nghệ Thông Tin</span><i class="fa fa-angle-right"></i></a>	
+													<!-- open mega-content div -->
+													<div class="level3 menu mega-content" >
+														<div class="mega-content-inner clearfix" >
+															<div class="mega-col first one" >
+																<ul class="subnavi level3">
+																	<li class="level3 first ">
+																	<a title="Máy tích xách tay" class="level3 first  item-link" href="/san-pham/thiet-bi-cong-nghe-thong-tin-2/máy-tích-xách-tay"><span class="menu-title">Máy tích xách tay</span></a>	
+																	</li>
+
+																</ul>	
+															</div>
+							
+														</div>
+													</div>
+												</li>
+
+											</ul>		
+										</div>
+									
+									</div>
+								</div>
+							</li>
+
+							<li class="level1 ">
+								<a title="Giới Thiệu" class="level1  item-link" href="/gioi-thieu"><span class="menu-title">Giới Thiệu</span></a>	
+								</li>
+
+							<li class="level1 last ">
+								<a title="Liên Hệ" class="level1 last  item-link" href="/lien-he"><span class="menu-title">Liên Hệ</span></a>	
+								</li>
+
+						</ul>
+						<script type="text/javascript">
+									jQuery(function($){
+								$('#meganavigator').megamenu({ 
+									'wrap':'#meganavigator',
+									'easing': 'easeInOutCubic',
+									'justify': 'left',
+									'mm_timeout': '250'
+									
+								});
+							});
+							
+						</script>
+	
+						<div id="yt-responivemenu" class="yt-resmenu ">
+							<button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar collapsed" type="button">
+								<i class="fa fa-bars"></i> Menu			</button>
+							<div id="resmenu_sidebar" class="nav-collapse collapse" >
+								<ul class="nav resmenu">
+									<li><a title="Trang Chủ" href='https://smartline.com.vn/' class="active">Trang Chủ</a>        </li>
+									<li class="haveChild level1"><a title="Truyền Thông" href='/truyen-thong'>Truyền Thông</a>							<span class="menuress-toggle"></span>
+										<div class="res-wrapnav">
+											<ul class="nav">
+												<li><a title="Tin Tức và Sự Kiện" href='/truyen-thong/tin-tuc-va-su-kien'>Tin Tức và Sự Kiện</a>        </li>
+											</ul>
+										</div>
+									</li>
+									<li class="haveChild level1"><a title="Dịch Vụ" href='/dich-vu'>Dịch Vụ</a>							<span class="menuress-toggle"></span>
+										<div class="res-wrapnav">
+											<ul class="nav">
+												<li><a title="Tư vấn và triển khai hệ thống" href='/dich-vu/tu-van-thiet-ke-he-thong-cntt'>Tư vấn và triển khai hệ thống</a>        </li>
+												<li><a title="Dịch vụ máy văn phòng" href='/dich-vu/dịch-vụ-máy-văn-phòng'>Dịch vụ máy văn phòng</a>        </li>
+												<li><a title="Quản trị hệ thống" href='/dich-vu/quan-tri-mang'>Quản trị hệ thống</a>        </li>
+												<li><a title="Bảo trì hệ thống" href='/dich-vu/bao-tri-bao-duong-he-thong'>Bảo trì hệ thống</a>        </li>
+												<li><a title="Bảo mật hệ thống" href='/dich-vu/bảo-mật-hệ-thống'>Bảo mật hệ thống</a>        </li>
+												<li><a title="Dịch vụ IT Outsource" href='/dich-vu/dịch-vụ-it-outsource'>Dịch vụ IT Outsource</a>        </li>
+												<li><a title="Thiết kế website và hosting" href='/dich-vu/thiết-kế-website-và-hosting'>Thiết kế website và hosting</a>        </li>
+												<li><a title="Lập trình phần mềm ứng dụng" href='/dich-vu/lập-trình-phần-mềm-ứng-dụng'>Lập trình phần mềm ứng dụng</a>        </li>
+											</ul>
+										</div>
+									</li>
+									<li class="haveChild level1"><a title="Sản Phẩm" href='/san-pham'>Sản Phẩm</a>							<span class="menuress-toggle"></span>
+										<div class="res-wrapnav">
+											<ul class="nav">
+												<li><a title="Linh kiện máy văn phòng" href='/san-pham/linh-kiện-máy-văn-phòng'>Linh kiện máy văn phòng</a>        </li>
+												<li><a title="Thiết Bị Giải Trí Công Nghệ" href='/san-pham/thiet-bi-giai-tri-cong-nghe'>Thiết Bị Giải Trí Công Nghệ</a>        </li>
+												<li><a title="Thiết Bị Nhiếp Ảnh" href='/san-pham/thiet-bi-nhiep-anh'>Thiết Bị Nhiếp Ảnh</a>        </li>
+												<li class="haveChild level2"><a title="Thiết Bị Công Nghệ Thông Tin" href='/san-pham/thiet-bi-cong-nghe-thong-tin-2'>Thiết Bị Công Nghệ Thông Tin</a>							<span class="menuress-toggle"></span>
+													<div class="res-wrapnav">
+														<ul class="nav">
+														<li><a title="Máy tích xách tay" href='/san-pham/thiet-bi-cong-nghe-thong-tin-2/máy-tích-xách-tay'>Máy tích xách tay</a>        </li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</li>
+									<li><a title="Giới Thiệu" href='/gioi-thieu'>Giới Thiệu</a>        </li>
+									<li><a title="Liên Hệ" href='/lien-he'>Liên Hệ</a>        </li>
+								</ul>
+							</div>
+				
+						</div>
+						<script type="text/javascript">
+						
+							/*jQuery(document).click(function (e) {
+								if (!jQuery(e.target).hasClass("nav-collapse") && jQuery(e.target).parents(".nav-collapse").length === 0) {
+										jQuery('#resmenu_sidebar').removeClass('in');
+								}
+							});*/
+							
+							jQuery(document).ready(function($) {
+								$('.btn-navbar').click(function(){
+										$(this).children().toggleClass('fa-times');
+								});
+								$("ul.resmenu li.haveChild").each(function() {
+									$(this).children(".res-wrapnav").css('display', 'none');
+									var ua = navigator.userAgent,
+									event = (ua.match(/iPad/i)) ? "touchstart" : "click";
+									$(this).children(".menuress-toggle").bind(event, function() {
+										
+										$(this).parent().addClass(function(){
+											if($(this).hasClass("active")){
+												//$(this).removeClass("active");
+												return "";
+											}
+											return "active";
+										});
+										
+										$(this).siblings(".res-wrapnav").slideDown(350);
+										$(this).parent().siblings("li").children(".res-wrapnav").slideUp(350);
+										$(this).parent().siblings("li").removeClass("active");
+									});
+									
+								});
+								
+							});
+						</script> 
