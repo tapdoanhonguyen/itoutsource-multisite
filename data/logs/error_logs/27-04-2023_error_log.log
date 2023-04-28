@@ -1,0 +1,142 @@
+[Thu, 27 Apr 2023 07:51:56 +0700] [smartlineco.com] [171.235.162.227] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 459] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 07:51:56 +0700] [smartlineco.com] [171.235.162.227] [Warning(2): Trying to access array offset on value of type null] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 476] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 07:51:56 +0700] [smartlineco.com] [171.235.162.227] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 498] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 11:16:08 +0700] [smartlineco.com] [45.87.9.158] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 459] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 11:16:08 +0700] [smartlineco.com] [45.87.9.158] [Warning(2): Trying to access array offset on value of type null] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 476] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 11:16:08 +0700] [smartlineco.com] [45.87.9.158] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 498] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 16:21:15 +0700] [smartline.vn] [103.131.71.80] [Warning(2): getimagesize(/home/sml/domains/smartline.vn/public_html/uploads/dich-vu-quan-ly-it/bg_slide.jpg): Failed to open stream: No such file or directory] [FILE: /modules/page/funcs/main.php] [LINE: 32] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 32    FILE: /modules/page/funcs/main.php
+
+[Thu, 27 Apr 2023 16:21:15 +0700] [smartline.vn] [103.131.71.80] [Warning(2): Trying to access array offset on value of type bool] [FILE: /modules/page/funcs/main.php] [LINE: 35] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+
+[Thu, 27 Apr 2023 16:21:15 +0700] [smartline.vn] [103.131.71.80] [Warning(2): Trying to access array offset on value of type bool] [FILE: /modules/page/funcs/main.php] [LINE: 36] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+
+[Thu, 27 Apr 2023 16:21:15 +0700] [smartline.vn] [103.131.71.80] [Warning(2): Trying to access array offset on value of type bool] [FILE: /modules/page/funcs/main.php] [LINE: 37] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+
+[Thu, 27 Apr 2023 16:21:15 +0700] [smartline.vn] [103.131.71.80] [Warning(2): Trying to access array offset on value of type bool] [FILE: /modules/page/funcs/main.php] [LINE: 53] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+
+[Thu, 27 Apr 2023 10:29:01 -0400] [smartlineco.com] [52.167.144.27] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 459] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 10:29:01 -0400] [smartlineco.com] [52.167.144.27] [Warning(2): Trying to access array offset on value of type null] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 476] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Thu, 27 Apr 2023 10:29:01 -0400] [smartlineco.com] [52.167.144.27] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 498] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 05:09:22 +0700] [smartlineco.com] [45.87.9.77] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 459] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 05:09:22 +0700] [smartlineco.com] [45.87.9.77] [Warning(2): Trying to access array offset on value of type null] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 476] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 05:09:22 +0700] [smartlineco.com] [45.87.9.77] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 498] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 02:41:30 +0300] [smartlineco.com] [93.159.230.87] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 459] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 02:41:30 +0300] [smartlineco.com] [93.159.230.87] [Warning(2): Trying to access array offset on value of type null] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 476] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 02:41:30 +0300] [smartlineco.com] [93.159.230.87] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 498] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 00:56:07 +0100] [smartlineco.com] [5.188.86.230] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 459] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 00:56:07 +0100] [smartlineco.com] [5.188.86.230] [Warning(2): Trying to access array offset on value of type null] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 476] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+
+[Fri, 28 Apr 2023 00:56:07 +0100] [smartlineco.com] [5.188.86.230] [Warning(2): Undefined variable $data] [FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php] [LINE: 498] [TRACE:]
+#1  LINE: 364   FILE: /index.php
+#2  LINE: 21    FILE: /modules/home/funcs/main.php
+#3  LINE: 378   FILE: /themes/smco/theme.php
+#4  LINE: 177   FILE: /includes/core/user_functions.php
+#5  LINE: 588   FILE: /themes/smco/blocks/global.block_shops_cat_tabs.php
+

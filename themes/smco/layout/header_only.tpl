@@ -35,13 +35,13 @@
 @font-face {
 font-family: "fl-icons";
 font-display: block;
-src: url(https://hoangminhoffice.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot?v=3.16.2);
+src: url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/fl-icons.eot);
 src:
-url(https://hoangminhoffice.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot#iefix?v=3.16.2) format("embedded-opentype"),
-url(https://hoangminhoffice.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff2?v=3.16.2) format("woff2"),
-url(https://hoangminhoffice.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.ttf?v=3.16.2) format("truetype"),
-url(https://hoangminhoffice.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff?v=3.16.2) format("woff"),
-url(https://hoangminhoffice.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.svg?v=3.16.2#fl-icons) format("svg");
+url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/fl-icons.eot#iefix) format("embedded-opentype"),
+url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/fl-icons.woff2) format("woff2"),
+url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/fl-icons.ttf) format("truetype"),
+url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/fl-icons.woff) format("woff"),
+url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/fl-icons.svg#fl-icons) format("svg");
 }
 </style>
 
@@ -67,17 +67,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <!-- End Google Tag Manager for WordPress by gtm4wp.com --><style>.bg{opacity: 0; transition: opacity 1s; -webkit-transition: opacity 1s;} .bg-loaded{opacity: 1;}</style><meta name="google-site-verification" content="mD_0nSeFFhUuOcVjiaxPGFz7KeFf0UGNZMp2lthke6g" />
 <noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
-<link rel="icon" href="https://hoangminhoffice.com/wp-content/uploads/2021/11/cropped-fvicon-32x32.jpg" sizes="32x32" />
-<link rel="icon" href="https://hoangminhoffice.com/wp-content/uploads/2021/11/cropped-fvicon-192x192.jpg" sizes="192x192" />
-<link rel="apple-touch-icon" href="https://hoangminhoffice.com/wp-content/uploads/2021/11/cropped-fvicon-180x180.jpg" />
-<meta name="msapplication-TileImage" content="https://hoangminhoffice.com/wp-content/uploads/2021/11/cropped-fvicon-270x270.jpg" />
+<link rel="icon" href="{NV_BASE_SITEURL}/uploads/cropped-fvicon-32x32.jpg" sizes="32x32" />
+<link rel="icon" href="{NV_BASE_SITEURL}/uploads/cropped-fvicon-192x192.jpg" sizes="192x192" />
+<link rel="apple-touch-icon" href="{NV_BASE_SITEURL}/uploads/cropped-fvicon-180x180.jpg" />
+<meta name="msapplication-TileImage" content="{NV_BASE_SITEURL}/uploads/cropped-fvicon-270x270.jpg" />
 <meta name="generator" content="XforWooCommerce.com - Product Filter for WooCommerce"/><style id="custom-css" type="text/css">:root {--primary-color: #446084;}.container-width, .full-width .ubermenu-nav, .container, .row{max-width: 1640px}.row.row-collapse{max-width: 1610px}.row.row-small{max-width: 1632.5px}.row.row-large{max-width: 1670px}.header-main{height: 90px}#logo img{max-height: 90px}#logo{width:263px;}.header-bottom{min-height: 55px}.header-top{min-height: 30px}.transparent .header-main{height: 90px}.transparent #logo img{max-height: 90px}.has-transparent + .page-title:first-of-type,.has-transparent + #main > .page-title,.has-transparent + #main > div > .page-title,.has-transparent + #main .page-header-wrapper:first-of-type .page-title{padding-top: 170px;}.header.show-on-scroll,.stuck .header-main{height:85px!important}.stuck #logo img{max-height: 85px!important}.search-form{ width: 100%;}.header-bottom {background-color: #f1f1f1}.header-main .nav > li > a{line-height: 16px }.stuck .header-main .nav > li > a{line-height: 50px }@media (max-width: 549px) {.header-main{height: 85px}#logo img{max-height: 85px}}body{font-family: Lato, sans-serif;}body {font-weight: 400;font-style: normal;}.nav > li > a {font-family: Lato, sans-serif;}.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-family: Lato, sans-serif;}.nav > li > a,.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-weight: 700;font-style: normal;}h1,h2,h3,h4,h5,h6,.heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a{font-family: Lato, sans-serif;}h1,h2,h3,h4,h5,h6,.heading-font,.banner h1,.banner h2 {font-weight: 700;font-style: normal;}.alt-font{font-family: "Dancing Script", sans-serif;}.alt-font {font-weight: 400!important;font-style: normal!important;}.breadcrumbs{text-transform: none;}button,.button{text-transform: none;}.nav > li > a, .links > li > a{text-transform: none;}.section-title span{text-transform: none;}h3.widget-title,span.widget-title{text-transform: none;}input[type='submit'], input[type="button"], button:not(.icon), .button:not(.icon){border-radius: 5px!important}@media screen and (min-width: 550px){.products .box-vertical .box-image{min-width: 247px!important;width: 247px!important;}}.footer-1{background-color: #f5f5f5}.footer-2{background-color: #f5f5f5}.absolute-footer, html{background-color: #686868}button[name='update_cart'] { display: none; }.nav-vertical-fly-out > li + li {border-top-width: 1px; border-top-style: solid;}.label-new.menu-item > a:after{content:"New";}.label-hot.menu-item > a:after{content:"Hot";}.label-sale.menu-item > a:after{content:"Sale";}.label-popular.menu-item > a:after{content:"Popular";}</style><style id="kirki-inline-styles">/* latin-ext */
 @font-face {
 font-family: 'Lato';
 font-style: normal;
 font-weight: 400;
 font-display: swap;
-src: url(https://hoangminhoffice.com/wp-content/fonts/lato/S6uyw4BMUTPHjxAwWCWtFCfQ7A.woff) format('woff');
+src: url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/S6uyw4BMUTPHjxAwWCWtFCfQ7A.woff) format('woff');
 unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -86,7 +86,7 @@ font-family: 'Lato';
 font-style: normal;
 font-weight: 400;
 font-display: swap;
-src: url(https://hoangminhoffice.com/wp-content/fonts/lato/S6uyw4BMUTPHjx4wWCWtFCc.woff) format('woff');
+src: url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/S6uyw4BMUTPHjx4wWCWtFCc.woff) format('woff');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* latin-ext */
@@ -95,7 +95,7 @@ font-family: 'Lato';
 font-style: normal;
 font-weight: 700;
 font-display: swap;
-src: url(https://hoangminhoffice.com/wp-content/fonts/lato/S6u9w4BMUTPHh6UVSwaPHw3q5d0N7w.woff) format('woff');
+src: url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/S6u9w4BMUTPHh6UVSwaPHw3q5d0N7w.woff) format('woff');
 unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -104,7 +104,7 @@ font-family: 'Lato';
 font-style: normal;
 font-weight: 700;
 font-display: swap;
-src: url(https://hoangminhoffice.com/wp-content/fonts/lato/S6u9w4BMUTPHh6UVSwiPHw3q5d0.woff) format('woff');
+src: url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/S6u9w4BMUTPHh6UVSwiPHw3q5d0.woff) format('woff');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }/* vietnamese */
 @font-face {
@@ -112,7 +112,7 @@ font-family: 'Dancing Script';
 font-style: normal;
 font-weight: 400;
 font-display: swap;
-src: url(https://hoangminhoffice.com/wp-content/fonts/dancing-script/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3Rep6hNX6pmRMjLo.woff) format('woff');
+src: url({NV_BASE_SITEURL}/wp-content/fonts/dancing-script/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3Rep6hNX6pmRMjLo.woff) format('woff');
 unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
@@ -121,7 +121,7 @@ font-family: 'Dancing Script';
 font-style: normal;
 font-weight: 400;
 font-display: swap;
-src: url(https://hoangminhoffice.com/wp-content/fonts/dancing-script/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3ROp6hNX6pmRMjLo.woff) format('woff');
+src: url({NV_BASE_SITEURL}/wp-content/fonts/dancing-script/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3ROp6hNX6pmRMjLo.woff) format('woff');
 unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
@@ -130,7 +130,7 @@ font-family: 'Dancing Script';
 font-style: normal;
 font-weight: 400;
 font-display: swap;
-src: url(https://hoangminhoffice.com/wp-content/fonts/dancing-script/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3Sup6hNX6pmRM.woff) format('woff');
+src: url({NV_BASE_SITEURL}/wp-content/fonts/dancing-script/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3Sup6hNX6pmRM.woff) format('woff');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }</style>
     </head>

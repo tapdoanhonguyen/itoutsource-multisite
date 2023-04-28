@@ -138,7 +138,7 @@ $page_title = !empty($data_content[NV_LANG_DATA . '_tag_title']) ? $data_content
 $description = !empty($data_content[NV_LANG_DATA . '_tag_description']) ? $data_content[NV_LANG_DATA . '_tag_description'] : $data_content[NV_LANG_DATA . '_hometext'];
 $array_images = [];
 
-if (nv_user_in_groups($global_array_shops_cat[$catid]['groups_view'])) {
+//if (nv_user_in_groups($global_array_shops_cat[$catid]['groups_view'])) {
     $popup = $nv_Request->get_int('popup', 'post,get', 0);
 
     $time_set = $nv_Request->get_int($module_data . '_' . $op . '_' . $id, 'session');
@@ -375,10 +375,10 @@ if (nv_user_in_groups($global_array_shops_cat[$catid]['groups_view'])) {
     $data_content['full_link'] = NV_MY_DOMAIN . nv_url_rewrite(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $global_array_shops_cat[$data_content['listcatid']]['alias'] . '/' . $data_content[NV_LANG_DATA . '_alias'] . $global_config['rewrite_exturl'], true);
 
     $contents = nv_template_detail($data_content, $data_unit, $data_others, $array_other_view, $content_comment, $compare_id, $popup, $idtemplates, $array_keyword);
-} else {
+/* } else {
     $nv_redirect = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name;
     redict_link($lang_module['detail_no_permission'], $lang_module['redirect_to_back_shops'], $nv_redirect);
-}
+} */
 
 include NV_ROOTDIR . '/includes/header.php';
 echo nv_site_theme($contents, $popup ? false : true);

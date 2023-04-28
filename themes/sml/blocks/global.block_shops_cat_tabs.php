@@ -454,7 +454,7 @@ if( ! nv_function_exists( 'nv_block_shops_block_cat_tabs' ) )
 		$xtpl->assign('LANG', $lang_module);
 		$xtpl->assign( 'NVS_TITLE', $block_config['title']);
 		$n = 0;
-		$sql = 'SELECT catid, '. NV_LANG_DATA .'_title as title FROM ' . $db_config['prefix'] . '_shops_catalogs WHERE catid IN ( '.$blockid.' ) ORDER BY weight ASC' ;
+		$sql = 'SELECT catid, '. NV_LANG_DATA .'_title as title,'. NV_LANG_DATA .'_alias as alias  FROM ' . $db_config['prefix'] . '_shops_catalogs WHERE catid IN ( '.$blockid.' ) ORDER BY weight ASC' ;
 		//die($sql);
 		$result = $db->query( $sql );
 		while( $data = $result->fetch( ) )
@@ -474,7 +474,7 @@ if( ! nv_function_exists( 'nv_block_shops_block_cat_tabs' ) )
 				->from( $db_config['prefix'] . '_shops_rows t1' )
 				->join( 'INNER JOIN ' . $db_config['prefix'] . '_shops_catalogs t3 ON t3.catid = t1.listcatid' )
 				->where( 't3.catid= ' . $data['catid'] . ' AND t1.status= 1' )
-				->order( 't1.id ASC' )
+				->order( 't1.id DESC' )
 				->limit( $block_config['numrow'] );
 				//die($db->sql());
 			$list =  $db->query($db->sql());
@@ -483,7 +483,7 @@ if( ! nv_function_exists( 'nv_block_shops_block_cat_tabs' ) )
 			{
 				while( $l = $list->fetch() )
 				{
-					$l['link'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=shops&amp;' . NV_OP_VARIABLE . '=' . $shops_array_cat[$l['listcatid']]['alias'] . '/' . $l['alias'] . $global_config['rewrite_exturl'];
+					$l['link'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=shops&amp;' . NV_OP_VARIABLE . '=' . $data['alias'] . '/' . $l['alias'] . $global_config['rewrite_exturl'];
 					if( $l['homeimgthumb'] == 1 )
 					{
 						$l['thumb'] = NV_BASE_SITEURL . NV_FILES_DIR . '/' . $site_mods[$module]['module_upload'] . '/' . $l['homeimgfile'];
@@ -504,7 +504,6 @@ if( ! nv_function_exists( 'nv_block_shops_block_cat_tabs' ) )
 					{
 						$l['thumb'] = '';
 					}
-					
 					$l['catid'] = $data['catid'];
 					$l['blockwidth'] = $blockwidth;
 					$l['blockheight'] = $blockheight;
@@ -530,18 +529,11 @@ if( ! nv_function_exists( 'nv_block_shops_block_cat_tabs' ) )
                                 $group_requie = 0;
                                 if (!empty($listgroupid) and !empty($nv_systems_shops_array_group)) {
                                     foreach ($nv_systems_shops_array_group as $groupinfo) {
-										if($groupinfo['parentid'] != 0){
-											foreach ($listgroupid as $groupid){
-												if($groupinfo['groupid'] == $groupid){
-													$xtpl->assign('GROUP', $groupinfo);
-													$xtpl->parse('grid.group_content.loop.group.items.loop');
-												}
-											}
-											
-										}
+                                        if ($groupinfo['in_order']) {
+                                            $group_requie = 1;
+                                            break;
+                                        }
                                     }
-									$xtpl->parse('grid.group_content.loop.group.items');
-									$xtpl->parse('grid.group_content.loop.group');
                                 }
                                 $group_requie = $pro_config['active_order_popup'] ? 1 : $group_requie;
                                 $xtpl->assign('GROUP_REQUIE', $group_requie);

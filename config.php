@@ -22,7 +22,7 @@ if (file_exists(NV_ROOTDIR . '/domain/' . NV_SERVER_NAME . '/' . NV_CONFIG_FILEN
 	$db_config['dbname'] = 'sml_home';
 	$db_config['dbsystem'] = 'sml_home';
 	$db_config['dbuname'] = 'sml_home';
-	$db_config['dbpass'] = '';
+	$db_config['dbpass'] = 'fP7k39kT';
 	$db_config['dbtype'] = 'mysql';
 	$db_config['collation'] = 'utf8mb4_unicode_ci';
 	$db_config['charset'] = 'utf8mb4';

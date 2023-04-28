@@ -166,7 +166,8 @@ function nv_blocks_content($sitecontent)
             }
 
             // Kiem tra quyen xem block
-            if ($_active and in_array($_row['position'], $array_position, true) and nv_user_in_groups($_row['groups_view'])) {
+			//and nv_user_in_groups($_row['groups_view'])
+            if ($_active and in_array($_row['position'], $array_position, true) ) {
                 $block_config = $_row['block_config'];
                 $blockTitle = $_row['blockTitle'];
                 $content = '';

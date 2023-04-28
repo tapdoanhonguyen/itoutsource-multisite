@@ -18,10 +18,10 @@
 </div>
 </a>
 <div id="text-310922591" class="text">
-<p>121 Hàng Bạc, Hoàn Kiếm, Hà Nội<br>
-093.637.2609 | 090.328.2609<br>
-hoangminhoffice@gmail.com<br>
-Giờ làm việc: 8h-19h30 (từ thứ 2 đến chủ nhật)</p>
+<p>66/6/3A Bùi Đình Túy, Q.Bình Thạnh, TPHCM<br>
+0988.455.066 | 090.999.7381<br>
+sales@smartline.com.vn<br>
+Giờ làm việc: 8h-17h30 (từ thứ 2 đến thứ 7)</p>
 <style>
 #text-310922591 {
 text-align: center;
@@ -47,9 +47,9 @@ color: rgb(255, 255, 255);
 </div>
 </a>
 <div id="text-2318286554" class="text">
-<p>Tầng 5 Lucky Building, Cầu Giấy, Hà Nội<br>
-090.325.2609<br>
-hoangminhoffice@gmail.com<br>
+<p>66/6/3A Bùi Đình Túy, Q.Bình Thạnh, TPHCM<br>
+0988 455 066<br>
+partner@smartline.com.vn<br>
 Giờ làm việc: 8h-18h (từ thứ 2 đến thứ 7)</p>
 <style>
 #text-2318286554 {
@@ -101,16 +101,7 @@ color: rgb(255, 255, 255);
 </div>         
 </div>
 </a>
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:30px;">
-<i class="hoangminh-icon-sand-clock"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Trả góp</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;"></div>
-</div>         
-</div>
-</a>
+
 <a class="hm-custom-icon">
 <span class="icon-top" style="color:rgb(255, 255, 255);font-size:30px;">
 <i class="hoangminh-icon-internet-banking"></i>			</span>
@@ -133,31 +124,31 @@ color: rgb(255, 255, 255);
 <div class="col-inner">
 <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
 <div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://hoangminhoffice.com/huong-dan-mua-hang/">
+<a class="ux-menu-link__link flex" href="https://smartlineco.com/huong-dan-mua-hang/">
 <span class="ux-menu-link__text">
 Hướng dẫn mua hàng			</span>
 </a>
 </div>
 <div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://hoangminhoffice.com/quy-dinh-doi-tra-hang/">
+<a class="ux-menu-link__link flex" href="https://smartlineco.com/quy-dinh-doi-tra-hang/">
 <span class="ux-menu-link__text">
 Quy định đổi trả hàng			</span>
 </a>
 </div>
 <div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://hoangminhoffice.com/phuong-thuc-thanh-toan/">
+<a class="ux-menu-link__link flex" href="https://smartlineco.com/phuong-thuc-thanh-toan/">
 <span class="ux-menu-link__text">
 Phương thức thanh toán			</span>
 </a>
 </div>
 <div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://hoangminhoffice.com/chinh-sach-van-chuyen/">
+<a class="ux-menu-link__link flex" href="https://smartlineco.com/chinh-sach-van-chuyen/">
 <span class="ux-menu-link__text">
 Chính sách vận chuyển			</span>
 </a>
 </div>
 <div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://hoangminhoffice.com/chinh-sach-bao-hanh/">
+<a class="ux-menu-link__link flex" href="https://smartlineco.com/chinh-sach-bao-hanh/">
 <span class="ux-menu-link__text">
 Chính sách bảo hành			</span>
 </a>
@@ -175,10 +166,10 @@ padding: 30px 0px 30px 0px;
 <div class="row" id="row-1281046365">
 <div id="col-306225694" class="col footer-bottom-left medium-6 small-12 large-6">
 <div class="col-inner">
-<div class="ux-logo has-hover align-middle ux_logo inline-block" style="max-width: 100%!important; width: 216.25954198473px!important"><div class="ux-logo-link block image-" title="" href="" style="padding: 15px;"><img src="https://hoangminhoffice.com/wp-content/uploads/2023/01/hoangminh-white-logo.png" title="" alt="" class="ux-logo-image block" style="height:80px;"></div></div>
+<div class="ux-logo has-hover align-middle ux_logo inline-block" style="max-width: 100%!important; width: 216.25954198473px!important"><div class="ux-logo-link block image-" title="" href="" style="padding: 15px;"><img src="//smartlineco.com/uploads/logo_162.png" title="" alt="" class="ux-logo-image block" style="height:80px;"></div></div>
 <div id="text-4059899032" class="text">
-<h3>Công ty TNHH kinh doanh<br>thiết bị máy văn phòng Hoàng Minh</h3>
-<p>Địa chỉ: 121 Hàng Bạc, Hoàn Kiếm, Hà Nội<br>Điện thoại: 024.382.38073<br>Fax: 043.9260566<br>Email: hoangminhoffice@gmail.com</p>
+<h3>Công ty TNHH <br>SmartLine</h3>
+<p>Địa chỉ: 66/6/3A Bùi Đình Túy, Q.Bình Thạnh, TPHCM <br>Điện thoại: 0988.455.066<br>Fax: <br>Email: sales@smartline.com</p>
 <style>
 #text-4059899032 {
 color: rgb(255, 255, 255);
@@ -227,7 +218,7 @@ padding: 30px 0px 30px 0px;
 #section_406601063 {
 padding-top: 30px;
 padding-bottom: 30px;
-background-color: rgb(167, 14, 19);
+background-color: #0a569e;
 }
 #section_406601063 .ux-shape-divider--top svg {
 height: 150px;
@@ -242,12 +233,10 @@ height: 150px;
 <div class="absolute-footer dark medium-text-center text-center">
 <div class="footer-menu">
 <div class="container clearfix">
-<div class="menu-footer-1-container"><ul id="menu-footer-1" class="links footer-nav uppercase"><li id="menu-item-2595" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2595"><a href="https://hoangminhoffice.com/huong-dan-mua-hang/">Hướng dẫn mua hàng</a></li>
-<li id="menu-item-2603" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2603"><a href="https://hoangminhoffice.com/phuong-thuc-thanh-toan/">Phương thức thanh toán</a></li>
-<li id="menu-item-2602" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2602"><a href="https://hoangminhoffice.com/chinh-sach-van-chuyen/">Chính sách vận chuyển</a></li>
-<li id="menu-item-21052" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21052"><a href="https://hoangminhoffice.com/chinh-sach-bao-hanh/">Chính sách bảo hành</a></li>
-<li id="menu-item-2604" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2604"><a href="https://hoangminhoffice.com/quy-dinh-doi-tra-hang/">Quy định đổi trả hàng</a></li>
-</ul></div>        </div>
+<div class="menu-footer-1-container">
+[FOOTER_SITE]
+
+</div>        </div>
 </div> <!-- \end footer menu -->
 <!-- Start footer copyright -->
 <div class="footer-copyright">
@@ -255,15 +244,15 @@ height: 150px;
 <div class="footer-secondary pull-right">
 <!-- 
 <div class="footer-text inline-block small-block">
-<a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=36298" target="_blank"><img src="https://hoangminhoffice.com/staging/wp-content/uploads/2022/03/logoSaleNoti.png" alt="img" class="img-responsive" width="150"></a>          </div>
+<a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=36298" target="_blank"><img src="https://smartlineco.com/staging/wp-content/uploads/2022/03/logoSaleNoti.png" alt="img" class="img-responsive" width="150"></a>          </div>
 -->
 </div>
 <div class="footer-primary pull-left">
 <div class="copyright-footer">
 <p>Bản quyền 2023
-© thuộc công ty <strong>TNHH kinh doanh thiết bị máy văn phòng Hoàng Minh</strong>
+© thuộc công ty <strong>SmartLine</strong>
 <br>
-GPDK kinh doanh &amp; mã số thuế: 0106891853 do sở kế hoạch và đầu từ TP. Hà Nội cấp ngày 3/07/2015.</p>                </div>
+GPDK kinh doanh &amp; mã số thuế: 0106891853 do sở kế hoạch và đầu từ TP. HCM cấp ngày 3/07/2015.</p>                </div>
 </div>
 </div>
 </div>
