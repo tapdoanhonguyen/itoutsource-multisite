@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @Project NUKEVIET 4.x
+ * @Author Tập Đoàn Họ Nguyễn <tgd@tapdoanhonguyen.com>
+ * @Copyright (C) 2023 Tập Đoàn Họ Nguyễn. All rights reserved
+ * @License: Not free read more http://nukeviet.vn/vi/store/modules/nvtools/
+ * @Createdate Sat, 29 Apr 2023 12:49:32 GMT
+ */
+
+if (!defined('NV_ADMIN'))
+    die('Stop!!!');
+
+$submenu['config'] = $lang_module['config'];
+$submenu['work_place'] = $lang_module['work_place'];

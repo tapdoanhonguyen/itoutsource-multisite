@@ -217,6 +217,24 @@
 		<origin><![CDATA[true]]></origin>
 	</extension>
 	<extension>
+		<id><![CDATA[0]]></id>
+		<type><![CDATA[theme]]></type>
+		<name><![CDATA[licavali]]></name>
+		<version><![CDATA[4.5.03]]></version>
+		<date><![CDATA[Fri, 14 Apr 2023 15:49:19 GMT]]></date>
+		<new_version><![CDATA[]]></new_version>
+		<new_date><![CDATA[]]></new_date>
+		<author><![CDATA[VINADES.,JSC]]></author>
+		<license><![CDATA[]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[Đây là giao diện mặc định của hệ thống. Bạn không được xóa, đổi tên và không nên sửa trực tiếp vào giao diện này. Nếu muốn, hãy copy thành giao diện khác và kích hoạt sử dụng giao diện mới đó để chỉnh sửa và sử dụng.]]></message>
+		<link><![CDATA[]]></link>
+		<support><![CDATA[]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[false]]></origin>
+	</extension>
+	<extension>
 		<id><![CDATA[29]]></id>
 		<type><![CDATA[module]]></type>
 		<name><![CDATA[menu]]></name>
@@ -381,6 +399,24 @@
 	<extension>
 		<id><![CDATA[0]]></id>
 		<type><![CDATA[module]]></type>
+		<name><![CDATA[site]]></name>
+		<version><![CDATA[4.0.01]]></version>
+		<date><![CDATA[Mon, 14 Nov 2016 03:54:03 GMT]]></date>
+		<new_version><![CDATA[]]></new_version>
+		<new_date><![CDATA[]]></new_date>
+		<author><![CDATA[CLB NUKEVIET HCMC (adminwmt@gmail.com)]]></author>
+		<license><![CDATA[]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[Module Multi Site]]></message>
+		<link><![CDATA[]]></link>
+		<support><![CDATA[]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[false]]></origin>
+	</extension>
+	<extension>
+		<id><![CDATA[0]]></id>
+		<type><![CDATA[module]]></type>
 		<name><![CDATA[slider]]></name>
 		<version><![CDATA[4.1.02]]></version>
 		<date><![CDATA[Fri, 05 Aug 2022 02:42:26 GMT]]></date>
@@ -444,6 +480,24 @@
 		<license><![CDATA[]]></license>
 		<mode><![CDATA[other]]></mode>
 		<message><![CDATA[Đây là giao diện mặc định của Smartline. Bạn không được xóa, đổi tên và không nên sửa trực tiếp vào giao diện này. Nếu muốn, hãy copy thành giao diện khác và kích hoạt sử dụng giao diện mới đó để chỉnh sửa và sử dụng.]]></message>
+		<link><![CDATA[]]></link>
+		<support><![CDATA[]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[false]]></origin>
+	</extension>
+	<extension>
+		<id><![CDATA[0]]></id>
+		<type><![CDATA[theme]]></type>
+		<name><![CDATA[smco]]></name>
+		<version><![CDATA[4.5.03]]></version>
+		<date><![CDATA[Fri, 14 Apr 2023 15:49:19 GMT]]></date>
+		<new_version><![CDATA[]]></new_version>
+		<new_date><![CDATA[]]></new_date>
+		<author><![CDATA[VINADES.,JSC]]></author>
+		<license><![CDATA[]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[Đây là giao diện mặc định của hệ thống. Bạn không được xóa, đổi tên và không nên sửa trực tiếp vào giao diện này. Nếu muốn, hãy copy thành giao diện khác và kích hoạt sử dụng giao diện mới đó để chỉnh sửa và sử dụng.]]></message>
 		<link><![CDATA[]]></link>
 		<support><![CDATA[]]></support>
 		<updateable>

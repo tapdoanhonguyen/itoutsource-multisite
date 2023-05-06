@@ -14,7 +14,7 @@ if (!defined('NV_MAINFILE')) {
 }
 
 $sys_info['disable_classes'] = [];
-$sys_info['disable_functions'] = ['exec', 'system', 'passthru', 'shell_exec', 'proc_close', 'proc_open', 'dl', 'popen', 'show_source', 'posix_kill', 'posix_mkfifo', 'posix_getpwuid', 'posix_setpgid', 'posix_setsid', 'posix_setuid', 'posix_setgid', 'posix_seteuid', 'posix_setegid', 'posix_uname'];
+$sys_info['disable_functions'] = [];
 $sys_info['ini_set_support'] = true;
 $sys_info['supports_rewrite'] = 'rewrite_mode_apache';
 $sys_info['zlib_support'] = true;
@@ -42,4 +42,4 @@ ini_set('session.gc_maxlifetime', '3600');
 ini_set('user_agent', 'NV4');
 
 $serverInfoUpdated = true;
-$iniSaveTime = 1682567910;
+$iniSaveTime = 1683337053;
