@@ -1,5 +1,6 @@
 <!-- BEGIN: main -->
 <form id="registerForm" class="row">
+	<input name="personnel_id" value="{DATA.personnel_id}" type="hidden">
     <div class="col-12">       
 		<div class="card">
             <div class="card-header">
@@ -31,6 +32,20 @@
                                         </div>
                                     </div>
                                     <div class="card-body fixscrollbar">
+										<div class="row">
+                                            <div class="col-sm-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Chọn tài khoản đã có</label>
+                                                    <select  name="userid" id="userid" placeholder="Tài khoản" class="form-control form-control-sm select2">
+														<option value="-1"> {LANG.select}</option>
+														<!-- BEGIN: userid -->
+														<option value="{USER.key}" {USER.selected}> {USER.name}</option>
+														<!-- END: userid -->
+													</select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
                                         <div class="row">
                                             <div class="col-sm-4 col-md-4">
                                                 <div class="form-group">
@@ -1938,7 +1953,9 @@ $(function () {
 					'<h5 class="modal-title" >Thông báo</h5>'+
 					'</div>';  
 					mess+= '<div class="alert-success alert"><i class="fa fa-exclamation-circle"></i> ' + json['success'] + '</div>';
+					<!-- BEGIN:add -->
 					mess+= '<a class="btn btn-block btn-info btn-flat" href="javascript:location.reload();">Nhập tiếp</a>';
+					<!-- END:add -->
 					mess+= '<a class="btn btn-block btn-info btn-flat" href="javascript:void(0);">Tới danh sách</a>';
 					           
 					$('#sitemodal').find('.modal-dialog').addClass('h-100 my-0 mx-auto d-flex flex-column justify-content-center');

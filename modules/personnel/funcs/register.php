@@ -12,7 +12,17 @@ if( ! defined( 'NV_IS_MOD_PERSONNEL' ) ) die( 'Stop!!!' );
  
 $page_title = $module_info['custom_title'];
 $key_words = $module_info['keywords'];
- 
+
+$array_userid_users = array();
+$array_userid = array();
+$_sql = 'SELECT * FROM nv4_users as u  left join nv4_users_groups_users as gu on u.userid = gu.userid where gu.group_id = ' . $getSetting['employer_group'];
+$_query = $db->query($_sql);
+while ($_row = $_query->fetch()) {
+    $array_userid_users[$_row['userid']] = $_row;
+	$array_userid[] = $_row['userid']; 
+}
+
+$personnel_id = $nv_Request->get_int('personnel_id', 'post', 0);
 if( ACTION_METHOD == 'getData' )
 {
  
@@ -58,7 +68,7 @@ if( ACTION_METHOD == 'getData' )
 
 elseif( ACTION_METHOD == 'create' || ACTION_METHOD == 'update' )
 {
- 
+	
 	$json = array();
 	
 	
@@ -79,6 +89,8 @@ elseif( ACTION_METHOD == 'create' || ACTION_METHOD == 'update' )
 	$dataContent['birthday'] = convertToTimeStamp( $dataContent['birthday'] );
 	
 	$dataContent['gender'] = $nv_Request->get_int('gender', 'post', 0);
+	$dataContent['userid'] = $nv_Request->get_int('userid', 'post', 0);
+	
 	$dataContent['place_of_birth'] = $nv_Request->get_title('place_of_birth', 'post', '');
 	$dataContent['origin_state'] = $nv_Request->get_title('origin_state', 'post', '');
 	$dataContent['private_code'] = $nv_Request->get_title('private_code', 'post', '');
@@ -278,286 +290,607 @@ elseif( ACTION_METHOD == 'create' || ACTION_METHOD == 'update' )
 		// $dataContent['premium_number'] = getRandomNumber( 20 );
 		// $dataContent['full_name'] = $tenNS;
 		// $dataContent['email'] = strtolower(str_replace('-', '', change_alias( $dataContent['full_name'] )) . $sodienthoai) . '@gmail.com';
+
 		
-		if( empty( $error ) )
-		{
-			try
+		if($personnel_id == 0){
+			$_sql = 'SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_personnel where userid = ' . $dataContent['userid'];
+			$_query = $db->query($_sql)->fetchall();
+
+			if(!empty($_query) >0){
+				$error[] = array('input'=> 'userid', 'mess'=>"Nhân sự đã tồn tại, vui lòng kiểm tra lại thông tin"); 
+			}
+			if( empty( $error ) )
 			{
-				$stmt = $db->prepare( 'INSERT INTO ' . TABLE_PERSONNEL_NAME . '_personnel SET 
-					timekeeping_code=:timekeeping_code,
-					personnel_code=:personnel_code,
-					profile_code=:profile_code,
-					full_name=:full_name,
-					birthday=' . intval( $dataContent['birthday'] ) . ',
-					gender=' . intval( $dataContent['gender'] ) . ',
-					place_of_birth=:place_of_birth,
-					origin_state=:origin_state,
-					private_code=:private_code,
-					private_code_date=' . intval( $dataContent['private_code_date'] ) . ',
-					private_code_place=:private_code_place,
-					marital_status=' . intval( $dataContent['marital_status'] ) . ',
-					nationality=' . intval( $dataContent['nationality'] ) . ',
-					people=' . intval( $dataContent['people'] ) . ',
-					religious=' . intval( $dataContent['religious'] ) . ',
-					job_bank_account=:job_bank_account,
-					job_bank_account_name=:job_bank_account_name,
-					job_bank_id=' . intval( $dataContent['job_bank_id'] ) . ',
-					job_bank_desc=:job_bank_desc,
-					job_tax=:job_tax,				
-					level_id=' . intval( $dataContent['level_id'] ) . ',
-					level_school=' . intval( $dataContent['level_school'] ) . ',
-					level_academic=' . intval( $dataContent['level_academic'] ) . ',
-					mobile=:mobile,				
-					email=:email,				
-					home_address=:home_address,				
-					place_home=' . intval( $dataContent['place_home'] ) . ',
-					current_address=:current_address,				
-					place_current=' . intval( $dataContent['place_current'] ) . ',
-					contract_code=:contract_code,				
-					contract_type=' . intval( $dataContent['contract_type'] ) . ',
-					department_id=' . intval( $dataContent['department_id'] ) . ',
-					work_type=' . intval( $dataContent['work_type'] ) . ',
-					position_id=' . intval( $dataContent['position_id'] ) . ',
-					job_title=' . intval( $dataContent['job_title'] ) . ',
-					work_place=' . intval( $dataContent['work_place'] ) . ',
-					date_start=' . intval( $dataContent['date_start'] ) . ',
-					date_finish=' . intval( $dataContent['date_finish'] ) . ',
-					date_reg=' . intval( $dataContent['date_reg'] ) . ',
-					signer_id=' . intval( $dataContent['signer_id'] ) . ',
-					salary_date_from=' . intval( $dataContent['salary_date_from'] ) . ',
-					salary_method_id=' . intval( $dataContent['salary_method_id'] ) . ',
-					salary_money=:salary_money,
-					premium_number=:premium_number,
-					premium_insurance_status=' . intval( $dataContent['premium_insurance_status'] ) . ',
-					premium_personnel=' . intval( $dataContent['premium_personnel'] ) . ',
-					premium_card=' . intval( $dataContent['premium_card'] ) . ',
-					premium_code=' . intval( $dataContent['premium_code'] ) . ',
-					insup_date_get=' . intval( $dataContent['insup_date_get'] ) . ',
-					insup_date_complete=' . intval( $dataContent['insup_date_complete'] ) . ',
-					insup_date_receive=' . intval( $dataContent['insup_date_receive'] ) . ',
-					insup_date_return=' . intval( $dataContent['insup_date_return'] ) . ',
-					insdown_date_get=' . intval( $dataContent['insdown_date_get'] ) . ',
-					insdown_date_complete=' . intval( $dataContent['insdown_date_complete'] ) . ',
-					insdown_date_apply=' . intval( $dataContent['insdown_date_apply'] ) . ',
-					insdown_date_return=' . intval( $dataContent['insdown_date_return'] ) . ',
-					status_identity_card=:status_identity_card,				
-					resign_to_bill=:resign_to_bill,				
-					attachment=' . intval( $attachment ) . ',
-					userid_create=' . intval( $user_info['userid'] ) .',
-					work_status=' . intval( $dataContent['work_status'] ) .',
-					date_added=' . intval( NV_CURRENTTIME ) );
-
-				$stmt->bindParam( ':timekeeping_code', $dataContent['timekeeping_code'], PDO::PARAM_STR );
-				$stmt->bindParam( ':personnel_code', $dataContent['personnel_code'], PDO::PARAM_STR );
-				$stmt->bindParam( ':profile_code', $dataContent['profile_code'], PDO::PARAM_STR );
-				$stmt->bindParam( ':full_name', $dataContent['full_name'], PDO::PARAM_STR );
-				$stmt->bindParam( ':place_of_birth', $dataContent['place_of_birth'], PDO::PARAM_STR );
-				$stmt->bindParam( ':origin_state', $dataContent['origin_state'], PDO::PARAM_STR );
-				$stmt->bindParam( ':private_code', $dataContent['private_code'], PDO::PARAM_STR );
-				$stmt->bindParam( ':private_code_place', $dataContent['private_code_place'], PDO::PARAM_STR );
-				$stmt->bindParam( ':job_bank_account', $dataContent['job_bank_account'], PDO::PARAM_STR );
-				$stmt->bindParam( ':job_bank_account_name', $dataContent['job_bank_account_name'], PDO::PARAM_STR );
-				$stmt->bindParam( ':job_bank_desc', $dataContent['job_bank_desc'], PDO::PARAM_STR );
-				$stmt->bindParam( ':job_tax', $dataContent['job_tax'], PDO::PARAM_STR );
-				$stmt->bindParam( ':mobile', $dataContent['mobile'], PDO::PARAM_STR );
-				$stmt->bindParam( ':email', $dataContent['email'], PDO::PARAM_STR );
-				$stmt->bindParam( ':home_address', $dataContent['home_address'], PDO::PARAM_STR );
-				$stmt->bindParam( ':current_address', $dataContent['current_address'], PDO::PARAM_STR );
-				$stmt->bindParam( ':contract_code', $dataContent['contract_code'], PDO::PARAM_STR );
-				$stmt->bindParam( ':salary_money', $dataContent['salary_money'], PDO::PARAM_STR );
-				$stmt->bindParam( ':premium_number', $dataContent['premium_number'], PDO::PARAM_STR );
-				$stmt->bindParam( ':status_identity_card', $dataContent['status_identity_card'], PDO::PARAM_STR );
-				$stmt->bindParam( ':resign_to_bill', $dataContent['resign_to_bill'], PDO::PARAM_STR );
-
-				$stmt->execute();
-
-				if( $dataContent['personnel_id'] = $db->lastInsertId() )
+				try
 				{
-					if( !empty( $dataContent['family'] ) )
-					{
-						foreach( $dataContent['family'] as $key => $item )
-						{
-							$item['full_name'] = isset( $item['full_name'] ) ? (string) $item['full_name'] : '';
-							$item['birthday'] = isset( $item['birthday'] ) ? (string) $item['birthday'] : '';
-							$item['job'] = isset( $item['job'] ) ? (string) $item['job'] : '';
-							$item['origin_state_address'] = isset( $item['origin_state_address'] ) ? (string) $item['origin_state_address'] : '';
-							$item['phone'] = isset( $item['phone'] ) ? (string) $item['phone'] : '';
-							$item['relative_id'] = isset( $item['relative_id'] ) ? (int) $item['relative_id'] : '';
-							$item['is_dependent'] = isset( $item['is_dependent'] ) ? (int) $item['is_dependent'] : '';
-	 
-							$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_family SET
-								personnel_id='. intval( $dataContent['personnel_id'] ) .',
-								full_name='. $db->quote( $item['full_name'] ) .',
-								birthday='. $db->quote( $item['birthday'] ) .',
-								job='. $db->quote( $item['job'] ) .',
-								origin_state_address='. $db->quote( $item['origin_state_address'] ) .',
-								phone='. $db->quote( $item['phone'] ) .',
-								relative_id='. intval( $item['relative_id'] ) . ',
-								is_dependent='. intval( $item['is_dependent'] ) );
-							
-							// family[0][relative_id]: 1
-							// family[0][full_name]: Đặng Hữu Lành
-							// family[0][birthday]: 15/09/1954
-							// family[0][job]: Tự do
-							// family[0][origin_state_address]: Hà nội
-							// family[0][phone]: 09543454353
-							// family[0][is_dependent]: 5
-						}
-					}
+					if($dataContent['gender'] < 0) {$dataContent['gender'] = 0;}
+					if($dataContent['level_school'] < 0) {$dataContent['level_school'] = 0;}
+					if($dataContent['department_id'] < 0) {$dataContent['department_id'] = 0;}
+					if($dataContent['birthday'] < 0) {$dataContent['birthday'] = 0;}
+					if($dataContent['private_code_date'] < 0) {$dataContent['private_code_date'] = 0;}
+					if($dataContent['marital_status'] < 0) {$dataContent['marital_status'] = 0;}
+					if($dataContent['work_type'] < 0) {$dataContent['work_type'] = 0;}
+					$stmt = $db->prepare( 'INSERT INTO ' . TABLE_PERSONNEL_NAME . '_personnel SET 
+						userid=' . intval( $dataContent['userid'] ) . ',
+						timekeeping_code=:timekeeping_code,
+						personnel_code=:personnel_code,
+						profile_code=:profile_code,
+						full_name=:full_name,
+						birthday=' . intval( $dataContent['birthday'] ) . ',
+						gender=' . intval( $dataContent['gender'] ) . ',
+						place_of_birth=:place_of_birth,
+						origin_state=:origin_state,
+						private_code=:private_code,
+						private_code_date=' . intval( $dataContent['private_code_date'] ) . ',
+						private_code_place=:private_code_place,
+						marital_status=' . intval( $dataContent['marital_status'] ) . ',
+						nationality=' . intval( $dataContent['nationality'] ) . ',
+						people=' . intval( $dataContent['people'] ) . ',
+						religious=' . intval( $dataContent['religious'] ) . ',
+						job_bank_account=:job_bank_account,
+						job_bank_account_name=:job_bank_account_name,
+						job_bank_id=' . intval( $dataContent['job_bank_id'] ) . ',
+						job_bank_desc=:job_bank_desc,
+						job_tax=:job_tax,				
+						level_id=' . intval( $dataContent['level_id'] ) . ',
+						level_school=:level_school,
+						level_academic=' . intval( $dataContent['level_academic'] ) . ',
+						mobile=:mobile,				
+						email=:email,				
+						home_address=:home_address,				
+						place_home=' . intval( $dataContent['place_home'] ) . ',
+						current_address=:current_address,				
+						place_current=' . intval( $dataContent['place_current'] ) . ',
+						contract_code=:contract_code,				
+						contract_type=' . intval( $dataContent['contract_type'] ) . ',
+						department_id=' . intval( $dataContent['department_id'] ) . ',
+						work_type=' . intval( $dataContent['work_type'] ) . ',
+						position_id=' . intval( $dataContent['position_id'] ) . ',
+						job_title=' . intval( $dataContent['job_title'] ) . ',
+						work_place=' . intval( $dataContent['work_place'] ) . ',
+						date_start=' . intval( $dataContent['date_start'] ) . ',
+						date_finish=' . intval( $dataContent['date_finish'] ) . ',
+						date_reg=' . intval( $dataContent['date_reg'] ) . ',
+						signer_id=' . intval( $dataContent['signer_id'] ) . ',
+						salary_date_from=' . intval( $dataContent['salary_date_from'] ) . ',
+						salary_method_id=' . intval( $dataContent['salary_method_id'] ) . ',
+						salary_money=:salary_money,
+						premium_number=:premium_number,
+						premium_insurance_status=' . intval( $dataContent['premium_insurance_status'] ) . ',
+						premium_personnel=' . intval( $dataContent['premium_personnel'] ) . ',
+						premium_card=' . intval( $dataContent['premium_card'] ) . ',
+						premium_code=' . intval( $dataContent['premium_code'] ) . ',
+						insup_date_get=' . intval( $dataContent['insup_date_get'] ) . ',
+						insup_date_complete=' . intval( $dataContent['insup_date_complete'] ) . ',
+						insup_date_receive=' . intval( $dataContent['insup_date_receive'] ) . ',
+						insup_date_return=' . intval( $dataContent['insup_date_return'] ) . ',
+						insdown_date_get=' . intval( $dataContent['insdown_date_get'] ) . ',
+						insdown_date_complete=' . intval( $dataContent['insdown_date_complete'] ) . ',
+						insdown_date_apply=' . intval( $dataContent['insdown_date_apply'] ) . ',
+						insdown_date_return=' . intval( $dataContent['insdown_date_return'] ) . ',
+						status_identity_card=:status_identity_card,				
+						resign_to_bill=:resign_to_bill,				
+						attachment=' . intval( $attachment ) . ',
+						userid_create=' . intval( $user_info['userid'] ) .',
+						work_status=' . intval( $dataContent['work_status'] ) .',
+						date_added=' . intval( NV_CURRENTTIME ) );
+
+					$stmt->bindParam( ':timekeeping_code', $dataContent['timekeeping_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':personnel_code', $dataContent['personnel_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':profile_code', $dataContent['profile_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':full_name', $dataContent['full_name'], PDO::PARAM_STR );
+					$stmt->bindParam( ':place_of_birth', $dataContent['place_of_birth'], PDO::PARAM_STR );
+					$stmt->bindParam( ':origin_state', $dataContent['origin_state'], PDO::PARAM_STR );
+					$stmt->bindParam( ':private_code', $dataContent['private_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':private_code_place', $dataContent['private_code_place'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_bank_account', $dataContent['job_bank_account'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_bank_account_name', $dataContent['job_bank_account_name'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_bank_desc', $dataContent['job_bank_desc'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_tax', $dataContent['job_tax'], PDO::PARAM_STR );
 					
-					if( !empty( $dataContent['degrees'] ) )
+					$stmt->bindParam( ':level_school', $dataContent['level_school'], PDO::PARAM_INT );
+					$stmt->bindParam( ':mobile', $dataContent['mobile'], PDO::PARAM_STR );
+					$stmt->bindParam( ':email', $dataContent['email'], PDO::PARAM_STR );
+					$stmt->bindParam( ':home_address', $dataContent['home_address'], PDO::PARAM_STR );
+					$stmt->bindParam( ':current_address', $dataContent['current_address'], PDO::PARAM_STR );
+					$stmt->bindParam( ':contract_code', $dataContent['contract_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':salary_money', $dataContent['salary_money'], PDO::PARAM_STR );
+					$stmt->bindParam( ':premium_number', $dataContent['premium_number'], PDO::PARAM_STR );
+					$stmt->bindParam( ':status_identity_card', $dataContent['status_identity_card'], PDO::PARAM_STR );
+					$stmt->bindParam( ':resign_to_bill', $dataContent['resign_to_bill'], PDO::PARAM_STR );
+
+					$stmt->execute();
+
+					if( $dataContent['personnel_id'] = $db->lastInsertId() )
 					{
-						foreach( $dataContent['degrees'] as $key => $item )
+						if( !empty( $dataContent['family'] ) )
 						{
-							$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : '';
-							$item['date_to'] = isset( $item['date_to'] ) ? (string) $item['date_to'] : '';
-							$item['specialization'] = isset( $item['specialization'] ) ? (string) $item['specialization'] : '';
-							$item['place'] = isset( $item['place'] ) ? (string) $item['place'] : '';
-							$item['type_id'] = isset( $item['type_id'] ) ? (int) $item['type_id'] : '';
-							$item['level_id'] = isset( $item['level_id'] ) ? (int) $item['level_id'] : '';
-	 
-							$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_degrees SET
-								personnel_id='. intval( $dataContent['personnel_id'] ) .',
-								date_from='. $db->quote( $item['date_from'] ) .',
-								date_to='. $db->quote( $item['date_to'] ) .',
-								specialization='. $db->quote( $item['specialization'] ) .',
-								place='. $db->quote( $item['place'] ) .',
-								level_id='. intval( $item['level_id'] ) . ',
-								type_id='. intval( $item['type_id'] ) );
-							// degrees[0][date_from]: 11/2020
-							// degrees[0][date_to]: 11/2020
-							// degrees[0][type_id]: 27
-							// degrees[0][specialization]: Lập Trình
-							// degrees[0][level_id]: 17
-							// degrees[0][place]: Đại học cntt và truyền thông thái nguyên
-							 
-						}
-					}
-		
-					if( !empty( $dataContent['historySolves'] ) )
-					{
-						foreach( $dataContent['historySolves'] as $key => $item )
-						{
-							$item['model'] = isset( $item['model'] ) ? (int) $item['model'] : 0;
-							
-							$item['premium_date_get'] = isset( $item['premium_date_get'] ) ? (string) $item['premium_date_get'] : 0;
-							$item['premium_date_get'] = convertToTimeStamp( $item['premium_date_get'] );
-	 
-							$item['premium_date_complete'] = isset( $item['premium_date_complete'] ) ? (string) $item['premium_date_complete'] : 0;
-							$item['premium_date_complete'] = convertToTimeStamp( $item['premium_date_complete'] );
-							
-							$item['premium_date_close'] = isset( $item['premium_date_close'] ) ? (string) $item['premium_date_close'] : 0;
-							$item['premium_date_close'] = convertToTimeStamp( $item['premium_date_close'] );
-							
-							$item['premium_date_return'] = isset( $item['premium_date_return'] ) ? (string) $item['premium_date_return'] : 0;
-							$item['premium_date_return'] = convertToTimeStamp( $item['premium_date_return'] );
-							
-							$item['price'] = isset( $item['price'] ) ? doubleval($item['price']) : 0;
-							$item['price'] = preg_replace('/[^0-9\.]/', '', $item['price'] );
-							
-							$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_history_solves SET
-								personnel_id='. intval( $dataContent['personnel_id'] ) .',
-								premium_date_get='. intval( $item['premium_date_get'] ) .',
-								premium_date_complete='. intval( $item['premium_date_complete'] ) .',
-								premium_date_close='. intval( $item['premium_date_close'] ) .',
-								premium_date_return='. intval( $item['premium_date_return'] ) .',
-								price='. doubleval( $item['price'] ) );
-	 
-						}
-					}
-		
-					if( !empty( $dataContent['historyInsurances'] ) )
-					{
-						foreach( $dataContent['historyInsurances'] as $key => $item )
-						{
-							$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : 0;
-	  
-							$item['type'] = isset( $item['type'] ) ? (string) $item['type'] : 0;
-							$item['reason'] = isset( $item['reason'] ) ? (string) $item['reason'] : 0;
-	 
-							$item['salary_premium_base'] = isset( $item['salary_premium_base'] ) ? doubleval( $item['salary_premium_base'] ): 0;
-							$item['salary_premium_base'] = preg_replace('/[^0-9\.]/', '', $item['salary_premium_base']);
-							
-							$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_history_insurances SET
-								personnel_id='. intval( $dataContent['personnel_id'] ) .',
-								date_from='. $db->quote( $item['date_from'] ) .',
-								type='. $db->quote( $item['type'] ) .',
-								reason='. $db->quote( $item['reason'] ) .',
-								salary_premium_base='. doubleval( $item['salary_premium_base'] ) );	
-	 
-						}
-					}
-					
-					if( !empty( $dataContent['allowances'] ) )
-					{
-						foreach( $dataContent['allowances'] as $key => $item )
-						{
-							
-							$item['allow_id'] = isset( $item['allow_id'] ) ? $item['allow_id'] : 0;
-							$item['money'] = isset( $item['money'] ) ? $item['money'] : 0;
-							$item['money'] = preg_replace('/[^0-9\.]/', '', $item['money']);
-							if( $item['allow_id'] > 0 )
+							foreach( $dataContent['family'] as $key => $item )
 							{
-								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_allowances SET
-								personnel_id='. intval( $dataContent['personnel_id'] ) .',
-								allow_id='. intval( $item['allow_id'] ) .',
-								money='. $db->quote( $item['money'] ) );
+								$item['full_name'] = isset( $item['full_name'] ) ? (string) $item['full_name'] : '';
+								$item['birthday'] = isset( $item['birthday'] ) ? (string) $item['birthday'] : '';
+								$item['job'] = isset( $item['job'] ) ? (string) $item['job'] : '';
+								$item['origin_state_address'] = isset( $item['origin_state_address'] ) ? (string) $item['origin_state_address'] : '';
+								$item['phone'] = isset( $item['phone'] ) ? (string) $item['phone'] : '';
+								$item['relative_id'] = isset( $item['relative_id'] ) ? (int) $item['relative_id'] : 0;
+								if($item['relative_id'] < 0 ) {$item['relative_id'] = 0;}
+								$item['is_dependent'] = isset( $item['is_dependent'] ) ? (int) $item['is_dependent'] : '';
+								if($item['is_dependent'] < 0 ) {$item['is_dependent'] = 0;}
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_family SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									full_name='. $db->quote( $item['full_name'] ) .',
+									birthday='. $db->quote( $item['birthday'] ) .',
+									job='. $db->quote( $item['job'] ) .',
+									origin_state_address='. $db->quote( $item['origin_state_address'] ) .',
+									phone='. $db->quote( $item['phone'] ) .',
+									relative_id='. intval( $item['relative_id'] ) . ',
+									is_dependent='. intval( $item['is_dependent'] ) );
+								
+								// family[0][relative_id]: 1
+								// family[0][full_name]: Đặng Hữu Lành
+								// family[0][birthday]: 15/09/1954
+								// family[0][job]: Tự do
+								// family[0][origin_state_address]: Hà nội
+								// family[0][phone]: 09543454353
+								// family[0][is_dependent]: 5
 							}
-	 
 						}
-					}
-					
-					if( !empty( $dataContent['experience'] ) )
-					{
-						foreach( $dataContent['experience'] as $key => $item )
+						
+						if( !empty( $dataContent['degrees'] ) )
 						{
-							$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : '';
-							$item['date_to'] = isset( $item['date_to'] ) ? (string) $item['date_to'] : '';
-							$item['company_title'] = isset( $item['company_title'] ) ? (string) $item['company_title'] : '';
-							$item['contact_info'] = isset( $item['contact_info'] ) ? (string) $item['contact_info'] : '';
-							$item['phone'] = isset( $item['phone'] ) ? (string) $item['phone'] : '';
-							$item['work_desc'] = isset( $item['work_desc'] ) ? (string) $item['work_desc'] : '';
-							$item['position_id'] = isset( $item['position_id'] ) ? (string) $item['position_id'] : '';
-							
-	 
-							$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_experience SET
-								personnel_id='. intval( $dataContent['personnel_id'] ) .',
-								date_from='. $db->quote( $item['date_from'] ) .',
-								date_to='. $db->quote( $item['date_to'] ) .',
-								company_title='. $db->quote( $item['company_title'] ) .',
-								contact_info='. $db->quote( $item['contact_info'] ) .',
-								phone='. $db->quote( $item['phone'] ) .',
-								work_desc='. $db->quote( $item['work_desc'] ) .',
-								position_id='. $db->quote( $item['position_id'] ) );
-							// experience[0][date_from]: 11/2020
-							// experience[0][date_to]: 11/2020
-							// experience[0][company_title]: Ở nahf choiq
-							// experience[0][position_id]: sda sad á
-							// experience[0][contact_info]: ds ad sad
-							// experience[0][phone]: 435454353435
-							// experience[0][work_desc]: dfd sf sdf sfsd fds
+							foreach( $dataContent['degrees'] as $key => $item )
+							{
+								$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : '';
+								$item['date_to'] = isset( $item['date_to'] ) ? (string) $item['date_to'] : '';
+								$item['specialization'] = isset( $item['specialization'] ) ? (string) $item['specialization'] : '';
+								$item['place'] = isset( $item['place'] ) ? (string) $item['place'] : '';
+								$item['type_id'] = isset( $item['type_id'] ) ? (int) $item['type_id'] : '';
+								$item['level_id'] = isset( $item['level_id'] ) ? (int) $item['level_id'] : '';
+								if($item['level_id'] < 0 ) {$item['level_id'] = 0;}
+								if($item['type_id'] < 0 ) {$item['type_id'] = 0;}
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_degrees SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									date_from='. $db->quote( $item['date_from'] ) .',
+									date_to='. $db->quote( $item['date_to'] ) .',
+									specialization='. $db->quote( $item['specialization'] ) .',
+									place='. $db->quote( $item['place'] ) .',
+									level_id='. intval( $item['level_id'] ) . ',
+									type_id='. intval( $item['type_id'] ) );
+								// degrees[0][date_from]: 11/2020
+								// degrees[0][date_to]: 11/2020
+								// degrees[0][type_id]: 27
+								// degrees[0][specialization]: Lập Trình
+								// degrees[0][level_id]: 17
+								// degrees[0][place]: Đại học cntt và truyền thông thái nguyên
+								 
+							}
 						}
-					}
-					
-					if( !empty( $dataContent['attachments'] ) )
-					{
-						$db->query( 'UPDATE ' . $db_config['prefix'] . '_attachment SET rid = ' . $dataContent['personnel_id'] . ' WHERE attachment_id IN ( ' . implode( $dataContent['attachments'] )  . ' ) AND userid=' . intval( $user_info['userid'] ) );	
-					}
-					
-					$json['success']= $lang_module['register_success_create'];
-				}
-			}
-			catch ( PDOException $e )
-			{
-				$error['warning'] = $lang_module['register_error_save'];
-				var_dump($e);die();
-			}
 			
+						if( !empty( $dataContent['historySolves'] ) )
+						{
+							foreach( $dataContent['historySolves'] as $key => $item )
+							{
+								$item['model'] = isset( $item['model'] ) ? (int) $item['model'] : 0;
+								
+								$item['premium_date_get'] = isset( $item['premium_date_get'] ) ? (string) $item['premium_date_get'] : 0;
+								$item['premium_date_get'] = convertToTimeStamp( $item['premium_date_get'] );
+		 
+								$item['premium_date_complete'] = isset( $item['premium_date_complete'] ) ? (string) $item['premium_date_complete'] : 0;
+								$item['premium_date_complete'] = convertToTimeStamp( $item['premium_date_complete'] );
+								
+								$item['premium_date_close'] = isset( $item['premium_date_close'] ) ? (string) $item['premium_date_close'] : 0;
+								$item['premium_date_close'] = convertToTimeStamp( $item['premium_date_close'] );
+								
+								$item['premium_date_return'] = isset( $item['premium_date_return'] ) ? (string) $item['premium_date_return'] : 0;
+								$item['premium_date_return'] = convertToTimeStamp( $item['premium_date_return'] );
+								
+								$item['price'] = isset( $item['price'] ) ? doubleval($item['price']) : 0;
+								$item['price'] = preg_replace('/[^0-9\.]/', '', $item['price'] );
+								
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_history_solves SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									premium_date_get='. intval( $item['premium_date_get'] ) .',
+									premium_date_complete='. intval( $item['premium_date_complete'] ) .',
+									premium_date_close='. intval( $item['premium_date_close'] ) .',
+									premium_date_return='. intval( $item['premium_date_return'] ) .',
+									price='. doubleval( $item['price'] ) );
+		 
+							}
+						}
+			
+						if( !empty( $dataContent['historyInsurances'] ) )
+						{
+							foreach( $dataContent['historyInsurances'] as $key => $item )
+							{
+								$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : 0;
+		  
+								$item['type'] = isset( $item['type'] ) ? (string) $item['type'] : 0;
+								$item['reason'] = isset( $item['reason'] ) ? (string) $item['reason'] : 0;
+		 
+								$item['salary_premium_base'] = isset( $item['salary_premium_base'] ) ? doubleval( $item['salary_premium_base'] ): 0;
+								$item['salary_premium_base'] = preg_replace('/[^0-9\.]/', '', $item['salary_premium_base']);
+								
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_history_insurances SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									date_from='. $db->quote( $item['date_from'] ) .',
+									type='. $db->quote( $item['type'] ) .',
+									reason='. $db->quote( $item['reason'] ) .',
+									salary_premium_base='. doubleval( $item['salary_premium_base'] ) );	
+		 
+							}
+						}
+						
+						if( !empty( $dataContent['allowances'] ) )
+						{
+							foreach( $dataContent['allowances'] as $key => $item )
+							{
+								
+								$item['allow_id'] = isset( $item['allow_id'] ) ? $item['allow_id'] : 0;
+								$item['money'] = isset( $item['money'] ) ? $item['money'] : 0;
+								$item['money'] = preg_replace('/[^0-9\.]/', '', $item['money']);
+								if( $item['allow_id'] > 0 )
+								{
+									$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_allowances SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									allow_id='. intval( $item['allow_id'] ) .',
+									money='. $db->quote( $item['money'] ) );
+								}
+		 
+							}
+						}
+						
+						if( !empty( $dataContent['experience'] ) )
+						{
+							foreach( $dataContent['experience'] as $key => $item )
+							{
+								$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : '';
+								$item['date_to'] = isset( $item['date_to'] ) ? (string) $item['date_to'] : '';
+								$item['company_title'] = isset( $item['company_title'] ) ? (string) $item['company_title'] : '';
+								$item['contact_info'] = isset( $item['contact_info'] ) ? (string) $item['contact_info'] : '';
+								$item['phone'] = isset( $item['phone'] ) ? (string) $item['phone'] : '';
+								$item['work_desc'] = isset( $item['work_desc'] ) ? (string) $item['work_desc'] : '';
+								$item['position_id'] = isset( $item['position_id'] ) ? (string) $item['position_id'] : '';
+								
+		 
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_experience SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									date_from='. $db->quote( $item['date_from'] ) .',
+									date_to='. $db->quote( $item['date_to'] ) .',
+									company_title='. $db->quote( $item['company_title'] ) .',
+									contact_info='. $db->quote( $item['contact_info'] ) .',
+									phone='. $db->quote( $item['phone'] ) .',
+									work_desc='. $db->quote( $item['work_desc'] ) .',
+									position_id='. $db->quote( $item['position_id'] ) );
+								// experience[0][date_from]: 11/2020
+								// experience[0][date_to]: 11/2020
+								// experience[0][company_title]: Ở nahf choiq
+								// experience[0][position_id]: sda sad á
+								// experience[0][contact_info]: ds ad sad
+								// experience[0][phone]: 435454353435
+								// experience[0][work_desc]: dfd sf sdf sfsd fds
+							}
+						}
+						
+						if( !empty( $dataContent['attachments'] ) )
+						{
+							$db->query( 'UPDATE ' . $db_config['prefix'] . '_attachment SET rid = ' . $dataContent['personnel_id'] . ' WHERE attachment_id IN ( ' . implode( $dataContent['attachments'] )  . ' ) AND userid=' . intval( $user_info['userid'] ) );	
+						}
+						
+						$json['success']= $lang_module['register_success_create'];
+					}
+				}
+				catch ( PDOException $e )
+				{
+					$error['warning'] = $lang_module['register_error_save'];
+				}
+				
+			}
+			else
+			{
+				$json['error']= $error;
+			}
 		}
-		else
-		{
-			$json['error']= $error;
+		else{
+			
+			if( empty( $error ) )
+			{
+				
+				try
+				{
+					
+					if($dataContent['level_school'] < 0) {$dataContent['level_school'] = 0;}
+					if($dataContent['department_id'] < 0) {$dataContent['department_id'] = 0;}
+					$stmt = $db->prepare( 'UPDATE ' . TABLE_PERSONNEL_NAME . '_personnel SET 
+						userid=' . intval( $dataContent['userid'] ) . ',
+						timekeeping_code=:timekeeping_code,
+						personnel_code=:personnel_code,
+						profile_code=:profile_code,
+						full_name=:full_name,
+						birthday=' . intval( $dataContent['birthday'] ) . ',
+						gender=' . intval( $dataContent['gender'] ) . ',
+						place_of_birth=:place_of_birth,
+						origin_state=:origin_state,
+						private_code=:private_code,
+						private_code_date=' . intval( $dataContent['private_code_date'] ) . ',
+						private_code_place=:private_code_place,
+						marital_status=' . intval( $dataContent['marital_status'] ) . ',
+						nationality=' . intval( $dataContent['nationality'] ) . ',
+						people=' . intval( $dataContent['people'] ) . ',
+						religious=' . intval( $dataContent['religious'] ) . ',
+						job_bank_account=:job_bank_account,
+						job_bank_account_name=:job_bank_account_name,
+						job_bank_id=' . intval( $dataContent['job_bank_id'] ) . ',
+						job_bank_desc=:job_bank_desc,
+						job_tax=:job_tax,				
+						level_id=' . intval( $dataContent['level_id'] ) . ',
+						level_school=:level_school,
+						level_academic=' . intval( $dataContent['level_academic'] ) . ',
+						mobile=:mobile,				
+						email=:email,				
+						home_address=:home_address,				
+						place_home=' . intval( $dataContent['place_home'] ) . ',
+						current_address=:current_address,				
+						place_current=' . intval( $dataContent['place_current'] ) . ',
+						contract_code=:contract_code,				
+						contract_type=' . intval( $dataContent['contract_type'] ) . ',
+						department_id=' . intval( $dataContent['department_id'] ) . ',
+						work_type=' . intval( $dataContent['work_type'] ) . ',
+						position_id=' . intval( $dataContent['position_id'] ) . ',
+						job_title=' . intval( $dataContent['job_title'] ) . ',
+						work_place=' . intval( $dataContent['work_place'] ) . ',
+						date_start=' . intval( $dataContent['date_start'] ) . ',
+						date_finish=' . intval( $dataContent['date_finish'] ) . ',
+						date_reg=' . intval( $dataContent['date_reg'] ) . ',
+						signer_id=' . intval( $dataContent['signer_id'] ) . ',
+						salary_date_from=' . intval( $dataContent['salary_date_from'] ) . ',
+						salary_method_id=' . intval( $dataContent['salary_method_id'] ) . ',
+						salary_money=:salary_money,
+						premium_number=:premium_number,
+						premium_insurance_status=' . intval( $dataContent['premium_insurance_status'] ) . ',
+						premium_personnel=' . intval( $dataContent['premium_personnel'] ) . ',
+						premium_card=' . intval( $dataContent['premium_card'] ) . ',
+						premium_code=' . intval( $dataContent['premium_code'] ) . ',
+						insup_date_get=' . intval( $dataContent['insup_date_get'] ) . ',
+						insup_date_complete=' . intval( $dataContent['insup_date_complete'] ) . ',
+						insup_date_receive=' . intval( $dataContent['insup_date_receive'] ) . ',
+						insup_date_return=' . intval( $dataContent['insup_date_return'] ) . ',
+						insdown_date_get=' . intval( $dataContent['insdown_date_get'] ) . ',
+						insdown_date_complete=' . intval( $dataContent['insdown_date_complete'] ) . ',
+						insdown_date_apply=' . intval( $dataContent['insdown_date_apply'] ) . ',
+						insdown_date_return=' . intval( $dataContent['insdown_date_return'] ) . ',
+						status_identity_card=:status_identity_card,				
+						resign_to_bill=:resign_to_bill,				
+						attachment=' . intval( $attachment ) . ',
+						userid_create=' . intval( $user_info['userid'] ) .',
+						work_status=' . intval( $dataContent['work_status'] ) .',
+						date_added=' . intval( NV_CURRENTTIME ) . '
+						WHERE personnel_id = ' . $personnel_id
+						);
+
+					$stmt->bindParam( ':timekeeping_code', $dataContent['timekeeping_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':personnel_code', $dataContent['personnel_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':profile_code', $dataContent['profile_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':full_name', $dataContent['full_name'], PDO::PARAM_STR );
+					$stmt->bindParam( ':place_of_birth', $dataContent['place_of_birth'], PDO::PARAM_STR );
+					$stmt->bindParam( ':origin_state', $dataContent['origin_state'], PDO::PARAM_STR );
+					$stmt->bindParam( ':private_code', $dataContent['private_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':private_code_place', $dataContent['private_code_place'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_bank_account', $dataContent['job_bank_account'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_bank_account_name', $dataContent['job_bank_account_name'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_bank_desc', $dataContent['job_bank_desc'], PDO::PARAM_STR );
+					$stmt->bindParam( ':job_tax', $dataContent['job_tax'], PDO::PARAM_STR );
+					
+					$stmt->bindParam( ':level_school', $dataContent['level_school'], PDO::PARAM_INT );
+					$stmt->bindParam( ':mobile', $dataContent['mobile'], PDO::PARAM_STR );
+					$stmt->bindParam( ':email', $dataContent['email'], PDO::PARAM_STR );
+					$stmt->bindParam( ':home_address', $dataContent['home_address'], PDO::PARAM_STR );
+					$stmt->bindParam( ':current_address', $dataContent['current_address'], PDO::PARAM_STR );
+					$stmt->bindParam( ':contract_code', $dataContent['contract_code'], PDO::PARAM_STR );
+					$stmt->bindParam( ':salary_money', $dataContent['salary_money'], PDO::PARAM_STR );
+					$stmt->bindParam( ':premium_number', $dataContent['premium_number'], PDO::PARAM_STR );
+					$stmt->bindParam( ':status_identity_card', $dataContent['status_identity_card'], PDO::PARAM_STR );
+					$stmt->bindParam( ':resign_to_bill', $dataContent['resign_to_bill'], PDO::PARAM_STR );
+
+					$stmt->execute();
+					if( $dataContent['personnel_id'] = $personnel_id )
+					{
+						if( !empty( $dataContent['family'] ) )
+						{
+							$db->query('DELETE FROM ' . TABLE_PERSONNEL_NAME . '_family WHERE personnel_id = ' . $personnel_id);
+							foreach( $dataContent['family'] as $key => $item )
+							{
+								$item['full_name'] = isset( $item['full_name'] ) ? (string) $item['full_name'] : '';
+								$item['birthday'] = isset( $item['birthday'] ) ? (string) $item['birthday'] : '';
+								$item['job'] = isset( $item['job'] ) ? (string) $item['job'] : '';
+								$item['origin_state_address'] = isset( $item['origin_state_address'] ) ? (string) $item['origin_state_address'] : '';
+								$item['phone'] = isset( $item['phone'] ) ? (string) $item['phone'] : '';
+								$item['relative_id'] = isset( $item['relative_id'] ) ? (int) $item['relative_id'] : 0;
+								if($item['relative_id'] < 0 ) {$item['relative_id'] = 0;}
+								$item['is_dependent'] = isset( $item['is_dependent'] ) ? (int) $item['is_dependent'] : '';
+								if($item['is_dependent'] < 0 ) {$item['is_dependent'] = 0;}
+		 
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_family SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									full_name='. $db->quote( $item['full_name'] ) .',
+									birthday='. $db->quote( $item['birthday'] ) .',
+									job='. $db->quote( $item['job'] ) .',
+									origin_state_address='. $db->quote( $item['origin_state_address'] ) .',
+									phone='. $db->quote( $item['phone'] ) .',
+									relative_id='. intval( $item['relative_id'] ) . ',
+									is_dependent='. intval( $item['is_dependent'] ) );
+								
+								// family[0][relative_id]: 1
+								// family[0][full_name]: Đặng Hữu Lành
+								// family[0][birthday]: 15/09/1954
+								// family[0][job]: Tự do
+								// family[0][origin_state_address]: Hà nội
+								// family[0][phone]: 09543454353
+								// family[0][is_dependent]: 5
+							}
+						}
+						
+						if( !empty( $dataContent['degrees'] ) )
+						{
+							$db->query('DELETE FROM ' . TABLE_PERSONNEL_NAME . '_degrees WHERE personnel_id = ' . $personnel_id);
+							foreach( $dataContent['degrees'] as $key => $item )
+							{
+								$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : '';
+								$item['date_to'] = isset( $item['date_to'] ) ? (string) $item['date_to'] : '';
+								$item['specialization'] = isset( $item['specialization'] ) ? (string) $item['specialization'] : '';
+								$item['place'] = isset( $item['place'] ) ? (string) $item['place'] : '';
+								$item['type_id'] = isset( $item['type_id'] ) ? (int) $item['type_id'] : '';
+								$item['level_id'] = isset( $item['level_id'] ) ? (int) $item['level_id'] : '';
+								if($item['level_id'] < 0 ) {$item['level_id'] = 0;}
+								if($item['type_id'] < 0 ) {$item['type_id'] = 0;}
+		 
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_degrees SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									date_from='. $db->quote( $item['date_from'] ) .',
+									date_to='. $db->quote( $item['date_to'] ) .',
+									specialization='. $db->quote( $item['specialization'] ) .',
+									place='. $db->quote( $item['place'] ) .',
+									level_id='. intval( $item['level_id'] ) . ',
+									type_id='. intval( $item['type_id'] ) );
+								// degrees[0][date_from]: 11/2020
+								// degrees[0][date_to]: 11/2020
+								// degrees[0][type_id]: 27
+								// degrees[0][specialization]: Lập Trình
+								// degrees[0][level_id]: 17
+								// degrees[0][place]: Đại học cntt và truyền thông thái nguyên
+								 
+							}
+						}
+			
+						if( !empty( $dataContent['historySolves'] ) )
+						{
+							$db->query('DELETE FROM ' . TABLE_PERSONNEL_NAME . '_history_solves WHERE personnel_id = ' . $personnel_id);
+							foreach( $dataContent['historySolves'] as $key => $item )
+							{
+								$item['model'] = isset( $item['model'] ) ? (int) $item['model'] : 0;
+								
+								$item['premium_date_get'] = isset( $item['premium_date_get'] ) ? (string) $item['premium_date_get'] : 0;
+								$item['premium_date_get'] = convertToTimeStamp( $item['premium_date_get'] );
+		 
+								$item['premium_date_complete'] = isset( $item['premium_date_complete'] ) ? (string) $item['premium_date_complete'] : 0;
+								$item['premium_date_complete'] = convertToTimeStamp( $item['premium_date_complete'] );
+								
+								$item['premium_date_close'] = isset( $item['premium_date_close'] ) ? (string) $item['premium_date_close'] : 0;
+								$item['premium_date_close'] = convertToTimeStamp( $item['premium_date_close'] );
+								
+								$item['premium_date_return'] = isset( $item['premium_date_return'] ) ? (string) $item['premium_date_return'] : 0;
+								$item['premium_date_return'] = convertToTimeStamp( $item['premium_date_return'] );
+								
+								$item['price'] = isset( $item['price'] ) ? doubleval($item['price']) : 0;
+								$item['price'] = preg_replace('/[^0-9\.]/', '', $item['price'] );
+								
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_history_solves SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									premium_date_get='. intval( $item['premium_date_get'] ) .',
+									premium_date_complete='. intval( $item['premium_date_complete'] ) .',
+									premium_date_close='. intval( $item['premium_date_close'] ) .',
+									premium_date_return='. intval( $item['premium_date_return'] ) .',
+									price='. doubleval( $item['price'] ) );
+		 
+							}
+						}
+			
+						if( !empty( $dataContent['historyInsurances'] ) )
+						{
+							$db->query('DELETE FROM ' . TABLE_PERSONNEL_NAME . '_history_insurances WHERE personnel_id = ' . $personnel_id);
+							foreach( $dataContent['historyInsurances'] as $key => $item )
+							{
+								$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : 0;
+		  
+								$item['type'] = isset( $item['type'] ) ? (string) $item['type'] : 0;
+								$item['reason'] = isset( $item['reason'] ) ? (string) $item['reason'] : 0;
+		 
+								$item['salary_premium_base'] = isset( $item['salary_premium_base'] ) ? doubleval( $item['salary_premium_base'] ): 0;
+								$item['salary_premium_base'] = preg_replace('/[^0-9\.]/', '', $item['salary_premium_base']);
+								
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_history_insurances SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									date_from='. $db->quote( $item['date_from'] ) .',
+									type='. $db->quote( $item['type'] ) .',
+									reason='. $db->quote( $item['reason'] ) .',
+									salary_premium_base='. doubleval( $item['salary_premium_base'] ) );	
+		 
+							}
+						}
+						
+						if( !empty( $dataContent['allowances'] ) )
+						{
+							$db->query('DELETE FROM ' . TABLE_PERSONNEL_NAME . '_allowances WHERE personnel_id = ' . $personnel_id);
+							foreach( $dataContent['allowances'] as $key => $item )
+							{
+								
+								$item['allow_id'] = isset( $item['allow_id'] ) ? $item['allow_id'] : 0;
+								$item['money'] = isset( $item['money'] ) ? $item['money'] : 0;
+								$item['money'] = preg_replace('/[^0-9\.]/', '', $item['money']);
+								if( $item['allow_id'] > 0 )
+								{
+									$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_allowances SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									allow_id='. intval( $item['allow_id'] ) .',
+									money='. $db->quote( $item['money'] ) );
+								}
+		 
+							}
+						}
+						
+						if( !empty( $dataContent['experience'] ) )
+						{
+							$db->query('DELETE FROM ' . TABLE_PERSONNEL_NAME . '_experience WHERE personnel_id = ' . $personnel_id);
+							foreach( $dataContent['experience'] as $key => $item )
+							{
+								$item['date_from'] = isset( $item['date_from'] ) ? (string) $item['date_from'] : '';
+								$item['date_to'] = isset( $item['date_to'] ) ? (string) $item['date_to'] : '';
+								$item['company_title'] = isset( $item['company_title'] ) ? (string) $item['company_title'] : '';
+								$item['contact_info'] = isset( $item['contact_info'] ) ? (string) $item['contact_info'] : '';
+								$item['phone'] = isset( $item['phone'] ) ? (string) $item['phone'] : '';
+								$item['work_desc'] = isset( $item['work_desc'] ) ? (string) $item['work_desc'] : '';
+								$item['position_id'] = isset( $item['position_id'] ) ? (string) $item['position_id'] : '';
+								
+		 
+								$db->query('INSERT INTO ' . TABLE_PERSONNEL_NAME . '_experience SET
+									personnel_id='. intval( $dataContent['personnel_id'] ) .',
+									date_from='. $db->quote( $item['date_from'] ) .',
+									date_to='. $db->quote( $item['date_to'] ) .',
+									company_title='. $db->quote( $item['company_title'] ) .',
+									contact_info='. $db->quote( $item['contact_info'] ) .',
+									phone='. $db->quote( $item['phone'] ) .',
+									work_desc='. $db->quote( $item['work_desc'] ) .',
+									position_id='. $db->quote( $item['position_id'] ) );
+								// experience[0][date_from]: 11/2020
+								// experience[0][date_to]: 11/2020
+								// experience[0][company_title]: Ở nahf choiq
+								// experience[0][position_id]: sda sad á
+								// experience[0][contact_info]: ds ad sad
+								// experience[0][phone]: 435454353435
+								// experience[0][work_desc]: dfd sf sdf sfsd fds
+							}
+						}
+						
+						if( !empty( $dataContent['attachments'] ) )
+						{
+							$db->query( 'UPDATE ' . $db_config['prefix'] . '_attachment SET rid = ' . $dataContent['personnel_id'] . ' WHERE attachment_id IN ( ' . implode( $dataContent['attachments'] )  . ' ) AND userid=' . intval( $user_info['userid'] ) );	
+						}
+						
+						$json['success']= $lang_module['register_success_update'];
+					}
+				}
+				catch ( PDOException $e )
+				{
+					$error['warning'] = $lang_module['register_error_save'];
+					var_dump($e);die;
+				}
+				
+			}
+			else
+			{
+				$json['error']= $error;
+			}
 		}
+		
 	// }
 	
  
@@ -566,7 +899,7 @@ elseif( ACTION_METHOD == 'create' || ACTION_METHOD == 'update' )
 	nv_jsonOutput( $json );
 }
 
-$personnel_id = 0;
+
 if( isset( $array_op[1] ) )
 {
 	$getId = explode('-', $array_op[1]);
@@ -585,6 +918,7 @@ $dataAddress = array();
 $dataJson = array();
 if( $personnel_id == 0 )
 {
+	$dataContent['userid'] = 0;
 	$dataContent = array(
 		'gender'=> '-1',
 		'level_school'=> '',
@@ -614,7 +948,7 @@ if( $personnel_id == 0 )
 		'allow_id'=> '',
 		'money'=> ''
 	);
-	/* $dataContent['experience'][]= array(
+	 $dataContent['experience'][]= array(
 		'allow_id'=> '',
 		'money'=> ''
 	);
@@ -640,9 +974,9 @@ if( $personnel_id == 0 )
 	$dataContent['place_home'] = 0;
 	$dataContent['premium_place'] = 0;
 	$dataContent['signer_id'] = 0;
-	$dataContent['signer_name'] = ''; */
+	$dataContent['signer_name'] = ''; 
 	$dataContent['header_title'] = $lang_module['register_create'];
-	
+	$dataContent['userid'] = 0;
 }
 else
 {
@@ -676,7 +1010,7 @@ else
 	
 	$dataContent['signer_name'] = $db->query('SELECT full_name FROM ' . TABLE_PERSONNEL_NAME . '_personnel WHERE signer_id=' . intval( $dataContent['signer_id'] ) )->fetchColumn();
 	
-	
+	$dataContent['family'] =array();
 	$result = $db->query('SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_family WHERE personnel_id=' . intval( $personnel_id ) );
 	while( $item = $result->fetch() ) 
 	{
@@ -684,42 +1018,42 @@ else
 	}
 	$result->closeCursor();
 	
-	
+	$dataContent['degrees'] =array();
 	$result = $db->query('SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_degrees WHERE personnel_id=' . intval( $personnel_id ) );
 	while( $item = $result->fetch() ) 
 	{
 		$dataContent['degrees'][] = $item;
 	}
 	$result->closeCursor();
-	
+	$dataContent['allowances'] =array();
 	$result = $db->query('SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_allowances WHERE personnel_id=' . intval( $personnel_id ) );
 	while( $item = $result->fetch() ) 
 	{
 		$dataContent['allowances'][] = $item;
 	}
 	$result->closeCursor();
-	
+	$dataContent['experience'] =array();
 	$result = $db->query('SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_experience WHERE personnel_id=' . intval( $personnel_id ) );
 	while( $item = $result->fetch() ) 
 	{
 		$dataContent['experience'][] = $item;
 	}
 	$result->closeCursor();
-	
+	$dataContent['historyInsurances'] =array();
 	$result = $db->query('SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_history_insurances WHERE personnel_id=' . intval( $personnel_id ) );
 	while( $item = $result->fetch() ) 
 	{
 		$dataContent['historyInsurances'][] = $item;
 	}
 	$result->closeCursor();
-	
+	$dataContent['historySolves'] =array();
 	$result = $db->query('SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_history_solves WHERE personnel_id=' . intval( $personnel_id ) );
 	while( $item = $result->fetch() ) 
 	{
 		$dataContent['historySolves'][] = $item;
 	}
 	$result->closeCursor();
-	
+	$dataContent['attachments'] =array();
 	$result = $db->query('SELECT * FROM ' . TABLE_ATTACHMENT_NAME .' WHERE in_mod='. $db->quote( $module_name ) .' AND rid=' . intval( $personnel_id ) );
 	while( $item = $result->fetch() ) 
 	{
@@ -760,7 +1094,9 @@ else
 		
 	);
 }
- 
+
+
+$dataContent['users'] = $array_userid_users;
 $contents = ThemeViewRegister( $dataContent, $dataJson, $dataAddress);
 
 include NV_ROOTDIR . '/includes/header.php';

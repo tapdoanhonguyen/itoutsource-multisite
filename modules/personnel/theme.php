@@ -231,6 +231,7 @@ function ThemeViewRegister( $dataContent, $dataJson, $dataAddress )
 	if( $dataContent['personnel_id'] == 0 )
 	{
 		$xtpl->parse( 'main.empty_data' );
+		$xtpl->parse( 'main.add' );
 		
 		
 	}
@@ -404,7 +405,16 @@ function ThemeViewRegister( $dataContent, $dataJson, $dataAddress )
 		$xtpl->parse( 'main.gender' );
  	
 	}
- 
+	foreach( $dataContent['users'] as $key => $val)
+	{
+		
+		$xtpl->assign( 'USER', array(
+				'key' => $key,
+				'name' => $val['username'],
+				'selected' => $key == $dataContent['userid'] ? ' selected="selected"' : '' ) );
+		$xtpl->parse( 'main.userid' );
+ 	
+	}
 	foreach( $arrayMarital as $key => $val)
 	{
 		
