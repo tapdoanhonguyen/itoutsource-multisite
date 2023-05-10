@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.8.2
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2023 at 02:12 PM
--- Server version: 5.6.34
--- PHP Version: 5.6.30
+-- Generation Time: May 10, 2023 at 11:07 AM
+-- Server version: 10.6.12-MariaDB
+-- PHP Version: 8.1.17
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `sml_shop`
@@ -26,21 +27,20 @@ SET time_zone = "+00:00";
 -- Table structure for table `nv4_attachment`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_attachment` (
-  `attachment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `in_mod` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `addtime` int(11) NOT NULL DEFAULT '0',
-  `basename` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `newname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `ext` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `mime` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `size` int(10) unsigned NOT NULL DEFAULT '0',
-  `checksum` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `user_del` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`attachment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_attachment` (
+  `attachment_id` int(11) NOT NULL,
+  `rid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `in_mod` varchar(50) DEFAULT '',
+  `userid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `addtime` int(11) NOT NULL DEFAULT 0,
+  `basename` varchar(255) DEFAULT '',
+  `newname` varchar(255) DEFAULT '',
+  `ext` varchar(255) DEFAULT '',
+  `mime` varchar(255) DEFAULT '',
+  `size` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `checksum` varchar(255) DEFAULT '',
+  `user_del` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -48,27 +48,26 @@ CREATE TABLE IF NOT EXISTS `nv4_attachment` (
 -- Table structure for table `nv4_authors`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_authors` (
-  `admin_id` int(10) unsigned NOT NULL,
-  `editor` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `lev` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `files_level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `main_module` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'siteinfo',
-  `admin_theme` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `addtime` int(11) NOT NULL DEFAULT '0',
-  `edittime` int(11) NOT NULL DEFAULT '0',
-  `is_suspend` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `susp_reason` text COLLATE utf8mb4_unicode_ci,
-  `pre_check_num` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `pre_last_login` int(10) unsigned NOT NULL DEFAULT '0',
-  `pre_last_ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `pre_last_agent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `check_num` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `last_login` int(10) unsigned NOT NULL DEFAULT '0',
-  `last_ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `last_agent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  PRIMARY KEY (`admin_id`)
+CREATE TABLE `nv4_authors` (
+  `admin_id` int(10) UNSIGNED NOT NULL,
+  `editor` varchar(100) DEFAULT '',
+  `lev` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `files_level` varchar(255) DEFAULT '',
+  `position` varchar(255) NOT NULL,
+  `main_module` varchar(50) NOT NULL DEFAULT 'siteinfo',
+  `admin_theme` varchar(100) NOT NULL DEFAULT '',
+  `addtime` int(11) NOT NULL DEFAULT 0,
+  `edittime` int(11) NOT NULL DEFAULT 0,
+  `is_suspend` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `susp_reason` text DEFAULT NULL,
+  `pre_check_num` varchar(40) NOT NULL DEFAULT '',
+  `pre_last_login` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `pre_last_ip` varchar(45) DEFAULT '',
+  `pre_last_agent` varchar(255) DEFAULT '',
+  `check_num` varchar(40) NOT NULL DEFAULT '',
+  `last_login` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `last_ip` varchar(45) DEFAULT '',
+  `last_agent` varchar(255) DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -76,8 +75,11 @@ CREATE TABLE IF NOT EXISTS `nv4_authors` (
 --
 
 INSERT INTO `nv4_authors` (`admin_id`, `editor`, `lev`, `files_level`, `position`, `main_module`, `admin_theme`, `addtime`, `edittime`, `is_suspend`, `susp_reason`, `pre_check_num`, `pre_last_login`, `pre_last_ip`, `pre_last_agent`, `check_num`, `last_login`, `last_ip`, `last_agent`) VALUES
-(1, 'ckeditor', 1, 'adobe,archives,audio,documents,flash,images,real,video|1|1|1', 'Administrator', 'siteinfo', '', 0, 0, 0, '', '', 0, '', '', '64f3f50cad8b0e52ed8548d50bb908a6', 1678988884, '113.161.46.160', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'),
-(2, 'ckeditor', 2, 'adobe,archives,audio,documents,flash,images,real,video|1|1|1', 'Tổng Giám Đốc', 'siteinfo', '', 0, 0, 0, '', '', 0, '', '', 'c7cbb82d97f699a9bfe68b188f7c2cc0', 1663937465, '171.252.153.96', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36');
+(1, 'ckeditor', 1, 'adobe,archives,audio,documents,flash,images,real,video|1|1|1', 'Administrator', 'siteinfo', '', 0, 0, 0, '', '', 0, '', '', 'addab557864e0c8ce3e7d3fe95b9c5d1', 1682428517, '14.187.220.202', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'),
+(2, 'ckeditor', 2, 'adobe,archives,audio,documents,flash,images,real,video|1|1|1', 'Tổng Giám Đốc', 'siteinfo', '', 0, 0, 0, '', '', 0, '', '', 'c7cbb82d97f699a9bfe68b188f7c2cc0', 1663937465, '171.252.153.96', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'),
+(3, 'ckeditor', 3, 'adobe,archives,audio,certificate,documents,flash,images,real,text,video|1|1|1', 'Quản trị viên', 'siteinfo', '', 0, 0, 0, '', '', 0, '', '', '', 0, '', ''),
+(4, 'ckeditor', 3, 'adobe,archives,audio,certificate,documents,flash,images,real,text,video|1|1|1', 'Quản trị viên', 'siteinfo', '', 0, 0, 0, '', '', 0, '', '', '', 0, '', ''),
+(5, 'ckeditor', 3, 'adobe,archives,audio,certificate,documents,flash,images,real,text,video|1|1|1', 'Tổng Quản Lý', 'siteinfo', '', 0, 0, 0, '', '', 0, '', '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -85,20 +87,17 @@ INSERT INTO `nv4_authors` (`admin_id`, `editor`, `lev`, `files_level`, `position
 -- Table structure for table `nv4_authors_api_credential`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_authors_api_credential` (
-  `admin_id` int(10) unsigned NOT NULL,
-  `credential_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `credential_ident` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `credential_secret` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `credential_ips` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `auth_method` enum('none','password_verify') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'password_verify' COMMENT 'Phương thức xác thực',
-  `api_roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `addtime` int(11) NOT NULL DEFAULT '0',
-  `edittime` int(11) NOT NULL DEFAULT '0',
-  `last_access` int(11) NOT NULL DEFAULT '0',
-  UNIQUE KEY `credential_ident` (`credential_ident`),
-  UNIQUE KEY `credential_secret` (`credential_secret`),
-  KEY `admin_id` (`admin_id`)
+CREATE TABLE `nv4_authors_api_credential` (
+  `admin_id` int(10) UNSIGNED NOT NULL,
+  `credential_title` varchar(255) NOT NULL DEFAULT '',
+  `credential_ident` varchar(50) NOT NULL DEFAULT '',
+  `credential_secret` varchar(250) NOT NULL DEFAULT '',
+  `credential_ips` varchar(255) NOT NULL DEFAULT '',
+  `auth_method` enum('none','password_verify') NOT NULL DEFAULT 'password_verify' COMMENT 'Phương thức xác thực',
+  `api_roles` varchar(255) NOT NULL DEFAULT '',
+  `addtime` int(11) NOT NULL DEFAULT 0,
+  `edittime` int(11) NOT NULL DEFAULT 0,
+  `last_access` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Bảng lưu key API của quản trị';
 
 -- --------------------------------------------------------
@@ -107,15 +106,14 @@ CREATE TABLE IF NOT EXISTS `nv4_authors_api_credential` (
 -- Table structure for table `nv4_authors_api_role`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_authors_api_role` (
-  `role_id` smallint(6) NOT NULL AUTO_INCREMENT,
-  `role_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `role_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_data` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `addtime` int(11) NOT NULL DEFAULT '0',
-  `edittime` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Bảng lưu quyền truy cập API' AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_authors_api_role` (
+  `role_id` smallint(6) NOT NULL,
+  `role_title` varchar(250) NOT NULL DEFAULT '',
+  `role_description` text NOT NULL,
+  `role_data` text NOT NULL,
+  `addtime` int(11) NOT NULL DEFAULT 0,
+  `edittime` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Bảng lưu quyền truy cập API';
 
 -- --------------------------------------------------------
 
@@ -123,16 +121,14 @@ CREATE TABLE IF NOT EXISTS `nv4_authors_api_role` (
 -- Table structure for table `nv4_authors_config`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_authors_config` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `keyname` varchar(39) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `mask` tinyint(4) NOT NULL DEFAULT '0',
-  `begintime` int(10) unsigned NOT NULL DEFAULT '0',
-  `endtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `notice` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `keyname` (`keyname`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_authors_config` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `keyname` varchar(39) NOT NULL DEFAULT '',
+  `mask` tinyint(4) NOT NULL DEFAULT 0,
+  `begintime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `endtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `notice` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -140,18 +136,16 @@ CREATE TABLE IF NOT EXISTS `nv4_authors_config` (
 -- Table structure for table `nv4_authors_module`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_authors_module` (
-  `mid` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `module` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang_key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` mediumint(9) NOT NULL DEFAULT '0',
-  `act_1` tinyint(4) NOT NULL DEFAULT '0',
-  `act_2` tinyint(4) NOT NULL DEFAULT '1',
-  `act_3` tinyint(4) NOT NULL DEFAULT '1',
-  `checksum` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  PRIMARY KEY (`mid`),
-  UNIQUE KEY `module` (`module`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=13 ;
+CREATE TABLE `nv4_authors_module` (
+  `mid` mediumint(9) NOT NULL,
+  `module` varchar(50) NOT NULL,
+  `lang_key` varchar(50) NOT NULL DEFAULT '',
+  `weight` mediumint(9) NOT NULL DEFAULT 0,
+  `act_1` tinyint(4) NOT NULL DEFAULT 0,
+  `act_2` tinyint(4) NOT NULL DEFAULT 1,
+  `act_3` tinyint(4) NOT NULL DEFAULT 1,
+  `checksum` varchar(32) DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_authors_module`
@@ -177,18 +171,15 @@ INSERT INTO `nv4_authors_module` (`mid`, `module`, `lang_key`, `weight`, `act_1`
 -- Table structure for table `nv4_authors_oauth`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_authors_oauth` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `admin_id` int(10) unsigned NOT NULL COMMENT 'ID của quản trị',
-  `oauth_server` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Eg: facebook, google...',
-  `oauth_uid` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'ID duy nhất ứng với server',
-  `oauth_email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Email',
-  `oauth_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `admin_id` (`admin_id`,`oauth_server`,`oauth_uid`),
-  KEY `oauth_email` (`oauth_email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Bảng lưu xác thực 2 bước từ oauth của admin' AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_authors_oauth` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `admin_id` int(10) UNSIGNED NOT NULL COMMENT 'ID của quản trị',
+  `oauth_server` varchar(50) NOT NULL COMMENT 'Eg: facebook, google...',
+  `oauth_uid` varchar(50) NOT NULL COMMENT 'ID duy nhất ứng với server',
+  `oauth_email` varchar(50) NOT NULL COMMENT 'Email',
+  `oauth_id` varchar(50) NOT NULL DEFAULT '',
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Bảng lưu xác thực 2 bước từ oauth của admin';
 
 -- --------------------------------------------------------
 
@@ -196,26 +187,19 @@ CREATE TABLE IF NOT EXISTS `nv4_authors_oauth` (
 -- Table structure for table `nv4_banners_click`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_banners_click` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `bid` mediumint(9) NOT NULL DEFAULT '0',
-  `click_time` int(10) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_banners_click` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `bid` mediumint(9) NOT NULL DEFAULT 0,
+  `click_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `click_day` int(11) NOT NULL,
-  `click_ip` varchar(46) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `click_country` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `click_browse_key` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `click_browse_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `click_os_key` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `click_os_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `click_ref` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `bid` (`bid`),
-  KEY `click_day` (`click_day`),
-  KEY `click_ip` (`click_ip`),
-  KEY `click_country` (`click_country`),
-  KEY `click_browse_key` (`click_browse_key`),
-  KEY `click_os_key` (`click_os_key`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `click_ip` varchar(46) NOT NULL,
+  `click_country` varchar(10) NOT NULL,
+  `click_browse_key` varchar(100) NOT NULL,
+  `click_browse_name` varchar(100) NOT NULL,
+  `click_os_key` varchar(100) NOT NULL,
+  `click_os_name` varchar(100) NOT NULL,
+  `click_ref` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -223,22 +207,20 @@ CREATE TABLE IF NOT EXISTS `nv4_banners_click` (
 -- Table structure for table `nv4_banners_plans`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_banners_plans` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `blang` char(2) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `form` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `width` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `height` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `require_image` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `uploadtype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `uploadgroup` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `exp_time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `title` (`title`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=4 ;
+CREATE TABLE `nv4_banners_plans` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `blang` char(2) DEFAULT '',
+  `title` varchar(250) NOT NULL,
+  `description` text DEFAULT NULL,
+  `form` varchar(100) NOT NULL,
+  `width` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `height` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `require_image` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `uploadtype` varchar(255) NOT NULL DEFAULT '',
+  `uploadgroup` varchar(255) NOT NULL DEFAULT '',
+  `exp_time` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_banners_plans`
@@ -255,31 +237,28 @@ INSERT INTO `nv4_banners_plans` (`id`, `blang`, `title`, `description`, `form`, 
 -- Table structure for table `nv4_banners_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_banners_rows` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `clid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_ext` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_mime` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `width` int(10) unsigned NOT NULL DEFAULT '0',
-  `height` int(10) unsigned NOT NULL DEFAULT '0',
-  `file_alt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imageforswf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `click_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `target` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_blank',
-  `bannerhtml` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `add_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `publ_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `exp_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `hits_total` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `weight` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `pid` (`pid`),
-  KEY `clid` (`clid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_banners_rows` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `pid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `clid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `file_name` varchar(255) NOT NULL,
+  `file_ext` varchar(100) NOT NULL,
+  `file_mime` varchar(100) NOT NULL,
+  `width` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `height` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `file_alt` varchar(255) DEFAULT '',
+  `imageforswf` varchar(255) DEFAULT '',
+  `click_url` varchar(255) DEFAULT '',
+  `target` varchar(10) NOT NULL DEFAULT '_blank',
+  `bannerhtml` mediumtext NOT NULL,
+  `add_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publ_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exp_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `hits_total` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `weight` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_banners_rows`
@@ -295,12 +274,11 @@ INSERT INTO `nv4_banners_rows` (`id`, `title`, `pid`, `clid`, `file_name`, `file
 -- Table structure for table `nv4_config`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_config` (
-  `lang` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sys',
-  `module` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'global',
-  `config_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `config_value` text COLLATE utf8mb4_unicode_ci,
-  UNIQUE KEY `lang` (`lang`,`module`,`config_name`)
+CREATE TABLE `nv4_config` (
+  `lang` varchar(3) NOT NULL DEFAULT 'sys',
+  `module` varchar(50) NOT NULL DEFAULT 'global',
+  `config_name` varchar(30) NOT NULL DEFAULT '',
+  `config_value` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -447,7 +425,7 @@ INSERT INTO `nv4_config` (`lang`, `module`, `config_name`, `config_value`) VALUE
 ('sys', 'global', 'crossadmin_restrict', '1'),
 ('sys', 'global', 'crossadmin_valid_domains', ''),
 ('sys', 'global', 'crossadmin_valid_ips', ''),
-('sys', 'global', 'domains_whitelist', '["youtube.com","www.youtube.com","google.com","www.google.com","drive.google.com","docs.google.com"]'),
+('sys', 'global', 'domains_whitelist', '[\"youtube.com\",\"www.youtube.com\",\"google.com\",\"www.google.com\",\"drive.google.com\",\"docs.google.com\"]'),
 ('sys', 'global', 'domains_restrict', '1'),
 ('sys', 'global', 'remote_api_access', '1'),
 ('sys', 'global', 'remote_api_log', '1'),
@@ -488,7 +466,7 @@ INSERT INTO `nv4_config` (`lang`, `module`, `config_name`, `config_value`) VALUE
 ('vi', 'global', 'autologosize3', '30'),
 ('vi', 'global', 'autologomod', ''),
 ('vi', 'global', 'name_show', '0'),
-('vi', 'global', 'cronjobs_next_time', '1679061068'),
+('vi', 'global', 'cronjobs_next_time', '1683728661'),
 ('vi', 'global', 'disable_site_content', 'Vì lý do kỹ thuật website tạm ngưng hoạt động. Thành thật xin lỗi các bạn vì sự bất tiện này!'),
 ('vi', 'seotools', 'prcservice', ''),
 ('vi', 'about', 'auto_postcomm', '1'),
@@ -700,34 +678,7 @@ INSERT INTO `nv4_config` (`lang`, `module`, `config_name`, `config_value`) VALUE
 ('vi', 'task', 'wlist', '0'),
 ('vi', 'customer', 'groups_admin', '1'),
 ('vi', 'customer', 'groups_manage', ''),
-('vi', 'customer', 'groups_permission', 'a:7:{s:12:"allow_export";s:7:"1,2,3,4";s:12:"allow_import";s:7:"1,2,3,4";s:10:"allow_view";s:7:"1,2,3,4";s:21:"allow_view_by_project";s:7:"1,2,3,4";s:9:"allow_add";s:7:"1,2,3,4";s:10:"allow_edit";s:7:"1,2,3,4";s:12:"allow_delete";s:5:"1,2,3";}'),
-('vi', 'degree', 'next_execute', '0'),
-('vi', 'dich-vu-quan-ly-it', 'auto_postcomm', '1'),
-('vi', 'dich-vu-quan-ly-it', 'allowed_comm', '-1'),
-('vi', 'dich-vu-quan-ly-it', 'view_comm', '6'),
-('vi', 'dich-vu-quan-ly-it', 'setcomm', '4'),
-('vi', 'dich-vu-quan-ly-it', 'activecomm', '1'),
-('vi', 'dich-vu-quan-ly-it', 'emailcomm', '0'),
-('vi', 'dich-vu-quan-ly-it', 'adminscomm', ''),
-('vi', 'dich-vu-quan-ly-it', 'sortcomm', '0'),
-('vi', 'dich-vu-quan-ly-it', 'captcha_area_comm', '1'),
-('vi', 'dich-vu-quan-ly-it', 'perpagecomm', '5'),
-('vi', 'dich-vu-quan-ly-it', 'timeoutcomm', '360'),
-('vi', 'dich-vu-quan-ly-it', 'allowattachcomm', '0'),
-('vi', 'dich-vu-quan-ly-it', 'alloweditorcomm', '0'),
-('vi', 'quan-tri-he-thong', 'auto_postcomm', '1'),
-('vi', 'quan-tri-he-thong', 'allowed_comm', '-1'),
-('vi', 'quan-tri-he-thong', 'view_comm', '6'),
-('vi', 'quan-tri-he-thong', 'setcomm', '4'),
-('vi', 'quan-tri-he-thong', 'activecomm', '1'),
-('vi', 'quan-tri-he-thong', 'emailcomm', '0'),
-('vi', 'quan-tri-he-thong', 'adminscomm', ''),
-('vi', 'quan-tri-he-thong', 'sortcomm', '0'),
-('vi', 'quan-tri-he-thong', 'captcha_area_comm', '1'),
-('vi', 'quan-tri-he-thong', 'perpagecomm', '5'),
-('vi', 'quan-tri-he-thong', 'timeoutcomm', '360'),
-('vi', 'quan-tri-he-thong', 'allowattachcomm', '0'),
-('vi', 'quan-tri-he-thong', 'alloweditorcomm', '0');
+('vi', 'customer', 'groups_permission', 'a:7:{s:12:\"allow_export\";s:7:\"1,2,3,4\";s:12:\"allow_import\";s:7:\"1,2,3,4\";s:10:\"allow_view\";s:7:\"1,2,3,4\";s:21:\"allow_view_by_project\";s:7:\"1,2,3,4\";s:9:\"allow_add\";s:7:\"1,2,3,4\";s:10:\"allow_edit\";s:7:\"1,2,3,4\";s:12:\"allow_delete\";s:5:\"1,2,3\";}');
 
 -- --------------------------------------------------------
 
@@ -735,15 +686,13 @@ INSERT INTO `nv4_config` (`lang`, `module`, `config_name`, `config_value`) VALUE
 -- Table structure for table `nv4_cookies`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_cookies` (
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `domain` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `path` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `expires` int(11) NOT NULL DEFAULT '0',
-  `secure` tinyint(1) NOT NULL DEFAULT '0',
-  UNIQUE KEY `cookiename` (`name`,`domain`,`path`),
-  KEY `name` (`name`)
+CREATE TABLE `nv4_cookies` (
+  `name` varchar(50) NOT NULL DEFAULT '',
+  `value` mediumtext NOT NULL,
+  `domain` varchar(100) NOT NULL DEFAULT '',
+  `path` varchar(100) NOT NULL DEFAULT '',
+  `expires` int(11) NOT NULL DEFAULT 0,
+  `secure` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -752,13 +701,12 @@ CREATE TABLE IF NOT EXISTS `nv4_cookies` (
 -- Table structure for table `nv4_counter`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_counter` (
-  `c_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `c_val` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_update` int(11) NOT NULL DEFAULT '0',
-  `c_count` int(10) unsigned NOT NULL DEFAULT '0',
-  `vi_count` int(10) unsigned NOT NULL DEFAULT '0',
-  UNIQUE KEY `c_type` (`c_type`,`c_val`)
+CREATE TABLE `nv4_counter` (
+  `c_type` varchar(100) NOT NULL,
+  `c_val` varchar(100) NOT NULL,
+  `last_update` int(11) NOT NULL DEFAULT 0,
+  `c_count` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `vi_count` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -767,10 +715,10 @@ CREATE TABLE IF NOT EXISTS `nv4_counter` (
 
 INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_count`) VALUES
 ('c_time', 'start', 0, 0, 0),
-('c_time', 'last', 0, 1679061009, 0),
-('total', 'hits', 1679061009, 3315, 3315),
+('c_time', 'last', 0, 1683731186, 0),
+('total', 'hits', 1683731186, 6172, 6172),
 ('year', '2022', 1672504238, 2063, 2063),
-('year', '2023', 1679061009, 1252, 1252),
+('year', '2023', 1683731186, 4109, 4109),
 ('year', '2024', 0, 0, 0),
 ('year', '2025', 0, 0, 0),
 ('year', '2026', 0, 0, 0),
@@ -780,9 +728,9 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('year', '2030', 0, 0, 0),
 ('month', 'Jan', 1675181950, 560, 560),
 ('month', 'Feb', 1677591695, 389, 389),
-('month', 'Mar', 1679061009, 303, 303),
-('month', 'Apr', 0, 0, 0),
-('month', 'May', 0, 0, 0),
+('month', 'Mar', 1680279817, 941, 941),
+('month', 'Apr', 1682871772, 1670, 1670),
+('month', 'May', 1683731186, 549, 549),
 ('month', 'Jun', 0, 0, 0),
 ('month', 'Jul', 1659186629, 0, 0),
 ('month', 'Aug', 1661939505, 0, 0),
@@ -790,97 +738,97 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('month', 'Oct', 1667223124, 0, 0),
 ('month', 'Nov', 1669825383, 0, 0),
 ('month', 'Dec', 1672504238, 0, 0),
-('day', '01', 1677687889, 20, 20),
-('day', '02', 1677767908, 22, 22),
-('day', '03', 1677843533, 10, 10),
-('day', '04', 1677945988, 14, 14),
-('day', '05', 1678021921, 19, 19),
-('day', '06', 1678114914, 13, 13),
-('day', '07', 1678206451, 10, 10),
-('day', '08', 1678294503, 15, 15),
-('day', '09', 1678344748, 11, 11),
-('day', '10', 1678464196, 21, 21),
-('day', '11', 1678548661, 21, 21),
-('day', '12', 1678632358, 22, 22),
-('day', '13', 1678720742, 12, 12),
-('day', '14', 1678776287, 15, 15),
-('day', '15', 1678894075, 14, 14),
-('day', '16', 1678982125, 12, 12),
-('day', '17', 1679061009, 52, 52),
-('day', '18', 1676732727, 0, 0),
-('day', '19', 1676818508, 0, 0),
-('day', '20', 1676867236, 0, 0),
-('day', '21', 1676989798, 0, 0),
-('day', '22', 1677082540, 0, 0),
-('day', '23', 1677155063, 0, 0),
-('day', '24', 1677250858, 0, 0),
-('day', '25', 1677328346, 0, 0),
-('day', '26', 1677411223, 0, 0),
-('day', '27', 1677513082, 0, 0),
-('day', '28', 1677591695, 0, 0),
-('day', '29', 1675000288, 0, 0),
-('day', '30', 1675097679, 0, 0),
-('day', '31', 1675181950, 0, 0),
-('dayofweek', 'Sunday', 1678632358, 511, 511),
-('dayofweek', 'Monday', 1678720742, 381, 381),
-('dayofweek', 'Tuesday', 1678776287, 483, 483),
-('dayofweek', 'Wednesday', 1678894075, 502, 502),
-('dayofweek', 'Thursday', 1678982125, 468, 468),
-('dayofweek', 'Friday', 1679061009, 539, 539),
-('dayofweek', 'Saturday', 1678548661, 431, 431),
-('hour', '00', 1678987532, 2, 2),
-('hour', '01', 1678992758, 3, 3),
-('hour', '02', 1678996659, 12, 12),
-('hour', '03', 1678998793, 2, 2),
-('hour', '04', 1678398098, 0, 0),
-('hour', '05', 1678919939, 0, 0),
-('hour', '06', 1678751972, 0, 0),
-('hour', '07', 1679012984, 1, 1),
-('hour', '08', 1679016118, 1, 1),
-('hour', '09', 1678760727, 0, 0),
-('hour', '10', 1679022386, 1, 1),
-('hour', '11', 1677731059, 0, 0),
-('hour', '12', 1677994573, 0, 0),
-('hour', '13', 1679035789, 7, 7),
-('hour', '14', 1678691159, 0, 0),
-('hour', '15', 1678696652, 0, 0),
-('hour', '16', 1678872276, 0, 0),
-('hour', '17', 1679049129, 5, 5),
-('hour', '18', 1679053599, 5, 5),
-('hour', '19', 1678882167, 0, 0),
-('hour', '20', 1679061009, 13, 13),
-('hour', '21', 1678632358, 0, 0),
-('hour', '22', 1678982125, 0, 0),
-('hour', '23', 1678464196, 0, 0),
-('bot', 'googlebot', 0, 0, 0),
+('day', '01', 1682958948, 25, 25),
+('day', '02', 1683046115, 39, 39),
+('day', '03', 1683124580, 17, 17),
+('day', '04', 1683216420, 126, 126),
+('day', '05', 1683305558, 34, 34),
+('day', '06', 1683388153, 60, 60),
+('day', '07', 1683473993, 106, 106),
+('day', '08', 1683556893, 17, 17),
+('day', '09', 1683650743, 52, 52),
+('day', '10', 1683731186, 73, 73),
+('day', '11', 1681230832, 0, 0),
+('day', '12', 1681317758, 0, 0),
+('day', '13', 1681402559, 0, 0),
+('day', '14', 1681490464, 0, 0),
+('day', '15', 1681577166, 0, 0),
+('day', '16', 1681661185, 0, 0),
+('day', '17', 1681691040, 0, 0),
+('day', '18', 1679155571, 0, 0),
+('day', '19', 1679222247, 0, 0),
+('day', '20', 1679321817, 0, 0),
+('day', '21', 1679416437, 0, 0),
+('day', '22', 1679501204, 0, 0),
+('day', '23', 1679581508, 0, 0),
+('day', '24', 1682355369, 0, 0),
+('day', '25', 1682440371, 0, 0),
+('day', '26', 1682527588, 0, 0),
+('day', '27', 1682611201, 0, 0),
+('day', '28', 1682699585, 0, 0),
+('day', '29', 1682782464, 0, 0),
+('day', '30', 1682871772, 0, 0),
+('day', '31', 1680279817, 0, 0),
+('dayofweek', 'Sunday', 1683473993, 780, 780),
+('dayofweek', 'Monday', 1683556893, 1009, 1009),
+('dayofweek', 'Tuesday', 1683650743, 742, 742),
+('dayofweek', 'Wednesday', 1683731186, 946, 946),
+('dayofweek', 'Thursday', 1683216420, 1302, 1302),
+('dayofweek', 'Friday', 1683305558, 699, 699),
+('dayofweek', 'Saturday', 1683388153, 694, 694),
+('hour', '00', 1683654715, 29, 29),
+('hour', '01', 1683656334, 1, 1),
+('hour', '02', 1683659263, 2, 2),
+('hour', '03', 1683665589, 3, 3),
+('hour', '04', 1683496109, 0, 0),
+('hour', '05', 1683670265, 2, 2),
+('hour', '06', 1683675509, 2, 2),
+('hour', '07', 1683677677, 1, 1),
+('hour', '08', 1683681248, 1, 1),
+('hour', '09', 1683684874, 1, 1),
+('hour', '10', 1683690234, 1, 1),
+('hour', '11', 1683692747, 1, 1),
+('hour', '12', 1683611537, 0, 0),
+('hour', '13', 1683700722, 1, 1),
+('hour', '14', 1683705265, 1, 1),
+('hour', '15', 1683533052, 0, 0),
+('hour', '16', 1683539905, 0, 0),
+('hour', '17', 1683714148, 2, 2),
+('hour', '18', 1683718269, 20, 20),
+('hour', '19', 1683721161, 1, 1),
+('hour', '20', 1683725587, 1, 1),
+('hour', '21', 1683730176, 2, 2),
+('hour', '22', 1683731186, 1, 1),
+('hour', '23', 1683650743, 0, 0),
+('bot', 'googlebot', 1683684874, 20, 20),
 ('bot', 'msnbot', 0, 0, 0),
 ('bot', 'bingbot', 0, 0, 0),
 ('bot', 'yahooslurp', 0, 0, 0),
 ('bot', 'w3cvalidator', 0, 0, 0),
-('browser', 'opera', 1668154612, 3, 3),
+('browser', 'opera', 1683636863, 7, 7),
 ('browser', 'operamini', 0, 0, 0),
 ('browser', 'webtv', 0, 0, 0),
-('browser', 'explorer', 1673560533, 4, 4),
-('browser', 'edge', 1679060803, 27, 27),
+('browser', 'explorer', 1683346337, 14, 14),
+('browser', 'edge', 1683659263, 40, 40),
 ('browser', 'pocket', 1671905809, 2, 2),
 ('browser', 'konqueror', 1664348859, 1, 1),
 ('browser', 'icab', 0, 0, 0),
 ('browser', 'omniweb', 0, 0, 0),
 ('browser', 'firebird', 0, 0, 0),
-('browser', 'firefox', 1678993836, 87, 87),
+('browser', 'firefox', 1683636862, 183, 183),
 ('browser', 'iceweasel', 0, 0, 0),
 ('browser', 'shiretoko', 0, 0, 0),
-('browser', 'mozilla', 1679035513, 1278, 1278),
+('browser', 'mozilla', 1683728331, 2200, 2200),
 ('browser', 'amaya', 0, 0, 0),
 ('browser', 'lynx', 0, 0, 0),
-('browser', 'safari', 1671773266, 6, 6),
-('browser', 'iphone', 1678995151, 29, 29),
-('browser', 'ipod', 1679053511, 6, 6),
-('browser', 'ipad', 1672251494, 139, 139),
-('browser', 'chrome', 1679061009, 1140, 1140),
+('browser', 'safari', 1681354838, 8, 8),
+('browser', 'iphone', 1683346341, 35, 35),
+('browser', 'ipod', 1680100482, 7, 7),
+('browser', 'ipad', 1683662536, 163, 163),
+('browser', 'chrome', 1683731186, 2474, 2474),
 ('browser', 'cococ', 0, 0, 0),
-('browser', 'android', 1672516477, 2, 2),
-('browser', 'googlebot', 0, 0, 0),
+('browser', 'android', 1682352848, 8, 8),
+('browser', 'googlebot', 1683684874, 20, 20),
 ('browser', 'yahooslurp', 0, 0, 0),
 ('browser', 'w3cvalidator', 0, 0, 0),
 ('browser', 'blackberry', 0, 0, 0),
@@ -895,25 +843,25 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('browser', 'netpositive', 0, 0, 0),
 ('browser', 'phoenix', 0, 0, 0),
 ('browser', 'Mobile', 0, 0, 0),
-('browser', 'bots', 1679060878, 19, 19),
-('browser', 'Unknown', 1678760727, 248, 248),
-('os', 'unknown', 1679061009, 2332, 2332),
-('os', 'win', 1671905809, 3, 3),
-('os', 'win10', 1679060876, 614, 614),
-('os', 'win8', 1678755021, 5, 5),
-('os', 'win7', 1678998793, 11, 11),
+('browser', 'bots', 1683533052, 26, 26),
+('browser', 'Unknown', 1683718269, 655, 655),
+('os', 'unknown', 1683730176, 4374, 4374),
+('os', 'win', 1683346337, 4, 4),
+('os', 'win10', 1683731186, 1009, 1009),
+('os', 'win8', 1683636863, 40, 40),
+('os', 'win7', 1683399052, 70, 70),
 ('os', 'win2003', 0, 0, 0),
-('os', 'winvista', 0, 0, 0),
+('os', 'winvista', 1683571500, 9, 9),
 ('os', 'wince', 1666094860, 1, 1),
-('os', 'winxp', 1673560533, 4, 4),
+('os', 'winxp', 1683636862, 25, 25),
 ('os', 'win2000', 0, 0, 0),
-('os', 'apple', 1678387294, 38, 38),
-('os', 'linux', 1678994702, 84, 84),
+('os', 'apple', 1683714148, 71, 71),
+('os', 'linux', 1683665589, 164, 164),
 ('os', 'os2', 0, 0, 0),
 ('os', 'beos', 0, 0, 0),
-('os', 'iphone', 1678995151, 32, 32),
-('os', 'ipod', 1679053511, 6, 6),
-('os', 'ipad', 1672251494, 140, 140),
+('os', 'iphone', 1683346341, 38, 38),
+('os', 'ipod', 1680100482, 7, 7),
+('os', 'ipad', 1683662536, 166, 166),
 ('os', 'blackberry', 0, 0, 0),
 ('os', 'nokia', 1672251947, 1, 1),
 ('os', 'freebsd', 1663918200, 1, 1),
@@ -921,11 +869,11 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('os', 'netbsd', 0, 0, 0),
 ('os', 'sunos', 0, 0, 0),
 ('os', 'opensolaris', 0, 0, 0),
-('os', 'android', 1679053561, 23, 23),
+('os', 'android', 1683690234, 155, 155),
 ('os', 'irix', 0, 0, 0),
 ('os', 'palm', 0, 0, 0),
 ('country', 'AD', 0, 0, 0),
-('country', 'AE', 0, 0, 0),
+('country', 'AE', 1680930324, 1, 1),
 ('country', 'AF', 0, 0, 0),
 ('country', 'AG', 0, 0, 0),
 ('country', 'AI', 0, 0, 0),
@@ -943,22 +891,22 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'BA', 0, 0, 0),
 ('country', 'BB', 0, 0, 0),
 ('country', 'BD', 0, 0, 0),
-('country', 'BE', 1678474201, 8, 8),
+('country', 'BE', 1682818647, 13, 13),
 ('country', 'BF', 0, 0, 0),
-('country', 'BG', 0, 0, 0),
+('country', 'BG', 1683265762, 1, 1),
 ('country', 'BH', 0, 0, 0),
 ('country', 'BI', 0, 0, 0),
 ('country', 'BJ', 0, 0, 0),
 ('country', 'BM', 0, 0, 0),
 ('country', 'BN', 0, 0, 0),
 ('country', 'BO', 0, 0, 0),
-('country', 'BR', 0, 0, 0),
+('country', 'BR', 1680040100, 11, 11),
 ('country', 'BS', 0, 0, 0),
 ('country', 'BT', 0, 0, 0),
 ('country', 'BW', 0, 0, 0),
-('country', 'BY', 1676527955, 1, 1),
+('country', 'BY', 1683399052, 3, 3),
 ('country', 'BZ', 1673148121, 1, 1),
-('country', 'CA', 1678620842, 93, 93),
+('country', 'CA', 1683705265, 172, 172),
 ('country', 'CD', 0, 0, 0),
 ('country', 'CF', 0, 0, 0),
 ('country', 'CG', 0, 0, 0),
@@ -967,17 +915,17 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'CK', 0, 0, 0),
 ('country', 'CL', 0, 0, 0),
 ('country', 'CM', 0, 0, 0),
-('country', 'CN', 0, 0, 0),
+('country', 'CN', 1683486951, 13, 13),
 ('country', 'CO', 0, 0, 0),
 ('country', 'CR', 0, 0, 0),
 ('country', 'CS', 0, 0, 0),
 ('country', 'CU', 0, 0, 0),
 ('country', 'CV', 0, 0, 0),
 ('country', 'CY', 0, 0, 0),
-('country', 'CZ', 0, 0, 0),
-('country', 'DE', 1679035271, 54, 54),
+('country', 'CZ', 1679670954, 1, 1),
+('country', 'DE', 1683633917, 436, 436),
 ('country', 'DJ', 0, 0, 0),
-('country', 'DK', 0, 0, 0),
+('country', 'DK', 1683346328, 1, 1),
 ('country', 'DM', 0, 0, 0),
 ('country', 'DO', 0, 0, 0),
 ('country', 'DZ', 0, 0, 0),
@@ -985,7 +933,7 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'EE', 0, 0, 0),
 ('country', 'EG', 0, 0, 0),
 ('country', 'ER', 0, 0, 0),
-('country', 'ES', 0, 0, 0),
+('country', 'ES', 1682779050, 12, 12),
 ('country', 'ET', 0, 0, 0),
 ('country', 'EU', 0, 0, 0),
 ('country', 'FI', 0, 0, 0),
@@ -993,9 +941,9 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'FK', 0, 0, 0),
 ('country', 'FM', 0, 0, 0),
 ('country', 'FO', 0, 0, 0),
-('country', 'FR', 1679035513, 82, 82),
+('country', 'FR', 1683728331, 361, 361),
 ('country', 'GA', 0, 0, 0),
-('country', 'GB', 1679060058, 31, 31),
+('country', 'GB', 1683571500, 62, 62),
 ('country', 'GD', 0, 0, 0),
 ('country', 'GE', 0, 0, 0),
 ('country', 'GF', 0, 0, 0),
@@ -1006,7 +954,7 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'GN', 0, 0, 0),
 ('country', 'GP', 0, 0, 0),
 ('country', 'GQ', 0, 0, 0),
-('country', 'GR', 0, 0, 0),
+('country', 'GR', 1680040065, 11, 11),
 ('country', 'GS', 0, 0, 0),
 ('country', 'GT', 0, 0, 0),
 ('country', 'GU', 0, 0, 0),
@@ -1017,25 +965,25 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'HR', 0, 0, 0),
 ('country', 'HT', 0, 0, 0),
 ('country', 'HU', 0, 0, 0),
-('country', 'ID', 0, 0, 0),
-('country', 'IE', 1675219600, 4, 4),
-('country', 'IL', 0, 0, 0),
-('country', 'IN', 0, 0, 0),
+('country', 'ID', 1679349431, 1, 1),
+('country', 'IE', 1683185826, 10, 10),
+('country', 'IL', 1681593687, 1, 1),
+('country', 'IN', 1679534444, 2, 2),
 ('country', 'IO', 0, 0, 0),
 ('country', 'IQ', 0, 0, 0),
-('country', 'IR', 1676768479, 5, 5),
+('country', 'IR', 1681511423, 11, 11),
 ('country', 'IS', 0, 0, 0),
-('country', 'IT', 1678998793, 1, 1),
+('country', 'IT', 1681199293, 2, 2),
 ('country', 'JM', 0, 0, 0),
 ('country', 'JO', 0, 0, 0),
-('country', 'JP', 1678222786, 2, 2),
+('country', 'JP', 1683106948, 19, 19),
 ('country', 'KE', 0, 0, 0),
 ('country', 'KG', 0, 0, 0),
 ('country', 'KH', 0, 0, 0),
 ('country', 'KI', 0, 0, 0),
 ('country', 'KM', 0, 0, 0),
 ('country', 'KN', 0, 0, 0),
-('country', 'KR', 1678222788, 4, 4),
+('country', 'KR', 1680316157, 5, 5),
 ('country', 'KW', 0, 0, 0),
 ('country', 'KY', 0, 0, 0),
 ('country', 'KZ', 0, 0, 0),
@@ -1047,7 +995,7 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'LR', 0, 0, 0),
 ('country', 'LS', 0, 0, 0),
 ('country', 'LT', 0, 0, 0),
-('country', 'LU', 0, 0, 0),
+('country', 'LU', 1680519840, 2, 2),
 ('country', 'LV', 0, 0, 0),
 ('country', 'LY', 0, 0, 0),
 ('country', 'MA', 0, 0, 0),
@@ -1076,8 +1024,8 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'NF', 0, 0, 0),
 ('country', 'NG', 0, 0, 0),
 ('country', 'NI', 0, 0, 0),
-('country', 'NL', 1678755021, 48, 48),
-('country', 'NO', 1678687231, 37, 37),
+('country', 'NL', 1683346329, 66, 66),
+('country', 'NO', 1683283609, 40, 40),
 ('country', 'NP', 0, 0, 0),
 ('country', 'NR', 0, 0, 0),
 ('country', 'NU', 0, 0, 0),
@@ -1097,15 +1045,15 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'PY', 0, 0, 0),
 ('country', 'QA', 0, 0, 0),
 ('country', 'RE', 0, 0, 0),
-('country', 'RO', 1673145421, 1, 1),
-('country', 'RU', 1679022386, 40, 40),
+('country', 'RO', 1683346327, 4, 4),
+('country', 'RU', 1682638890, 49, 49),
 ('country', 'RW', 0, 0, 0),
 ('country', 'SA', 0, 0, 0),
 ('country', 'SB', 0, 0, 0),
-('country', 'SC', 0, 0, 0),
+('country', 'SC', 1683731186, 1, 1),
 ('country', 'SD', 0, 0, 0),
-('country', 'SE', 1678982125, 50, 50),
-('country', 'SG', 1665523238, 1, 1),
+('country', 'SE', 1683681248, 74, 74),
+('country', 'SG', 1683041106, 2, 2),
 ('country', 'SI', 0, 0, 0),
 ('country', 'SK', 0, 0, 0),
 ('country', 'SL', 0, 0, 0),
@@ -1120,21 +1068,21 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'TD', 0, 0, 0),
 ('country', 'TF', 0, 0, 0),
 ('country', 'TG', 0, 0, 0),
-('country', 'TH', 1676916810, 1, 1),
+('country', 'TH', 1681374590, 14, 14),
 ('country', 'TJ', 0, 0, 0),
 ('country', 'TK', 0, 0, 0),
 ('country', 'TL', 0, 0, 0),
 ('country', 'TM', 0, 0, 0),
 ('country', 'TN', 0, 0, 0),
 ('country', 'TO', 0, 0, 0),
-('country', 'TR', 0, 0, 0),
+('country', 'TR', 1682375078, 2, 2),
 ('country', 'TT', 0, 0, 0),
 ('country', 'TV', 0, 0, 0),
 ('country', 'TW', 0, 0, 0),
 ('country', 'TZ', 0, 0, 0),
-('country', 'UA', 1678495499, 4, 4),
+('country', 'UA', 1683569856, 14, 14),
 ('country', 'UG', 0, 0, 0),
-('country', 'US', 1679061009, 1267, 1267),
+('country', 'US', 1683730176, 3021, 3021),
 ('country', 'UY', 0, 0, 0),
 ('country', 'UZ', 0, 0, 0),
 ('country', 'VA', 0, 0, 0),
@@ -1142,7 +1090,7 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'VE', 0, 0, 0),
 ('country', 'VG', 0, 0, 0),
 ('country', 'VI', 0, 0, 0),
-('country', 'VN', 1679060876, 425, 425),
+('country', 'VN', 1683532996, 521, 521),
 ('country', 'VU', 0, 0, 0),
 ('country', 'WS', 0, 0, 0),
 ('country', 'YE', 0, 0, 0),
@@ -1151,7 +1099,7 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 ('country', 'ZA', 0, 0, 0),
 ('country', 'ZM', 0, 0, 0),
 ('country', 'ZW', 0, 0, 0),
-('country', 'ZZ', 1678965260, 1045, 1045),
+('country', 'ZZ', 1683662536, 1102, 1102),
 ('country', 'unkown', 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -1160,23 +1108,21 @@ INSERT INTO `nv4_counter` (`c_type`, `c_val`, `last_update`, `c_count`, `vi_coun
 -- Table structure for table `nv4_cronjobs`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_cronjobs` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `start_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `inter_val` int(10) unsigned NOT NULL DEFAULT '0',
-  `inter_val_type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0: Lặp lại sau thời điểm bắt đầu thực tế, 1:lặp lại sau thời điểm bắt đầu trong CSDL',
-  `run_file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `run_func` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `params` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `del` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `is_sys` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `last_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `last_result` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `vi_cron_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `is_sys` (`is_sys`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=14 ;
+CREATE TABLE `nv4_cronjobs` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `start_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `inter_val` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `inter_val_type` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0: Lặp lại sau thời điểm bắt đầu thực tế, 1:lặp lại sau thời điểm bắt đầu trong CSDL',
+  `run_file` varchar(255) NOT NULL,
+  `run_func` varchar(255) NOT NULL,
+  `params` varchar(255) DEFAULT NULL,
+  `del` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `is_sys` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `last_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `last_result` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `vi_cron_name` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_cronjobs`
@@ -1203,15 +1149,14 @@ INSERT INTO `nv4_cronjobs` (`id`, `start_time`, `inter_val`, `inter_val_type`, `
 -- Table structure for table `nv4_extension_files`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_extension_files` (
-  `idfile` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'other',
-  `title` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `lastmodified` int(10) unsigned NOT NULL DEFAULT '0',
-  `duplicate` smallint(5) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idfile`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=970 ;
+CREATE TABLE `nv4_extension_files` (
+  `idfile` mediumint(8) UNSIGNED NOT NULL,
+  `type` varchar(10) NOT NULL DEFAULT 'other',
+  `title` varchar(55) NOT NULL DEFAULT '',
+  `path` varchar(255) NOT NULL DEFAULT '',
+  `lastmodified` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `duplicate` smallint(5) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_extension_files`
@@ -2195,18 +2140,16 @@ INSERT INTO `nv4_extension_files` (`idfile`, `type`, `title`, `path`, `lastmodif
 -- Table structure for table `nv4_ips`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_ips` (
-  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `ip` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mask` tinyint(3) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_ips` (
+  `id` mediumint(9) NOT NULL,
+  `type` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `ip` varchar(32) DEFAULT NULL,
+  `mask` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `area` tinyint(4) NOT NULL,
   `begintime` int(11) DEFAULT NULL,
   `endtime` int(11) DEFAULT NULL,
-  `notice` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ip` (`ip`,`type`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+  `notice` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_ips`
@@ -2221,14 +2164,12 @@ INSERT INTO `nv4_ips` (`id`, `type`, `ip`, `mask`, `area`, `begintime`, `endtime
 -- Table structure for table `nv4_language`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_language` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `idfile` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `langtype` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'lang_module',
-  `lang_key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `filelang` (`idfile`,`lang_key`,`langtype`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_language` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `idfile` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `langtype` varchar(50) NOT NULL DEFAULT 'lang_module',
+  `lang_key` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2236,14 +2177,12 @@ CREATE TABLE IF NOT EXISTS `nv4_language` (
 -- Table structure for table `nv4_language_file`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_language_file` (
-  `idfile` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `module` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_file` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `langtype` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'lang_module',
-  PRIMARY KEY (`idfile`),
-  UNIQUE KEY `module` (`module`,`admin_file`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_language_file` (
+  `idfile` mediumint(8) UNSIGNED NOT NULL,
+  `module` varchar(50) NOT NULL,
+  `admin_file` varchar(200) NOT NULL DEFAULT '0',
+  `langtype` varchar(50) NOT NULL DEFAULT 'lang_module'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2251,18 +2190,14 @@ CREATE TABLE IF NOT EXISTS `nv4_language_file` (
 -- Table structure for table `nv4_location_country`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_location_country` (
-  `country_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(240) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(240) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`country_id`),
-  UNIQUE KEY `code` (`code`),
-  UNIQUE KEY `title` (`title`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=257 ;
+CREATE TABLE `nv4_location_country` (
+  `country_id` smallint(5) UNSIGNED NOT NULL,
+  `code` varchar(10) NOT NULL,
+  `title` varchar(240) NOT NULL,
+  `alias` varchar(240) NOT NULL,
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_location_country`
@@ -2320,7 +2255,7 @@ INSERT INTO `nv4_location_country` (`country_id`, `code`, `title`, `alias`, `wei
 (49, 'COG', 'Congo', 'congo', 49, 1),
 (50, 'COK', 'Cook Islands', 'cook-islands', 50, 1),
 (51, 'CRI', 'Costa Rica', 'costa-rica', 51, 1),
-(52, 'CIV', 'Cote D''Ivoire', 'cote-d-ivoire', 52, 1),
+(52, 'CIV', 'Cote D\'Ivoire', 'cote-d-ivoire', 52, 1),
 (53, 'HRV', 'Croatia', 'croatia', 53, 1),
 (54, 'CUB', 'Cuba', 'cuba', 54, 1),
 (55, 'CYP', 'Cyprus', 'cyprus', 55, 1),
@@ -2383,7 +2318,7 @@ INSERT INTO `nv4_location_country` (`country_id`, `code`, `title`, `alias`, `wei
 (113, 'KOR', 'South Korea', 'south-korea', 112, 1),
 (114, 'KWT', 'Kuwait', 'kuwait', 113, 1),
 (115, 'KGZ', 'Kyrgyzstan', 'kyrgyzstan', 114, 1),
-(116, 'LAO', 'Lao People''s Democratic Republic', 'lao-people-s-democratic-republic', 115, 1),
+(116, 'LAO', 'Lao People\'s Democratic Republic', 'lao-people-s-democratic-republic', 115, 1),
 (117, 'LVA', 'Latvia', 'latvia', 116, 1),
 (118, 'LBN', 'Lebanon', 'lebanon', 117, 1),
 (119, 'LSO', 'Lesotho', 'lesotho', 118, 1),
@@ -2528,17 +2463,15 @@ INSERT INTO `nv4_location_country` (`country_id`, `code`, `title`, `alias`, `wei
 -- Table structure for table `nv4_location_district`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_location_district` (
-  `district_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `province_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_location_district` (
+  `district_id` mediumint(8) UNSIGNED NOT NULL,
+  `province_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` varchar(240) NOT NULL DEFAULT '',
   `type` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`district_id`),
-  UNIQUE KEY `province_id_alias` (`province_id`,`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=974 ;
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `nv4_location_district`
@@ -2993,7 +2926,7 @@ INSERT INTO `nv4_location_district` (`district_id`, `province_id`, `title`, `ali
 (615, 62, 'Đắk Hà', 'dak-ha', 'Huyện', 0, 1),
 (616, 62, 'Sa Thầy', 'sa-thay', 'Huyện', 0, 1),
 (617, 62, 'Tu Mơ Rông', 'tu-mo-rong', 'Huyện', 0, 1),
-(618, 62, 'Ia H'' Drai', 'ia-h-drai', 'Huyện', 0, 1),
+(618, 62, 'Ia H\' Drai', 'ia-h-drai', 'Huyện', 0, 1),
 (622, 64, 'Thành phố Pleiku', 'thanh-pho-pleiku', 'Thành phố', 0, 1),
 (623, 64, 'Thị xã An Khê', 'thi-xa-an-khe', 'Thị xã', 0, 1),
 (624, 64, 'Thị xã Ayun Pa', 'thi-xa-ayun-pa', 'Thị xã', 0, 1),
@@ -3013,14 +2946,14 @@ INSERT INTO `nv4_location_district` (`district_id`, `province_id`, `title`, `ali
 (639, 64, 'Chư Pưh', 'chu-puh', 'Huyện', 0, 1),
 (643, 66, 'Thành phố Buôn Ma Thuột', 'thanh-pho-buon-ma-thuot', 'Thành phố', 0, 1),
 (644, 66, 'Thị Xã Buôn Hồ', 'thi-xa-buon-ho', 'Thị xã', 0, 1),
-(645, 66, 'Ea H''leo', 'ea-h-leo', 'Huyện', 0, 1),
+(645, 66, 'Ea H\'leo', 'ea-h-leo', 'Huyện', 0, 1),
 (646, 66, 'Ea Súp', 'ea-sup', 'Huyện', 0, 1),
 (647, 66, 'Buôn Đôn', 'buon-don', 'Huyện', 0, 1),
-(648, 66, 'Cư M''gar', 'cu-m-gar', 'Huyện', 0, 1),
+(648, 66, 'Cư M\'gar', 'cu-m-gar', 'Huyện', 0, 1),
 (649, 66, 'Krông Búk', 'krong-buk', 'Huyện', 0, 1),
 (650, 66, 'Krông Năng', 'krong-nang', 'Huyện', 0, 1),
 (651, 66, 'Ea Kar', 'ea-kar', 'Huyện', 0, 1),
-(652, 66, 'M''Đrắk', 'm-drak', 'Huyện', 0, 1),
+(652, 66, 'M\'Đrắk', 'm-drak', 'Huyện', 0, 1),
 (653, 66, 'Krông Bông', 'krong-bong', 'Huyện', 0, 1),
 (654, 66, 'Krông Pắc', 'krong-pac', 'Huyện', 0, 1),
 (655, 66, 'Krông A Na', 'krong-a-na', 'Huyện', 0, 1),
@@ -3032,7 +2965,7 @@ INSERT INTO `nv4_location_district` (`district_id`, `province_id`, `title`, `ali
 (663, 67, 'Đắk Mil', 'dak-mil', 'Huyện', 0, 1),
 (664, 67, 'Krông Nô', 'krong-no', 'Huyện', 0, 1),
 (665, 67, 'Đắk Song', 'dak-song', 'Huyện', 0, 1),
-(666, 67, 'Đắk R''Lấp', 'dak-r-lap', 'Huyện', 0, 1),
+(666, 67, 'Đắk R\'Lấp', 'dak-r-lap', 'Huyện', 0, 1),
 (667, 67, 'Tuy Đức', 'tuy-duc', 'Huyện', 0, 1),
 (672, 68, 'Thành phố Đà Lạt', 'thanh-pho-da-lat', 'Thành phố', 0, 1),
 (673, 68, 'Thành phố Bảo Lộc', 'thanh-pho-bao-loc', 'Thành phố', 0, 1),
@@ -3259,19 +3192,16 @@ INSERT INTO `nv4_location_district` (`district_id`, `province_id`, `title`, `ali
 -- Table structure for table `nv4_location_province`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_location_province` (
-  `province_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `country_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_location_province` (
+  `province_id` mediumint(8) UNSIGNED NOT NULL,
+  `country_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `code` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `type` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`province_id`),
-  UNIQUE KEY `name` (`title`),
-  UNIQUE KEY `country_id_alias` (`country_id`,`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT AUTO_INCREMENT=97 ;
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `nv4_location_province`
@@ -3348,20 +3278,16 @@ INSERT INTO `nv4_location_province` (`province_id`, `country_id`, `title`, `alia
 -- Table structure for table `nv4_location_ward`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_location_ward` (
-  `ward_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `district_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_location_ward` (
+  `ward_id` mediumint(8) UNSIGNED NOT NULL,
+  `district_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `alias` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `type` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`ward_id`),
-  KEY `district_id` (`district_id`),
-  KEY `address` (`address`(191)),
-  KEY `title` (`title`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32249 ;
+  `weight` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `nv4_location_ward`
@@ -3784,8 +3710,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (1216, 34, 'Xã Đồng Yên', 'xa-dong-yen', 'Huyện Bắc Quang, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1),
 (1219, 34, 'Xã Đông Thành', 'xa-dong-thanh', 'Huyện Bắc Quang, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1),
 (1222, 35, 'Xã Xuân Minh', 'xa-xuan-minh', 'Huyện Quang Bình, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1),
-(1225, 35, 'Xã Tiên Nguyên', 'xa-tien-nguyen', 'Huyện Quang Bình, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(1225, 35, 'Xã Tiên Nguyên', 'xa-tien-nguyen', 'Huyện Quang Bình, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1),
 (1228, 35, 'Xã Tân Nam', 'xa-tan-nam', 'Huyện Quang Bình, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1),
 (1231, 35, 'Xã Bản Rịa', 'xa-ban-ria', 'Huyện Quang Bình, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1),
 (1234, 35, 'Xã Yên Thành', 'xa-yen-thanh', 'Huyện Quang Bình, Tỉnh Hà Giang, Việt Nam', 'Xã', 0, 1),
@@ -3859,7 +3784,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (1435, 45, 'Xã Mã Ba', 'xa-ma-ba', 'Huyện Hà Quảng, Tỉnh Cao Bằng, Việt Nam', 'Xã', 0, 1),
 (1438, 45, 'Xã Ngọc Đào', 'xa-ngoc-dao', 'Huyện Hà Quảng, Tỉnh Cao Bằng, Việt Nam', 'Xã', 0, 1),
 (1447, 47, 'Thị trấn Trà Lĩnh', 'thi-tran-tra-linh', 'Huyện Trùng Khánh, Tỉnh Cao Bằng, Việt Nam', 'Thị trấn', 0, 1),
-(1453, 47, 'Xã Tri Phương', 'xa-tri-phuong', 'Huyện Trùng Khánh, Tỉnh Cao Bằng, Việt Nam', 'Xã', 0, 1),
+(1453, 47, 'Xã Tri Phương', 'xa-tri-phuong', 'Huyện Trùng Khánh, Tỉnh Cao Bằng, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (1456, 47, 'Xã Quang Hán', 'xa-quang-han', 'Huyện Trùng Khánh, Tỉnh Cao Bằng, Việt Nam', 'Xã', 0, 1),
 (1462, 47, 'Xã Xuân Nội', 'xa-xuan-noi', 'Huyện Trùng Khánh, Tỉnh Cao Bằng, Việt Nam', 'Xã', 0, 1),
 (1465, 47, 'Xã Quang Trung', 'xa-quang-trung', 'Huyện Trùng Khánh, Tỉnh Cao Bằng, Việt Nam', 'Xã', 0, 1),
@@ -4219,8 +4145,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (2665, 80, 'Xã Vạn Hoà', 'xa-van-hoa', 'Thành phố Lào Cai, Tỉnh Lào Cai, Việt Nam', 'Xã', 0, 1),
 (2668, 80, 'Phường Bắc Cường', 'phuong-bac-cuong', 'Thành phố Lào Cai, Tỉnh Lào Cai, Việt Nam', 'Phường', 0, 1),
 (2671, 80, 'Phường Nam Cường', 'phuong-nam-cuong', 'Thành phố Lào Cai, Tỉnh Lào Cai, Việt Nam', 'Phường', 0, 1),
-(2674, 80, 'Xã Cam Đường', 'xa-cam-duong', 'Thành phố Lào Cai, Tỉnh Lào Cai, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(2674, 80, 'Xã Cam Đường', 'xa-cam-duong', 'Thành phố Lào Cai, Tỉnh Lào Cai, Việt Nam', 'Xã', 0, 1),
 (2677, 80, 'Xã Tả Phời', 'xa-ta-phoi', 'Thành phố Lào Cai, Tỉnh Lào Cai, Việt Nam', 'Xã', 0, 1),
 (2680, 80, 'Xã Hợp Thành', 'xa-hop-thanh', 'Thành phố Lào Cai, Tỉnh Lào Cai, Việt Nam', 'Xã', 0, 1),
 (2683, 82, 'Thị trấn Bát Xát', 'thi-tran-bat-xat', 'Huyện Bát Xát, Tỉnh Lào Cai, Việt Nam', 'Thị trấn', 0, 1),
@@ -4365,7 +4290,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (3133, 94, 'Phường Tân Thanh', 'phuong-tan-thanh', 'Thành phố Điện Biên Phủ, Tỉnh Điện Biên, Việt Nam', 'Phường', 0, 1),
 (3136, 94, 'Phường Mường Thanh', 'phuong-muong-thanh', 'Thành phố Điện Biên Phủ, Tỉnh Điện Biên, Việt Nam', 'Phường', 0, 1),
 (3139, 94, 'Phường Nam Thanh', 'phuong-nam-thanh', 'Thành phố Điện Biên Phủ, Tỉnh Điện Biên, Việt Nam', 'Phường', 0, 1),
-(3142, 94, 'Phường Thanh Trường', 'phuong-thanh-truong', 'Thành phố Điện Biên Phủ, Tỉnh Điện Biên, Việt Nam', 'Phường', 0, 1),
+(3142, 94, 'Phường Thanh Trường', 'phuong-thanh-truong', 'Thành phố Điện Biên Phủ, Tỉnh Điện Biên, Việt Nam', 'Phường', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (3145, 94, 'Xã Thanh Minh', 'xa-thanh-minh', 'Thành phố Điện Biên Phủ, Tỉnh Điện Biên, Việt Nam', 'Xã', 0, 1),
 (3148, 95, 'Phường Sông Đà', 'phuong-song-da', 'Thị xã Thị Xã Mường Lay, Tỉnh Điện Biên, Việt Nam', 'Phường', 0, 1),
 (3151, 95, 'Phường Na Lay', 'phuong-na-lay', 'Thị xã Thị Xã Mường Lay, Tỉnh Điện Biên, Việt Nam', 'Phường', 0, 1),
@@ -4655,8 +4581,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (3826, 120, 'Xã Nậm Păm', 'xa-nam-pam', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1),
 (3829, 120, 'Xã Chiềng Muôn', 'xa-chieng-muon', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1),
 (3832, 120, 'Xã Chiềng Ân', 'xa-chieng-an', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1),
-(3835, 120, 'Xã Pi Toong', 'xa-pi-toong', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(3835, 120, 'Xã Pi Toong', 'xa-pi-toong', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1),
 (3838, 120, 'Xã Chiềng Công', 'xa-chieng-cong', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1),
 (3841, 120, 'Xã Tạ Bú', 'xa-ta-bu', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1),
 (3844, 120, 'Xã Chiềng San', 'xa-chieng-san', 'Huyện Mường La, Tỉnh Sơn La, Việt Nam', 'Xã', 0, 1),
@@ -4874,7 +4799,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (4471, 137, 'Xã Chế Cu Nha', 'xa-che-cu-nha', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1),
 (4474, 137, 'Xã Lao Chải', 'xa-lao-chai', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1),
 (4477, 137, 'Xã Kim Nọi', 'xa-kim-noi', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1),
-(4480, 137, 'Xã Cao Phạ', 'xa-cao-pha', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1),
+(4480, 137, 'Xã Cao Phạ', 'xa-cao-pha', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (4483, 137, 'Xã La Pán Tẩn', 'xa-la-pan-tan', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1),
 (4486, 137, 'Xã Dế Su Phình', 'xa-de-su-phinh', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1),
 (4489, 137, 'Xã Chế Tạo', 'xa-che-tao', 'Huyện Mù Căng Chải, Tỉnh Yên Bái, Việt Nam', 'Xã', 0, 1),
@@ -5098,8 +5024,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (5305, 157, 'Xã Yên Phú', 'xa-yen-phu', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1),
 (5308, 157, 'Xã Bình Hẻm', 'xa-binh-hem', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1),
 (5320, 157, 'Xã Định Cư', 'xa-dinh-cu', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1),
-(5323, 157, 'Xã Chí Đạo', 'xa-chi-dao', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(5323, 157, 'Xã Chí Đạo', 'xa-chi-dao', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1),
 (5329, 157, 'Xã Ngọc Sơn', 'xa-ngoc-son', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1),
 (5332, 157, 'Xã Hương Nhượng', 'xa-huong-nhuong', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1),
 (5335, 157, 'Xã Vũ Bình', 'xa-vu-binh', 'Huyện Lạc Sơn, Tỉnh Hoà Bình, Việt Nam', 'Xã', 0, 1),
@@ -5371,7 +5296,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (6172, 182, 'Xã Tân Mỹ', 'xa-tan-my', 'Huyện Văn Lãng, Tỉnh Lạng Sơn, Việt Nam', 'Xã', 0, 1),
 (6175, 182, 'Xã Hồng Thái', 'xa-hong-thai', 'Huyện Văn Lãng, Tỉnh Lạng Sơn, Việt Nam', 'Xã', 0, 1),
 (6178, 182, 'Xã  Hoàng Văn Thụ', 'xa-hoang-van-thu', 'Huyện Văn Lãng, Tỉnh Lạng Sơn, Việt Nam', 'Xã', 0, 1),
-(6181, 182, 'Xã Nhạc Kỳ', 'xa-nhac-ky', 'Huyện Văn Lãng, Tỉnh Lạng Sơn, Việt Nam', 'Xã', 0, 1),
+(6181, 182, 'Xã Nhạc Kỳ', 'xa-nhac-ky', 'Huyện Văn Lãng, Tỉnh Lạng Sơn, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (6184, 183, 'Thị trấn Đồng Đăng', 'thi-tran-dong-dang', 'Huyện Cao Lộc, Tỉnh Lạng Sơn, Việt Nam', 'Thị trấn', 0, 1),
 (6187, 183, 'Thị trấn Cao Lộc', 'thi-tran-cao-loc', 'Huyện Cao Lộc, Tỉnh Lạng Sơn, Việt Nam', 'Thị trấn', 0, 1),
 (6190, 183, 'Xã Bảo Lâm', 'xa-bao-lam', 'Huyện Cao Lộc, Tỉnh Lạng Sơn, Việt Nam', 'Xã', 0, 1),
@@ -5521,8 +5447,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (6685, 193, 'Phường Trần Hưng Đạo', 'phuong-tran-hung-dao', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1),
 (6688, 193, 'Phường Hồng Hải', 'phuong-hong-hai', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1),
 (6691, 193, 'Phường Hồng Gai', 'phuong-hong-gai', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1),
-(6694, 193, 'Phường Bạch Đằng', 'phuong-bach-dang', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(6694, 193, 'Phường Bạch Đằng', 'phuong-bach-dang', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1),
 (6697, 193, 'Phường Hồng Hà', 'phuong-hong-ha', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1),
 (6700, 193, 'Phường Tuần Châu', 'phuong-tuan-chau', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1),
 (6703, 193, 'Phường Việt Hưng', 'phuong-viet-hung', 'Thành phố Hạ Long, Tỉnh Quảng Ninh, Việt Nam', 'Phường', 0, 1),
@@ -5865,7 +5790,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (7792, 222, 'Xã Quảng Minh', 'xa-quang-minh', 'Huyện Việt Yên, Tỉnh Bắc Giang, Việt Nam', 'Xã', 0, 1),
 (7795, 222, 'Thị trấn Nếnh', 'thi-tran-nenh', 'Huyện Việt Yên, Tỉnh Bắc Giang, Việt Nam', 'Thị trấn', 0, 1),
 (7798, 222, 'Xã Ninh Sơn', 'xa-ninh-son', 'Huyện Việt Yên, Tỉnh Bắc Giang, Việt Nam', 'Xã', 0, 1),
-(7801, 222, 'Xã Vân Trung', 'xa-van-trung', 'Huyện Việt Yên, Tỉnh Bắc Giang, Việt Nam', 'Xã', 0, 1),
+(7801, 222, 'Xã Vân Trung', 'xa-van-trung', 'Huyện Việt Yên, Tỉnh Bắc Giang, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (7804, 222, 'Xã Vân Hà', 'xa-van-ha', 'Huyện Việt Yên, Tỉnh Bắc Giang, Việt Nam', 'Xã', 0, 1),
 (7807, 222, 'Xã Quang Châu', 'xa-quang-chau', 'Huyện Việt Yên, Tỉnh Bắc Giang, Việt Nam', 'Xã', 0, 1),
 (7813, 223, 'Xã Đồng Tân', 'xa-dong-tan', 'Huyện Hiệp Hòa, Tỉnh Bắc Giang, Việt Nam', 'Xã', 0, 1),
@@ -5941,8 +5867,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (8044, 230, 'Xã Minh Phú', 'xa-minh-phu', 'Huyện Đoan Hùng, Tỉnh Phú Thọ, Việt Nam', 'Xã', 0, 1),
 (8047, 230, 'Xã Chân Mộng', 'xa-chan-mong', 'Huyện Đoan Hùng, Tỉnh Phú Thọ, Việt Nam', 'Xã', 0, 1),
 (8050, 230, 'Xã Ca Đình', 'xa-ca-dinh', 'Huyện Đoan Hùng, Tỉnh Phú Thọ, Việt Nam', 'Xã', 0, 1),
-(8053, 231, 'Thị trấn Hạ Hoà', 'thi-tran-ha-hoa', 'Huyện Hạ Hoà, Tỉnh Phú Thọ, Việt Nam', 'Thị trấn', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(8053, 231, 'Thị trấn Hạ Hoà', 'thi-tran-ha-hoa', 'Huyện Hạ Hoà, Tỉnh Phú Thọ, Việt Nam', 'Thị trấn', 0, 1),
 (8056, 231, 'Xã Đại Phạm', 'xa-dai-pham', 'Huyện Hạ Hoà, Tỉnh Phú Thọ, Việt Nam', 'Xã', 0, 1),
 (8062, 231, 'Xã Đan Thượng', 'xa-dan-thuong', 'Huyện Hạ Hoà, Tỉnh Phú Thọ, Việt Nam', 'Xã', 0, 1),
 (8065, 231, 'Xã Hà Lương', 'xa-ha-luong', 'Huyện Hạ Hoà, Tỉnh Phú Thọ, Việt Nam', 'Xã', 0, 1),
@@ -6367,14 +6292,14 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (9433, 262, 'Xã Xuân Lâm', 'xa-xuan-lam', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9436, 262, 'Xã Hà Mãn', 'xa-ha-man', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9439, 262, 'Xã Ngũ Thái', 'xa-ngu-thai', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
-(9442, 262, 'Xã Nguyệt Đức', 'xa-nguyet-duc', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
+(9442, 262, 'Xã Nguyệt Đức', 'xa-nguyet-duc', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (9445, 262, 'Xã Ninh Xá', 'xa-ninh-xa', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9448, 262, 'Xã Nghĩa Đạo', 'xa-nghia-dao', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9451, 262, 'Xã Song Liễu', 'xa-song-lieu', 'Huyện Thuận Thành, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9454, 263, 'Thị trấn Gia Bình', 'thi-tran-gia-binh', 'Huyện Gia Bình, Tỉnh Bắc Ninh, Việt Nam', 'Thị trấn', 0, 1),
 (9457, 263, 'Xã Vạn Ninh', 'xa-van-ninh', 'Huyện Gia Bình, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
-(9460, 263, 'Xã Thái Bảo', 'xa-thai-bao', 'Huyện Gia Bình, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(9460, 263, 'Xã Thái Bảo', 'xa-thai-bao', 'Huyện Gia Bình, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9463, 263, 'Xã Giang Sơn', 'xa-giang-son', 'Huyện Gia Bình, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9466, 263, 'Xã Cao Đức', 'xa-cao-duc', 'Huyện Gia Bình, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
 (9469, 263, 'Xã Đại Lai', 'xa-dai-lai', 'Huyện Gia Bình, Tỉnh Bắc Ninh, Việt Nam', 'Xã', 0, 1),
@@ -6785,8 +6710,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (10696, 292, 'Phường Duy Tân', 'phuong-duy-tan', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Phường', 0, 1),
 (10699, 292, 'Phường Tân Dân', 'phuong-tan-dan', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Phường', 0, 1),
 (10702, 292, 'Phường Minh Tân', 'phuong-minh-tan', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Phường', 0, 1),
-(10705, 292, 'Xã Quang Thành', 'xa-quang-thanh', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(10705, 292, 'Xã Quang Thành', 'xa-quang-thanh', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
 (10708, 292, 'Xã Hiệp Hòa', 'xa-hiep-hoa', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
 (10714, 292, 'Phường Phú Thứ', 'phuong-phu-thu', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Phường', 0, 1),
 (10717, 292, 'Xã Thăng Long', 'xa-thang-long', 'Thị xã Kinh Môn, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
@@ -6854,7 +6778,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (10927, 295, 'Xã Cao An', 'xa-cao-an', 'Huyện Cẩm Giàng, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
 (10930, 295, 'Xã Tân Trường', 'xa-tan-truong', 'Huyện Cẩm Giàng, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
 (10933, 295, 'Xã Cẩm Phúc', 'xa-cam-phuc', 'Huyện Cẩm Giàng, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
-(10936, 295, 'Xã Cẩm Điền', 'xa-cam-dien', 'Huyện Cẩm Giàng, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
+(10936, 295, 'Xã Cẩm Điền', 'xa-cam-dien', 'Huyện Cẩm Giàng, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (10939, 295, 'Xã Cẩm Đông', 'xa-cam-dong', 'Huyện Cẩm Giàng, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
 (10942, 295, 'Xã Cẩm Đoài', 'xa-cam-doai', 'Huyện Cẩm Giàng, Tỉnh Hải Dương, Việt Nam', 'Xã', 0, 1),
 (10945, 296, 'Thị trấn Kẻ Sặt', 'thi-tran-ke-sat', 'Huyện Bình Giang, Tỉnh Hải Dương, Việt Nam', 'Thị trấn', 0, 1),
@@ -7190,8 +7115,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (11992, 325, 'Xã Chỉ Đạo', 'xa-chi-dao', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
 (11995, 325, 'Xã Đại Đồng', 'xa-dai-dong', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
 (11998, 325, 'Xã Việt Hưng', 'xa-viet-hung', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
-(12001, 325, 'Xã Tân Quang', 'xa-tan-quang', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(12001, 325, 'Xã Tân Quang', 'xa-tan-quang', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
 (12004, 325, 'Xã Đình Dù', 'xa-dinh-du', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
 (12007, 325, 'Xã Minh Hải', 'xa-minh-hai', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
 (12010, 325, 'Xã Lương Tài', 'xa-luong-tai', 'Huyện Văn Lâm, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
@@ -7334,7 +7258,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (12421, 333, 'Xã Tam Đa', 'xa-tam-da', 'Huyện Phù Cừ, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
 (12424, 333, 'Xã Minh Tiến', 'xa-minh-tien', 'Huyện Phù Cừ, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
 (12427, 333, 'Xã Nguyên Hòa', 'xa-nguyen-hoa', 'Huyện Phù Cừ, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
-(12430, 333, 'Xã Tống Trân', 'xa-tong-tran', 'Huyện Phù Cừ, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1),
+(12430, 333, 'Xã Tống Trân', 'xa-tong-tran', 'Huyện Phù Cừ, Tỉnh Hưng Yên, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (12433, 336, 'Phường Lê Hồng Phong', 'phuong-le-hong-phong', 'Thành phố Thái Bình, Tỉnh Thái Bình, Việt Nam', 'Phường', 0, 1),
 (12436, 336, 'Phường Bồ Xuyên', 'phuong-bo-xuyen', 'Thành phố Thái Bình, Tỉnh Thái Bình, Việt Nam', 'Phường', 0, 1),
 (12439, 336, 'Phường Đề Thám', 'phuong-de-tham', 'Thành phố Thái Bình, Tỉnh Thái Bình, Việt Nam', 'Phường', 0, 1),
@@ -7618,8 +7543,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (13345, 349, 'Xã Chuyên Ngoại', 'xa-chuyen-ngoai', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Xã', 0, 1),
 (13348, 349, 'Phường Yên Bắc', 'phuong-yen-bac', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Phường', 0, 1),
 (13351, 349, 'Xã Trác Văn', 'xa-trac-van', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Xã', 0, 1),
-(13354, 349, 'Phường Tiên Nội', 'phuong-tien-noi', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Phường', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(13354, 349, 'Phường Tiên Nội', 'phuong-tien-noi', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Phường', 0, 1),
 (13357, 349, 'Phường Hoàng Đông', 'phuong-hoang-dong', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Phường', 0, 1),
 (13360, 349, 'Xã Yên Nam', 'xa-yen-nam', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Xã', 0, 1),
 (13363, 349, 'Xã Tiên Ngoại', 'xa-tien-ngoai', 'Thị xã Duy Tiên, Tỉnh Hà Nam, Việt Nam', 'Xã', 0, 1),
@@ -7830,7 +7754,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (14005, 362, 'Xã Nam Thanh', 'xa-nam-thanh', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1),
 (14008, 362, 'Xã Nam Lợi', 'xa-nam-loi', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1),
 (14011, 362, 'Xã Bình Minh', 'xa-binh-minh', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1),
-(14014, 362, 'Xã Đồng Sơn', 'xa-dong-son', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1),
+(14014, 362, 'Xã Đồng Sơn', 'xa-dong-son', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (14017, 362, 'Xã Nam Tiến', 'xa-nam-tien', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1),
 (14020, 362, 'Xã Nam Hải', 'xa-nam-hai', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1),
 (14023, 362, 'Xã Nam Thái', 'xa-nam-thai', 'Huyện Nam Trực, Tỉnh Nam Định, Việt Nam', 'Xã', 0, 1),
@@ -8048,8 +7973,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (14665, 376, 'Xã Lưu Phương', 'xa-luu-phuong', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1),
 (14668, 376, 'Xã Tân Thành', 'xa-tan-thanh', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1),
 (14671, 376, 'Xã Yên Lộc', 'xa-yen-loc', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1),
-(14674, 376, 'Xã Lai Thành', 'xa-lai-thanh', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(14674, 376, 'Xã Lai Thành', 'xa-lai-thanh', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1),
 (14677, 376, 'Xã Định Hóa', 'xa-dinh-hoa', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1),
 (14680, 376, 'Xã Văn Hải', 'xa-van-hai', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1),
 (14683, 376, 'Xã Kim Tân', 'xa-kim-tan', 'Huyện Kim Sơn, Tỉnh Ninh Bình, Việt Nam', 'Xã', 0, 1),
@@ -8321,7 +8245,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (15577, 395, 'Xã Phú Xuân', 'xa-phu-xuan', 'Huyện Thọ Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (15583, 395, 'Xã Xuân Lai', 'xa-xuan-lai', 'Huyện Thọ Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (15586, 395, 'Xã Xuân Lập', 'xa-xuan-lap', 'Huyện Thọ Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
-(15592, 395, 'Xã Xuân Minh', 'xa-xuan-minh', 'Huyện Thọ Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
+(15592, 395, 'Xã Xuân Minh', 'xa-xuan-minh', 'Huyện Thọ Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (15598, 395, 'Xã Trường Xuân', 'xa-truong-xuan', 'Huyện Thọ Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (15607, 396, 'Xã Bát Mọt', 'xa-bat-mot', 'Huyện Thường Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (15610, 396, 'Xã Yên Nhân', 'xa-yen-nhan', 'Huyện Thường Xuân, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
@@ -8475,8 +8400,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (16117, 401, 'Xã Nga Trung', 'xa-nga-trung', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (16120, 401, 'Xã Nga Bạch', 'xa-nga-bach', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (16123, 401, 'Xã Nga Thanh', 'xa-nga-thanh', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
-(16132, 401, 'Xã Nga Yên', 'xa-nga-yen', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(16132, 401, 'Xã Nga Yên', 'xa-nga-yen', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (16135, 401, 'Xã Nga Giáp', 'xa-nga-giap', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (16138, 401, 'Xã Nga Hải', 'xa-nga-hai', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
 (16141, 401, 'Xã Nga Thành', 'xa-nga-thanh', 'Huyện Nga Sơn, Tỉnh Thanh Hóa, Việt Nam', 'Xã', 0, 1),
@@ -8812,7 +8736,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (17191, 421, 'Xã Quỳnh Diễn', 'xa-quynh-dien', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17194, 421, 'Xã Quỳnh Hưng', 'xa-quynh-hung', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17197, 421, 'Xã Quỳnh Giang', 'xa-quynh-giang', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
-(17200, 421, 'Xã Quỳnh Ngọc', 'xa-quynh-ngoc', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
+(17200, 421, 'Xã Quỳnh Ngọc', 'xa-quynh-ngoc', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (17203, 421, 'Xã Quỳnh Nghĩa', 'xa-quynh-nghia', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17206, 421, 'Xã An Hòa', 'xa-an-hoa', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17209, 421, 'Xã Tiến Thủy', 'xa-tien-thuy', 'Huyện Quỳnh Lưu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
@@ -8904,8 +8829,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (17461, 425, 'Xã Diễn Hoa', 'xa-dien-hoa', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17464, 425, 'Xã Diễn Thành', 'xa-dien-thanh', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17467, 425, 'Xã Diễn Phúc', 'xa-dien-phuc', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
-(17476, 425, 'Xã Diễn Cát', 'xa-dien-cat', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(17476, 425, 'Xã Diễn Cát', 'xa-dien-cat', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17479, 425, 'Xã Diễn Thịnh', 'xa-dien-thinh', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17482, 425, 'Xã Diễn Tân', 'xa-dien-tan', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
 (17485, 425, 'Xã Minh Châu', 'xa-minh-chau', 'Huyện Diễn Châu, Tỉnh Nghệ An, Việt Nam', 'Xã', 0, 1),
@@ -9315,7 +9239,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (18853, 450, 'Phường Hải Thành', 'phuong-hai-thanh', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1),
 (18856, 450, 'Phường Đồng Phú', 'phuong-dong-phu', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1),
 (18859, 450, 'Phường Bắc Lý', 'phuong-bac-ly', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1),
-(18865, 450, 'Phường Nam Lý', 'phuong-nam-ly', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1),
+(18865, 450, 'Phường Nam Lý', 'phuong-nam-ly', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (18868, 450, 'Phường Đồng Hải', 'phuong-dong-hai', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1),
 (18871, 450, 'Phường Đồng Sơn', 'phuong-dong-son', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1),
 (18874, 450, 'Phường Phú Hải', 'phuong-phu-hai', 'Thành phố Thành Phố Đồng Hới, Tỉnh Quảng Bình, Việt Nam', 'Phường', 0, 1),
@@ -9334,8 +9259,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (18913, 452, 'Xã Hồng Hóa', 'xa-hong-hoa', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1),
 (18916, 452, 'Xã Hóa Thanh', 'xa-hoa-thanh', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1),
 (18919, 452, 'Xã Hóa Tiến', 'xa-hoa-tien', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1),
-(18922, 452, 'Xã Hóa Hợp', 'xa-hoa-hop', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(18922, 452, 'Xã Hóa Hợp', 'xa-hoa-hop', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1),
 (18925, 452, 'Xã Xuân Hóa', 'xa-xuan-hoa', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1),
 (18928, 452, 'Xã Yên Hóa', 'xa-yen-hoa', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1),
 (18931, 452, 'Xã Minh Hóa', 'xa-minh-hoa', 'Huyện Minh Hóa, Tỉnh Quảng Bình, Việt Nam', 'Xã', 0, 1),
@@ -9740,8 +9664,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (20198, 490, 'Phường Hòa Khánh Nam', 'phuong-hoa-khanh-nam', 'Quận Liên Chiểu, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1),
 (20200, 490, 'Phường Hòa Minh', 'phuong-hoa-minh', 'Quận Liên Chiểu, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1),
 (20203, 491, 'Phường Tam Thuận', 'phuong-tam-thuan', 'Quận Thanh Khê, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1),
-(20206, 491, 'Phường Thanh Khê Tây', 'phuong-thanh-khe-tay', 'Quận Thanh Khê, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(20206, 491, 'Phường Thanh Khê Tây', 'phuong-thanh-khe-tay', 'Quận Thanh Khê, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1),
 (20207, 491, 'Phường Thanh Khê Đông', 'phuong-thanh-khe-dong', 'Quận Thanh Khê, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1),
 (20209, 491, 'Phường Xuân Hà', 'phuong-xuan-ha', 'Quận Thanh Khê, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1),
 (20212, 491, 'Phường Tân Chính', 'phuong-tan-chinh', 'Quận Thanh Khê, Thành phố Đà Nẵng, Việt Nam', 'Phường', 0, 1),
@@ -9788,7 +9711,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (20317, 497, 'Xã Hòa Phú', 'xa-hoa-phu', 'Huyện Hòa Vang, Thành phố Đà Nẵng, Việt Nam', 'Xã', 0, 1),
 (20320, 497, 'Xã Hòa Phong', 'xa-hoa-phong', 'Huyện Hòa Vang, Thành phố Đà Nẵng, Việt Nam', 'Xã', 0, 1),
 (20323, 497, 'Xã Hòa Châu', 'xa-hoa-chau', 'Huyện Hòa Vang, Thành phố Đà Nẵng, Việt Nam', 'Xã', 0, 1),
-(20326, 497, 'Xã Hòa Tiến', 'xa-hoa-tien', 'Huyện Hòa Vang, Thành phố Đà Nẵng, Việt Nam', 'Xã', 0, 1),
+(20326, 497, 'Xã Hòa Tiến', 'xa-hoa-tien', 'Huyện Hòa Vang, Thành phố Đà Nẵng, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (20329, 497, 'Xã Hòa Phước', 'xa-hoa-phuoc', 'Huyện Hòa Vang, Thành phố Đà Nẵng, Việt Nam', 'Xã', 0, 1),
 (20332, 497, 'Xã Hòa Khương', 'xa-hoa-khuong', 'Huyện Hòa Vang, Thành phố Đà Nẵng, Việt Nam', 'Xã', 0, 1),
 (20335, 502, 'Phường Tân Thạnh', 'phuong-tan-thanh', 'Thành phố Tam Kỳ, Tỉnh Quảng Nam, Việt Nam', 'Phường', 0, 1),
@@ -9828,10 +9752,10 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (20428, 503, 'Phường Cẩm Nam', 'phuong-cam-nam', 'Thành phố Hội An, Tỉnh Quảng Nam, Việt Nam', 'Phường', 0, 1),
 (20431, 503, 'Xã Cẩm Thanh', 'xa-cam-thanh', 'Thành phố Hội An, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
 (20434, 503, 'Xã Tân Hiệp', 'xa-tan-hiep', 'Thành phố Hội An, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
-(20437, 504, 'Xã Ch''ơm', 'xa-ch-om', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
+(20437, 504, 'Xã Ch\'ơm', 'xa-ch-om', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
 (20440, 504, 'Xã Ga Ri', 'xa-ga-ri', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
 (20443, 504, 'Xã A Xan', 'xa-a-xan', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
-(20446, 504, 'Xã Tr''Hy', 'xa-tr-hy', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
+(20446, 504, 'Xã Tr\'Hy', 'xa-tr-hy', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
 (20449, 504, 'Xã Lăng', 'xa-lang', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
 (20452, 504, 'Xã A Nông', 'xa-a-nong', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
 (20455, 504, 'Xã A Tiêng', 'xa-a-tieng', 'Huyện Tây Giang, Tỉnh Quảng Nam, Việt Nam', 'Xã', 0, 1),
@@ -10156,8 +10080,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (21385, 532, 'Xã Hành Phước', 'xa-hanh-phuoc', 'Huyện Nghĩa Hành, Tỉnh Quảng Ngãi, Việt Nam', 'Xã', 0, 1),
 (21388, 532, 'Xã Hành Thiện', 'xa-hanh-thien', 'Huyện Nghĩa Hành, Tỉnh Quảng Ngãi, Việt Nam', 'Xã', 0, 1),
 (21391, 532, 'Xã Hành Thịnh', 'xa-hanh-thinh', 'Huyện Nghĩa Hành, Tỉnh Quảng Ngãi, Việt Nam', 'Xã', 0, 1),
-(21394, 532, 'Xã Hành Tín Tây', 'xa-hanh-tin-tay', 'Huyện Nghĩa Hành, Tỉnh Quảng Ngãi, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(21394, 532, 'Xã Hành Tín Tây', 'xa-hanh-tin-tay', 'Huyện Nghĩa Hành, Tỉnh Quảng Ngãi, Việt Nam', 'Xã', 0, 1),
 (21397, 532, 'Xã Hành Tín  Đông', 'xa-hanh-tin-dong', 'Huyện Nghĩa Hành, Tỉnh Quảng Ngãi, Việt Nam', 'Xã', 0, 1),
 (21400, 533, 'Thị trấn Mộ Đức', 'thi-tran-mo-duc', 'Huyện Mộ Đức, Tỉnh Quảng Ngãi, Việt Nam', 'Thị trấn', 0, 1),
 (21403, 533, 'Xã Đức Lợi', 'xa-duc-loi', 'Huyện Mộ Đức, Tỉnh Quảng Ngãi, Việt Nam', 'Xã', 0, 1),
@@ -10276,7 +10199,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (21745, 545, 'Xã Mỹ Lộc', 'xa-my-loc', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1),
 (21748, 545, 'Xã Mỹ Lợi', 'xa-my-loi', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1),
 (21751, 545, 'Xã Mỹ An', 'xa-my-an', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1),
-(21754, 545, 'Xã Mỹ Phong', 'xa-my-phong', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1),
+(21754, 545, 'Xã Mỹ Phong', 'xa-my-phong', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (21757, 545, 'Xã Mỹ Trinh', 'xa-my-trinh', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1),
 (21760, 545, 'Xã Mỹ Thọ', 'xa-my-tho', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1),
 (21763, 545, 'Xã Mỹ Hòa', 'xa-my-hoa', 'Huyện Phù Mỹ, Tỉnh Bình Định, Việt Nam', 'Xã', 0, 1),
@@ -10574,8 +10498,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (22615, 573, 'Xã Khánh Bình', 'xa-khanh-binh', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1),
 (22618, 573, 'Xã Khánh Trung', 'xa-khanh-trung', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1),
 (22621, 573, 'Xã Khánh Đông', 'xa-khanh-dong', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1),
-(22624, 573, 'Xã Khánh Thượng', 'xa-khanh-thuong', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(22624, 573, 'Xã Khánh Thượng', 'xa-khanh-thuong', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1),
 (22627, 573, 'Xã Khánh Nam', 'xa-khanh-nam', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1),
 (22630, 573, 'Xã Sông Cầu', 'xa-song-cau', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1),
 (22633, 573, 'Xã Giang Ly', 'xa-giang-ly', 'Huyện Khánh Vĩnh, Tỉnh Khánh Hòa, Việt Nam', 'Xã', 0, 1),
@@ -10756,7 +10679,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (23137, 598, 'Xã Hàm Minh', 'xa-ham-minh', 'Huyện Hàm Thuận Nam, Tỉnh Bình Thuận, Việt Nam', 'Xã', 0, 1),
 (23140, 598, 'Xã Thuận Quí', 'xa-thuan-qui', 'Huyện Hàm Thuận Nam, Tỉnh Bình Thuận, Việt Nam', 'Xã', 0, 1),
 (23143, 598, 'Xã Tân Thuận', 'xa-tan-thuan', 'Huyện Hàm Thuận Nam, Tỉnh Bình Thuận, Việt Nam', 'Xã', 0, 1),
-(23146, 598, 'Xã Tân Thành', 'xa-tan-thanh', 'Huyện Hàm Thuận Nam, Tỉnh Bình Thuận, Việt Nam', 'Xã', 0, 1),
+(23146, 598, 'Xã Tân Thành', 'xa-tan-thanh', 'Huyện Hàm Thuận Nam, Tỉnh Bình Thuận, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (23149, 599, 'Thị trấn Lạc Tánh', 'thi-tran-lac-tanh', 'Huyện Tánh Linh, Tỉnh Bình Thuận, Việt Nam', 'Thị trấn', 0, 1),
 (23152, 599, 'Xã Bắc Ruộng', 'xa-bac-ruong', 'Huyện Tánh Linh, Tỉnh Bình Thuận, Việt Nam', 'Xã', 0, 1),
 (23158, 599, 'Xã Nghị Đức', 'xa-nghi-duc', 'Huyện Tánh Linh, Tỉnh Bình Thuận, Việt Nam', 'Xã', 0, 1),
@@ -10896,10 +10820,10 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (23530, 616, 'Xã Rơ Kơi', 'xa-ro-koi', 'Huyện Sa Thầy, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
 (23533, 616, 'Xã Sa Nhơn', 'xa-sa-nhon', 'Huyện Sa Thầy, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
 (23534, 616, 'Xã Hơ Moong', 'xa-ho-moong', 'Huyện Sa Thầy, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
-(23535, 618, 'Xã Ia Đal', 'xa-ia-dal', 'Huyện Ia H'' Drai, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
+(23535, 618, 'Xã Ia Đal', 'xa-ia-dal', 'Huyện Ia H\' Drai, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
 (23536, 616, 'Xã Mô Rai', 'xa-mo-rai', 'Huyện Sa Thầy, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
-(23537, 618, 'Xã Ia Dom', 'xa-ia-dom', 'Huyện Ia H'' Drai, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
-(23538, 618, 'Xã Ia Tơi', 'xa-ia-toi', 'Huyện Ia H'' Drai, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
+(23537, 618, 'Xã Ia Dom', 'xa-ia-dom', 'Huyện Ia H\' Drai, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
+(23538, 618, 'Xã Ia Tơi', 'xa-ia-toi', 'Huyện Ia H\' Drai, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
 (23539, 616, 'Xã Sa Sơn', 'xa-sa-son', 'Huyện Sa Thầy, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
 (23542, 616, 'Xã Sa Nghĩa', 'xa-sa-nghia', 'Huyện Sa Thầy, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
 (23545, 616, 'Xã Sa Bình', 'xa-sa-binh', 'Huyện Sa Thầy, Tỉnh Kon Tum, Việt Nam', 'Xã', 0, 1),
@@ -10961,8 +10885,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (23689, 626, 'Xã Kon Gang', 'xa-kon-gang', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23692, 626, 'Xã Hà Bầu', 'xa-ha-bau', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23695, 626, 'Xã Nam Yang', 'xa-nam-yang', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
-(23698, 626, 'Xã K'' Dang', 'xa-k-dang', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
-(23701, 626, 'Xã H'' Neng', 'xa-h-neng', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
+(23698, 626, 'Xã K\' Dang', 'xa-k-dang', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
+(23701, 626, 'Xã H\' Neng', 'xa-h-neng', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23704, 626, 'Xã Tân Bình', 'xa-tan-binh', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23707, 626, 'Xã Glar', 'xa-glar', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23710, 626, 'Xã A Dơk', 'xa-a-dok', 'Huyện Đăk Đoa, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
@@ -11002,8 +10926,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (23798, 629, 'Xã Đak Jơ Ta', 'xa-dak-jo-ta', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23799, 629, 'Xã Đak Ta Ley', 'xa-dak-ta-ley', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23800, 629, 'Xã Hra', 'xa-hra', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
-(23803, 629, 'Xã Đăk Yă', 'xa-dak-ya', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(23803, 629, 'Xã Đăk Yă', 'xa-dak-ya', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23806, 629, 'Xã Đăk Djrăng', 'xa-dak-djrang', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23809, 629, 'Xã Lơ Pang', 'xa-lo-pang', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
 (23812, 629, 'Xã Kon Thụp', 'xa-kon-thup', 'Huyện Mang Yang, Tỉnh Gia Lai, Việt Nam', 'Xã', 0, 1),
@@ -11148,18 +11071,18 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24172, 643, 'Xã Hòa Phú', 'xa-hoa-phu', 'Thành phố Buôn Ma Thuột, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24175, 643, 'Xã Hòa Khánh', 'xa-hoa-khanh', 'Thành phố Buôn Ma Thuột, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24178, 643, 'Xã Hòa Xuân', 'xa-hoa-xuan', 'Thành phố Buôn Ma Thuột, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24181, 645, 'Thị trấn Ea Drăng', 'thi-tran-ea-drang', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
-(24184, 645, 'Xã Ea H''leo', 'xa-ea-h-leo', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24187, 645, 'Xã Ea Sol', 'xa-ea-sol', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24190, 645, 'Xã Ea Ral', 'xa-ea-ral', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24193, 645, 'Xã Ea Wy', 'xa-ea-wy', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24194, 645, 'Xã Cư A Mung', 'xa-cu-a-mung', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24196, 645, 'Xã Cư Mốt', 'xa-cu-mot', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24199, 645, 'Xã Ea Hiao', 'xa-ea-hiao', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24202, 645, 'Xã Ea Khal', 'xa-ea-khal', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24205, 645, 'Xã Dliê Yang', 'xa-dlie-yang', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24207, 645, 'Xã Ea Tir', 'xa-ea-tir', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24208, 645, 'Xã Ea Nam', 'xa-ea-nam', 'Huyện Ea H''leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24181, 645, 'Thị trấn Ea Drăng', 'thi-tran-ea-drang', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
+(24184, 645, 'Xã Ea H\'leo', 'xa-ea-h-leo', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24187, 645, 'Xã Ea Sol', 'xa-ea-sol', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24190, 645, 'Xã Ea Ral', 'xa-ea-ral', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24193, 645, 'Xã Ea Wy', 'xa-ea-wy', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24194, 645, 'Xã Cư A Mung', 'xa-cu-a-mung', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24196, 645, 'Xã Cư Mốt', 'xa-cu-mot', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24199, 645, 'Xã Ea Hiao', 'xa-ea-hiao', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24202, 645, 'Xã Ea Khal', 'xa-ea-khal', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24205, 645, 'Xã Dliê Yang', 'xa-dlie-yang', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24207, 645, 'Xã Ea Tir', 'xa-ea-tir', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24208, 645, 'Xã Ea Nam', 'xa-ea-nam', 'Huyện Ea H\'leo, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24211, 646, 'Thị trấn Ea Súp', 'thi-tran-ea-sup', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
 (24214, 646, 'Xã Ia Lốp', 'xa-ia-lop', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24215, 646, 'Xã Ia JLơi', 'xa-ia-jloi', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
@@ -11169,7 +11092,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24223, 646, 'Xã Ea Lê', 'xa-ea-le', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24226, 646, 'Xã Cư KBang', 'xa-cu-kbang', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24229, 646, 'Xã Ea Bung', 'xa-ea-bung', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24232, 646, 'Xã Cư M''Lan', 'xa-cu-m-lan', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24232, 646, 'Xã Cư M\'Lan', 'xa-cu-m-lan', 'Huyện Ea Súp, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24235, 647, 'Xã Krông Na', 'xa-krong-na', 'Huyện Buôn Đôn, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24238, 647, 'Xã Ea Huar', 'xa-ea-huar', 'Huyện Buôn Đôn, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24241, 647, 'Xã Ea Wer', 'xa-ea-wer', 'Huyện Buôn Đôn, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
@@ -11177,23 +11100,23 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24247, 647, 'Xã Cuôr KNia', 'xa-cuor-knia', 'Huyện Buôn Đôn, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24250, 647, 'Xã Ea Bar', 'xa-ea-bar', 'Huyện Buôn Đôn, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24253, 647, 'Xã Ea Nuôl', 'xa-ea-nuol', 'Huyện Buôn Đôn, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24256, 648, 'Thị trấn Ea Pốk', 'thi-tran-ea-pok', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
-(24259, 648, 'Thị trấn Quảng Phú', 'thi-tran-quang-phu', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
-(24262, 648, 'Xã Quảng Tiến', 'xa-quang-tien', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24264, 648, 'Xã Ea Kuêh', 'xa-ea-kueh', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24265, 648, 'Xã Ea Kiết', 'xa-ea-kiet', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24268, 648, 'Xã Ea Tar', 'xa-ea-tar', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24271, 648, 'Xã Cư Dliê M''nông', 'xa-cu-dlie-m-nong', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24274, 648, 'Xã Ea H''đinh', 'xa-ea-h-dinh', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24277, 648, 'Xã Ea Tul', 'xa-ea-tul', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24280, 648, 'Xã Ea KPam', 'xa-ea-kpam', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24283, 648, 'Xã Ea M''DRóh', 'xa-ea-m-droh', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24286, 648, 'Xã Quảng Hiệp', 'xa-quang-hiep', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24289, 648, 'Xã Cư M''gar', 'xa-cu-m-gar', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24292, 648, 'Xã Ea D''Rơng', 'xa-ea-d-rong', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24295, 648, 'Xã Ea M''nang', 'xa-ea-m-nang', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24298, 648, 'Xã Cư Suê', 'xa-cu-sue', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24301, 648, 'Xã Cuor Đăng', 'xa-cuor-dang', 'Huyện Cư M''gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24256, 648, 'Thị trấn Ea Pốk', 'thi-tran-ea-pok', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
+(24259, 648, 'Thị trấn Quảng Phú', 'thi-tran-quang-phu', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
+(24262, 648, 'Xã Quảng Tiến', 'xa-quang-tien', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24264, 648, 'Xã Ea Kuêh', 'xa-ea-kueh', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24265, 648, 'Xã Ea Kiết', 'xa-ea-kiet', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24268, 648, 'Xã Ea Tar', 'xa-ea-tar', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24271, 648, 'Xã Cư Dliê M\'nông', 'xa-cu-dlie-m-nong', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24274, 648, 'Xã Ea H\'đinh', 'xa-ea-h-dinh', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24277, 648, 'Xã Ea Tul', 'xa-ea-tul', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24280, 648, 'Xã Ea KPam', 'xa-ea-kpam', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24283, 648, 'Xã Ea M\'DRóh', 'xa-ea-m-droh', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24286, 648, 'Xã Quảng Hiệp', 'xa-quang-hiep', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24289, 648, 'Xã Cư M\'gar', 'xa-cu-m-gar', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24292, 648, 'Xã Ea D\'Rơng', 'xa-ea-d-rong', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24295, 648, 'Xã Ea M\'nang', 'xa-ea-m-nang', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24298, 648, 'Xã Cư Suê', 'xa-cu-sue', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24301, 648, 'Xã Cuor Đăng', 'xa-cuor-dang', 'Huyện Cư M\'gar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24305, 644, 'Phường An Lạc', 'phuong-an-lac', 'Thị xã Thị Xã Buôn Hồ, Tỉnh Đắk Lắk, Việt Nam', 'Phường', 0, 1),
 (24307, 649, 'Xã Cư Né', 'xa-cu-ne', 'Huyện Krông Búk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24308, 644, 'Phường An Bình', 'phuong-an-binh', 'Thị xã Thị Xã Buôn Hồ, Tỉnh Đắk Lắk, Việt Nam', 'Phường', 0, 1),
@@ -11241,19 +11164,19 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24404, 651, 'Xã Cư ELang', 'xa-cu-elang', 'Huyện Ea Kar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24406, 651, 'Xã Cư Bông', 'xa-cu-bong', 'Huyện Ea Kar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24409, 651, 'Xã Cư Jang', 'xa-cu-jang', 'Huyện Ea Kar, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24412, 652, 'Thị trấn M''Đrắk', 'thi-tran-m-drak', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
-(24415, 652, 'Xã Cư Prao', 'xa-cu-prao', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24418, 652, 'Xã Ea Pil', 'xa-ea-pil', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24421, 652, 'Xã Ea Lai', 'xa-ea-lai', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24424, 652, 'Xã Ea H''MLay', 'xa-ea-h-mlay', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24427, 652, 'Xã Krông Jing', 'xa-krong-jing', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24430, 652, 'Xã Ea M'' Doal', 'xa-ea-m-doal', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24433, 652, 'Xã Ea Riêng', 'xa-ea-rieng', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24436, 652, 'Xã Cư M''ta', 'xa-cu-m-ta', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24439, 652, 'Xã Cư K Róa', 'xa-cu-k-roa', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24442, 652, 'Xã Krông Á', 'xa-krong-a', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24444, 652, 'Xã Cư San', 'xa-cu-san', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24445, 652, 'Xã Ea Trang', 'xa-ea-trang', 'Huyện M''Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24412, 652, 'Thị trấn M\'Đrắk', 'thi-tran-m-drak', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
+(24415, 652, 'Xã Cư Prao', 'xa-cu-prao', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24418, 652, 'Xã Ea Pil', 'xa-ea-pil', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24421, 652, 'Xã Ea Lai', 'xa-ea-lai', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24424, 652, 'Xã Ea H\'MLay', 'xa-ea-h-mlay', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24427, 652, 'Xã Krông Jing', 'xa-krong-jing', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24430, 652, 'Xã Ea M\' Doal', 'xa-ea-m-doal', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24433, 652, 'Xã Ea Riêng', 'xa-ea-rieng', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24436, 652, 'Xã Cư M\'ta', 'xa-cu-m-ta', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24439, 652, 'Xã Cư K Róa', 'xa-cu-k-roa', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24442, 652, 'Xã Krông Á', 'xa-krong-a', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24444, 652, 'Xã Cư San', 'xa-cu-san', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24445, 652, 'Xã Ea Trang', 'xa-ea-trang', 'Huyện M\'Đrắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24448, 653, 'Thị trấn Krông Kmar', 'thi-tran-krong-kmar', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
 (24451, 653, 'Xã Dang Kang', 'xa-dang-kang', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24454, 653, 'Xã Cư KTy', 'xa-cu-kty', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
@@ -11265,7 +11188,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24472, 653, 'Xã Ea Trul', 'xa-ea-trul', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24475, 653, 'Xã Khuê Ngọc Điền', 'xa-khue-ngoc-dien', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24478, 653, 'Xã Cư Pui', 'xa-cu-pui', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24481, 653, 'Xã Hòa Sơn', 'xa-hoa-son', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24481, 653, 'Xã Hòa Sơn', 'xa-hoa-son', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (24484, 653, 'Xã Cư Drăm', 'xa-cu-dram', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24487, 653, 'Xã Yang Mao', 'xa-yang-mao', 'Huyện Krông Bông, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24490, 654, 'Thị trấn Phước An', 'thi-tran-phuoc-an', 'Huyện Krông Pắc, Tỉnh Đắk Lắk, Việt Nam', 'Thị trấn', 0, 1),
@@ -11310,23 +11234,23 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24601, 656, 'Xã Đắk Nuê', 'xa-dak-nue', 'Huyện Lắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24604, 656, 'Xã Krông Nô', 'xa-krong-no', 'Huyện Lắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24607, 656, 'Xã Nam Ka', 'xa-nam-ka', 'Huyện Lắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
-(24610, 656, 'Xã Ea R''Bin', 'xa-ea-r-bin', 'Huyện Lắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
+(24610, 656, 'Xã Ea R\'Bin', 'xa-ea-r-bin', 'Huyện Lắk, Tỉnh Đắk Lắk, Việt Nam', 'Xã', 0, 1),
 (24611, 660, 'Phường Nghĩa Đức', 'phuong-nghia-duc', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Phường', 0, 1),
 (24612, 660, 'Phường Nghĩa Thành', 'phuong-nghia-thanh', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Phường', 0, 1),
 (24614, 660, 'Phường Nghĩa Phú', 'phuong-nghia-phu', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Phường', 0, 1),
 (24615, 660, 'Phường Nghĩa Tân', 'phuong-nghia-tan', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Phường', 0, 1),
 (24616, 661, 'Xã Quảng Sơn', 'xa-quang-son', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24617, 660, 'Phường Nghĩa Trung', 'phuong-nghia-trung', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Phường', 0, 1),
-(24618, 660, 'Xã Đăk R''Moan', 'xa-dak-r-moan', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24618, 660, 'Xã Đăk R\'Moan', 'xa-dak-r-moan', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24619, 660, 'Phường Quảng Thành', 'phuong-quang-thanh', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Phường', 0, 1),
 (24620, 661, 'Xã Quảng Hoà', 'xa-quang-hoa', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24622, 661, 'Xã Đắk Ha', 'xa-dak-ha', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24625, 661, 'Xã Đắk R''Măng', 'xa-dak-r-mang', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24625, 661, 'Xã Đắk R\'Măng', 'xa-dak-r-mang', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24628, 660, 'Xã Đắk Nia', 'xa-dak-nia', 'Thành phố Gia Nghĩa, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24631, 661, 'Xã Quảng Khê', 'xa-quang-khe', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24634, 661, 'Xã Đắk Plao', 'xa-dak-plao', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24637, 661, 'Xã Đắk Som', 'xa-dak-som', 'Huyện Đăk Glong, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24640, 662, 'Thị trấn Ea T''Ling', 'thi-tran-ea-t-ling', 'Huyện Cư Jút, Tỉnh Đắk Nông, Việt Nam', 'Thị trấn', 0, 1),
+(24640, 662, 'Thị trấn Ea T\'Ling', 'thi-tran-ea-t-ling', 'Huyện Cư Jút, Tỉnh Đắk Nông, Việt Nam', 'Thị trấn', 0, 1),
 (24643, 662, 'Xã Đắk Wil', 'xa-dak-wil', 'Huyện Cư Jút, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24646, 662, 'Xã Ea Pô', 'xa-ea-po', 'Huyện Cư Jút, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24649, 662, 'Xã Nam Dong', 'xa-nam-dong', 'Huyện Cư Jút, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
@@ -11336,10 +11260,10 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24661, 662, 'Xã Trúc Sơn', 'xa-truc-son', 'Huyện Cư Jút, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24664, 663, 'Thị trấn Đắk Mil', 'thi-tran-dak-mil', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Thị trấn', 0, 1),
 (24667, 663, 'Xã  Đắk Lao', 'xa-dak-lao', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24670, 663, 'Xã Đắk R''La', 'xa-dak-r-la', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24670, 663, 'Xã Đắk R\'La', 'xa-dak-r-la', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24673, 663, 'Xã Đắk Gằn', 'xa-dak-gan', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24676, 663, 'Xã Đức Mạnh', 'xa-duc-manh', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24677, 663, 'Xã Đắk N''Drót', 'xa-dak-n-drot', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24677, 663, 'Xã Đắk N\'Drót', 'xa-dak-n-drot', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24678, 663, 'Xã Long Sơn', 'xa-long-son', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24679, 663, 'Xã Đắk Sắk', 'xa-dak-sak', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24682, 663, 'Xã Thuận An', 'xa-thuan-an', 'Huyện Đắk Mil, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
@@ -11355,33 +11279,33 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24706, 664, 'Xã Đức Xuyên', 'xa-duc-xuyen', 'Huyện Krông Nô, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24709, 664, 'Xã Đắk Nang', 'xa-dak-nang', 'Huyện Krông Nô, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24712, 664, 'Xã Quảng Phú', 'xa-quang-phu', 'Huyện Krông Nô, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24715, 664, 'Xã Nâm N''Đir', 'xa-nam-n-dir', 'Huyện Krông Nô, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24715, 664, 'Xã Nâm N\'Đir', 'xa-nam-n-dir', 'Huyện Krông Nô, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24717, 665, 'Thị trấn Đức An', 'thi-tran-duc-an', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Thị trấn', 0, 1),
 (24718, 665, 'Xã Đắk Môl', 'xa-dak-mol', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24719, 665, 'Xã Đắk Hòa', 'xa-dak-hoa', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24721, 665, 'Xã Nam Bình', 'xa-nam-binh', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24722, 665, 'Xã Thuận Hà', 'xa-thuan-ha', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24724, 665, 'Xã Thuận Hạnh', 'xa-thuan-hanh', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24727, 665, 'Xã Đắk N''Dung', 'xa-dak-n-dung', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24728, 665, 'Xã Nâm N''Jang', 'xa-nam-n-jang', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24727, 665, 'Xã Đắk N\'Dung', 'xa-dak-n-dung', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24728, 665, 'Xã Nâm N\'Jang', 'xa-nam-n-jang', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24730, 665, 'Xã Trường Xuân', 'xa-truong-xuan', 'Huyện Đắk Song, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24733, 666, 'Thị trấn Kiến Đức', 'thi-tran-kien-duc', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Thị trấn', 0, 1),
+(24733, 666, 'Thị trấn Kiến Đức', 'thi-tran-kien-duc', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Thị trấn', 0, 1),
 (24736, 667, 'Xã Quảng Trực', 'xa-quang-truc', 'Huyện Tuy Đức, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24739, 667, 'Xã Đắk Búk So', 'xa-dak-buk-so', 'Huyện Tuy Đức, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24740, 667, 'Xã Quảng Tâm', 'xa-quang-tam', 'Huyện Tuy Đức, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24742, 667, 'Xã Đắk R''Tíh', 'xa-dak-r-tih', 'Huyện Tuy Đức, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24745, 666, 'Xã Quảng Tín', 'xa-quang-tin', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24742, 667, 'Xã Đắk R\'Tíh', 'xa-dak-r-tih', 'Huyện Tuy Đức, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24745, 666, 'Xã Quảng Tín', 'xa-quang-tin', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24746, 667, 'Xã Đắk Ngo', 'xa-dak-ngo', 'Huyện Tuy Đức, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24748, 667, 'Xã Quảng Tân', 'xa-quang-tan', 'Huyện Tuy Đức, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24750, 666, 'Xã Đắk Wer', 'xa-dak-wer', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24751, 666, 'Xã Nhân Cơ', 'xa-nhan-co', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24754, 666, 'Xã Kiến Thành', 'xa-kien-thanh', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24756, 666, 'Xã Nghĩa Thắng', 'xa-nghia-thang', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24757, 666, 'Xã Đạo Nghĩa', 'xa-dao-nghia', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24760, 666, 'Xã Đắk Sin', 'xa-dak-sin', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24761, 666, 'Xã Hưng Bình', 'xa-hung-binh', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24763, 666, 'Xã Đắk Ru', 'xa-dak-ru', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
-(24766, 666, 'Xã Nhân Đạo', 'xa-nhan-dao', 'Huyện Đắk R''Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24750, 666, 'Xã Đắk Wer', 'xa-dak-wer', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24751, 666, 'Xã Nhân Cơ', 'xa-nhan-co', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24754, 666, 'Xã Kiến Thành', 'xa-kien-thanh', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24756, 666, 'Xã Nghĩa Thắng', 'xa-nghia-thang', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24757, 666, 'Xã Đạo Nghĩa', 'xa-dao-nghia', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24760, 666, 'Xã Đắk Sin', 'xa-dak-sin', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24761, 666, 'Xã Hưng Bình', 'xa-hung-binh', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24763, 666, 'Xã Đắk Ru', 'xa-dak-ru', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
+(24766, 666, 'Xã Nhân Đạo', 'xa-nhan-dao', 'Huyện Đắk R\'Lấp, Tỉnh Đắk Nông, Việt Nam', 'Xã', 0, 1),
 (24769, 672, 'Phường 7', 'phuong-7', 'Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
 (24772, 672, 'Phường 8', 'phuong-8', 'Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
 (24775, 672, 'Phường 12', 'phuong-12', 'Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
@@ -11402,7 +11326,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24817, 673, 'Phường Lộc Tiến', 'phuong-loc-tien', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
 (24820, 673, 'Phường 2', 'phuong-2', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
 (24823, 673, 'Phường 1', 'phuong-1', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
-(24826, 673, 'Phường B''lao', 'phuong-b-lao', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
+(24826, 673, 'Phường B\'lao', 'phuong-b-lao', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
 (24829, 673, 'Phường Lộc Sơn', 'phuong-loc-son', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Phường', 0, 1),
 (24832, 673, 'Xã Đạm Bri', 'xa-dam-bri', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24835, 673, 'Xã Lộc Thanh', 'xa-loc-thanh', 'Thành phố Bảo Lộc, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
@@ -11415,7 +11339,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24850, 675, 'Xã Đưng KNớ', 'xa-dung-kno', 'Huyện Lạc Dương, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24853, 674, 'Xã Đạ Tông', 'xa-da-tong', 'Huyện Đam Rông, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24856, 674, 'Xã Đạ Long', 'xa-da-long', 'Huyện Đam Rông, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
-(24859, 674, 'Xã Đạ M'' Rong', 'xa-da-m-rong', 'Huyện Đam Rông, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
+(24859, 674, 'Xã Đạ M\' Rong', 'xa-da-m-rong', 'Huyện Đam Rông, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24862, 675, 'Xã Lát', 'xa-lat', 'Huyện Lạc Dương, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24865, 675, 'Xã Đạ Sar', 'xa-da-sar', 'Huyện Lạc Dương, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24868, 676, 'Thị trấn Nam Ban', 'thi-tran-nam-ban', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Thị trấn', 0, 1),
@@ -11426,7 +11350,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24880, 676, 'Xã Phú Sơn', 'xa-phu-son', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24883, 676, 'Xã Phi Tô', 'xa-phi-to', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24886, 674, 'Xã Phi Liêng', 'xa-phi-lieng', 'Huyện Đam Rông, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
-(24889, 674, 'Xã Đạ K'' Nàng', 'xa-da-k-nang', 'Huyện Đam Rông, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
+(24889, 674, 'Xã Đạ K\' Nàng', 'xa-da-k-nang', 'Huyện Đam Rông, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24892, 676, 'Xã Mê Linh', 'xa-me-linh', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24895, 676, 'Xã Đạ Đờn', 'xa-da-don', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24898, 676, 'Xã Phúc Thọ', 'xa-phuc-tho', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
@@ -11439,8 +11363,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24919, 676, 'Xã Liên Hà', 'xa-lien-ha', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24922, 676, 'Xã Đan Phượng', 'xa-dan-phuong', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24925, 676, 'Xã Nam Hà', 'xa-nam-ha', 'Huyện Lâm Hà, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
-(24928, 677, 'Thị trấn D''Ran', 'thi-tran-d-ran', 'Huyện Đơn Dương, Tỉnh Lâm Đồng, Việt Nam', 'Thị trấn', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(24928, 677, 'Thị trấn D\'Ran', 'thi-tran-d-ran', 'Huyện Đơn Dương, Tỉnh Lâm Đồng, Việt Nam', 'Thị trấn', 0, 1),
 (24931, 677, 'Thị trấn Thạnh Mỹ', 'thi-tran-thanh-my', 'Huyện Đơn Dương, Tỉnh Lâm Đồng, Việt Nam', 'Thị trấn', 0, 1),
 (24934, 677, 'Xã Lạc Xuân', 'xa-lac-xuan', 'Huyện Đơn Dương, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24937, 677, 'Xã Đạ Ròn', 'xa-da-ron', 'Huyện Đơn Dương, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
@@ -11455,7 +11378,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (24964, 678, 'Xã Liên Hiệp', 'xa-lien-hiep', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24967, 678, 'Xã Hiệp Thạnh', 'xa-hiep-thanh', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24970, 678, 'Xã Bình Thạnh', 'xa-binh-thanh', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
-(24973, 678, 'Xã N''Thol Hạ', 'xa-n-thol-ha', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
+(24973, 678, 'Xã N\'Thol Hạ', 'xa-n-thol-ha', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24976, 678, 'Xã Tân Hội', 'xa-tan-hoi', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24979, 678, 'Xã Tân Thành', 'xa-tan-thanh', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (24982, 678, 'Xã Phú Hội', 'xa-phu-hoi', 'Huyện Đức Trọng, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
@@ -11489,7 +11412,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (25060, 680, 'Xã Lộc Lâm', 'xa-loc-lam', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25063, 680, 'Xã Lộc Phú', 'xa-loc-phu', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25066, 680, 'Xã Lộc Bắc', 'xa-loc-bac', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
-(25069, 680, 'Xã B'' Lá', 'xa-b-la', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
+(25069, 680, 'Xã B\' Lá', 'xa-b-la', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25072, 680, 'Xã Lộc Ngãi', 'xa-loc-ngai', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25075, 680, 'Xã Lộc Quảng', 'xa-loc-quang', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25078, 680, 'Xã Lộc Tân', 'xa-loc-tan', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
@@ -11498,7 +11421,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (25087, 680, 'Xã Tân Lạc', 'xa-tan-lac', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25090, 680, 'Xã Lộc Thành', 'xa-loc-thanh', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25093, 680, 'Xã Lộc Nam', 'xa-loc-nam', 'Huyện Bảo Lâm, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
-(25096, 681, 'Thị trấn Đạ M''ri', 'thi-tran-da-m-ri', 'Huyện Đạ Huoai, Tỉnh Lâm Đồng, Việt Nam', 'Thị trấn', 0, 1),
+(25096, 681, 'Thị trấn Đạ M\'ri', 'thi-tran-da-m-ri', 'Huyện Đạ Huoai, Tỉnh Lâm Đồng, Việt Nam', 'Thị trấn', 0, 1),
 (25099, 681, 'Thị trấn Ma Đa Guôi', 'thi-tran-ma-da-guoi', 'Huyện Đạ Huoai, Tỉnh Lâm Đồng, Việt Nam', 'Thị trấn', 0, 1),
 (25105, 681, 'Xã Hà Lâm', 'xa-ha-lam', 'Huyện Đạ Huoai, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
 (25108, 681, 'Xã Đạ Tồn', 'xa-da-ton', 'Huyện Đạ Huoai, Tỉnh Lâm Đồng, Việt Nam', 'Xã', 0, 1),
@@ -11758,7 +11681,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (25810, 720, 'Xã Thanh Tuyền', 'xa-thanh-tuyen', 'Huyện Dầu Tiếng, Tỉnh Bình Dương, Việt Nam', 'Xã', 0, 1),
 (25813, 721, 'Phường Mỹ Phước', 'phuong-my-phuoc', 'Thị xã Bến Cát, Tỉnh Bình Dương, Việt Nam', 'Phường', 0, 1),
 (25816, 719, 'Xã Trừ Văn Thố', 'xa-tru-van-tho', 'Huyện Bàu Bàng, Tỉnh Bình Dương, Việt Nam', 'Xã', 0, 1),
-(25819, 719, 'Xã Cây Trường II', 'xa-cay-truong-ii', 'Huyện Bàu Bàng, Tỉnh Bình Dương, Việt Nam', 'Xã', 0, 1),
+(25819, 719, 'Xã Cây Trường II', 'xa-cay-truong-ii', 'Huyện Bàu Bàng, Tỉnh Bình Dương, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (25822, 719, 'Thị trấn Lai Uyên', 'thi-tran-lai-uyen', 'Huyện Bàu Bàng, Tỉnh Bình Dương, Việt Nam', 'Thị trấn', 0, 1),
 (25825, 719, 'Xã Tân Hưng', 'xa-tan-hung', 'Huyện Bàu Bàng, Tỉnh Bình Dương, Việt Nam', 'Xã', 0, 1),
 (25828, 719, 'Xã Long Nguyên', 'xa-long-nguyen', 'Huyện Bàu Bàng, Tỉnh Bình Dương, Việt Nam', 'Xã', 0, 1),
@@ -11847,8 +11771,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (26062, 731, 'Phường Tân Hạnh', 'phuong-tan-hanh', 'Thành phố Biên Hòa, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1),
 (26065, 731, 'Phường Hiệp Hòa', 'phuong-hiep-hoa', 'Thành phố Biên Hòa, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1),
 (26068, 731, 'Phường Hóa An', 'phuong-hoa-an', 'Thành phố Biên Hòa, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1),
-(26071, 732, 'Phường Xuân Trung', 'phuong-xuan-trung', 'Thành phố Long Khánh, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(26071, 732, 'Phường Xuân Trung', 'phuong-xuan-trung', 'Thành phố Long Khánh, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1),
 (26074, 732, 'Phường Xuân Thanh', 'phuong-xuan-thanh', 'Thành phố Long Khánh, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1),
 (26077, 732, 'Phường Xuân Bình', 'phuong-xuan-binh', 'Thành phố Long Khánh, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1),
 (26080, 732, 'Phường Xuân An', 'phuong-xuan-an', 'Thành phố Long Khánh, Tỉnh Đồng Nai, Việt Nam', 'Phường', 0, 1),
@@ -12225,7 +12148,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (27163, 771, 'Phường 15', 'phuong-15', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27166, 771, 'Phường 13', 'phuong-13', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27169, 771, 'Phường 14', 'phuong-14', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
-(27172, 771, 'Phường 12', 'phuong-12', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
+(27172, 771, 'Phường 12', 'phuong-12', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (27175, 771, 'Phường 11', 'phuong-11', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27178, 771, 'Phường 10', 'phuong-10', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27181, 771, 'Phường 09', 'phuong-09', 'Quận 10, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
@@ -12249,8 +12173,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (27235, 772, 'Phường 12', 'phuong-12', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27238, 772, 'Phường 07', 'phuong-07', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27241, 772, 'Phường 06', 'phuong-06', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
-(27244, 772, 'Phường 04', 'phuong-04', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(27244, 772, 'Phường 04', 'phuong-04', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27247, 772, 'Phường 01', 'phuong-01', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27250, 772, 'Phường 02', 'phuong-02', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
 (27253, 772, 'Phường 16', 'phuong-16', 'Quận 11, Thành phố Hồ Chí Minh, Việt Nam', 'Phường', 0, 1),
@@ -12670,8 +12593,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (28486, 817, 'Xã Long Khánh', 'xa-long-khanh', 'Thị xã Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28489, 820, 'Xã Cẩm Sơn', 'xa-cam-son', 'Huyện Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28492, 820, 'Xã Phú An', 'xa-phu-an', 'Huyện Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
-(28495, 820, 'Xã Mỹ Long', 'xa-my-long', 'Huyện Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(28495, 820, 'Xã Mỹ Long', 'xa-my-long', 'Huyện Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28498, 820, 'Xã Long Tiên', 'xa-long-tien', 'Huyện Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28501, 820, 'Xã Hiệp Đức', 'xa-hiep-duc', 'Huyện Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28504, 820, 'Xã Long Trung', 'xa-long-trung', 'Huyện Cai Lậy, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
@@ -12714,7 +12636,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (28615, 822, 'Xã Thanh Bình', 'xa-thanh-binh', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28618, 822, 'Xã Quơn Long', 'xa-quon-long', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28621, 822, 'Xã Bình Phục Nhứt', 'xa-binh-phuc-nhut', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
-(28624, 822, 'Xã Đăng Hưng Phước', 'xa-dang-hung-phuoc', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
+(28624, 822, 'Xã Đăng Hưng Phước', 'xa-dang-hung-phuoc', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (28627, 822, 'Xã Tân Thuận Bình', 'xa-tan-thuan-binh', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28630, 822, 'Xã Song Bình', 'xa-song-binh', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
 (28633, 822, 'Xã Bình Phan', 'xa-binh-phan', 'Huyện Chợ Gạo, Tỉnh Tiền Giang, Việt Nam', 'Xã', 0, 1),
@@ -13098,8 +13021,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (29767, 860, 'Xã Bình Ninh', 'xa-binh-ninh', 'Huyện Tam Bình, Tỉnh Vĩnh Long, Việt Nam', 'Xã', 0, 1),
 (29770, 861, 'Phường Cái Vồn', 'phuong-cai-von', 'Thị xã Bình Minh, Tỉnh Vĩnh Long, Việt Nam', 'Phường', 0, 1),
 (29771, 861, 'Phường Thành Phước', 'phuong-thanh-phuoc', 'Thị xã Bình Minh, Tỉnh Vĩnh Long, Việt Nam', 'Phường', 0, 1),
-(29773, 863, 'Xã Tân Hưng', 'xa-tan-hung', 'Huyện Bình Tân, Tỉnh Vĩnh Long, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(29773, 863, 'Xã Tân Hưng', 'xa-tan-hung', 'Huyện Bình Tân, Tỉnh Vĩnh Long, Việt Nam', 'Xã', 0, 1),
 (29776, 863, 'Xã Tân Thành', 'xa-tan-thanh', 'Huyện Bình Tân, Tỉnh Vĩnh Long, Việt Nam', 'Xã', 0, 1),
 (29779, 863, 'Xã Thành Trung', 'xa-thanh-trung', 'Huyện Bình Tân, Tỉnh Vĩnh Long, Việt Nam', 'Xã', 0, 1),
 (29782, 863, 'Xã Tân An Thạnh', 'xa-tan-an-thanh', 'Huyện Bình Tân, Tỉnh Vĩnh Long, Việt Nam', 'Xã', 0, 1),
@@ -13206,7 +13128,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (30073, 872, 'Xã Thanh Mỹ', 'xa-thanh-my', 'Huyện Tháp Mười, Tỉnh Đồng Tháp, Việt Nam', 'Xã', 0, 1),
 (30076, 873, 'Thị trấn Mỹ Thọ', 'thi-tran-my-tho', 'Huyện Cao Lãnh, Tỉnh Đồng Tháp, Việt Nam', 'Thị trấn', 0, 1),
 (30079, 873, 'Xã Gáo Giồng', 'xa-gao-giong', 'Huyện Cao Lãnh, Tỉnh Đồng Tháp, Việt Nam', 'Xã', 0, 1),
-(30082, 873, 'Xã Phương Thịnh', 'xa-phuong-thinh', 'Huyện Cao Lãnh, Tỉnh Đồng Tháp, Việt Nam', 'Xã', 0, 1),
+(30082, 873, 'Xã Phương Thịnh', 'xa-phuong-thinh', 'Huyện Cao Lãnh, Tỉnh Đồng Tháp, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (30085, 873, 'Xã Ba Sao', 'xa-ba-sao', 'Huyện Cao Lãnh, Tỉnh Đồng Tháp, Việt Nam', 'Xã', 0, 1),
 (30088, 873, 'Xã Phong Mỹ', 'xa-phong-my', 'Huyện Cao Lãnh, Tỉnh Đồng Tháp, Việt Nam', 'Xã', 0, 1),
 (30091, 873, 'Xã Tân Nghĩa', 'xa-tan-nghia', 'Huyện Cao Lãnh, Tỉnh Đồng Tháp, Việt Nam', 'Xã', 0, 1),
@@ -13519,8 +13442,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (30958, 907, 'Xã Định Hòa', 'xa-dinh-hoa', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1),
 (30961, 907, 'Xã Thới Quản', 'xa-thoi-quan', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1),
 (30964, 907, 'Xã Định An', 'xa-dinh-an', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1),
-(30967, 907, 'Xã Thủy Liễu', 'xa-thuy-lieu', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(30967, 907, 'Xã Thủy Liễu', 'xa-thuy-lieu', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1),
 (30970, 907, 'Xã Vĩnh Hòa Hưng Nam', 'xa-vinh-hoa-hung-nam', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1),
 (30973, 907, 'Xã Vĩnh Phước A', 'xa-vinh-phuoc-a', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1),
 (30976, 907, 'Xã Vĩnh Phước B', 'xa-vinh-phuoc-b', 'Huyện Gò Quao, Tỉnh Kiên Giang, Việt Nam', 'Xã', 0, 1),
@@ -13684,7 +13606,8 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (31369, 933, 'Xã Đông Thạnh', 'xa-dong-thanh', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Xã', 0, 1),
 (31375, 933, 'Xã Đông Phú', 'xa-dong-phu', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Xã', 0, 1),
 (31378, 933, 'Xã Phú Hữu', 'xa-phu-huu', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Xã', 0, 1),
-(31379, 933, 'Xã Phú Tân', 'xa-phu-tan', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Xã', 0, 1),
+(31379, 933, 'Xã Phú Tân', 'xa-phu-tan', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Xã', 0, 1);
+INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
 (31381, 933, 'Thị trấn Mái Dầm', 'thi-tran-mai-dam', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Thị trấn', 0, 1),
 (31384, 933, 'Xã Đông Phước', 'xa-dong-phuoc', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Xã', 0, 1),
 (31387, 933, 'Xã Đông Phước A', 'xa-dong-phuoc-a', 'Huyện Châu Thành, Tỉnh Hậu Giang, Việt Nam', 'Xã', 0, 1),
@@ -13930,8 +13853,7 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 (32056, 966, 'Xã Khánh Lâm', 'xa-khanh-lam', 'Huyện U Minh, Tỉnh Cà Mau, Việt Nam', 'Xã', 0, 1),
 (32059, 966, 'Xã Khánh An', 'xa-khanh-an', 'Huyện U Minh, Tỉnh Cà Mau, Việt Nam', 'Xã', 0, 1),
 (32062, 966, 'Xã Khánh Hội', 'xa-khanh-hoi', 'Huyện U Minh, Tỉnh Cà Mau, Việt Nam', 'Xã', 0, 1),
-(32065, 967, 'Thị trấn Thới Bình', 'thi-tran-thoi-binh', 'Huyện Thới Bình, Tỉnh Cà Mau, Việt Nam', 'Thị trấn', 0, 1);
-INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `address`, `type`, `weight`, `status`) VALUES
+(32065, 967, 'Thị trấn Thới Bình', 'thi-tran-thoi-binh', 'Huyện Thới Bình, Tỉnh Cà Mau, Việt Nam', 'Thị trấn', 0, 1),
 (32068, 967, 'Xã Biển Bạch', 'xa-bien-bach', 'Huyện Thới Bình, Tỉnh Cà Mau, Việt Nam', 'Xã', 0, 1),
 (32069, 967, 'Xã Tân Bằng', 'xa-tan-bang', 'Huyện Thới Bình, Tỉnh Cà Mau, Việt Nam', 'Xã', 0, 1),
 (32071, 967, 'Xã Trí Phải', 'xa-tri-phai', 'Huyện Thới Bình, Tỉnh Cà Mau, Việt Nam', 'Xã', 0, 1),
@@ -14014,17 +13936,16 @@ INSERT INTO `nv4_location_ward` (`ward_id`, `district_id`, `title`, `alias`, `ad
 -- Table structure for table `nv4_logs`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lang` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `module_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note_action` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link_acess` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `userid` mediumint(8) unsigned NOT NULL,
-  `log_time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1380 ;
+CREATE TABLE `nv4_logs` (
+  `id` int(11) NOT NULL,
+  `lang` varchar(10) NOT NULL,
+  `module_name` varchar(50) NOT NULL,
+  `name_key` varchar(255) NOT NULL,
+  `note_action` text NOT NULL,
+  `link_acess` varchar(255) DEFAULT '',
+  `userid` mediumint(8) UNSIGNED NOT NULL,
+  `log_time` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_logs`
@@ -14033,16 +13954,16 @@ CREATE TABLE IF NOT EXISTS `nv4_logs` (
 INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, `link_acess`, `userid`, `log_time`) VALUES
 (1, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1658391107),
 (2, 'vi', 'upload', 'Upload file', 'uploads/logo_162.png', '', 1, 1658391241),
-(3, 'vi', 'themes', 'Thiết lập giao diện theme: "smartline"', '', '', 1, 1658391371),
-(4, 'vi', 'themes', 'Kích hoạt theme: "smartline"', '', '', 1, 1658391377),
+(3, 'vi', 'themes', 'Thiết lập giao diện theme: \"smartline\"', '', '', 1, 1658391371),
+(4, 'vi', 'themes', 'Kích hoạt theme: \"smartline\"', '', '', 1, 1658391377),
 (5, 'vi', 'themes', 'Sửa block', 'Name : Menu Site', '', 1, 1658391540),
 (6, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1658462010),
 (7, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1658547087),
 (8, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1658547596),
 (9, 'vi', 'login', '[nvholding] Đăng nhập Thất bại', ' Client IP:127.0.0.1', '', 0, 1658802322),
 (10, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1658802334),
-(11, 'vi', 'themes', 'Thiết lập giao diện theme: "smartlinev2"', '', '', 1, 1658802373),
-(12, 'vi', 'themes', 'Kích hoạt theme: "smartlinev2"', '', '', 1, 1658802379),
+(11, 'vi', 'themes', 'Thiết lập giao diện theme: \"smartlinev2\"', '', '', 1, 1658802373),
+(12, 'vi', 'themes', 'Kích hoạt theme: \"smartlinev2\"', '', '', 1, 1658802379),
 (13, 'vi', 'themes', 'Sửa block', 'Name : Menu Site', '', 1, 1658802620),
 (14, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1659667216),
 (15, 'vi', 'extensions', 'Cài đặt ứng dụng', 'nv4_module_home.zip', '', 1, 1659667309),
@@ -14051,20 +13972,20 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (18, 'vi', 'extensions', 'Cài đặt ứng dụng', 'nv4_module_slider (1).zip', '', 1, 1659667339),
 (19, 'vi', 'modules', 'Thiết lập module mới slider', '', '', 1, 1659667357),
 (20, 'vi', 'modules', 'Sửa module &ldquo;slider&rdquo;', '', '', 1, 1659667361),
-(21, 'vi', 'themes', 'Thiết lập layout theme: "smartlinev2"', '', '', 1, 1659667737),
+(21, 'vi', 'themes', 'Thiết lập layout theme: \"smartlinev2\"', '', '', 1, 1659667737),
 (22, 'vi', 'themes', 'Sửa block', 'Name : Menu Site', '', 1, 1659668317),
 (23, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1660034699),
 (24, 'vi', 'themes', 'Sửa block', 'Name : Contact Default', '', 1, 1660034762),
 (25, 'vi', 'themes', 'Sửa block', 'Name : Menu Site', '', 1, 1660035584),
 (26, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1660049692),
 (27, 'vi', 'extensions', 'Cài đặt ứng dụng', 'nv4_theme_beauty.zip', '', 1, 1660049716),
-(28, 'vi', 'themes', 'Thiết lập giao diện theme: "beauty"', '', '', 1, 1660049752),
-(29, 'vi', 'themes', 'Kích hoạt theme: "beauty"', '', '', 1, 1660049819),
-(30, 'vi', 'themes', 'Thiết lập layout theme: "beauty"', '', '', 1, 1660049890),
-(31, 'vi', 'themes', 'Thiết lập layout theme: "beauty"', '', '', 1, 1660049896),
-(32, 'vi', 'themes', 'Kích hoạt theme: "smartlinev2"', '', '', 1, 1660049931),
+(28, 'vi', 'themes', 'Thiết lập giao diện theme: \"beauty\"', '', '', 1, 1660049752),
+(29, 'vi', 'themes', 'Kích hoạt theme: \"beauty\"', '', '', 1, 1660049819),
+(30, 'vi', 'themes', 'Thiết lập layout theme: \"beauty\"', '', '', 1, 1660049890),
+(31, 'vi', 'themes', 'Thiết lập layout theme: \"beauty\"', '', '', 1, 1660049896),
+(32, 'vi', 'themes', 'Kích hoạt theme: \"smartlinev2\"', '', '', 1, 1660049931),
 (33, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:127.0.0.1', '', 0, 1660807389),
-(34, 'vi', 'themes', 'Kích hoạt theme: "beauty"', '', '', 1, 1660807796),
+(34, 'vi', 'themes', 'Kích hoạt theme: \"beauty\"', '', '', 1, 1660807796),
 (35, 'vi', 'themes', 'Thêm block', 'Name : slider', '', 1, 1660807980),
 (36, 'vi', 'themes', 'Sửa block', 'Name : slider', '', 1, 1660808085),
 (37, 'vi', 'upload', 'Upload file', 'uploads/slider/2022/it1.jpg', '', 1, 1660808926),
@@ -14327,17 +14248,17 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (294, 'vi', 'modules', 'Sửa module &ldquo;daskboard&rdquo;', '', '', 1, 1663840411),
 (295, 'vi', 'menu', 'Add row menu', 'Row menu id: 23 of Menu id: 1', '', 1, 1663840469),
 (296, 'vi', 'modules', 'Sửa module &ldquo;daskboard&rdquo;', '', '', 1, 1663840510),
-(297, 'vi', 'themes', 'Thiết lập giao diện theme: "dashboard"', '', '', 1, 1663840921),
-(298, 'vi', 'themes', 'Kích hoạt theme: "dashboard"', '', '', 1, 1663840930),
+(297, 'vi', 'themes', 'Thiết lập giao diện theme: \"dashboard\"', '', '', 1, 1663840921),
+(298, 'vi', 'themes', 'Kích hoạt theme: \"dashboard\"', '', '', 1, 1663840930),
 (299, 'vi', 'modules', 'Sửa module &ldquo;daskboard&rdquo;', '', '', 1, 1663840970),
-(300, 'vi', 'themes', 'Kích hoạt theme: "beauty"', '', '', 1, 1663841245),
+(300, 'vi', 'themes', 'Kích hoạt theme: \"beauty\"', '', '', 1, 1663841245),
 (301, 'vi', 'modules', 'Sửa module &ldquo;daskboard&rdquo;', '', '', 1, 1663841290),
 (302, 'vi', 'modules', 'Sửa module &ldquo;personnel&rdquo;', '', '', 1, 1663841499),
-(303, 'vi', 'modules', 'Kích hoạt module "personnel"', 'Có', '', 1, 1663841538),
+(303, 'vi', 'modules', 'Kích hoạt module \"personnel\"', 'Có', '', 1, 1663841538),
 (304, 'vi', 'menu', 'Edit row menu', 'Row menu id: 23', '', 1, 1663841563),
-(305, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663841596),
-(306, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663841602),
-(307, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663841745),
+(305, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663841596),
+(306, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663841602),
+(307, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663841745),
 (308, 'vi', 'extensions', 'Cài đặt ứng dụng', 'nv4_module_task.zip', '', 1, 1663843129),
 (309, 'vi', 'modules', 'Thiết lập module mới task', '', '', 1, 1663843140),
 (310, 'vi', 'modules', 'Sửa module &ldquo;task&rdquo;', '', '', 1, 1663843153),
@@ -14352,22 +14273,22 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (319, 'vi', 'menu', 'Add row menu', 'Row menu id: 29 of Menu id: 2', '', 1, 1663848181),
 (320, 'vi', 'menu', 'Add row menu', 'Row menu id: 30 of Menu id: 2', '', 1, 1663848194),
 (321, 'vi', 'menu', 'Add row menu', 'Row menu id: 31 of Menu id: 2', '', 1, 1663848213),
-(322, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663849376),
-(323, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663849445),
-(324, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663849534),
-(325, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663849690),
-(326, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663849832),
+(322, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663849376),
+(323, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663849445),
+(324, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663849534),
+(325, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663849690),
+(326, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663849832),
 (327, 'vi', 'login', '[nvholding] Thoát khỏi tài khoản Quản trị', ' Client IP:171.252.154.59', '', 0, 1663849843),
 (328, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:171.252.154.59', '', 0, 1663850023),
-(329, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663850033),
-(330, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663850221),
+(329, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663850033),
+(330, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663850221),
 (331, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1663850357),
-(332, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663850365),
-(333, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663850499),
-(334, 'vi', 'modules', 'Cài lại module "personnel"', '', '', 1, 1663850843),
+(332, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663850365),
+(333, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663850499),
+(334, 'vi', 'modules', 'Cài lại module \"personnel\"', '', '', 1, 1663850843),
 (335, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1663855313),
-(336, 'vi', 'themes', 'Kích hoạt theme: "dashboard"', '', '', 1, 1663855489),
-(337, 'vi', 'themes', 'Kích hoạt theme: "beauty"', '', '', 1, 1663855506),
+(336, 'vi', 'themes', 'Kích hoạt theme: \"dashboard\"', '', '', 1, 1663855489),
+(337, 'vi', 'themes', 'Kích hoạt theme: \"beauty\"', '', '', 1, 1663855506),
 (338, 'vi', 'themes', 'Thêm block', 'Name : menu crm', '', 1, 1663856321),
 (339, 'vi', 'menu', 'Edit row menu', 'Row menu id: 24', '', 1, 1663857389),
 (340, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1663857614),
@@ -14390,9 +14311,9 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (357, 'vi', 'menu', 'Add row menu', 'Row menu id: 35 of Menu id: 2', '', 1, 1663861914),
 (358, 'vi', 'customer', 'Cấu hình', 'Config', '', 1, 1663862073),
 (359, 'vi', 'customer', 'Cấu hình', 'Config', '', 1, 1663862207),
-(360, 'vi', 'modules', 'Cài lại module "customer"', '', '', 1, 1663862464),
-(361, 'vi', 'modules', 'Cài lại module "customer"', '', '', 1, 1663862494),
-(362, 'vi', 'modules', 'Cài lại module "customer"', '', '', 1, 1663862596),
+(360, 'vi', 'modules', 'Cài lại module \"customer\"', '', '', 1, 1663862464),
+(361, 'vi', 'modules', 'Cài lại module \"customer\"', '', '', 1, 1663862494),
+(362, 'vi', 'modules', 'Cài lại module \"customer\"', '', '', 1, 1663862596),
 (363, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1663862635),
 (364, 'vi', 'customer', 'Cấu hình', 'Config', '', 1, 1663862659),
 (365, 'vi', 'customer', 'Cấu hình', 'Config', '', 1, 1663862704),
@@ -14458,10 +14379,10 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (425, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:171.252.155.89', '', 0, 1664102207),
 (426, 'vi', 'login', '[nvholding] Thoát khỏi tài khoản Quản trị', ' Client IP:171.252.155.89', '', 0, 1664104030),
 (427, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:14.226.228.83', '', 0, 1664437925),
-(428, 'vi', 'themes', 'Thiết lập giao diện theme: "sml"', '', '', 1, 1664437939),
-(429, 'vi', 'themes', 'Kích hoạt theme: "sml"', '', '', 1, 1664437945),
+(428, 'vi', 'themes', 'Thiết lập giao diện theme: \"sml\"', '', '', 1, 1664437939),
+(429, 'vi', 'themes', 'Kích hoạt theme: \"sml\"', '', '', 1, 1664437945),
 (430, 'vi', 'themes', 'Thêm block', 'Name : slide', '', 1, 1664438164),
-(431, 'vi', 'themes', 'Thiết lập layout theme: "beauty"', '', '', 1, 1664438215),
+(431, 'vi', 'themes', 'Thiết lập layout theme: \"beauty\"', '', '', 1, 1664438215),
 (432, 'vi', 'themes', 'Sửa block', 'Name : slider about', '', 1, 1664438270),
 (433, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1664438692),
 (434, 'vi', 'themes', 'Sửa block', 'Name : slide', '', 1, 1664438746),
@@ -14476,7 +14397,7 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (443, 'vi', 'themes', 'Sửa block', 'Name : menu', '', 1, 1671128700),
 (444, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:171.235.180.88', '', 0, 1671189160),
 (445, 'vi', 'themes', 'Sửa block', 'Name : slide', '', 1, 1671189340),
-(446, 'vi', 'themes', 'Thiết lập layout theme: "sml"', '', '', 1, 1671189475),
+(446, 'vi', 'themes', 'Thiết lập layout theme: \"sml\"', '', '', 1, 1671189475),
 (447, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1671190706),
 (448, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:115.73.211.139', '', 0, 1671193303),
 (449, 'vi', 'slider', 'Edit', 'ID: 1', '', 1, 1671193325),
@@ -14543,16 +14464,16 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (510, 'vi', 'themes', 'Sửa block', 'Name : global html', '', 1, 1671472751),
 (511, 'vi', 'extensions', 'Cài đặt ứng dụng', 'module-tao-form-va-thu-thap-thong-tin-truc-tuyen-v4-0-10.zip', '', 1, 1671473254),
 (512, 'vi', 'modules', 'Sửa module &ldquo;nvform&rdquo;', '', '', 1, 1671473303),
-(513, 'vi', 'modules', 'Xóa module "nvform"', '', '', 1, 1671473312),
+(513, 'vi', 'modules', 'Xóa module \"nvform\"', '', '', 1, 1671473312),
 (514, 'vi', 'modules', 'Thêm module ảo khao_sat_ha_tang_cntt', '', '', 1, 1671473332),
 (515, 'vi', 'modules', 'Sửa module &ldquo;khao-sat-ha-tang-cntt&rdquo;', '', '', 1, 1671473363),
-(516, 'vi', 'modules', 'Cài lại module "khao-sat-ha-tang-cntt"', '', '', 1, 1671473669),
-(517, 'vi', 'modules', 'Cài lại module "khao-sat-ha-tang-cntt"', '', '', 1, 1671473718),
-(518, 'vi', 'modules', 'Kích hoạt module "khao-sat-ha-tang-cntt"', 'Có', '', 1, 1671473724),
+(516, 'vi', 'modules', 'Cài lại module \"khao-sat-ha-tang-cntt\"', '', '', 1, 1671473669),
+(517, 'vi', 'modules', 'Cài lại module \"khao-sat-ha-tang-cntt\"', '', '', 1, 1671473718),
+(518, 'vi', 'modules', 'Kích hoạt module \"khao-sat-ha-tang-cntt\"', 'Có', '', 1, 1671473724),
 (519, 'vi', 'khao-sat-ha-tang-cntt', 'Add', 'Form: Khảo sát hạ tầng CNTT doanh nghiệp', '', 1, 1671474267),
-(520, 'vi', 'themes', 'Thiết lập layout theme: "sml"', '', '', 1, 1671474743),
+(520, 'vi', 'themes', 'Thiết lập layout theme: \"sml\"', '', '', 1, 1671474743),
 (521, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1671474772),
-(522, 'vi', 'modules', 'Xóa module "khao-sat-ha-tang-cntt"', '', '', 1, 1671475850),
+(522, 'vi', 'modules', 'Xóa module \"khao-sat-ha-tang-cntt\"', '', '', 1, 1671475850),
 (523, 'vi', 'extensions', 'Cài đặt ứng dụng', 'nv5_module_nvtool-master.zip', '', 1, 1671476032),
 (524, 'vi', 'modules', 'Thiết lập module mới nvtools', '', '', 1, 1671476099),
 (525, 'vi', 'modules', 'Sửa module &ldquo;nvtools&rdquo;', '', '', 1, 1671476113),
@@ -14574,7 +14495,7 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (541, 'vi', 'themes', 'Thêm block', 'Name : slide survey online', '', 1, 1671624315),
 (542, 'vi', 'upload', 'Upload file', 'uploads/slidesurvey/2022/home_hero_bg_tree_new2.jpg', '', 1, 1671624429),
 (543, 'vi', 'slidesurvey', 'Edit', 'ID: 1', '', 1, 1671624438),
-(544, 'vi', 'themes', 'Thiết lập layout theme: "sml"', '', '', 1, 1671626815),
+(544, 'vi', 'themes', 'Thiết lập layout theme: \"sml\"', '', '', 1, 1671626815),
 (545, 'vi', 'themes', 'Sửa block', 'Name : global html', '', 1, 1671635292),
 (546, 'vi', 'themes', 'Sửa block', 'Name : global html', '', 1, 1671635348),
 (547, 'vi', 'themes', 'Sửa block', 'Name : Cơ sở hạ tầng', '', 1, 1671635389),
@@ -14588,7 +14509,7 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (555, 'vi', 'upload', 'Upload file', 'uploads/ldp-m-care-1047-x-390-11.png', '', 1, 1671636553),
 (556, 'vi', 'themes', 'Sửa block', 'Name : global html', '', 1, 1671636588),
 (557, 'vi', 'themes', 'Sửa block', 'Name : global html', '', 1, 1671636926),
-(558, 'vi', 'themes', 'Thiết lập layout theme: "sml"', '', '', 1, 1671640763),
+(558, 'vi', 'themes', 'Thiết lập layout theme: \"sml\"', '', '', 1, 1671640763),
 (559, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1671640769),
 (560, 'vi', 'themes', 'Sửa block', 'Name : global html', '', 1, 1671640874),
 (561, 'vi', 'themes', 'Cập nhật lại vị trí các block', 'reset position all block', '', 1, 1671640927),
@@ -14601,8 +14522,7 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (568, 'vi', 'upload', 'Upload file', 'uploads/freecontent/1.png', '', 1, 1671644339),
 (569, 'vi', 'upload', 'Upload file', 'uploads/freecontent/5.png', '', 1, 1671644339),
 (570, 'vi', 'upload', 'Upload file', 'uploads/freecontent/7.png', '', 1, 1671644339),
-(571, 'vi', 'freecontent', 'Edit Content', 'ID: 20', '', 1, 1671644365);
-INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, `link_acess`, `userid`, `log_time`) VALUES
+(571, 'vi', 'freecontent', 'Edit Content', 'ID: 20', '', 1, 1671644365),
 (572, 'vi', 'freecontent', 'Edit Content', 'ID: 22', '', 1, 1671644400),
 (573, 'vi', 'freecontent', 'Edit Content', 'ID: 23', '', 1, 1671644449),
 (574, 'vi', 'freecontent', 'Add Content', 'Cam kết bảo mật', '', 1, 1671644475),
@@ -14625,7 +14545,8 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (591, 'vi', 'degree', 'Add Block', 'Bằng Cấp', '', 1, 1672185160),
 (592, 'vi', 'upload', 'Upload file', 'uploads/degree/pmp-600px.png', '', 1, 1672185293),
 (593, 'vi', 'degree', 'Add Content', 'Project Management Professional (PMP)', '', 1, 1672185316),
-(594, 'vi', 'upload', 'Upload file', 'uploads/degree/certiprof-badge-sfpc.png', '', 1, 1672185387),
+(594, 'vi', 'upload', 'Upload file', 'uploads/degree/certiprof-badge-sfpc.png', '', 1, 1672185387);
+INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, `link_acess`, `userid`, `log_time`) VALUES
 (595, 'vi', 'degree', 'Add Content', 'Scrum Foundation Professional Certificate', '', 1, 1672185404),
 (596, 'vi', 'upload', 'Upload file', 'uploads/degree/certiprof-badge-lll.png', '', 1, 1672185874),
 (597, 'vi', 'degree', 'Add Content', 'Lifelong Learning', '', 1, 1672185895),
@@ -14655,13 +14576,13 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (621, 'vi', 'themes', 'Sửa block', 'Name : Tin tức', '', 1, 1672188964),
 (622, 'vi', 'themes', 'Sửa block', 'Name : Tin tức', '', 1, 1672189016),
 (623, 'vi', 'themes', 'Sửa block', 'Name : Tin tức', '', 1, 1672189065),
-(624, 'vi', 'themes', 'Thiết lập giao diện theme: "sml_mobile"', '', '', 1, 1672189359),
-(625, 'vi', 'themes', 'Kích hoạt theme: "sml_mobile"', '', '', 1, 1672189363),
+(624, 'vi', 'themes', 'Thiết lập giao diện theme: \"sml_mobile\"', '', '', 1, 1672189359),
+(625, 'vi', 'themes', 'Kích hoạt theme: \"sml_mobile\"', '', '', 1, 1672189363),
 (626, 'vi', 'themes', 'enable preview theme', 'sml_mobile', '', 1, 1672189414),
 (627, 'vi', 'themes', 'disable preview theme', 'sml_mobile', '', 1, 1672189419),
 (628, 'vi', 'themes', 'enable preview theme', 'mobile_default', '', 1, 1672189426),
-(629, 'vi', 'themes', 'Kích hoạt theme: "sml_mobile"', '', '', 1, 1672189450),
-(630, 'vi', 'themes', 'Kích hoạt theme: "sml"', '', '', 1, 1672189466),
+(629, 'vi', 'themes', 'Kích hoạt theme: \"sml_mobile\"', '', '', 1, 1672189450),
+(630, 'vi', 'themes', 'Kích hoạt theme: \"sml\"', '', '', 1, 1672189466),
 (631, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache, clearfiletemp, clearerrorlogs, clearip_logs', '', 1, 1672189519),
 (632, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:171.235.180.88', '', 0, 1672225637),
 (633, 'vi', 'update', 'Nâng cấp bắt đầu', '18:07:53_28-12-2022', '', 1, 1672225673),
@@ -15073,8 +14994,7 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (1039, 'vi', 'update', 'Di chuyển file themes/mobile_default/config.php', 'SUCCESS', '', 1, 1672225690),
 (1040, 'vi', 'update', 'Di chuyển file themes/mobile_default/css/news.css', 'SUCCESS', '', 1, 1672225690),
 (1041, 'vi', 'update', 'Di chuyển file themes/mobile_default/css/users.css', 'SUCCESS', '', 1, 1672225690),
-(1042, 'vi', 'update', 'Di chuyển file themes/mobile_default/images/users/zalo.png', 'SUCCESS', '', 1, 1672225690);
-INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, `link_acess`, `userid`, `log_time`) VALUES
+(1042, 'vi', 'update', 'Di chuyển file themes/mobile_default/images/users/zalo.png', 'SUCCESS', '', 1, 1672225690),
 (1043, 'vi', 'update', 'Di chuyển file themes/mobile_default/js/main.js', 'SUCCESS', '', 1, 1672225690),
 (1044, 'vi', 'update', 'Di chuyển file themes/mobile_default/modules/news/detail.tpl', 'SUCCESS', '', 1, 1672225690),
 (1045, 'vi', 'update', 'Di chuyển file themes/mobile_default/modules/news/theme.php', 'SUCCESS', '', 1, 1672225690),
@@ -15102,7 +15022,8 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (1067, 'vi', 'update', 'Di chuyển file vendor/phpmailer/phpmailer/src/PHPMailer.php', 'SUCCESS', '', 1, 1672225690),
 (1068, 'vi', 'update', 'Di chuyển file vendor/phpmailer/phpmailer/src/POP3.php', 'SUCCESS', '', 1, 1672225690),
 (1069, 'vi', 'update', 'Di chuyển file vendor/phpmailer/phpmailer/src/SMTP.php', 'SUCCESS', '', 1, 1672225690),
-(1070, 'vi', 'update', 'Di chuyển file vendor/symfony/polyfill-mbstring/Mbstring.php', 'SUCCESS', '', 1, 1672225690),
+(1070, 'vi', 'update', 'Di chuyển file vendor/symfony/polyfill-mbstring/Mbstring.php', 'SUCCESS', '', 1, 1672225690);
+INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, `link_acess`, `userid`, `log_time`) VALUES
 (1071, 'vi', 'update', 'Di chuyển file vendor/symfony/polyfill-mbstring/Resources/unidata/lowerCase.php', 'SUCCESS', '', 1, 1672225690),
 (1072, 'vi', 'update', 'Di chuyển file vendor/symfony/polyfill-mbstring/Resources/unidata/upperCase.php', 'SUCCESS', '', 1, 1672225690),
 (1073, 'vi', 'update', 'Di chuyển file vendor/symfony/polyfill-mbstring/bootstrap.php', 'SUCCESS', '', 1, 1672225690),
@@ -15406,12 +15327,103 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 (1371, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:113.161.46.160', '', 0, 1678987282),
 (1372, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:113.161.46.160', '', 0, 1678988884),
 (1373, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache', '', 1, 1678990099),
-(1374, 'vi', 'themes', 'Thiết lập giao diện theme: "smco"', '', '', 1, 1678990660),
+(1374, 'vi', 'themes', 'Thiết lập giao diện theme: \"smco\"', '', '', 1, 1678990660),
 (1375, 'vi', 'modules', 'Sửa module &ldquo;shops&rdquo;', '', '', 1, 1678990866),
 (1376, 'vi', 'shops', 'Add A Product', 'ID: 7', '', 1, 1678990918),
 (1377, 'vi', 'shops', 'Add A Product', 'ID: 8', '', 1, 1678990918),
 (1378, 'vi', 'shops', 'log_del_product', 'id 7,8,6,4,3,2,', '', 1, 1678990942),
-(1379, 'vi', 'themes', 'Thiết lập layout theme: "smco"', '', '', 1, 1678991013);
+(1379, 'vi', 'themes', 'Thiết lập layout theme: \"smco\"', '', '', 1, 1678991013),
+(1380, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:171.247.155.49', '', 0, 1680018852),
+(1381, 'vi', 'modules', 'Xóa module \"degree\"', '', '', 1, 1680018933),
+(1382, 'vi', 'modules', 'Xóa module \"quan-tri-he-thong\"', '', '', 1, 1680018977),
+(1383, 'vi', 'modules', 'Xóa module \"dich-vu-quan-ly-it\"', '', '', 1, 1680019002),
+(1384, 'vi', 'modules', 'Xóa module \"slidesurvey\"', '', '', 1, 1680019008),
+(1385, 'vi', 'modules', 'Xóa module \"survey\"', '', '', 1, 1680019012),
+(1386, 'vi', 'shops', 'log_del_catalog', 'id 2', '', 1, 1680019053),
+(1387, 'vi', 'shops', 'log_del_catalog', 'id 1', '', 1, 1680019089),
+(1388, 'vi', 'login', '[nvholding] Thoát khỏi tài khoản Quản trị', ' Client IP:171.247.155.49', '', 0, 1680020936),
+(1389, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:171.247.155.49', '', 0, 1680023955),
+(1390, 'vi', 'shops', 'log_add_catalog', 'id 3', '', 1, 1680024619),
+(1391, 'vi', 'shops', 'log_add_catalog', 'id 4', '', 1, 1680024688),
+(1392, 'vi', 'shops', 'log_add_catalog', 'id 5', '', 1, 1680024700),
+(1393, 'vi', 'shops', 'log_add_catalog', 'id 6', '', 1, 1680024710),
+(1394, 'vi', 'shops', 'log_add_catalog', 'id 7', '', 1, 1680024728),
+(1395, 'vi', 'shops', 'log_add_catalog', 'id 8', '', 1, 1680024743),
+(1396, 'vi', 'shops', 'log_add_catalog', 'id 9', '', 1, 1680024759),
+(1397, 'vi', 'shops', 'log_add_catalog', 'id 10', '', 1, 1680024777),
+(1398, 'vi', 'shops', 'log_add_catalog', 'id 11', '', 1, 1680024797),
+(1399, 'vi', 'shops', 'log_add_catalog', 'id 12', '', 1, 1680024831),
+(1400, 'vi', 'shops', 'log_edit_catalog', 'id 12', '', 1, 1680024881),
+(1401, 'vi', 'shops', 'log_add_catalog', 'id 13', '', 1, 1680024946),
+(1402, 'vi', 'shops', 'log_add_catalog', 'id 14', '', 1, 1680024997),
+(1403, 'vi', 'menu', 'delete menu id: 1', 'Top Menu', '', 1, 1680025020),
+(1404, 'vi', 'menu', 'delete menu id: 2', 'Crm', '', 1, 1680025023),
+(1405, 'vi', 'menu', 'Add menu', 'Menu id: 3', '', 1, 1680025042),
+(1406, 'vi', 'themes', 'Thêm block', 'Name : global bootstrap', '', 1, 1680025476),
+(1407, 'vi', 'themes', 'Sửa block', 'Name : global bootstrap', '', 1, 1680025696),
+(1408, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache', '', 1, 1680026097),
+(1409, 'vi', 'themes', 'Sửa block', 'Name : global bootstrap', '', 1, 1680026577),
+(1410, 'vi', 'themes', 'Thêm block', 'Name : global bootstrapsmc', '', 1, 1680026727),
+(1411, 'vi', 'themes', 'Thêm block', 'Name : global metismenu', '', 1, 1680027070),
+(1412, 'vi', 'themes', 'Thêm block', 'Name : global copyright', '', 1, 1680027640),
+(1413, 'vi', 'themes', 'Thêm block', 'Name : global menu footer', '', 1, 1680028446),
+(1414, 'vi', 'themes', 'Cập nhật lại vị trí các block', 'reset position all block', '', 1, 1680029388),
+(1415, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache', '', 1, 1680031091),
+(1416, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache', '', 1, 1680031593),
+(1417, 'vi', 'menu', 'Del row menu', 'Row menu id: 60 of Menu id: 3', '', 1, 1680031613),
+(1418, 'vi', 'menu', 'Del row menu', 'Row menu id: 61 of Menu id: 3', '', 1, 1680031621),
+(1419, 'vi', 'shops', 'log_add_catalog', 'id 15', '', 1, 1680032728),
+(1420, 'vi', 'shops', 'log_add_catalog', 'id 16', '', 1, 1680032734),
+(1421, 'vi', 'upload', 'Upload file', 'uploads/shops/2023_03/hp-envy-x360-13-bf0092tu-76v59pa.jpg', '', 1, 1680032883),
+(1422, 'vi', 'shops', 'Add A Product', 'ID: 9', '', 1, 1680033001),
+(1423, 'vi', 'shops', 'Edit A Product', 'ID: 9', '', 1, 1680033346),
+(1424, 'vi', 'shops', 'Edit A Product', 'ID: 9', '', 1, 1680033346),
+(1425, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:113.161.46.160', '', 0, 1680204726),
+(1426, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:115.79.213.4', '', 0, 1680637422),
+(1427, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:14.187.220.202', '', 0, 1681674477),
+(1428, 'vi', 'themes', 'Thêm block', 'Name : global block tab catid', '', 1, 1681674559),
+(1429, 'vi', 'themes', 'Sửa block', 'Name : global block tab catid', '', 1, 1681674577),
+(1430, 'vi', 'themes', 'Sửa block', 'Name : global block tab catid', '', 1, 1681674730),
+(1431, 'vi', 'themes', 'Sửa block', 'Name : block Laptop', '', 1, 1681674792),
+(1432, 'vi', 'themes', 'Sửa block', 'Name : Laptop', '', 1, 1681674815),
+(1433, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:14.187.220.202', '', 0, 1681679782),
+(1434, 'vi', 'themes', 'Sửa block', 'Name : Laptop', '', 1, 1681679835),
+(1435, 'vi', 'themes', 'Sửa block', 'Name : Laptop', '', 1, 1681681970),
+(1436, 'vi', 'themes', 'Thêm block', 'Name : Màn hình máy tính', '', 1, 1681682132),
+(1437, 'vi', 'themes', 'Sửa block', 'Name : Màn hình máy tính', '', 1, 1681682186),
+(1438, 'vi', 'themes', 'Sửa block', 'Name : Màn hình máy tính', '', 1, 1681682202),
+(1439, 'vi', 'themes', 'Thêm block', 'Name : Máy tính để bàn', '', 1, 1681683215),
+(1440, 'vi', 'themes', 'Sửa block', 'Name : Máy tính để bàn', '', 1, 1681684577),
+(1441, 'vi', 'themes', 'Sửa block', 'Name : Máy tính để bàn', '', 1, 1681684770),
+(1442, 'vi', 'themes', 'Thêm block', 'Name : Workstation', '', 1, 1681686271),
+(1443, 'vi', 'themes', 'Sửa block', 'Name : Workstation', '', 1, 1681686529),
+(1444, 'vi', 'themes', 'Sửa block', 'Name : Workstation', '', 1, 1681687657),
+(1445, 'vi', 'themes', 'Thêm block', 'Name : global block shops cat tabs', '', 1, 1681687919),
+(1446, 'vi', 'themes', 'Sửa block', 'Name : Máy chủ', '', 1, 1681687953),
+(1447, 'vi', 'themes', 'Thêm block', 'Name : Máy in', '', 1, 1681688006),
+(1448, 'vi', 'themes', 'Thêm block', 'Name : Linh kiện máy tính', '', 1, 1681688045),
+(1449, 'vi', 'upload', 'Upload file', 'uploads/shops/2023_04/hp-elitebook-840-g9_4_1.jpg', '', 1, 1681688953),
+(1450, 'vi', 'upload', 'Upload file', 'uploads/shops/2023_04/hp-elitebook-840-g9_1_1.jpg', '', 1, 1681688955),
+(1451, 'vi', 'upload', 'Upload file', 'uploads/shops/2023_04/hp-elitebook-840-g9_5_1.jpg', '', 1, 1681688956),
+(1452, 'vi', 'upload', 'Upload file', 'uploads/shops/2023_04/hp-elitebook-840-g9-6z965pa.jpg', '', 1, 1681688957),
+(1453, 'vi', 'shops', 'Add A Product', 'ID: 10', '', 1, 1681689028),
+(1454, 'vi', 'shops', 'Edit A Product', 'ID: 10', '', 1, 1681689233),
+(1455, 'vi', 'shops', 'Edit A Product', 'ID: 10', '', 1, 1681689233),
+(1456, 'vi', 'upload', 'Upload file', 'uploads/shops/2023_04/dell-vostro-3510-p112f002bbl-0.jpg', '', 1, 1681689468),
+(1457, 'vi', 'shops', 'Add A Product', 'ID: 11', '', 1, 1681689529),
+(1458, 'vi', 'upload', 'Upload file', 'uploads/shops/2023_04/dell_vostro_3420.jpg', '', 1, 1681691313),
+(1459, 'vi', 'shops', 'Add A Product', 'ID: 12', '', 1, 1681691377),
+(1460, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:171.235.162.227', '', 0, 1682318267),
+(1461, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:113.161.46.160', '', 0, 1682404884),
+(1462, 'vi', 'webtools', 'Dọn dẹp hệ thống', 'clearcache', '', 1, 1682404899),
+(1463, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:113.161.46.160', '', 0, 1682416743),
+(1464, 'vi', 'login', '[nvholding] Đăng nhập', ' Client IP:14.187.220.202', '', 0, 1682428517),
+(1465, 'vi', 'users', 'log_add_user', 'userid 3', '', 1, 1682428644),
+(1466, 'vi', 'authors', 'Thêm Quản trị', 'Username: linh.vo', '', 1, 1682428674),
+(1467, 'vi', 'users', 'log_add_user', 'userid 4', '', 1, 1682428736),
+(1468, 'vi', 'authors', 'Thêm Quản trị', 'Username: long.nguyen', '', 1, 1682428753),
+(1469, 'vi', 'users', 'log_add_user', 'userid 5', '', 1, 1682429429),
+(1470, 'vi', 'authors', 'Thêm Quản trị', 'Username: hau.vo', '', 1, 1682429466);
 
 -- --------------------------------------------------------
 
@@ -15419,25 +15431,21 @@ INSERT INTO `nv4_logs` (`id`, `lang`, `module_name`, `name_key`, `note_action`, 
 -- Table structure for table `nv4_notification`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_notification` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `admin_view_allowed` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Cấp quản trị được xem: 0,1,2',
-  `logic_mode` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0: Cấp trên xem được cấp dưới, 1: chỉ cấp hoặc người được chỉ định',
-  `send_to` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Danh sách id người nhận, phân cách bởi dấu phảy',
-  `send_from` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `area` tinyint(3) unsigned NOT NULL,
-  `language` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `module` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `obid` int(10) unsigned NOT NULL DEFAULT '0',
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `add_time` int(10) unsigned NOT NULL,
-  `view` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `send_to` (`send_to`),
-  KEY `admin_view_allowed` (`admin_view_allowed`),
-  KEY `logic_mode` (`logic_mode`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10 ;
+CREATE TABLE `nv4_notification` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `admin_view_allowed` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Cấp quản trị được xem: 0,1,2',
+  `logic_mode` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0: Cấp trên xem được cấp dưới, 1: chỉ cấp hoặc người được chỉ định',
+  `send_to` varchar(250) NOT NULL DEFAULT '' COMMENT 'Danh sách id người nhận, phân cách bởi dấu phảy',
+  `send_from` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `area` tinyint(3) UNSIGNED NOT NULL,
+  `language` char(3) NOT NULL,
+  `module` varchar(50) NOT NULL,
+  `obid` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `type` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `add_time` int(10) UNSIGNED NOT NULL,
+  `view` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15445,14 +15453,12 @@ CREATE TABLE IF NOT EXISTS `nv4_notification` (
 -- Table structure for table `nv4_plugin`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_plugin` (
-  `pid` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `plugin_file` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `nv4_plugin` (
+  `pid` tinyint(4) NOT NULL,
+  `plugin_file` varchar(50) NOT NULL,
   `plugin_area` tinyint(4) NOT NULL,
-  `weight` tinyint(4) NOT NULL,
-  PRIMARY KEY (`pid`),
-  UNIQUE KEY `plugin_file` (`plugin_file`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+  `weight` tinyint(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_plugin`
@@ -15468,13 +15474,11 @@ INSERT INTO `nv4_plugin` (`pid`, `plugin_file`, `plugin_area`, `weight`) VALUES
 -- Table structure for table `nv4_sessions`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_sessions` (
-  `session_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `username` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `onl_time` int(10) unsigned NOT NULL DEFAULT '0',
-  UNIQUE KEY `session_id` (`session_id`),
-  KEY `onl_time` (`onl_time`)
+CREATE TABLE `nv4_sessions` (
+  `session_id` varchar(50) DEFAULT NULL,
+  `userid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `username` varchar(100) NOT NULL,
+  `onl_time` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -15482,13 +15486,9 @@ CREATE TABLE IF NOT EXISTS `nv4_sessions` (
 --
 
 INSERT INTO `nv4_sessions` (`session_id`, `userid`, `username`, `onl_time`) VALUES
-('9fg04ucatj8tnaihp1bn375s05', 0, 'bot:Chrome', 1679061009),
-('3qtc3fvtctk5j8bd5ju2q6bon7', 0, 'bot:unknown', 1679060878),
-('t6bi126nj5a3ad2sk2ibvb7q02', 0, 'guest', 1679060876),
-('nahk693vo3lfnq4qndfqmhssg0', 0, 'guest', 1679060803),
-('6hf1tt2qv8nlhm3lpau2g032m1', 0, 'guest', 1679060789),
-('g06vimn502kigqbjtmnjllfrs7', 0, 'guest', 1679060804),
-('l5ts6qcgnh8h1c66nsja3ej0s1', 0, 'guest', 1679060768);
+('ct4vu42onag7pm0nnb9vb216fe', 0, 'guest', 1683728331),
+('j97jfip3gi6d10mj5jvf5o4unk', 0, 'guest', 1683731186),
+('ooa2jnt8fqvr344sn63nisha69', 0, 'bot:Chrome', 1683730176);
 
 -- --------------------------------------------------------
 
@@ -15496,21 +15496,18 @@ INSERT INTO `nv4_sessions` (`session_id`, `userid`, `username`, `onl_time`) VALU
 -- Table structure for table `nv4_setup_extensions`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_setup_extensions` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `type` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'other',
-  `title` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_sys` tinyint(1) NOT NULL DEFAULT '0',
-  `is_virtual` tinyint(1) NOT NULL DEFAULT '0',
-  `basename` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `table_prefix` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `version` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `addtime` int(11) NOT NULL DEFAULT '0',
-  `author` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  UNIQUE KEY `title` (`type`,`title`),
-  KEY `id` (`id`),
-  KEY `type` (`type`)
+CREATE TABLE `nv4_setup_extensions` (
+  `id` int(11) NOT NULL DEFAULT 0,
+  `type` varchar(10) NOT NULL DEFAULT 'other',
+  `title` varchar(55) NOT NULL,
+  `is_sys` tinyint(1) NOT NULL DEFAULT 0,
+  `is_virtual` tinyint(1) NOT NULL DEFAULT 0,
+  `basename` varchar(50) NOT NULL DEFAULT '',
+  `table_prefix` varchar(55) NOT NULL DEFAULT '',
+  `version` varchar(50) NOT NULL,
+  `addtime` int(11) NOT NULL DEFAULT 0,
+  `author` text NOT NULL,
+  `note` varchar(255) DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -15552,11 +15549,9 @@ INSERT INTO `nv4_setup_extensions` (`id`, `type`, `title`, `is_sys`, `is_virtual
 (299, 'module', 'nvform', 0, 1, 'nvform', 'nvform', '4.0.10 1671473258', 1671473258, 'hongoctrien (hongoctrien@tdfoss.vn)', 'Module có chức năng tạo biểu mẫu nhanh chóng trên NukeViet 4'),
 (0, 'module', 'nvtools', 0, 0, 'nvtools', 'nvtools', '4.0.24 1446612645', 1671476095, 'VINADES (contact@vinades.vn)', 'Công cụ xây dựng site'),
 (0, 'module', 'survey', 0, 1, 'survey', 'survey', '0.3.03 1671477724', 1671477724, 'Tập Đoàn Họ Nguyễn (honguyentapdoan@gmail.com)', 'Module khảo sát IT Outsourcing'),
-(0, 'module', 'slidesurvey', 0, 0, 'slider', 'slidesurvey', '', 1671624213, '', ''),
+(0, 'theme', 'smco', 0, 0, 'smco', 'smco', '4.5.03 1680025680', 1680025680, 'VINADES.,JSC', 'Đây là giao diện mặc định của hệ thống. Bạn không được xóa, đổi tên và không nên sửa trực tiếp vào giao diện này. Nếu muốn, hãy copy thành giao diện khác và kích hoạt sử dụng giao diện mới đó để chỉnh sửa và sử dụng.'),
 (312, 'module', 'degree', 0, 0, 'degree', 'degree', '4.5.02 1672185113', 1672185113, 'HoNguyen (honguyentapdoan@gmail.com)', ''),
 (0, 'theme', 'sml_mobile', 0, 0, 'sml_mobile', 'sml_mobile', '4.5.02 1672189827', 1672189827, 'VINADES.,JSC', 'Đây là giao diện mặc định cho mobile'),
-(0, 'module', 'dich-vu-quan-ly-it', 0, 0, 'page', 'dich_vu_quan_ly_it', '', 1673098495, '', ''),
-(0, 'module', 'quan-tri-he-thong', 0, 0, 'page', 'quan_tri_he_thong', '', 1674217210, '', ''),
 (0, 'theme', 'licavali', 0, 0, 'licavali', 'licavali', '4.5.03 1678989720', 1678989720, 'VINADES.,JSC', 'Đây là giao diện mặc định của hệ thống. Bạn không được xóa, đổi tên và không nên sửa trực tiếp vào giao diện này. Nếu muốn, hãy copy thành giao diện khác và kích hoạt sử dụng giao diện mới đó để chỉnh sửa và sử dụng.');
 
 -- --------------------------------------------------------
@@ -15565,11 +15560,10 @@ INSERT INTO `nv4_setup_extensions` (`id`, `type`, `title`, `is_sys`, `is_virtual
 -- Table structure for table `nv4_setup_language`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_setup_language` (
-  `lang` char(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `setup` tinyint(1) NOT NULL DEFAULT '0',
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`lang`)
+CREATE TABLE `nv4_setup_language` (
+  `lang` char(2) NOT NULL,
+  `setup` tinyint(1) NOT NULL DEFAULT 0,
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -15585,11 +15579,10 @@ INSERT INTO `nv4_setup_language` (`lang`, `setup`, `weight`) VALUES
 -- Table structure for table `nv4_shops_block`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_block` (
-  `bid` int(11) unsigned NOT NULL,
-  `id` int(11) unsigned NOT NULL,
-  `weight` int(11) unsigned NOT NULL,
-  UNIQUE KEY `bid` (`bid`,`id`)
+CREATE TABLE `nv4_shops_block` (
+  `bid` int(11) UNSIGNED NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
+  `weight` int(11) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -15598,23 +15591,21 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_block` (
 -- Table structure for table `nv4_shops_block_cat`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_block_cat` (
-  `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `adddefault` tinyint(1) NOT NULL DEFAULT '0',
-  `image` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` smallint(4) NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_description` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_bodytext` text COLLATE utf8mb4_unicode_ci,
-  `vi_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vi_tag_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_tag_description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`bid`),
-  UNIQUE KEY `vi_alias` (`vi_alias`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_block_cat` (
+  `bid` mediumint(8) UNSIGNED NOT NULL,
+  `adddefault` tinyint(1) NOT NULL DEFAULT 0,
+  `image` varchar(250) NOT NULL,
+  `weight` smallint(4) NOT NULL DEFAULT 0,
+  `add_time` int(11) NOT NULL DEFAULT 0,
+  `edit_time` int(11) NOT NULL DEFAULT 0,
+  `vi_title` varchar(250) NOT NULL DEFAULT '',
+  `vi_alias` varchar(250) NOT NULL DEFAULT '',
+  `vi_description` varchar(250) NOT NULL DEFAULT '',
+  `vi_bodytext` text DEFAULT NULL,
+  `vi_keywords` text NOT NULL,
+  `vi_tag_title` varchar(255) NOT NULL DEFAULT '',
+  `vi_tag_description` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15622,17 +15613,16 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_block_cat` (
 -- Table structure for table `nv4_shops_carrier`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_carrier` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logo` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` tinyint(3) unsigned NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_carrier` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `logo` varchar(250) NOT NULL,
+  `description` text NOT NULL,
+  `weight` tinyint(3) UNSIGNED NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15640,14 +15630,13 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_carrier` (
 -- Table structure for table `nv4_shops_carrier_config`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` tinyint(3) unsigned NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_carrier_config` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `description` text NOT NULL,
+  `weight` tinyint(3) UNSIGNED NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15655,15 +15644,14 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config` (
 -- Table structure for table `nv4_shops_carrier_config_items`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config_items` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
-  `cid` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` smallint(4) unsigned NOT NULL,
-  `add_time` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_carrier_config_items` (
+  `id` smallint(4) UNSIGNED NOT NULL,
+  `cid` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL,
+  `description` text NOT NULL,
+  `weight` smallint(4) UNSIGNED NOT NULL,
+  `add_time` int(11) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15671,11 +15659,10 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config_items` (
 -- Table structure for table `nv4_shops_carrier_config_location`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config_location` (
-  `cid` tinyint(3) unsigned NOT NULL,
-  `iid` smallint(4) unsigned NOT NULL,
-  `lid` mediumint(8) unsigned NOT NULL,
-  UNIQUE KEY `cid` (`cid`,`lid`)
+CREATE TABLE `nv4_shops_carrier_config_location` (
+  `cid` tinyint(3) UNSIGNED NOT NULL,
+  `iid` smallint(4) UNSIGNED NOT NULL,
+  `lid` mediumint(8) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -15684,12 +15671,12 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config_location` (
 -- Table structure for table `nv4_shops_carrier_config_weight`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config_weight` (
-  `iid` smallint(4) unsigned NOT NULL,
-  `weight` double unsigned NOT NULL,
-  `weight_unit` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `nv4_shops_carrier_config_weight` (
+  `iid` smallint(4) UNSIGNED NOT NULL,
+  `weight` double UNSIGNED NOT NULL,
+  `weight_unit` varchar(20) NOT NULL,
   `carrier_price` double NOT NULL,
-  `carrier_price_unit` char(3) COLLATE utf8mb4_unicode_ci NOT NULL
+  `carrier_price_unit` char(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -15698,49 +15685,58 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_carrier_config_weight` (
 -- Table structure for table `nv4_shops_catalogs`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_catalogs` (
-  `catid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `parentid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `image` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `sort` mediumint(8) NOT NULL DEFAULT '0',
-  `lev` smallint(4) NOT NULL DEFAULT '0',
-  `viewcat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'viewcat_page_new',
-  `numsubcat` int(11) NOT NULL DEFAULT '0',
-  `subcatid` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `inhome` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `numlinks` tinyint(2) unsigned NOT NULL DEFAULT '3',
-  `newday` tinyint(4) NOT NULL DEFAULT '3',
-  `typeprice` tinyint(4) NOT NULL DEFAULT '2',
-  `form` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `group_price` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `viewdescriptionhtml` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `admins` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `add_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `edit_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `groups_view` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `cat_allow_point` tinyint(1) NOT NULL DEFAULT '0',
-  `cat_number_point` tinyint(4) NOT NULL DEFAULT '0',
-  `cat_number_product` tinyint(4) NOT NULL DEFAULT '0',
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_title_custom` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_description` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_descriptionhtml` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vi_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vi_tag_description` mediumtext COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`catid`),
-  UNIQUE KEY `vi_alias` (`vi_alias`),
-  KEY `parentid` (`parentid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_shops_catalogs` (
+  `catid` mediumint(8) UNSIGNED NOT NULL,
+  `parentid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `image` varchar(250) NOT NULL DEFAULT '',
+  `weight` smallint(4) UNSIGNED NOT NULL DEFAULT 0,
+  `sort` mediumint(8) NOT NULL DEFAULT 0,
+  `lev` smallint(4) NOT NULL DEFAULT 0,
+  `viewcat` varchar(50) NOT NULL DEFAULT 'viewcat_page_new',
+  `numsubcat` int(11) NOT NULL DEFAULT 0,
+  `subcatid` varchar(250) NOT NULL DEFAULT '',
+  `inhome` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `numlinks` tinyint(2) UNSIGNED NOT NULL DEFAULT 3,
+  `newday` tinyint(4) NOT NULL DEFAULT 3,
+  `typeprice` tinyint(4) NOT NULL DEFAULT 2,
+  `form` varchar(250) NOT NULL DEFAULT '',
+  `group_price` text NOT NULL,
+  `viewdescriptionhtml` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `admins` mediumtext NOT NULL,
+  `add_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `edit_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `groups_view` varchar(250) NOT NULL DEFAULT '',
+  `cat_allow_point` tinyint(1) NOT NULL DEFAULT 0,
+  `cat_number_point` tinyint(4) NOT NULL DEFAULT 0,
+  `cat_number_product` tinyint(4) NOT NULL DEFAULT 0,
+  `vi_title` varchar(250) NOT NULL DEFAULT '',
+  `vi_title_custom` varchar(250) NOT NULL DEFAULT '',
+  `vi_alias` varchar(250) NOT NULL DEFAULT '',
+  `vi_description` varchar(250) NOT NULL DEFAULT '',
+  `vi_descriptionhtml` text NOT NULL,
+  `vi_keywords` text NOT NULL,
+  `vi_tag_description` mediumtext DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_catalogs`
 --
 
 INSERT INTO `nv4_shops_catalogs` (`catid`, `parentid`, `image`, `weight`, `sort`, `lev`, `viewcat`, `numsubcat`, `subcatid`, `inhome`, `numlinks`, `newday`, `typeprice`, `form`, `group_price`, `viewdescriptionhtml`, `admins`, `add_time`, `edit_time`, `groups_view`, `cat_allow_point`, `cat_number_point`, `cat_number_product`, `vi_title`, `vi_title_custom`, `vi_alias`, `vi_description`, `vi_descriptionhtml`, `vi_keywords`, `vi_tag_description`) VALUES
-(1, 0, '2023_01/it-helpdesk-1.jpg', 1, 1, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 1, '', 1663339529, 1672845112, '6', 0, 0, 0, 'Dịch vụ IT HelpDesk', 'Dịch vụ IT HelpDesk', 'dich-vu-it-helpdesk', '', '<a href="https://itsystems.vn/it-helpdesk-la-gi-nhung-dieu-can-de-thanh-it-helpdesk/">Dịch vụ IT Helpdesk</a>&nbsp;hỗ trợ kỹ thuật IT, support cho khách hàng khi có sự cố xảy ra trong quá trình sử dụng máy tính, mạng, server… Bao gồm hỗ trợ từ xa và hỗ trợ tại chỗ không giới hạn số lần hỗ trợ trong tháng. Các hệ thống sử dụng dịch vụ IT helpdesk được bảo trì, bảo dưỡng định kỳ. Với mức giá cố định giúp doanh nghiệp yên tâm về hệ thống CNTT của mình.', '', ''),
-(2, 0, '', 2, 2, 0, 'viewlist', 0, '', 1, 4, 7, 2, '', '', 0, '', 1663470364, 1663647922, '6', 0, 0, 0, 'Dịch vụ Thi công lắp đặt', '', 'dich-vu-thi-cong-lap-dat', '', '', '', '');
+(3, 0, '', 1, 1, 0, 'viewgrid', 2, '15,16', 1, 4, 7, 1, '', '', 0, '', 1680024619, 1680024619, '', 0, 0, 0, 'Laptop', '', 'laptop', '', '', '', ''),
+(4, 0, '', 2, 4, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024688, 1680024688, '', 0, 0, 0, 'Linh kiện PC', '', 'linh-kien-pc', '', '', '', ''),
+(5, 0, '', 3, 5, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024700, 1680024700, '', 0, 0, 0, 'Phụ kiện', '', 'Phu-kien', '', '', '', ''),
+(6, 0, '', 4, 6, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024710, 1680024710, '', 0, 0, 0, 'Máy chủ', '', 'may-chu', '', '', '', ''),
+(7, 0, '', 5, 7, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024728, 1680024728, '', 0, 0, 0, 'Thiết bị mạng', '', 'thiet-bi-mang', '', '', '', ''),
+(8, 0, '', 6, 8, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024743, 1680024743, '', 0, 0, 0, 'Thiết bị văn phòng', '', 'Thiet-bi-van-phong', '', '', '', ''),
+(9, 0, '', 7, 9, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024759, 1680024759, '', 0, 0, 0, 'Thiết bị Thông minh', '', 'Thiet-bi-Thong-minh', '', '', '', ''),
+(10, 0, '', 8, 10, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024777, 1680024777, '', 0, 0, 0, 'Máy tính để bàn', '', 'may-tinh-de-ban', '', '', '', ''),
+(11, 0, '', 9, 11, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024797, 1680024797, '', 0, 0, 0, 'Màn hình', '', 'man-hinh', '', '', '', ''),
+(12, 0, '', 10, 12, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024831, 1680024881, '', 0, 0, 0, 'Workstation', '', 'workstation', '', '', '', ''),
+(13, 0, '', 11, 13, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024946, 1680024946, '', 0, 0, 0, 'Máy in&#x002F; Máy scan', '', 'may-in-may-scan', '', '', '', ''),
+(14, 0, '', 12, 14, 0, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680024997, 1680024997, '', 0, 0, 0, 'Phần mềm', '', 'Phan-mem', '', '', '', ''),
+(15, 3, '', 1, 2, 1, 'viewgrid', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680032728, 1680032728, '', 0, 0, 0, 'HP', '', 'hp', '', '', '', ''),
+(16, 3, '', 2, 3, 1, 'viewlist', 0, '', 1, 4, 7, 1, '', '', 0, '', 1680032734, 1680032734, '', 0, 0, 0, 'Dell', '', 'dell', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -15748,21 +15744,20 @@ INSERT INTO `nv4_shops_catalogs` (`catid`, `parentid`, `image`, `weight`, `sort`
 -- Table structure for table `nv4_shops_coupons`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_coupons` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `type` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'p',
-  `discount` double NOT NULL DEFAULT '0',
-  `total_amount` double NOT NULL DEFAULT '0',
-  `date_start` int(11) unsigned NOT NULL DEFAULT '0',
-  `date_end` int(11) unsigned NOT NULL DEFAULT '0',
-  `uses_per_coupon` int(11) unsigned NOT NULL DEFAULT '0',
-  `uses_per_coupon_count` int(11) NOT NULL DEFAULT '0',
-  `date_added` int(11) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_coupons` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL DEFAULT '',
+  `code` varchar(50) NOT NULL DEFAULT '',
+  `type` varchar(1) NOT NULL DEFAULT 'p',
+  `discount` double NOT NULL DEFAULT 0,
+  `total_amount` double NOT NULL DEFAULT 0,
+  `date_start` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `date_end` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `uses_per_coupon` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `uses_per_coupon_count` int(11) NOT NULL DEFAULT 0,
+  `date_added` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15770,14 +15765,13 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_coupons` (
 -- Table structure for table `nv4_shops_coupons_history`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_coupons_history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nv4_shops_coupons_history` (
+  `id` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `amount` double NOT NULL DEFAULT '0',
-  `date_added` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `amount` double NOT NULL DEFAULT 0,
+  `date_added` int(11) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15785,10 +15779,9 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_coupons_history` (
 -- Table structure for table `nv4_shops_coupons_product`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_coupons_product` (
-  `cid` int(11) unsigned NOT NULL,
-  `pid` int(11) unsigned NOT NULL,
-  UNIQUE KEY `cid` (`cid`,`pid`)
+CREATE TABLE `nv4_shops_coupons_product` (
+  `cid` int(11) UNSIGNED NOT NULL,
+  `pid` int(11) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -15797,26 +15790,24 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_coupons_product` (
 -- Table structure for table `nv4_shops_discounts`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_discounts` (
-  `did` smallint(6) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` smallint(6) NOT NULL DEFAULT '0',
-  `add_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `edit_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `begin_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `end_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `config` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `detail` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`did`),
-  KEY `begin_time` (`begin_time`,`end_time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_shops_discounts` (
+  `did` smallint(6) NOT NULL,
+  `title` varchar(100) NOT NULL DEFAULT '',
+  `weight` smallint(6) NOT NULL DEFAULT 0,
+  `add_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `edit_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `begin_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `end_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `config` text NOT NULL,
+  `detail` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_discounts`
 --
 
 INSERT INTO `nv4_shops_discounts` (`did`, `title`, `weight`, `add_time`, `edit_time`, `begin_time`, `end_time`, `config`, `detail`) VALUES
-(1, 'Giảm giá Free Dịch vụ', 0, 1663341957, 1663341957, 1663261200, 0, 'a:1:{i:0;a:4:{s:13:"discount_from";i:1;s:11:"discount_to";i:12;s:15:"discount_number";d:100;s:13:"discount_unit";s:1:"p";}}', 0);
+(1, 'Giảm giá Free Dịch vụ', 0, 1663341957, 1681681537, 1663261200, 0, 'a:1:{i:0;a:4:{s:13:\"discount_from\";i:1;s:11:\"discount_to\";i:12;s:15:\"discount_number\";d:7;s:13:\"discount_unit\";s:1:\"p\";}}', 0);
 
 -- --------------------------------------------------------
 
@@ -15824,26 +15815,24 @@ INSERT INTO `nv4_shops_discounts` (`did`, `title`, `weight`, `add_time`, `edit_t
 -- Table structure for table `nv4_shops_field`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_field` (
-  `fid` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `field` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `listtemplate` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tab` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` int(10) unsigned NOT NULL DEFAULT '1',
-  `field_type` enum('number','date','textbox','textarea','editor','select','radio','checkbox','multiselect') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'textbox',
-  `field_choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sql_choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `match_type` enum('none','alphanumeric','email','url','regex','callback') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'none',
-  `match_regex` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `func_callback` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `min_length` int(11) NOT NULL DEFAULT '0',
-  `max_length` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `class` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `language` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `default_value` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`fid`),
-  UNIQUE KEY `field` (`field`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_field` (
+  `fid` mediumint(8) NOT NULL,
+  `field` varchar(25) NOT NULL,
+  `listtemplate` varchar(25) NOT NULL,
+  `tab` varchar(250) NOT NULL DEFAULT '',
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `field_type` enum('number','date','textbox','textarea','editor','select','radio','checkbox','multiselect') NOT NULL DEFAULT 'textbox',
+  `field_choices` text NOT NULL,
+  `sql_choices` text NOT NULL,
+  `match_type` enum('none','alphanumeric','email','url','regex','callback') NOT NULL DEFAULT 'none',
+  `match_regex` varchar(250) NOT NULL DEFAULT '',
+  `func_callback` varchar(75) NOT NULL DEFAULT '',
+  `min_length` int(11) NOT NULL DEFAULT 0,
+  `max_length` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `class` varchar(25) NOT NULL DEFAULT '',
+  `language` text NOT NULL,
+  `default_value` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15851,14 +15840,12 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_field` (
 -- Table structure for table `nv4_shops_field_value_vi`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_field_value_vi` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `rows_id` int(11) unsigned NOT NULL,
+CREATE TABLE `nv4_shops_field_value_vi` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `rows_id` int(11) UNSIGNED NOT NULL,
   `field_id` mediumint(8) NOT NULL,
-  `field_value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `rows_id` (`rows_id`,`field_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `field_value` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15866,18 +15853,17 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_field_value_vi` (
 -- Table structure for table `nv4_shops_files`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_files` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `path` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `filesize` int(11) unsigned NOT NULL DEFAULT '0',
-  `extension` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `addtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `download_groups` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '-1',
-  `status` tinyint(1) unsigned DEFAULT '1',
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_files` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `path` varchar(250) NOT NULL,
+  `filesize` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `extension` varchar(10) NOT NULL DEFAULT '',
+  `addtime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `download_groups` varchar(250) NOT NULL DEFAULT '-1',
+  `status` tinyint(1) UNSIGNED DEFAULT 1,
+  `vi_title` varchar(250) NOT NULL DEFAULT '',
+  `vi_description` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -15885,11 +15871,10 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_files` (
 -- Table structure for table `nv4_shops_files_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_files_rows` (
-  `id_rows` int(11) unsigned NOT NULL,
-  `id_files` mediumint(8) unsigned NOT NULL,
-  `download_hits` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  UNIQUE KEY `id_files` (`id_files`,`id_rows`)
+CREATE TABLE `nv4_shops_files_rows` (
+  `id_rows` int(11) UNSIGNED NOT NULL,
+  `id_files` mediumint(8) UNSIGNED NOT NULL,
+  `download_hits` mediumint(8) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -15898,31 +15883,28 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_files_rows` (
 -- Table structure for table `nv4_shops_group`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_group` (
-  `groupid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `parentid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `image` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `sort` mediumint(8) NOT NULL DEFAULT '0',
-  `lev` smallint(4) NOT NULL DEFAULT '0',
-  `viewgroup` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'viewgrid',
-  `numsubgroup` int(11) NOT NULL DEFAULT '0',
-  `subgroupid` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `inhome` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `indetail` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `edit_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `numpro` int(11) unsigned NOT NULL DEFAULT '0',
-  `in_order` tinyint(2) NOT NULL DEFAULT '0',
-  `is_require` tinyint(1) NOT NULL DEFAULT '0',
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_description` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`groupid`),
-  UNIQUE KEY `vi_alias` (`vi_alias`),
-  KEY `parentid` (`parentid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=22 ;
+CREATE TABLE `nv4_shops_group` (
+  `groupid` mediumint(8) UNSIGNED NOT NULL,
+  `parentid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `image` varchar(250) NOT NULL DEFAULT '',
+  `weight` smallint(4) UNSIGNED NOT NULL DEFAULT 0,
+  `sort` mediumint(8) NOT NULL DEFAULT 0,
+  `lev` smallint(4) NOT NULL DEFAULT 0,
+  `viewgroup` varchar(50) NOT NULL DEFAULT 'viewgrid',
+  `numsubgroup` int(11) NOT NULL DEFAULT 0,
+  `subgroupid` varchar(250) NOT NULL DEFAULT '',
+  `inhome` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `indetail` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `add_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `edit_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `numpro` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `in_order` tinyint(2) NOT NULL DEFAULT 0,
+  `is_require` tinyint(1) NOT NULL DEFAULT 0,
+  `vi_title` varchar(250) NOT NULL DEFAULT '',
+  `vi_alias` varchar(250) NOT NULL DEFAULT '',
+  `vi_description` varchar(250) NOT NULL DEFAULT '',
+  `vi_keywords` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_group`
@@ -15957,10 +15939,9 @@ INSERT INTO `nv4_shops_group` (`groupid`, `parentid`, `image`, `weight`, `sort`,
 -- Table structure for table `nv4_shops_group_cateid`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_group_cateid` (
-  `groupid` mediumint(8) unsigned NOT NULL,
-  `cateid` mediumint(8) unsigned NOT NULL,
-  UNIQUE KEY `groupid` (`groupid`,`cateid`)
+CREATE TABLE `nv4_shops_group_cateid` (
+  `groupid` mediumint(8) UNSIGNED NOT NULL,
+  `cateid` mediumint(8) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -15997,12 +15978,9 @@ INSERT INTO `nv4_shops_group_cateid` (`groupid`, `cateid`) VALUES
 -- Table structure for table `nv4_shops_group_items`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_group_items` (
-  `pro_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `group_id` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`pro_id`,`group_id`),
-  KEY `pro_id` (`pro_id`),
-  KEY `group_id` (`group_id`)
+CREATE TABLE `nv4_shops_group_items` (
+  `pro_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `group_id` int(11) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -16011,11 +15989,10 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_group_items` (
 -- Table structure for table `nv4_shops_group_quantity`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_group_quantity` (
-  `pro_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `listgroup` varchar(247) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` int(11) unsigned NOT NULL,
-  UNIQUE KEY `pro_id` (`pro_id`,`listgroup`)
+CREATE TABLE `nv4_shops_group_quantity` (
+  `pro_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `listgroup` varchar(247) NOT NULL,
+  `quantity` int(11) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -16024,18 +16001,16 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_group_quantity` (
 -- Table structure for table `nv4_shops_location`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_location` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `parentid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `sort` mediumint(8) NOT NULL DEFAULT '0',
-  `lev` smallint(4) NOT NULL DEFAULT '0',
-  `numsub` int(11) NOT NULL DEFAULT '0',
-  `subid` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `parentid` (`parentid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_location` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `parentid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL,
+  `weight` smallint(4) UNSIGNED NOT NULL DEFAULT 0,
+  `sort` mediumint(8) NOT NULL DEFAULT 0,
+  `lev` smallint(4) NOT NULL DEFAULT 0,
+  `numsub` int(11) NOT NULL DEFAULT 0,
+  `subid` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -16043,16 +16018,14 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_location` (
 -- Table structure for table `nv4_shops_money_vi`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_money_vi` (
+CREATE TABLE `nv4_shops_money_vi` (
   `id` mediumint(11) NOT NULL,
-  `code` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `symbol` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `exchange` double NOT NULL DEFAULT '0',
-  `round` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `number_format` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ',||.',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
+  `code` char(3) NOT NULL,
+  `currency` varchar(250) NOT NULL,
+  `symbol` varchar(3) NOT NULL DEFAULT '',
+  `exchange` double NOT NULL DEFAULT 0,
+  `round` varchar(10) NOT NULL,
+  `number_format` varchar(5) NOT NULL DEFAULT ',||.'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -16069,34 +16042,36 @@ INSERT INTO `nv4_shops_money_vi` (`id`, `code`, `currency`, `symbol`, `exchange`
 -- Table structure for table `nv4_shops_orders`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_orders` (
-  `order_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `order_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `lang` char(2) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'en',
-  `order_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_email` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_address` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_note` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `admin_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `shop_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `who_is` int(2) unsigned NOT NULL DEFAULT '0',
-  `unit_total` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_total` double unsigned NOT NULL DEFAULT '0',
-  `order_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `edit_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `postip` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_view` tinyint(2) NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_shops_orders` (
+  `order_id` int(11) UNSIGNED NOT NULL,
+  `order_code` varchar(30) NOT NULL DEFAULT '',
+  `lang` char(2) NOT NULL DEFAULT 'en',
+  `order_name` varchar(250) NOT NULL,
+  `order_email` varchar(250) NOT NULL,
+  `order_phone` varchar(20) NOT NULL,
+  `order_address` varchar(250) NOT NULL,
+  `order_note` text NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `shop_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `who_is` int(2) UNSIGNED NOT NULL DEFAULT 0,
+  `unit_total` char(3) NOT NULL,
+  `order_total` double UNSIGNED NOT NULL DEFAULT 0,
+  `order_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `edit_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `postip` varchar(100) NOT NULL,
+  `order_view` tinyint(2) NOT NULL DEFAULT 0,
   `transaction_status` tinyint(4) NOT NULL,
-  `transaction_id` int(11) NOT NULL DEFAULT '0',
-  `transaction_count` int(11) NOT NULL,
-  PRIMARY KEY (`order_id`),
-  UNIQUE KEY `order_code` (`order_code`),
-  KEY `user_id` (`user_id`),
-  KEY `order_time` (`order_time`),
-  KEY `shop_id` (`shop_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `transaction_id` int(11) NOT NULL DEFAULT 0,
+  `transaction_count` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nv4_shops_orders`
+--
+
+INSERT INTO `nv4_shops_orders` (`order_id`, `order_code`, `lang`, `order_name`, `order_email`, `order_phone`, `order_address`, `order_note`, `user_id`, `admin_id`, `shop_id`, `who_is`, `unit_total`, `order_total`, `order_time`, `edit_time`, `postip`, `order_view`, `transaction_status`, `transaction_id`, `transaction_count`) VALUES
+(1, 'SML000001', 'vi', 'nvholding', 'adminwmt@gmail.com', '0988455066', '204&#x002F;41 Đường 11, Linh Xuân Thủ Đức TPHCM', '', 1, 0, 0, 0, 'VND', 29568000, 1680205309, 0, '113.161.46.160', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -16104,17 +16079,22 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_orders` (
 -- Table structure for table `nv4_shops_orders_id`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_orders_id` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nv4_shops_orders_id` (
+  `id` int(11) UNSIGNED NOT NULL,
   `order_id` int(11) NOT NULL,
-  `listgroupid` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `listgroupid` varchar(250) NOT NULL DEFAULT '',
   `proid` mediumint(9) NOT NULL,
   `num` mediumint(9) NOT NULL,
-  `price` double NOT NULL DEFAULT '0',
-  `discount_id` smallint(6) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `orderid` (`order_id`,`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `price` double NOT NULL DEFAULT 0,
+  `discount_id` smallint(6) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nv4_shops_orders_id`
+--
+
+INSERT INTO `nv4_shops_orders_id` (`id`, `order_id`, `listgroupid`, `proid`, `num`, `price`, `discount_id`) VALUES
+(1, 1, '', 9, 1, 29568000, 0);
 
 -- --------------------------------------------------------
 
@@ -16122,10 +16102,9 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_orders_id` (
 -- Table structure for table `nv4_shops_orders_id_group`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_orders_id_group` (
+CREATE TABLE `nv4_shops_orders_id_group` (
   `order_i` int(11) NOT NULL,
-  `group_id` mediumint(8) NOT NULL,
-  UNIQUE KEY `orderid` (`order_i`,`group_id`)
+  `group_id` mediumint(8) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -16134,24 +16113,22 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_orders_id_group` (
 -- Table structure for table `nv4_shops_orders_shipping`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_orders_shipping` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) unsigned NOT NULL,
-  `ship_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ship_phone` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ship_location_id` mediumint(8) unsigned NOT NULL,
-  `ship_address_extend` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ship_shops_id` tinyint(3) unsigned NOT NULL,
-  `ship_carrier_id` tinyint(3) unsigned NOT NULL,
-  `weight` double NOT NULL DEFAULT '0',
-  `weight_unit` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `ship_price` double NOT NULL DEFAULT '0',
-  `ship_price_unit` char(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `add_time` int(11) unsigned NOT NULL,
-  `edit_time` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `add_time` (`add_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_orders_shipping` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `order_id` int(11) UNSIGNED NOT NULL,
+  `ship_name` varchar(250) NOT NULL,
+  `ship_phone` varchar(25) NOT NULL,
+  `ship_location_id` mediumint(8) UNSIGNED NOT NULL,
+  `ship_address_extend` varchar(250) NOT NULL,
+  `ship_shops_id` tinyint(3) UNSIGNED NOT NULL,
+  `ship_carrier_id` tinyint(3) UNSIGNED NOT NULL,
+  `weight` double NOT NULL DEFAULT 0,
+  `weight_unit` char(20) NOT NULL DEFAULT '',
+  `ship_price` double NOT NULL DEFAULT 0,
+  `ship_price_unit` char(3) NOT NULL DEFAULT '',
+  `add_time` int(11) UNSIGNED NOT NULL,
+  `edit_time` int(11) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -16159,10 +16136,9 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_orders_shipping` (
 -- Table structure for table `nv4_shops_point`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_point` (
-  `userid` int(11) NOT NULL DEFAULT '0',
-  `point_total` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`userid`)
+CREATE TABLE `nv4_shops_point` (
+  `userid` int(11) NOT NULL DEFAULT 0,
+  `point_total` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -16171,14 +16147,13 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_point` (
 -- Table structure for table `nv4_shops_point_history`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_point_history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_shops_point_history` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL DEFAULT 0,
   `order_id` int(11) NOT NULL,
-  `point` int(11) NOT NULL DEFAULT '0',
-  `time` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `point` int(11) NOT NULL DEFAULT 0,
+  `time` int(11) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -16186,10 +16161,10 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_point_history` (
 -- Table structure for table `nv4_shops_point_queue`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_point_queue` (
+CREATE TABLE `nv4_shops_point_queue` (
   `order_id` int(11) NOT NULL,
-  `point` mediumint(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `point` mediumint(11) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -16198,18 +16173,17 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_point_queue` (
 -- Table structure for table `nv4_shops_review`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_review` (
-  `review_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) NOT NULL DEFAULT '0',
-  `userid` int(11) NOT NULL DEFAULT '0',
-  `sender` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `nv4_shops_review` (
+  `review_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL DEFAULT 0,
+  `userid` int(11) NOT NULL DEFAULT 0,
+  `sender` varchar(250) NOT NULL,
+  `content` text NOT NULL,
   `rating` int(1) NOT NULL,
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`review_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `add_time` int(11) NOT NULL DEFAULT 0,
+  `edit_time` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -16217,61 +16191,65 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_review` (
 -- Table structure for table `nv4_shops_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_rows` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `listcatid` int(11) NOT NULL DEFAULT '0',
-  `user_id` mediumint(8) NOT NULL DEFAULT '0',
-  `addtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(11) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `publtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(11) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `product_code` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `product_number` int(11) NOT NULL DEFAULT '0',
-  `product_price` double NOT NULL DEFAULT '0',
-  `price_config` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `saleprice` double NOT NULL DEFAULT '0',
-  `money_unit` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+CREATE TABLE `nv4_shops_rows` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `listcatid` int(11) NOT NULL DEFAULT 0,
+  `user_id` mediumint(8) NOT NULL DEFAULT 0,
+  `addtime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `publtime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `product_code` varchar(250) NOT NULL DEFAULT '',
+  `product_number` int(11) NOT NULL DEFAULT 0,
+  `product_price` double NOT NULL DEFAULT 0,
+  `price_config` text NOT NULL,
+  `saleprice` double NOT NULL DEFAULT 0,
+  `money_unit` char(3) NOT NULL,
   `product_unit` smallint(4) NOT NULL,
-  `product_weight` double NOT NULL DEFAULT '0',
-  `weight_unit` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `discount_id` smallint(6) NOT NULL DEFAULT '0',
-  `homeimgfile` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `homeimgalt` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `otherimage` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imgposition` tinyint(1) NOT NULL DEFAULT '1',
-  `copyright` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `gift_from` int(11) unsigned NOT NULL DEFAULT '0',
-  `gift_to` int(11) unsigned NOT NULL DEFAULT '0',
-  `inhome` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_rating` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `ratingdetail` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `allowed_send` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_print` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_save` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitslm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `num_sell` mediumint(8) NOT NULL DEFAULT '0',
-  `showprice` tinyint(2) NOT NULL DEFAULT '0',
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vi_bodytext` mediumtext COLLATE utf8mb4_unicode_ci,
-  `vi_gift_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vi_address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vi_tag_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_tag_description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `vi_alias` (`vi_alias`),
-  KEY `listcatid` (`listcatid`),
-  KEY `user_id` (`user_id`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=9 ;
+  `product_weight` double NOT NULL DEFAULT 0,
+  `weight_unit` char(20) NOT NULL DEFAULT '',
+  `discount_id` smallint(6) NOT NULL DEFAULT 0,
+  `homeimgfile` varchar(250) NOT NULL DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `homeimgalt` varchar(250) NOT NULL,
+  `otherimage` text NOT NULL,
+  `imgposition` tinyint(1) NOT NULL DEFAULT 1,
+  `copyright` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `gift_from` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `gift_to` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `inhome` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_rating` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `ratingdetail` varchar(250) NOT NULL DEFAULT '',
+  `allowed_send` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_print` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_save` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitslm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `num_sell` mediumint(8) NOT NULL DEFAULT 0,
+  `showprice` tinyint(2) NOT NULL DEFAULT 0,
+  `vi_title` varchar(250) NOT NULL DEFAULT '',
+  `vi_alias` varchar(250) NOT NULL DEFAULT '',
+  `vi_hometext` text NOT NULL,
+  `vi_bodytext` mediumtext DEFAULT NULL,
+  `vi_gift_content` text NOT NULL,
+  `vi_address` text NOT NULL,
+  `vi_tag_title` varchar(255) NOT NULL DEFAULT '',
+  `vi_tag_description` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nv4_shops_rows`
+--
+
+INSERT INTO `nv4_shops_rows` (`id`, `listcatid`, `user_id`, `addtime`, `edittime`, `status`, `publtime`, `exptime`, `archive`, `product_code`, `product_number`, `product_price`, `price_config`, `saleprice`, `money_unit`, `product_unit`, `product_weight`, `weight_unit`, `discount_id`, `homeimgfile`, `homeimgthumb`, `homeimgalt`, `otherimage`, `imgposition`, `copyright`, `gift_from`, `gift_to`, `inhome`, `allowed_comm`, `allowed_rating`, `ratingdetail`, `allowed_send`, `allowed_print`, `allowed_save`, `hitstotal`, `hitscm`, `hitslm`, `num_sell`, `showprice`, `vi_title`, `vi_alias`, `vi_hometext`, `vi_bodytext`, `vi_gift_content`, `vi_address`, `vi_tag_title`, `vi_tag_description`) VALUES
+(9, 15, 1, 1680033001, 1680033346, 1, 1680033001, 0, 2, 'NBHP_X360_76V59PA', 1, 29568000, '', 0, 'VND', 2, 1.3, 'kg', 0, '2023_03/hp-envy-x360-13-bf0092tu-76v59pa.jpg', 1, '', '', 0, 0, 0, 0, 1, 0, 1, '0', 1, 1, 1, 2, 0, 0, 1, 1, 'Laptop HP Envy X360 13-BF0092TU I7-1250U&#x002F; 8GB RAM&#x002F; 512GB SSD&#x002F; 13.3INCH 2.8K TOUCH&#x002F;PEN&#x002F; WIN11&#x002F;76V59PA', 'laptop-hp-envy-x360-13-bf0092tu-i7-1250u-8gb-ram-512gb-ssd-13-3inch-2-8k-touch-pen-win11-76v59pa', '<ul>	<li><b>Hệ điều hành:</b>&nbsp;Windows 11 Home</li>	<li><b>CPU:</b>&nbsp;Intel® Core™ i7-1250U (bộ nhớ đệm 12M, lên đến 4,70 GHz)</li>	<li><b>Ram:</b>&nbsp;8GB Onboard LPDDR4X 4266MHz</li>	<li><b>Ổ cứng (HDD/SSD):</b>&nbsp;512GB SSD</li>	<li><b>Bảo hành:</b>&nbsp;12 tháng</li></ul>', '<table>	<tbody>		<tr>			<td>Màu sắc</td>			<td>Space Blue</td>		</tr>		<tr>			<td>Hệ điều hành</td>			<td>Windows 11 Home</td>		</tr>		<tr>			<td>Chipset</td>			<td>Intel®</td>		</tr>		<tr>			<td>CPU</td>			<td>Intel® Core™ i7-1250U (bộ nhớ đệm 12M, lên đến 4,70 GHz)</td>		</tr>		<tr>			<td>Ram</td>			<td>8GB Onboard LPDDR4X 4266MHz</td>		</tr>		<tr>			<td>Ổ cứng (HDD/SSD)</td>			<td>512GB SSD</td>		</tr>		<tr>			<td>Size màn hình</td>			<td>13.3 inch 2.8K (2880 x 1800), OLED, multitouch-enabled, UWVA, edge-to-edge glass, micro-edge, Corning® Gorilla® Glass NBT™, Low Blue Light, SDR 400 nits, HDR 500 nits, 100% DCI-P3 Cảm ứng (có bút)</td>		</tr>		<tr>			<td>Card đồ họa (VGA)</td>			<td>Intel® Iris® Xᵉ Graphics</td>		</tr>		<tr>			<td>Bảo mật</td>			<td>Bảo mật vân tay</td>		</tr>		<tr>			<td>Giao tiếp mạng</td>			<td>WiFi 802.11ax (Wifi 6) , Bluetooth 5.3</td>		</tr>		<tr>			<td>Cổng giao tiếp</td>			<td>2 Thunderbolt™ 4 with USB4™ Type-C® 40Gbps signaling rate (USB Power Delivery,<br />			DisplayPort™ 1.4, HP Sleep and Charge);<br />			1 SuperSpeed USB Type-A 10Gbps signaling rate (HP Sleep and Charge);<br />			1 SuperSpeed USB Type-A 10Gbps signaling rate;</td>		</tr>		<tr>			<td>Khe thẻ nhớ</td>			<td>1 x micro SD card slot</td>		</tr>		<tr>			<td>Webcam</td>			<td>HP True Vision 5MP IR camera with camera shutter, temporal noise reduction and integrated dual array digital microphones</td>		</tr>		<tr>			<td>PIN/Battery</td>			<td>4-cell, 66 Wh Li-ion</td>		</tr>		<tr>			<td>Thiết kế</td>			<td>Đèn nền bàn phím</td>		</tr>		<tr>			<td>Kích thước</td>			<td>Kích thước (Dài x Rộng x Cao) 29.83 x 21.49 x 1.61 cm</td>		</tr>		<tr>			<td>Trọng lượng</td>			<td>1.3 kg</td>		</tr>		<tr>			<td>Hãng sản xuất</td>			<td>HP</td>		</tr>		<tr>			<td>Bảo hành</td>			<td>12 tháng</td>		</tr>	</tbody></table>', '', '', '', ''),
+(10, 15, 1, 1681689028, 1681689233, 1, 1681689028, 0, 2, 'NBHP_840G9_6Z965PA', 1, 29344000, '', 0, 'VND', 2, 1.36, 'kg', 0, '2023_04/hp-elitebook-840-g9-6z965pa.jpg', 1, '', '2023_04/hp-elitebook-840-g9_5_1.jpg|2023_04/hp-elitebook-840-g9_1_1.jpg|2023_04/hp-elitebook-840-g9_4_1.jpg', 0, 0, 0, 0, 1, 0, 1, '0', 1, 1, 1, 0, 0, 0, 0, 1, 'Laptop HP EliteBook 840 G9 i5-1235U&#x002F; 8GB RAM&#x002F; 256GB SSD&#x002F; 14&quot; WUXGA&#x002F; WIN11 PRO 64&#x002F; Bạc - 6Z965PA', 'laptop-hp-elitebook-840-g9-i5-1235u-8gb-ram-256gb-ssd-14-wuxga-win11-pro-64-bac-6z965pa', '<ul>	<li><b>Hệ điều hành:</b>&nbsp;Windows 11 Pro</li>	<li><b>CPU:</b>&nbsp;Intel® Core™ i5-1235U (up to 4.4 GHz with Intel® Turbo Boost Technology, 12 MB L3 cache, 10 cores, 12 threads)</li>	<li><b>Ram:</b>&nbsp;8 GB DDR5-4800 MHz RAM (2 khe)</li>	<li><b>Ổ cứng (HDD/SSD):</b>&nbsp;256 GB PCIe® NVMe™ SSD</li>	<li><b>Bảo hành:</b>&nbsp;36 tháng</li></ul>', '<table>	<tbody>		<tr>			<td>Màu sắc</td>			<td>Bạc</td>		</tr>		<tr>			<td>Hệ điều hành</td>			<td>Windows 11 Pro</td>		</tr>		<tr>			<td>Chipset</td>			<td>Intel®</td>		</tr>		<tr>			<td>CPU</td>			<td>Intel® Core™ i5-1235U (up to 4.4 GHz with Intel® Turbo Boost Technology, 12 MB L3 cache, 10 cores, 12 threads)</td>		</tr>		<tr>			<td>Ram</td>			<td>8 GB DDR5-4800 MHz RAM (2 khe)</td>		</tr>		<tr>			<td>Ổ cứng (HDD/SSD)</td>			<td>256 GB PCIe® NVMe™ SSD</td>		</tr>		<tr>			<td>Size màn hình</td>			<td>35.6 cm (14&quot;) diagonal, WUXGA (1920 x 1200), IPS, anti-glare, 250 nits, 45% NTSC</td>		</tr>		<tr>			<td>Card đồ họa (VGA)</td>			<td>Intel® Iris® Xᵉ Graphics</td>		</tr>		<tr>			<td>Âm thanh</td>			<td>Công nghệ âm thanh của Bang &amp; Olufsen, loa âm thanh nổi kép, dàn micrô kép ngay trên bàn phím</td>		</tr>		<tr>			<td>Bảo mật</td>			<td>FINGERPRINT</td>		</tr>		<tr>			<td>Giao tiếp mạng</td>			<td>Intel® Wi-Fi 6E AX211 (2x2) and Bluetooth® 5.2 combo (Supporting Gigabit data rate)</td>		</tr>		<tr>			<td>Cổng giao tiếp</td>			<td>2 cổng Thunderbolt™ 4 với USB4™ Type-C® có tốc độ truyền tín hiệu 40Gbps (USB Power Delivery, DisplayPort™ 1.4); 2 cổng SuperSpeed USB Type-A có tốc độ truyền tín hiệu 5Gbps (1 cổng sạc); 1 cổng HDMI 2.0; 1 nguồn AC (Cáp HDMI được bán riêng.)</td>		</tr>		<tr>			<td>Webcam</td>			<td>5 MP camera</td>		</tr>		<tr>			<td>PIN/Battery</td>			<td>HP Long Life 3-cell, 51 Wh Li-ion</td>		</tr>		<tr>			<td>Thiết kế</td>			<td>Thiết bị trỏ: Clickpad with multi-touch gesture support, taps enabled as default<br />			Bàn phím: HP Premium Keyboard – spill-resistant, backlit keyboard</td>		</tr>		<tr>			<td>Kích thước</td>			<td>31,56 x 22,4 x 1,92 cm</td>		</tr>		<tr>			<td>Trọng lượng</td>			<td>Starting at 1.36 kg</td>		</tr>		<tr>			<td>Hãng sản xuất</td>			<td>HP</td>		</tr>		<tr>			<td>Bảo hành</td>			<td>36 tháng</td>		</tr>	</tbody></table>', '', '', '', ''),
+(11, 16, 1, 1681689529, 1681689529, 1, 1681689529, 0, 2, 'NBDE_3510_F002BBL', 1, 18704000, '', 0, 'VND', 1, 1.69, 'kg', 0, '2023_04/dell-vostro-3510-p112f002bbl-0.jpg', 1, '', '', 0, 0, 0, 0, 1, 0, 1, '0', 1, 1, 1, 0, 0, 0, 0, 1, 'Laptop Dell Vostro 3510 I5-1135G7&#x002F;8GB&#x002F; 512GB SSD&#x002F; 15.6INCH FHD&#x002F;NV-MX350 2GB&#x002F; WIN 11&#x002F; OFFICE HS 21&#x002F;P112F002BBL', 'laptop-dell-vostro-3510-i5-1135g7-8gb-512gb-ssd-15-6inch-fhd-nv-mx350-2gb-win-11-office-hs-21-p112f002bbl', '<ul>	<li><b>Hệ điều hành:</b>&nbsp;Windows 11 + Office Home and Student 2021</li>	<li><b>CPU:</b>&nbsp;Intel® Core ™ i5-1135G7 (Up to 4.20 GHz, 8MB)</li>	<li><b>Ram:</b>&nbsp;8GB DDR4 3200MHz (2 khe)</li>	<li><b>Ổ cứng (HDD/SSD):</b>&nbsp;512GB SSD</li>	<li><b>Bảo hành:</b>&nbsp;12 tháng</li></ul>', '<table>	<tbody>		<tr>			<td>Màu sắc</td>			<td>Đen</td>		</tr>		<tr>			<td>Hệ điều hành</td>			<td>Windows 11 + Office Home and Student 2021</td>		</tr>		<tr>			<td>Chipset</td>			<td>Intel®</td>		</tr>		<tr>			<td>CPU</td>			<td>Intel® Core ™ i5-1135G7 (Up to 4.20 GHz, 8MB)</td>		</tr>		<tr>			<td>Ram</td>			<td>8GB DDR4 3200MHz (2 khe)</td>		</tr>		<tr>			<td>Ổ cứng (HDD/SSD)</td>			<td>512GB SSD</td>		</tr>		<tr>			<td>Size màn hình</td>			<td>15.6-inch FHD (1920 x 1080) Anti-glare LED-Backlit Non-touch Narrow Border Display</td>		</tr>		<tr>			<td>Card đồ họa (VGA)</td>			<td>NVIDIA® GeForce® MX350 2GB GDDR5</td>		</tr>		<tr>			<td>Âm thanh</td>			<td>Realtek High Definition Audio</td>		</tr>		<tr>			<td>Giao tiếp mạng</td>			<td>Bluetooth 5.0Wi-Fi 802.11 a/b/g/n/ac</td>		</tr>		<tr>			<td>Cổng giao tiếp</td>			<td>HDMI,2 x USB 3.2 , 1 x USB 2.0 ,Audio combo , LAN 1 Gb/s</td>		</tr>		<tr>			<td>Khe thẻ nhớ</td>			<td>1 x SD card slot</td>		</tr>		<tr>			<td>Webcam</td>			<td>HD webcam</td>		</tr>		<tr>			<td>PIN/Battery</td>			<td>3 Cell, 41WHr</td>		</tr>		<tr>			<td>Kích thước</td>			<td>Dài 358.5 mm - Rộng 235.5 mm - Dày 18.9 mm</td>		</tr>		<tr>			<td>Trọng lượng</td>			<td>1.69 kg</td>		</tr>		<tr>			<td>Hãng sản xuất</td>			<td>Dell</td>		</tr>		<tr>			<td>Bảo hành</td>			<td>12 tháng</td>		</tr>	</tbody></table>', '', '', '', ''),
+(12, 16, 1, 1681691377, 1681691377, 1, 1681691377, 0, 2, 'NBDE_3420_V4I7310W1', 0, 24752000, '', 0, 'VND', 1, 1.49, 'kg', 0, '2023_04/dell_vostro_3420.jpg', 1, '', '', 0, 0, 0, 0, 1, 0, 1, '0', 1, 1, 1, 0, 0, 0, 0, 1, 'Laptop Dell Vostro 3420 I7-1255U&#x002F;14.0&quot;FHD&#x002F; 1X8G&#x002F; 512GB SSD&#x002F;MX550 WITH 2GB GDDR6&#x002F;WIN 11&#x002F; OFFICE HS 2021&#x002F;V4I7310W1', 'laptop-dell-vostro-3420-i7-1255u-14-0-fhd-1x8g-512gb-ssd-mx550-with-2gb-gddr6-win-11-office-hs-2021-v4i7310w1', '<ul>	<li><b>Hệ điều hành:</b>&nbsp;Windows 11 Home SL 64bit +Office Home and Student 2021</li>	<li><b>CPU:</b>&nbsp;Intel® Core™ i7-1255U (bộ nhớ đệm 12M, lên đến 4,70 GHz)</li>	<li><b>Ram:</b>&nbsp;8 GB DDR4 3200MHz</li>	<li><b>Ổ cứng (HDD/SSD):</b>&nbsp;512GB SSD</li></ul>', '<table>	<tbody>		<tr>			<td>Hệ điều hành</td>			<td>Windows 11 Home SL 64bit +Office Home and Student 2021</td>		</tr>		<tr>			<td>Chipset</td>			<td>Intel®</td>		</tr>		<tr>			<td>CPU</td>			<td>Intel® Core™ i7-1255U (bộ nhớ đệm 12M, lên đến 4,70 GHz)</td>		</tr>		<tr>			<td>Ram</td>			<td>8 GB DDR4 3200MHz</td>		</tr>		<tr>			<td>Ổ cứng (HDD/SSD)</td>			<td>512GB SSD</td>		</tr>		<tr>			<td>Size màn hình</td>			<td>14.0 inch Full HD (1920x1080) Anti-Glare LED-backlit</td>		</tr>		<tr>			<td>Card đồ họa (VGA)</td>			<td>Nvidia GeForce MX550 2GB GDDR6</td>		</tr>		<tr>			<td>Giao tiếp mạng</td>			<td>LAN 1000 802.11AC, Bluetooth</td>		</tr>		<tr>			<td>Cổng giao tiếp</td>			<td>1 x USB 2.0<br />			Jack tai nghe 3.5 mm<br />			1 x USB 3.2<br />			HDMI</td>		</tr>		<tr>			<td>Webcam</td>			<td>HD Webcam</td>		</tr>		<tr>			<td>PIN/Battery</td>			<td>3 cell 41WHR</td>		</tr>		<tr>			<td>Kích thước</td>			<td>Dài 320 mm - Rộng 220 mm - Dày 19 mm</td>		</tr>		<tr>			<td>Trọng lượng</td>			<td>1.49 kg</td>		</tr>	</tbody></table>', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -16279,16 +16257,15 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_rows` (
 -- Table structure for table `nv4_shops_shops`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_shops` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `address` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` tinyint(3) unsigned NOT NULL,
-  `status` tinyint(1) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_shops` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `location` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `address` varchar(250) NOT NULL,
+  `description` text NOT NULL,
+  `weight` tinyint(3) UNSIGNED NOT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -16296,11 +16273,10 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_shops` (
 -- Table structure for table `nv4_shops_shops_carrier`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_shops_carrier` (
-  `shops_id` tinyint(3) unsigned NOT NULL,
-  `carrier_id` tinyint(3) unsigned NOT NULL,
-  `config_id` tinyint(3) unsigned NOT NULL,
-  UNIQUE KEY `shops_id` (`shops_id`,`carrier_id`)
+CREATE TABLE `nv4_shops_shops_carrier` (
+  `shops_id` tinyint(3) UNSIGNED NOT NULL,
+  `carrier_id` tinyint(3) UNSIGNED NOT NULL,
+  `config_id` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -16309,15 +16285,22 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_shops_carrier` (
 -- Table structure for table `nv4_shops_tabs`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_tabs` (
-  `id` int(3) unsigned NOT NULL AUTO_INCREMENT,
-  `icon` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `content` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` int(10) unsigned NOT NULL DEFAULT '1',
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_tabs` (
+  `id` int(3) UNSIGNED NOT NULL,
+  `icon` varchar(50) NOT NULL DEFAULT '',
+  `content` varchar(50) NOT NULL DEFAULT '',
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `vi_title` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nv4_shops_tabs`
+--
+
+INSERT INTO `nv4_shops_tabs` (`id`, `icon`, `content`, `weight`, `active`, `vi_title`) VALUES
+(1, '', 'content_rate', 1, 1, 'Đánh giá sản phẩm'),
+(2, '', 'content_detail', 2, 1, 'Thông tin sản phẩm');
 
 -- --------------------------------------------------------
 
@@ -16325,12 +16308,10 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_tabs` (
 -- Table structure for table `nv4_shops_tags_id_vi`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_tags_id_vi` (
+CREATE TABLE `nv4_shops_tags_id_vi` (
   `id` int(11) NOT NULL,
   `tid` mediumint(9) NOT NULL,
-  `keyword` varchar(65) COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `sid` (`id`,`tid`),
-  KEY `tid` (`tid`)
+  `keyword` varchar(65) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -16347,17 +16328,15 @@ INSERT INTO `nv4_shops_tags_id_vi` (`id`, `tid`, `keyword`) VALUES
 -- Table structure for table `nv4_shops_tags_vi`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_tags_vi` (
-  `tid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `numpro` mediumint(8) NOT NULL DEFAULT '0',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `image` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `bodytext` text COLLATE utf8mb4_unicode_ci,
-  `keywords` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  PRIMARY KEY (`tid`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_shops_tags_vi` (
+  `tid` mediumint(8) UNSIGNED NOT NULL,
+  `numpro` mediumint(8) NOT NULL DEFAULT 0,
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `image` varchar(250) DEFAULT '',
+  `description` text DEFAULT NULL,
+  `bodytext` text DEFAULT NULL,
+  `keywords` varchar(250) DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_tags_vi`
@@ -16372,15 +16351,13 @@ INSERT INTO `nv4_shops_tags_vi` (`tid`, `numpro`, `alias`, `image`, `description
 -- Table structure for table `nv4_shops_template`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_template` (
-  `id` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` mediumint(8) unsigned NOT NULL DEFAULT '1',
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_shops_template` (
+  `id` mediumint(8) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `weight` mediumint(8) UNSIGNED NOT NULL DEFAULT 1,
+  `vi_title` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_template`
@@ -16395,21 +16372,18 @@ INSERT INTO `nv4_shops_template` (`id`, `status`, `alias`, `weight`, `vi_title`)
 -- Table structure for table `nv4_shops_transaction`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_transaction` (
-  `transaction_id` int(11) NOT NULL AUTO_INCREMENT,
-  `transaction_time` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_shops_transaction` (
+  `transaction_id` int(11) NOT NULL,
+  `transaction_time` int(11) NOT NULL DEFAULT 0,
   `transaction_status` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `userid` int(11) NOT NULL DEFAULT '0',
-  `payment` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `payment_id` varchar(22) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `payment_time` int(11) NOT NULL DEFAULT '0',
-  `payment_amount` double NOT NULL DEFAULT '0',
-  `payment_data` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`transaction_id`),
-  KEY `order_id` (`order_id`),
-  KEY `payment_id` (`payment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `order_id` int(11) NOT NULL DEFAULT 0,
+  `userid` int(11) NOT NULL DEFAULT 0,
+  `payment` varchar(100) NOT NULL DEFAULT '0',
+  `payment_id` varchar(22) NOT NULL DEFAULT '0',
+  `payment_time` int(11) NOT NULL DEFAULT 0,
+  `payment_amount` double NOT NULL DEFAULT 0,
+  `payment_data` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -16417,19 +16391,19 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_transaction` (
 -- Table structure for table `nv4_shops_units`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_units` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vi_title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `vi_note` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_shops_units` (
+  `id` int(11) NOT NULL,
+  `vi_title` varchar(250) NOT NULL DEFAULT '',
+  `vi_note` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_units`
 --
 
 INSERT INTO `nv4_shops_units` (`id`, `vi_title`, `vi_note`) VALUES
-(1, 'Tháng', '');
+(1, 'Tháng', ''),
+(2, 'Cái', '');
 
 -- --------------------------------------------------------
 
@@ -16437,14 +16411,13 @@ INSERT INTO `nv4_shops_units` (`id`, `vi_title`, `vi_note`) VALUES
 -- Table structure for table `nv4_shops_warehouse`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_warehouse` (
-  `wid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` mediumint(8) NOT NULL DEFAULT '0',
-  `addtime` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`wid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_shops_warehouse` (
+  `wid` int(11) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `note` text NOT NULL,
+  `user_id` mediumint(8) NOT NULL DEFAULT 0,
+  `addtime` int(11) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_warehouse`
@@ -16452,7 +16425,11 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_warehouse` (
 
 INSERT INTO `nv4_shops_warehouse` (`wid`, `title`, `note`, `user_id`, `addtime`) VALUES
 (1, 'Nhập kho ngày 20/09/2022', '', 1, 1663648269),
-(2, 'Nhập kho ngày 31/12/2022', '', 1, 1672490589);
+(2, 'Nhập kho ngày 31/12/2022', '', 1, 1672490589),
+(3, 'Nhập kho ngày 29/03/2023', '', 1, 1680033382),
+(4, 'Nhập kho ngày 17/04/2023', '', 1, 1681681560),
+(5, 'Nhập kho ngày 17/04/2023', '', 1, 1681689167),
+(6, 'Nhập kho ngày 17/04/2023', '', 1, 1681689587);
 
 -- --------------------------------------------------------
 
@@ -16460,16 +16437,14 @@ INSERT INTO `nv4_shops_warehouse` (`wid`, `title`, `note`, `user_id`, `addtime`)
 -- Table structure for table `nv4_shops_warehouse_logs`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_warehouse_logs` (
-  `logid` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `wid` int(11) unsigned NOT NULL DEFAULT '0',
-  `pro_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `quantity` int(11) unsigned NOT NULL DEFAULT '0',
-  `price` double NOT NULL DEFAULT '0',
-  `money_unit` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`logid`),
-  KEY `wid` (`wid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_shops_warehouse_logs` (
+  `logid` int(11) UNSIGNED NOT NULL,
+  `wid` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `pro_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `quantity` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `price` double NOT NULL DEFAULT 0,
+  `money_unit` char(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_warehouse_logs`
@@ -16477,7 +16452,11 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_warehouse_logs` (
 
 INSERT INTO `nv4_shops_warehouse_logs` (`logid`, `wid`, `pro_id`, `quantity`, `price`, `money_unit`) VALUES
 (1, 1, 2, 1, 2, 'VND'),
-(2, 2, 6, 100000, 0, 'VND');
+(2, 2, 6, 100000, 0, 'VND'),
+(3, 3, 9, 1, 26400000, 'VND'),
+(4, 4, 9, 1, 26400000, 'VND'),
+(5, 5, 10, 1, 26200000, 'VND'),
+(6, 6, 11, 1, 16700000, 'VND');
 
 -- --------------------------------------------------------
 
@@ -16485,16 +16464,14 @@ INSERT INTO `nv4_shops_warehouse_logs` (`logid`, `wid`, `pro_id`, `quantity`, `p
 -- Table structure for table `nv4_shops_warehouse_logs_group`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_warehouse_logs_group` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `logid` int(11) unsigned NOT NULL DEFAULT '0',
-  `listgroup` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` int(11) unsigned NOT NULL DEFAULT '0',
-  `price` double NOT NULL DEFAULT '0',
-  `money_unit` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `logid` (`logid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_shops_warehouse_logs_group` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `logid` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `listgroup` varchar(250) NOT NULL,
+  `quantity` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `price` double NOT NULL DEFAULT 0,
+  `money_unit` char(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_warehouse_logs_group`
@@ -16510,15 +16487,13 @@ INSERT INTO `nv4_shops_warehouse_logs_group` (`id`, `logid`, `listgroup`, `quant
 -- Table structure for table `nv4_shops_weight_vi`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_weight_vi` (
-  `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
-  `code` char(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exchange` double NOT NULL DEFAULT '0',
-  `round` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_shops_weight_vi` (
+  `id` tinyint(2) UNSIGNED NOT NULL,
+  `code` char(20) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `exchange` double NOT NULL DEFAULT 0,
+  `round` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_shops_weight_vi`
@@ -16534,12 +16509,11 @@ INSERT INTO `nv4_shops_weight_vi` (`id`, `code`, `title`, `exchange`, `round`) V
 -- Table structure for table `nv4_shops_wishlist`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_shops_wishlist` (
-  `wid` smallint(6) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned NOT NULL DEFAULT '0',
-  `listid` text COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`wid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_shops_wishlist` (
+  `wid` smallint(6) NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `listid` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -16547,17 +16521,15 @@ CREATE TABLE IF NOT EXISTS `nv4_shops_wishlist` (
 -- Table structure for table `nv4_upload_dir`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_upload_dir` (
-  `did` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `dirname` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time` int(11) NOT NULL DEFAULT '0',
-  `thumb_type` tinyint(4) NOT NULL DEFAULT '0',
-  `thumb_width` smallint(6) NOT NULL DEFAULT '0',
-  `thumb_height` smallint(6) NOT NULL DEFAULT '0',
-  `thumb_quality` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`did`),
-  UNIQUE KEY `name` (`dirname`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=44 ;
+CREATE TABLE `nv4_upload_dir` (
+  `did` mediumint(9) NOT NULL,
+  `dirname` varchar(250) DEFAULT NULL,
+  `time` int(11) NOT NULL DEFAULT 0,
+  `thumb_type` tinyint(4) NOT NULL DEFAULT 0,
+  `thumb_width` smallint(6) NOT NULL DEFAULT 0,
+  `thumb_height` smallint(6) NOT NULL DEFAULT 0,
+  `thumb_quality` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_upload_dir`
@@ -16595,18 +16567,15 @@ INSERT INTO `nv4_upload_dir` (`did`, `dirname`, `time`, `thumb_type`, `thumb_wid
 (28, 'uploads/sliderabout/2022', 1663902181, 0, 0, 0, 0),
 (30, 'uploads/nvtools', 0, 0, 0, 0, 0),
 (31, 'uploads/nvtools/compiler', 0, 0, 0, 0, 0),
-(32, 'uploads/survey', 0, 0, 0, 0, 0),
-(33, 'uploads/slidesurvey', 1673135065, 0, 0, 0, 0),
-(34, 'uploads/slidesurvey/2022', 1671624334, 0, 0, 0, 0),
-(35, 'uploads/degree', 1672185284, 0, 0, 0, 0),
+(44, 'uploads/shops/2023_03', 1680032888, 0, 0, 0, 0),
+(45, 'uploads/site', 0, 0, 0, 0, 0),
+(46, 'uploads/shops/2023_04', 1681688962, 0, 0, 0, 0),
 (36, 'uploads/news/2022_12', 0, 0, 0, 0, 0),
 (37, 'uploads/shops', 1672492291, 1, 300, 0, 90),
 (38, 'uploads/shops/2022_12', 1672490769, 0, 0, 0, 0),
 (39, 'uploads/shops/2015_05', 0, 0, 0, 0, 0),
 (40, 'uploads/shops/2023_01', 1672845106, 0, 0, 0, 0),
-(41, 'uploads/news/2023_01', 1673012415, 0, 0, 0, 0),
-(42, 'uploads/dich-vu-quan-ly-it', 1673098596, 0, 0, 0, 0),
-(43, 'uploads/quan-tri-he-thong', 1674217550, 0, 0, 0, 0);
+(41, 'uploads/news/2023_01', 1673012415, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -16614,23 +16583,20 @@ INSERT INTO `nv4_upload_dir` (`did`, `dirname`, `time`, `thumb_type`, `thumb_wid
 -- Table structure for table `nv4_upload_file`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_upload_file` (
-  `name` varchar(245) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ext` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `type` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `filesize` double NOT NULL DEFAULT '0',
-  `src` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `srcwidth` int(11) NOT NULL DEFAULT '0',
-  `srcheight` int(11) NOT NULL DEFAULT '0',
-  `sizes` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `mtime` int(11) NOT NULL DEFAULT '0',
-  `did` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(245) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alt` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  UNIQUE KEY `did` (`did`,`title`),
-  KEY `userid` (`userid`),
-  KEY `type` (`type`)
+CREATE TABLE `nv4_upload_file` (
+  `name` varchar(245) NOT NULL,
+  `ext` varchar(10) NOT NULL DEFAULT '',
+  `type` varchar(5) NOT NULL DEFAULT '',
+  `filesize` double NOT NULL DEFAULT 0,
+  `src` varchar(255) NOT NULL DEFAULT '',
+  `srcwidth` int(11) NOT NULL DEFAULT 0,
+  `srcheight` int(11) NOT NULL DEFAULT 0,
+  `sizes` varchar(50) NOT NULL DEFAULT '',
+  `userid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `mtime` int(11) NOT NULL DEFAULT 0,
+  `did` int(11) NOT NULL DEFAULT 0,
+  `title` varchar(245) NOT NULL DEFAULT '',
+  `alt` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -16703,7 +16669,7 @@ INSERT INTO `nv4_upload_file` (`name`, `ext`, `type`, `filesize`, `src`, `srcwid
 ('download.jpg', 'jpg', 'image', 5914, 'assets/download.jpg', 80, 43, '306|165', 1, 1671480292, 1, 'download.jpg', 'download'),
 ('cntt.png', 'png', 'image', 562800, 'assets/cntt.png', 80, 54, '1250|850', 1, 1671480704, 1, 'cntt.png', 'CNTT'),
 ('cntt-775x838.png', 'png', 'image', 415388, 'assets/cntt-775x838.png', 74, 80, '775|838', 0, 1671480805, 1, 'cntt-775x838.png', 'cntt 775x838'),
-('home_hero_...jpg', 'jpg', 'image', 712651, 'assets/slidesurvey/2022/home_hero_bg_tree_new2.jpg', 80, 34, '1200|496', 1, 1671624429, 34, 'home_hero_bg_tree_new2.jpg', 'Home Hero BG Tree new2'),
+('hp-envy-x3...jpg', 'jpg', 'image', 86209, 'assets/shops/2023_03/hp-envy-x360-13-bf0092tu-76v59pa.jpg', 80, 80, '800|802', 1, 1680032883, 44, 'hp-envy-x360-13-bf0092tu-76v59pa.jpg', 'hp envy x360 13 bf0092tu 76v59pa'),
 ('12037971_9...jpg', 'jpg', 'image', 77247, 'assets/12037971_928746340494194_6444422277835773201_n.jpg', 80, 54, '849|566', 1, 1671635878, 1, '12037971_928746340494194_6444422277835773201_n.jpg', '12037971 928746340494194 6444422277835773201 n'),
 ('14188607_1...jpg', 'jpg', 'image', 408017, 'assets/14188607_1099600130075480_3443467736566479321_o.jpg', 80, 46, '1500|844', 1, 1671635879, 1, '14188607_1099600130075480_3443467736566479321_o.jpg', '14188607 1099600130075480 3443467736566479321 o'),
 ('14196117_1...jpg', 'jpg', 'image', 211364, 'assets/14196117_1106877369347756_4552727126553401212_o.jpg', 80, 54, '1500|1000', 1, 1671635880, 1, '14196117_1106877369347756_4552727126553401212_o.jpg', '14196117 1106877369347756 4552727126553401212 o'),
@@ -16715,12 +16681,11 @@ INSERT INTO `nv4_upload_file` (`name`, `ext`, `type`, `filesize`, `src`, `srcwid
 ('1.png', 'png', 'image', 9388, 'assets/freecontent/1.png', 80, 80, '100|100', 1, 1671644339, 7, '1.png', '1'),
 ('5.png', 'png', 'image', 5845, 'assets/freecontent/5.png', 80, 80, '100|100', 1, 1671644339, 7, '5.png', '5'),
 ('7.png', 'png', 'image', 6330, 'assets/freecontent/7.png', 80, 80, '100|100', 1, 1671644339, 7, '7.png', '7'),
-('pmp-600px.png', 'png', 'image', 9893, 'assets/degree/pmp-600px.png', 80, 80, '110|110', 1, 1672185293, 35, 'pmp-600px.png', 'pmp 600px'),
-('certiprof-...png', 'png', 'image', 19245, 'assets/degree/certiprof-badge-sfpc.png', 80, 80, '110|110', 1, 1672185387, 35, 'certiprof-badge-sfpc.png', 'CertiProf Badge SFPC'),
-('certiprof-...png', 'png', 'image', 20690, 'assets/degree/certiprof-badge-lll.png', 80, 80, '110|110', 1, 1672185874, 35, 'certiprof-badge-lll.png', 'CertiProf Badge LLL'),
-('comptia_se...png', 'png', 'image', 8989, 'assets/degree/comptia_security_2bce.png', 80, 80, '110|110', 1, 1672186044, 35, 'comptia_security_2bce.png', 'CompTIA Security 2Bce'),
-('big_data_f...png', 'png', 'image', 16159, 'assets/degree/big_data_found_level_1_-_cc_-_2019.png', 80, 80, '110|110', 1, 1672186115, 35, 'big_data_found_level_1_-_cc_-_2019.png', 'Big Data Found Level 1   CC   2019'),
-('data_sci_f...png', 'png', 'image', 16128, 'assets/degree/data_sci_found_level_1_-_cc_-_2019.png', 80, 80, '110|110', 1, 1672186184, 35, 'data_sci_found_level_1_-_cc_-_2019.png', 'Data Sci Found Level 1   CC   2019'),
+('hp-elitebo...jpg', 'jpg', 'image', 188852, 'assets/shops/2023_04/hp-elitebook-840-g9_5_1.jpg', 80, 44, '1500|830', 1, 1681688957, 46, 'hp-elitebook-840-g9_5_1.jpg', 'hp elitebook 840 g9 5 1'),
+('hp-elitebo...jpg', 'jpg', 'image', 98527, 'assets/shops/2023_04/hp-elitebook-840-g9-6z965pa.jpg', 80, 57, '800|572', 1, 1681688957, 46, 'hp-elitebook-840-g9-6z965pa.jpg', 'hp elitebook 840 g9 6z965pa'),
+('hp-elitebo...jpg', 'jpg', 'image', 171398, 'assets/shops/2023_04/hp-elitebook-840-g9_4_1.jpg', 80, 42, '1500|792', 1, 1681688954, 46, 'hp-elitebook-840-g9_4_1.jpg', 'hp elitebook 840 g9 4 1'),
+('dell-vostr...jpg', 'jpg', 'image', 136591, 'assets/shops/2023_04/dell-vostro-3510-p112f002bbl-0.jpg', 80, 70, '802|703', 1, 1681689469, 46, 'dell-vostro-3510-p112f002bbl-0.jpg', 'dell vostro 3510 p112f002bbl 0'),
+('dell_vostr...jpg', 'jpg', 'image', 224827, 'assets/shops/2023_04/dell_vostro_3420.jpg', 80, 49, '734|449', 1, 1681691313, 46, 'dell_vostro_3420.jpg', 'dell vostro 3420'),
 ('goi-c-new.jpg', 'jpg', 'image', 69883, 'assets/shops/2022_12/goi-c-new.jpg', 80, 49, '400|243', 1, 1672490763, 38, 'goi-c-new.jpg', 'Gói C'),
 ('giai-phap-...png', 'png', 'image', 110053, 'assets/shops/2022_12/giai-phap-it-manager-thue-ngoai-new.png', 80, 49, '400|243', 1, 1672490797, 38, 'giai-phap-it-manager-thue-ngoai-new.png', 'Giai phap IT Manager thue ngoai'),
 ('giai-phap-...png', 'png', 'image', 79392, 'assets/shops/2022_12/giai-phap-helpdesk-online-new.png', 80, 49, '400|243', 1, 1672490797, 38, 'giai-phap-helpdesk-online-new.png', 'Giai phap helpdesk online'),
@@ -16738,7 +16703,7 @@ INSERT INTO `nv4_upload_file` (`name`, `ext`, `type`, `filesize`, `src`, `srcwid
 ('quy-trinh-...png', 'png', 'image', 510210, 'assets/quy-trinh-lam-viec-it-support.vn_-1536x584.png', 80, 31, '1500|571', 1, 1673019194, 1, 'quy-trinh-lam-viec-it-support.vn_-1536x584.png', 'quy trinh lam viec it support vn  1536x584'),
 ('ldp-m-care...png', 'png', 'image', 38576, 'assets/ldp-m-care-1047-x-390-11-2.png', 80, 30, '1047|390', 1, 1673095705, 1, 'ldp-m-care-1047-x-390-11-2.png', 'ldp m care 1047 x 390 11 &#40;2&#41;'),
 ('outsourcin...png', 'png', 'image', 340857, 'assets/outsourcing_banner.png', 80, 24, '1000|300', 1, 1673098401, 1, 'outsourcing_banner.png', 'outsourcing banner'),
-('bg_slide.jpg', 'jpg', 'image', 749853, 'assets/dich-vu-quan-ly-it/bg_slide.jpg', 80, 24, '1423|420', 1, 1673098627, 42, 'bg_slide.jpg', 'bg slide'),
+('hp-elitebo...jpg', 'jpg', 'image', 212165, 'assets/shops/2023_04/hp-elitebook-840-g9_1_1.jpg', 80, 51, '1500|959', 1, 1681688956, 46, 'hp-elitebook-840-g9_1_1.jpg', 'hp elitebook 840 g9 1 1'),
 ('nukeviet-n...jpg', 'jpg', 'image', 18611, 'assets/news/nukeviet-nhantaidatviet2011.jpg', 80, 54, '400|268', 1, 1663275329, 9, 'nukeviet-nhantaidatviet2011.jpg', 'nukeviet nhantaidatviet2011'),
 ('tuyendung-...jpg', 'jpg', 'image', 83783, 'assets/news/tuyendung-kythuat.jpg', 80, 80, '300|300', 1, 1663275329, 9, 'tuyendung-kythuat.jpg', 'tuyendung kythuat'),
 ('chuc-mung-...jpg', 'jpg', 'image', 130708, 'assets/news/chuc-mung-nukeviet-thong-tu-20-bo-tttt.jpg', 80, 62, '461|360', 1, 1663275328, 9, 'chuc-mung-nukeviet-thong-tu-20-bo-tttt.jpg', 'chuc mung nukeviet thong tu 20 bo tttt'),
@@ -16758,29 +16723,27 @@ INSERT INTO `nv4_upload_file` (`name`, `ext`, `type`, `filesize`, `src`, `srcwid
 -- Table structure for table `nv4_vi_about`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_about` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imagealt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imageposition` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `bodytext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `socialbutton` tinyint(4) NOT NULL DEFAULT '0',
-  `activecomm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `layout_func` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` smallint(6) NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot_post` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10 ;
+CREATE TABLE `nv4_vi_about` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `alias` varchar(250) NOT NULL,
+  `image` varchar(255) DEFAULT '',
+  `imagealt` varchar(255) DEFAULT '',
+  `imageposition` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `description` text DEFAULT NULL,
+  `bodytext` mediumtext NOT NULL,
+  `keywords` text DEFAULT NULL,
+  `socialbutton` tinyint(4) NOT NULL DEFAULT 0,
+  `activecomm` varchar(255) DEFAULT '',
+  `layout_func` varchar(100) DEFAULT '',
+  `weight` smallint(6) NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `add_time` int(11) NOT NULL DEFAULT 0,
+  `edit_time` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hot_post` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_about`
@@ -16795,10 +16758,9 @@ INSERT INTO `nv4_vi_about` (`id`, `title`, `alias`, `image`, `imagealt`, `imagep
 -- Table structure for table `nv4_vi_about_config`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_about_config` (
-  `config_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `config_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `config_name` (`config_name`)
+CREATE TABLE `nv4_vi_about_config` (
+  `config_name` varchar(30) NOT NULL,
+  `config_value` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -16821,168 +16783,169 @@ INSERT INTO `nv4_vi_about_config` (`config_name`, `config_value`) VALUES
 -- Table structure for table `nv4_vi_blocks_groups`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_blocks_groups` (
-  `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `theme` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `module` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file_name` varchar(55) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `template` varchar(55) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `position` varchar(55) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `exp_time` int(11) DEFAULT '0',
-  `active` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '1',
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `groups_view` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `all_func` tinyint(4) NOT NULL DEFAULT '0',
-  `weight` int(11) NOT NULL DEFAULT '0',
-  `config` text COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`bid`),
-  KEY `theme` (`theme`),
-  KEY `module` (`module`),
-  KEY `position` (`position`),
-  KEY `exp_time` (`exp_time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=152 ;
+CREATE TABLE `nv4_vi_blocks_groups` (
+  `bid` mediumint(8) UNSIGNED NOT NULL,
+  `theme` varchar(55) NOT NULL,
+  `module` varchar(55) NOT NULL,
+  `file_name` varchar(55) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `template` varchar(55) DEFAULT NULL,
+  `position` varchar(55) DEFAULT NULL,
+  `exp_time` int(11) DEFAULT 0,
+  `active` varchar(10) DEFAULT '1',
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `groups_view` varchar(255) DEFAULT '',
+  `all_func` tinyint(4) NOT NULL DEFAULT 0,
+  `weight` int(11) NOT NULL DEFAULT 0,
+  `config` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_blocks_groups`
 --
 
 INSERT INTO `nv4_vi_blocks_groups` (`bid`, `theme`, `module`, `file_name`, `title`, `link`, `template`, `position`, `exp_time`, `active`, `act`, `groups_view`, `all_func`, `weight`, `config`) VALUES
-(1, 'default', 'news', 'module.block_newscenter.php', 'Tin mới nhất', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:10:{s:6:"numrow";i:6;s:11:"showtooltip";i:1;s:16:"tooltip_position";s:6:"bottom";s:14:"tooltip_length";s:3:"150";s:12:"length_title";i:0;s:15:"length_hometext";i:0;s:17:"length_othertitle";i:60;s:5:"width";i:500;s:6:"height";i:0;s:7:"nocatid";a:0:{}}'),
-(2, 'default', 'banners', 'global.banners.php', 'Quảng cáo giữa trang', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:12:"idplanbanner";i:1;}'),
-(3, 'default', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:"catid";i:0;s:12:"title_length";i:0;}'),
+(1, 'default', 'news', 'module.block_newscenter.php', 'Tin mới nhất', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:10:{s:6:\"numrow\";i:6;s:11:\"showtooltip\";i:1;s:16:\"tooltip_position\";s:6:\"bottom\";s:14:\"tooltip_length\";s:3:\"150\";s:12:\"length_title\";i:0;s:15:\"length_hometext\";i:0;s:17:\"length_othertitle\";i:60;s:5:\"width\";i:500;s:6:\"height\";i:0;s:7:\"nocatid\";a:0:{}}'),
+(2, 'default', 'banners', 'global.banners.php', 'Quảng cáo giữa trang', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:12:\"idplanbanner\";i:1;}'),
+(3, 'default', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:\"catid\";i:0;s:12:\"title_length\";i:0;}'),
 (4, 'default', 'theme', 'global.module_menu.php', 'Module Menu', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 2, ''),
-(5, 'default', 'banners', 'global.banners.php', 'Quảng cáo cột trái', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 1, 3, 'a:1:{s:12:"idplanbanner";i:2;}'),
+(5, 'default', 'banners', 'global.banners.php', 'Quảng cáo cột trái', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 1, 3, 'a:1:{s:12:\"idplanbanner\";i:2;}'),
 (6, 'default', 'statistics', 'global.counter.php', 'Thống kê', '', 'primary', '[LEFT]', 0, '1', 1, '6', 1, 4, ''),
 (7, 'default', 'about', 'global.about.php', 'Giới thiệu', '', 'border', '[RIGHT]', 0, '1', 1, '6', 1, 1, ''),
-(8, 'default', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:"idplanbanner";i:3;}'),
+(8, 'default', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:\"idplanbanner\";i:3;}'),
 (9, 'default', 'voting', 'global.voting_random.php', 'Thăm dò ý kiến', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 3, ''),
-(10, 'default', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:"number_day";i:3650;s:6:"numrow";i:10;s:11:"showtooltip";i:1;s:16:"tooltip_position";s:6:"bottom";s:14:"tooltip_length";s:3:"150";s:7:"nocatid";a:2:{i:0;i:10;i:1;i:11;}}'),
-(11, 'default', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:"copyright_by";s:0:"";s:13:"copyright_url";s:0:"";s:9:"design_by";s:12:"VINADES.,JSC";s:10:"design_url";s:18:"http://vinades.vn/";s:13:"siteterms_url";s:39:"/index.php?language=vi&amp;nv=siteterms";}'),
+(10, 'default', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:\"number_day\";i:3650;s:6:\"numrow\";i:10;s:11:\"showtooltip\";i:1;s:16:\"tooltip_position\";s:6:\"bottom\";s:14:\"tooltip_length\";s:3:\"150\";s:7:\"nocatid\";a:2:{i:0;i:10;i:1;i:11;}}'),
+(11, 'default', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:\"copyright_by\";s:0:\"\";s:13:\"copyright_url\";s:0:\"\";s:9:\"design_by\";s:12:\"VINADES.,JSC\";s:10:\"design_url\";s:18:\"http://vinades.vn/\";s:13:\"siteterms_url\";s:39:\"/index.php?language=vi&amp;nv=siteterms\";}'),
 (12, 'default', 'contact', 'global.contact_form.php', 'Feedback', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 2, ''),
 (13, 'default', 'theme', 'global.QR_code.php', 'QR code', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 1, ''),
 (14, 'default', 'statistics', 'global.counter_button.php', 'Online button', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 2, ''),
 (15, 'default', 'users', 'global.user_button.php', 'Đăng nhập thành viên', '', 'no_title', '[PERSONALAREA]', 0, '1', 1, '6', 1, 1, ''),
-(16, 'default', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:58:"Công ty cổ phần phát triển nguồn mở Việt Nam";s:15:"company_address";s:72:"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội";s:16:"company_sortname";s:12:"VINADES.,JSC";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:0:"";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:326:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s";s:13:"company_phone";s:58:"+84-24-85872007[+842485872007]|+84-904762534[+84904762534]";s:11:"company_fax";s:15:"+84-24-35500914";s:13:"company_email";s:18:"contact@vinades.vn";s:15:"company_website";s:17:"http://vinades.vn";}'),
-(17, 'default', 'menu', 'global.bootstrap.php', 'Menu Site', '', 'no_title', '[HEAD_RIGHT]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:"menuid";i:1;s:12:"title_length";i:0;}'),
-(19, 'default', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, 'a:3:{s:8:"facebook";s:32:"http://www.facebook.com/nukeviet";s:7:"youtube";s:37:"https://www.youtube.com/user/nukeviet";s:7:"twitter";s:28:"https://twitter.com/nukeviet";}'),
-(20, 'default', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:"module_in_menu";a:8:{i:0;s:5:"about";i:1;s:4:"news";i:2;s:5:"users";i:3;s:7:"contact";i:4;s:6:"voting";i:5;s:7:"banners";i:6;s:4:"seek";i:7;s:5:"feeds";}}'),
-(21, 'default', 'freecontent', 'global.free_content.php', 'Sản phẩm', '', 'no_title', '[FEATURED_PRODUCT]', 0, '1', 1, '6', 1, 1, 'a:2:{s:7:"blockid";i:1;s:7:"numrows";i:2;}'),
-(22, 'mobile_default', 'menu', 'global.metismenu.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:"menuid";i:1;s:12:"title_length";i:0;}'),
+(16, 'default', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:58:\"Công ty cổ phần phát triển nguồn mở Việt Nam\";s:15:\"company_address\";s:72:\"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội\";s:16:\"company_sortname\";s:12:\"VINADES.,JSC\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:0:\"\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:326:\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s\";s:13:\"company_phone\";s:58:\"+84-24-85872007[+842485872007]|+84-904762534[+84904762534]\";s:11:\"company_fax\";s:15:\"+84-24-35500914\";s:13:\"company_email\";s:18:\"contact@vinades.vn\";s:15:\"company_website\";s:17:\"http://vinades.vn\";}'),
+(17, 'default', 'menu', 'global.bootstrap.php', 'Menu Site', '', 'no_title', '[HEAD_RIGHT]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:\"menuid\";i:1;s:12:\"title_length\";i:0;}'),
+(19, 'default', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, 'a:3:{s:8:\"facebook\";s:32:\"http://www.facebook.com/nukeviet\";s:7:\"youtube\";s:37:\"https://www.youtube.com/user/nukeviet\";s:7:\"twitter\";s:28:\"https://twitter.com/nukeviet\";}'),
+(20, 'default', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:\"module_in_menu\";a:8:{i:0;s:5:\"about\";i:1;s:4:\"news\";i:2;s:5:\"users\";i:3;s:7:\"contact\";i:4;s:6:\"voting\";i:5;s:7:\"banners\";i:6;s:4:\"seek\";i:7;s:5:\"feeds\";}}'),
+(21, 'default', 'freecontent', 'global.free_content.php', 'Sản phẩm', '', 'no_title', '[FEATURED_PRODUCT]', 0, '1', 1, '6', 1, 1, 'a:2:{s:7:\"blockid\";i:1;s:7:\"numrows\";i:2;}'),
+(22, 'mobile_default', 'menu', 'global.metismenu.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:\"menuid\";i:1;s:12:\"title_length\";i:0;}'),
 (23, 'mobile_default', 'users', 'global.user_button.php', 'Sign In', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 2, ''),
 (24, 'mobile_default', 'contact', 'global.contact_default.php', 'Contact Default', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, ''),
 (25, 'mobile_default', 'contact', 'global.contact_form.php', 'Feedback', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 2, ''),
-(26, 'mobile_default', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 3, 'a:3:{s:8:"facebook";s:32:"http://www.facebook.com/nukeviet";s:7:"youtube";s:37:"https://www.youtube.com/user/nukeviet";s:7:"twitter";s:28:"https://twitter.com/nukeviet";}'),
+(26, 'mobile_default', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 3, 'a:3:{s:8:\"facebook\";s:32:\"http://www.facebook.com/nukeviet\";s:7:\"youtube\";s:37:\"https://www.youtube.com/user/nukeviet\";s:7:\"twitter\";s:28:\"https://twitter.com/nukeviet\";}'),
 (27, 'mobile_default', 'theme', 'global.QR_code.php', 'QR code', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 4, ''),
-(28, 'mobile_default', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:"copyright_by";s:0:"";s:13:"copyright_url";s:0:"";s:9:"design_by";s:12:"VINADES.,JSC";s:10:"design_url";s:18:"http://vinades.vn/";s:13:"siteterms_url";s:39:"/index.php?language=vi&amp;nv=siteterms";}'),
-(29, 'mobile_default', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'primary', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:"module_in_menu";a:9:{i:0;s:5:"about";i:1;s:4:"news";i:2;s:5:"users";i:3;s:7:"contact";i:4;s:6:"voting";i:5;s:7:"banners";i:6;s:4:"seek";i:7;s:5:"feeds";i:8;s:9:"siteterms";}}'),
-(30, 'mobile_default', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'primary', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:58:"Công ty cổ phần phát triển nguồn mở Việt Nam";s:15:"company_address";s:72:"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội";s:16:"company_sortname";s:12:"VINADES.,JSC";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:0:"";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:326:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s";s:13:"company_phone";s:58:"+84-24-85872007[+842485872007]|+84-904762534[+84904762534]";s:11:"company_fax";s:15:"+84-24-35500914";s:13:"company_email";s:18:"contact@vinades.vn";s:15:"company_website";s:17:"http://vinades.vn";}'),
-(31, 'smartline', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:58:"Công ty cổ phần phát triển nguồn mở Việt Nam";s:16:"company_sortname";s:12:"VINADES.,JSC";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:0:"";s:15:"company_address";s:72:"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:326:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s";s:13:"company_phone";s:74:"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;";s:11:"company_fax";s:15:"+84-24-35500914";s:13:"company_email";s:18:"contact@vinades.vn";s:15:"company_website";s:17:"http://vinades.vn";}'),
-(33, 'smartline', 'freecontent', 'global.free_content.php', 'Sản phẩm', '', 'no_title', '[FEATURED_PRODUCT]', 0, '1', 1, '6', 1, 1, 'a:2:{s:7:"blockid";i:1;s:7:"numrows";i:2;}'),
-(34, 'smartline', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:"copyright_by";s:0:"";s:13:"copyright_url";s:0:"";s:9:"design_by";s:12:"VINADES.,JSC";s:10:"design_url";s:18:"http://vinades.vn/";s:13:"siteterms_url";s:39:"/index.php?language=vi&amp;nv=siteterms";}'),
+(28, 'mobile_default', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:\"copyright_by\";s:0:\"\";s:13:\"copyright_url\";s:0:\"\";s:9:\"design_by\";s:12:\"VINADES.,JSC\";s:10:\"design_url\";s:18:\"http://vinades.vn/\";s:13:\"siteterms_url\";s:39:\"/index.php?language=vi&amp;nv=siteterms\";}'),
+(29, 'mobile_default', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'primary', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:\"module_in_menu\";a:9:{i:0;s:5:\"about\";i:1;s:4:\"news\";i:2;s:5:\"users\";i:3;s:7:\"contact\";i:4;s:6:\"voting\";i:5;s:7:\"banners\";i:6;s:4:\"seek\";i:7;s:5:\"feeds\";i:8;s:9:\"siteterms\";}}'),
+(30, 'mobile_default', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'primary', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:58:\"Công ty cổ phần phát triển nguồn mở Việt Nam\";s:15:\"company_address\";s:72:\"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội\";s:16:\"company_sortname\";s:12:\"VINADES.,JSC\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:0:\"\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:326:\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s\";s:13:\"company_phone\";s:58:\"+84-24-85872007[+842485872007]|+84-904762534[+84904762534]\";s:11:\"company_fax\";s:15:\"+84-24-35500914\";s:13:\"company_email\";s:18:\"contact@vinades.vn\";s:15:\"company_website\";s:17:\"http://vinades.vn\";}'),
+(31, 'smartline', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:58:\"Công ty cổ phần phát triển nguồn mở Việt Nam\";s:16:\"company_sortname\";s:12:\"VINADES.,JSC\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:0:\"\";s:15:\"company_address\";s:72:\"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:326:\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s\";s:13:\"company_phone\";s:74:\"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;\";s:11:\"company_fax\";s:15:\"+84-24-35500914\";s:13:\"company_email\";s:18:\"contact@vinades.vn\";s:15:\"company_website\";s:17:\"http://vinades.vn\";}'),
+(33, 'smartline', 'freecontent', 'global.free_content.php', 'Sản phẩm', '', 'no_title', '[FEATURED_PRODUCT]', 0, '1', 1, '6', 1, 1, 'a:2:{s:7:\"blockid\";i:1;s:7:\"numrows\";i:2;}'),
+(34, 'smartline', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:\"copyright_by\";s:0:\"\";s:13:\"copyright_url\";s:0:\"\";s:9:\"design_by\";s:12:\"VINADES.,JSC\";s:10:\"design_url\";s:18:\"http://vinades.vn/\";s:13:\"siteterms_url\";s:39:\"/index.php?language=vi&amp;nv=siteterms\";}'),
 (35, 'smartline', 'contact', 'global.contact_form.php', 'Feedback', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 2, ''),
-(36, 'smartline', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:"catid";i:0;s:12:"title_length";i:0;}'),
+(36, 'smartline', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:\"catid\";i:0;s:12:\"title_length\";i:0;}'),
 (37, 'smartline', 'theme', 'global.module_menu.php', 'Module Menu', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 2, ''),
-(38, 'smartline', 'banners', 'global.banners.php', 'Quảng cáo cột trái', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 1, 3, 'a:1:{s:12:"idplanbanner";i:2;}'),
+(38, 'smartline', 'banners', 'global.banners.php', 'Quảng cáo cột trái', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 1, 3, 'a:1:{s:12:\"idplanbanner\";i:2;}'),
 (39, 'smartline', 'statistics', 'global.counter.php', 'Thống kê', '', 'primary', '[LEFT]', 0, '1', 1, '6', 1, 4, ''),
-(40, 'smartline', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:"module_in_menu";a:8:{i:0;s:5:"about";i:1;s:4:"news";i:2;s:5:"users";i:3;s:7:"contact";i:4;s:6:"voting";i:5;s:7:"banners";i:6;s:4:"seek";i:7;s:5:"feeds";}}'),
-(41, 'smartline', 'menu', 'global.slimmenu.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:"menuid";i:1;s:12:"title_length";i:0;}'),
+(40, 'smartline', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:\"module_in_menu\";a:8:{i:0;s:5:\"about\";i:1;s:4:\"news\";i:2;s:5:\"users\";i:3;s:7:\"contact\";i:4;s:6:\"voting\";i:5;s:7:\"banners\";i:6;s:4:\"seek\";i:7;s:5:\"feeds\";}}'),
+(41, 'smartline', 'menu', 'global.slimmenu.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:\"menuid\";i:1;s:12:\"title_length\";i:0;}'),
 (42, 'smartline', 'users', 'global.user_button.php', 'Đăng nhập thành viên', '', 'no_title', '[PERSONALAREA]', 0, '1', 1, '6', 1, 1, ''),
 (43, 'smartline', 'theme', 'global.QR_code.php', 'QR code', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 1, ''),
 (44, 'smartline', 'statistics', 'global.counter_button.php', 'Online button', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 2, ''),
 (45, 'smartline', 'about', 'global.about.php', 'Giới thiệu', '', 'border', '[RIGHT]', 0, '1', 1, '6', 1, 1, ''),
-(46, 'smartline', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:"idplanbanner";i:3;}'),
+(46, 'smartline', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:\"idplanbanner\";i:3;}'),
 (47, 'smartline', 'voting', 'global.voting_random.php', 'Thăm dò ý kiến', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 3, ''),
-(48, 'smartline', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:"number_day";i:3650;s:6:"numrow";i:10;s:11:"showtooltip";i:1;s:16:"tooltip_position";s:6:"bottom";s:14:"tooltip_length";s:3:"150";s:7:"nocatid";a:2:{i:0;i:10;i:1;i:11;}}'),
-(49, 'smartline', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, 'a:4:{s:8:"facebook";s:32:"http://www.facebook.com/nukeviet";s:11:"google_plus";s:32:"https://www.google.com/+nukeviet";s:7:"youtube";s:37:"https://www.youtube.com/user/nukeviet";s:7:"twitter";s:28:"https://twitter.com/nukeviet";}'),
-(50, 'smartline', 'news', 'module.block_newscenter.php', 'Tin mới nhất', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:10:{s:6:"numrow";i:6;s:11:"showtooltip";i:1;s:16:"tooltip_position";s:6:"bottom";s:14:"tooltip_length";s:3:"150";s:12:"length_title";i:0;s:15:"length_hometext";i:0;s:17:"length_othertitle";i:60;s:5:"width";i:500;s:6:"height";i:0;s:7:"nocatid";a:0:{}}'),
-(51, 'smartline', 'banners', 'global.banners.php', 'Quảng cáo giữa trang', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:12:"idplanbanner";i:1;}'),
-(52, 'smartlinev2', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:58:"Công ty cổ phần phát triển nguồn mở Việt Nam";s:16:"company_sortname";s:12:"VINADES.,JSC";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:0:"";s:15:"company_address";s:72:"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:326:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s";s:13:"company_phone";s:74:"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;";s:11:"company_fax";s:15:"+84-24-35500914";s:13:"company_email";s:18:"contact@vinades.vn";s:15:"company_website";s:17:"http://vinades.vn";}'),
+(48, 'smartline', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:\"number_day\";i:3650;s:6:\"numrow\";i:10;s:11:\"showtooltip\";i:1;s:16:\"tooltip_position\";s:6:\"bottom\";s:14:\"tooltip_length\";s:3:\"150\";s:7:\"nocatid\";a:2:{i:0;i:10;i:1;i:11;}}'),
+(49, 'smartline', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, 'a:4:{s:8:\"facebook\";s:32:\"http://www.facebook.com/nukeviet\";s:11:\"google_plus\";s:32:\"https://www.google.com/+nukeviet\";s:7:\"youtube\";s:37:\"https://www.youtube.com/user/nukeviet\";s:7:\"twitter\";s:28:\"https://twitter.com/nukeviet\";}'),
+(50, 'smartline', 'news', 'module.block_newscenter.php', 'Tin mới nhất', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:10:{s:6:\"numrow\";i:6;s:11:\"showtooltip\";i:1;s:16:\"tooltip_position\";s:6:\"bottom\";s:14:\"tooltip_length\";s:3:\"150\";s:12:\"length_title\";i:0;s:15:\"length_hometext\";i:0;s:17:\"length_othertitle\";i:60;s:5:\"width\";i:500;s:6:\"height\";i:0;s:7:\"nocatid\";a:0:{}}'),
+(51, 'smartline', 'banners', 'global.banners.php', 'Quảng cáo giữa trang', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:12:\"idplanbanner\";i:1;}'),
+(52, 'smartlinev2', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:58:\"Công ty cổ phần phát triển nguồn mở Việt Nam\";s:16:\"company_sortname\";s:12:\"VINADES.,JSC\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:0:\"\";s:15:\"company_address\";s:72:\"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:326:\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s\";s:13:\"company_phone\";s:74:\"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;\";s:11:\"company_fax\";s:15:\"+84-24-35500914\";s:13:\"company_email\";s:18:\"contact@vinades.vn\";s:15:\"company_website\";s:17:\"http://vinades.vn\";}'),
 (53, 'smartlinev2', 'contact', 'global.contact_default.php', 'Contact Default', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, ''),
-(54, 'smartlinev2', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:"copyright_by";s:0:"";s:13:"copyright_url";s:0:"";s:9:"design_by";s:12:"VINADES.,JSC";s:10:"design_url";s:18:"http://vinades.vn/";s:13:"siteterms_url";s:39:"/index.php?language=vi&amp;nv=siteterms";}'),
+(54, 'smartlinev2', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:\"copyright_by\";s:0:\"\";s:13:\"copyright_url\";s:0:\"\";s:9:\"design_by\";s:12:\"VINADES.,JSC\";s:10:\"design_url\";s:18:\"http://vinades.vn/\";s:13:\"siteterms_url\";s:39:\"/index.php?language=vi&amp;nv=siteterms\";}'),
 (55, 'smartlinev2', 'contact', 'global.contact_form.php', 'Feedback', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 2, ''),
-(56, 'smartlinev2', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:"catid";i:0;s:12:"title_length";i:0;}'),
+(56, 'smartlinev2', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:\"catid\";i:0;s:12:\"title_length\";i:0;}'),
 (57, 'smartlinev2', 'theme', 'global.module_menu.php', 'Module Menu', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 2, ''),
-(58, 'smartlinev2', 'banners', 'global.banners.php', 'Quảng cáo cột trái', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 1, 3, 'a:1:{s:12:"idplanbanner";i:2;}'),
+(58, 'smartlinev2', 'banners', 'global.banners.php', 'Quảng cáo cột trái', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 1, 3, 'a:1:{s:12:\"idplanbanner\";i:2;}'),
 (59, 'smartlinev2', 'statistics', 'global.counter.php', 'Thống kê', '', 'primary', '[LEFT]', 0, '1', 1, '6', 1, 4, ''),
-(60, 'smartlinev2', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:"module_in_menu";a:8:{i:0;s:5:"about";i:1;s:4:"news";i:2;s:5:"users";i:3;s:7:"contact";i:4;s:6:"voting";i:5;s:7:"banners";i:6;s:4:"seek";i:7;s:5:"feeds";}}'),
-(61, 'smartlinev2', 'theme', 'global.bootstrap_seek.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:"menuid";i:1;s:12:"title_length";i:0;}'),
+(60, 'smartlinev2', 'theme', 'global.menu_footer.php', 'Các chuyên mục chính', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:1:{s:14:\"module_in_menu\";a:8:{i:0;s:5:\"about\";i:1;s:4:\"news\";i:2;s:5:\"users\";i:3;s:7:\"contact\";i:4;s:6:\"voting\";i:5;s:7:\"banners\";i:6;s:4:\"seek\";i:7;s:5:\"feeds\";}}'),
+(61, 'smartlinev2', 'theme', 'global.bootstrap_seek.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:\"menuid\";i:1;s:12:\"title_length\";i:0;}'),
 (62, 'smartlinev2', 'users', 'global.user_button.php', 'Đăng nhập thành viên', '', 'no_title', '[CONTACT_DEFAULT]', 0, '1', 1, '6', 1, 2, ''),
 (63, 'smartlinev2', 'theme', 'global.QR_code.php', 'QR code', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 1, ''),
 (64, 'smartlinev2', 'statistics', 'global.counter_button.php', 'Online button', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 2, ''),
 (65, 'smartlinev2', 'about', 'global.about.php', 'Giới thiệu', '', 'border', '[RIGHT]', 0, '1', 1, '6', 1, 1, ''),
-(66, 'smartlinev2', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:"idplanbanner";i:3;}'),
+(66, 'smartlinev2', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:\"idplanbanner\";i:3;}'),
 (67, 'smartlinev2', 'voting', 'global.voting_random.php', 'Thăm dò ý kiến', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 3, ''),
-(68, 'smartlinev2', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:"number_day";i:3650;s:6:"numrow";i:10;s:11:"showtooltip";i:1;s:16:"tooltip_position";s:6:"bottom";s:14:"tooltip_length";s:3:"150";s:7:"nocatid";a:2:{i:0;i:10;i:1;i:11;}}'),
-(69, 'smartlinev2', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[PERSONALAREA]', 0, '1', 1, '6', 1, 1, 'a:4:{s:8:"facebook";s:32:"http://www.facebook.com/nukeviet";s:11:"google_plus";s:32:"https://www.google.com/+nukeviet";s:7:"youtube";s:37:"https://www.youtube.com/user/nukeviet";s:7:"twitter";s:28:"https://twitter.com/nukeviet";}'),
-(70, 'smartlinev2', 'news', 'module.block_newscenter.php', 'Tin mới nhất', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:10:{s:6:"numrow";i:6;s:11:"showtooltip";i:1;s:16:"tooltip_position";s:6:"bottom";s:14:"tooltip_length";s:3:"150";s:12:"length_title";i:0;s:15:"length_hometext";i:0;s:17:"length_othertitle";i:60;s:5:"width";i:500;s:6:"height";i:0;s:7:"nocatid";a:0:{}}'),
-(71, 'smartlinev2', 'banners', 'global.banners.php', 'Quảng cáo giữa trang', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:12:"idplanbanner";i:1;}'),
-(72, 'beauty', 'theme', 'global.social.php', 'Kết nối với chúng tôi', '', 'title_footer', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:5:{s:8:"facebook";s:33:"https://www.facebook.com/adminwmt";s:11:"google_plus";s:0:"";s:7:"youtube";s:0:"";s:7:"twitter";s:0:"";s:6:"ketnoi";s:11:"<p>demo</p>";}'),
-(95, 'beauty', 'freecontent', 'global.gioithieu.php', 'Giới thiệu SML', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:"blockid";i:1;s:7:"numrows";i:4;s:11:"title_profe";s:24:"Giới thiệu Smartline";s:9:"gioithieu";s:848:"<p>Smartline là một nhà cung cấp dịch vụ CNTT chuyên nghiệp tập trung cung cấp các giải pháp CNTT cho các doanh nghiệp vừa và nhỏ tại Việt Nam. Công việc của chúng tôi là cung cấp các giải pháp CNTT chiến lược, chất lượng cao, duy trì và bảo vệ cơ sở hạ tầng CNTT của các doanh nghiệp.</p><p>Đội ngũ của chúng tôi bao gồm các nhà quản lý dự án cấp cao, tư vấn kỹ thuật về hệ thống, phát triển website, phần mềm và cơ sở dữ liệu và nhóm hỗ trợ IT. Chúng tôi có 1 mục tiêu duy nhất là: Cung cấp các giải pháp công nghệ thông tin độc đáo, chất lượng cao với chi phí hợp lý và thiết lập một mối quan hệ kinh doanh lâu dài với khách hàng của chúng tôi.<br />&nbsp;</p>";}'),
+(68, 'smartlinev2', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:\"number_day\";i:3650;s:6:\"numrow\";i:10;s:11:\"showtooltip\";i:1;s:16:\"tooltip_position\";s:6:\"bottom\";s:14:\"tooltip_length\";s:3:\"150\";s:7:\"nocatid\";a:2:{i:0;i:10;i:1;i:11;}}'),
+(69, 'smartlinev2', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[PERSONALAREA]', 0, '1', 1, '6', 1, 1, 'a:4:{s:8:\"facebook\";s:32:\"http://www.facebook.com/nukeviet\";s:11:\"google_plus\";s:32:\"https://www.google.com/+nukeviet\";s:7:\"youtube\";s:37:\"https://www.youtube.com/user/nukeviet\";s:7:\"twitter\";s:28:\"https://twitter.com/nukeviet\";}'),
+(70, 'smartlinev2', 'news', 'module.block_newscenter.php', 'Tin mới nhất', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:10:{s:6:\"numrow\";i:6;s:11:\"showtooltip\";i:1;s:16:\"tooltip_position\";s:6:\"bottom\";s:14:\"tooltip_length\";s:3:\"150\";s:12:\"length_title\";i:0;s:15:\"length_hometext\";i:0;s:17:\"length_othertitle\";i:60;s:5:\"width\";i:500;s:6:\"height\";i:0;s:7:\"nocatid\";a:0:{}}'),
+(71, 'smartlinev2', 'banners', 'global.banners.php', 'Quảng cáo giữa trang', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:12:\"idplanbanner\";i:1;}'),
+(72, 'beauty', 'theme', 'global.social.php', 'Kết nối với chúng tôi', '', 'title_footer', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:5:{s:8:\"facebook\";s:33:\"https://www.facebook.com/adminwmt\";s:11:\"google_plus\";s:0:\"\";s:7:\"youtube\";s:0:\"\";s:7:\"twitter\";s:0:\"\";s:6:\"ketnoi\";s:11:\"<p>demo</p>\";}'),
+(95, 'beauty', 'freecontent', 'global.gioithieu.php', 'Giới thiệu SML', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:\"blockid\";i:1;s:7:\"numrows\";i:4;s:11:\"title_profe\";s:24:\"Giới thiệu Smartline\";s:9:\"gioithieu\";s:848:\"<p>Smartline là một nhà cung cấp dịch vụ CNTT chuyên nghiệp tập trung cung cấp các giải pháp CNTT cho các doanh nghiệp vừa và nhỏ tại Việt Nam. Công việc của chúng tôi là cung cấp các giải pháp CNTT chiến lược, chất lượng cao, duy trì và bảo vệ cơ sở hạ tầng CNTT của các doanh nghiệp.</p><p>Đội ngũ của chúng tôi bao gồm các nhà quản lý dự án cấp cao, tư vấn kỹ thuật về hệ thống, phát triển website, phần mềm và cơ sở dữ liệu và nhóm hỗ trợ IT. Chúng tôi có 1 mục tiêu duy nhất là: Cung cấp các giải pháp công nghệ thông tin độc đáo, chất lượng cao với chi phí hợp lý và thiết lập một mối quan hệ kinh doanh lâu dài với khách hàng của chúng tôi.<br />&nbsp;</p>\";}'),
 (73, 'beauty', 'contact', 'global.contact_default.php', 'Contact Default', '', 'no_title', '[CONTACT_DEFAULT]', 0, '1', 1, '6', 1, 1, ''),
-(74, 'beauty', 'theme', 'global.page_dichvu.php', 'LÝ DO BẠN NÊN CHỌN SMARTLINE', '', 'no_title', '[DICHVU]', 0, '1', 1, '6', 0, 1, 'a:5:{s:9:"selectmod";s:4:"page";s:6:"numrow";i:5;s:12:"title_length";i:60;s:18:"description_length";i:200;s:6:"dichvu";s:412:"Tất cả sản phẩm đều sử dụng nguyên liệu từ thiên nhiên và tinh chất vitamin C được nghiên cứu, sản xuất theo tiêu chuẩn quốc tế GMP. Từ khâu sản xuất, quản lý, điều hành đến phân phối đều được kiểm định chặt chẽ, mang đến những sản phẩm chăm sóc và tái tạo da tối ưu, cải thiện rõ rệt các hiện tượng...";}'),
-(75, 'beauty', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:"copyright_by";s:0:"";s:13:"copyright_url";s:0:"";s:9:"design_by";s:0:"";s:10:"design_url";s:0:"";s:13:"siteterms_url";s:35:"/index.php?language=vi&nv=siteterms";}'),
+(74, 'beauty', 'theme', 'global.page_dichvu.php', 'LÝ DO BẠN NÊN CHỌN SMARTLINE', '', 'no_title', '[DICHVU]', 0, '1', 1, '6', 0, 1, 'a:5:{s:9:\"selectmod\";s:4:\"page\";s:6:\"numrow\";i:5;s:12:\"title_length\";i:60;s:18:\"description_length\";i:200;s:6:\"dichvu\";s:412:\"Tất cả sản phẩm đều sử dụng nguyên liệu từ thiên nhiên và tinh chất vitamin C được nghiên cứu, sản xuất theo tiêu chuẩn quốc tế GMP. Từ khâu sản xuất, quản lý, điều hành đến phân phối đều được kiểm định chặt chẽ, mang đến những sản phẩm chăm sóc và tái tạo da tối ưu, cải thiện rõ rệt các hiện tượng...\";}'),
+(75, 'beauty', 'theme', 'global.copyright.php', 'Copyright', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 1, 'a:5:{s:12:\"copyright_by\";s:0:\"\";s:13:\"copyright_url\";s:0:\"\";s:9:\"design_by\";s:0:\"\";s:10:\"design_url\";s:0:\"\";s:13:\"siteterms_url\";s:35:\"/index.php?language=vi&nv=siteterms\";}'),
 (76, 'beauty', 'contact', 'global.contact_form.php', 'Feedback', '', 'no_title', '[FOOTER_SITE]', 0, '1', 1, '6', 1, 2, ''),
-(77, 'beauty', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:"catid";i:0;s:12:"title_length";i:0;}'),
+(77, 'beauty', 'news', 'global.block_category.php', 'Chủ đề', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 1, 'a:2:{s:5:\"catid\";i:0;s:12:\"title_length\";i:0;}'),
 (78, 'beauty', 'theme', 'global.module_menu.php', 'Module Menu', '', 'no_title', '[LEFT]', 0, '1', 1, '6', 0, 2, ''),
 (79, 'beauty', 'statistics', 'global.counter.php', 'Thống kê', '', 'primary', '[LEFT]', 0, '1', 1, '6', 1, 3, ''),
-(80, 'beauty', 'theme', 'global.company_info.php', 'SMARTLINE', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:9:"SMARTLINE";s:16:"company_sortname";s:9:"SMARTLINE";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:21:"Nguyễn Thanh Hoàng";s:15:"company_address";s:47:"66/6/3 Bùi Đình Túy, Q.Bình Thạnh, TPHCM";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:0:"";s:13:"company_phone";s:34:"0988 455 066&#91;+84988455066&#93;";s:11:"company_fax";s:0:"";s:13:"company_email";s:29:"hoang.nguyen@smartline.com.vn";s:15:"company_website";s:24:"https://smartline.com.vn";}'),
-(81, 'beauty', 'theme', 'global.bootstrap_mobi.php', 'Menu mobi', '', 'no_title', '[MENU_MOBI]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:"menuid";i:1;s:12:"title_length";i:0;}'),
-(82, 'beauty', 'theme', 'global.bootstrap_seek.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:"menuid";i:1;s:12:"title_length";i:0;}'),
-(83, 'beauty', 'theme', 'global.QR_code.php', 'QR code', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 1, 'a:3:{s:5:"level";s:1:"M";s:15:"pixel_per_point";i:4;s:11:"outer_frame";i:1;}'),
+(80, 'beauty', 'theme', 'global.company_info.php', 'SMARTLINE', '', 'simple', '[MENU_FOOTER]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:9:\"SMARTLINE\";s:16:\"company_sortname\";s:9:\"SMARTLINE\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:21:\"Nguyễn Thanh Hoàng\";s:15:\"company_address\";s:47:\"66/6/3 Bùi Đình Túy, Q.Bình Thạnh, TPHCM\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:0:\"\";s:13:\"company_phone\";s:34:\"0988 455 066&#91;+84988455066&#93;\";s:11:\"company_fax\";s:0:\"\";s:13:\"company_email\";s:29:\"hoang.nguyen@smartline.com.vn\";s:15:\"company_website\";s:24:\"https://smartline.com.vn\";}'),
+(81, 'beauty', 'theme', 'global.bootstrap_mobi.php', 'Menu mobi', '', 'no_title', '[MENU_MOBI]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:\"menuid\";i:1;s:12:\"title_length\";i:0;}'),
+(82, 'beauty', 'theme', 'global.bootstrap_seek.php', 'Menu Site', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:\"menuid\";i:1;s:12:\"title_length\";i:0;}'),
+(83, 'beauty', 'theme', 'global.QR_code.php', 'QR code', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 1, 'a:3:{s:5:\"level\";s:1:\"M\";s:15:\"pixel_per_point\";i:4;s:11:\"outer_frame\";i:1;}'),
 (84, 'beauty', 'statistics', 'global.counter_button.php', 'Online button', '', 'no_title', '[QR_CODE]', 0, '1', 1, '6', 1, 2, ''),
 (85, 'beauty', 'about', 'global.about.php', 'Giới thiệu', '', 'border', '[RIGHT]', 0, '1', 1, '6', 1, 1, ''),
-(86, 'beauty', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:"idplanbanner";i:3;}'),
+(86, 'beauty', 'banners', 'global.banners.php', 'Quảng cáo cột phải', '', 'no_title', '[RIGHT]', 0, '1', 1, '6', 1, 2, 'a:1:{s:12:\"idplanbanner\";i:3;}'),
 (87, 'beauty', 'voting', 'global.voting_random.php', 'Thăm dò ý kiến', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 3, ''),
-(88, 'beauty', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:"number_day";i:3650;s:6:"numrow";i:10;s:11:"showtooltip";i:1;s:16:"tooltip_position";s:6:"bottom";s:14:"tooltip_length";s:3:"150";s:7:"nocatid";a:2:{i:0;i:10;i:1;i:11;}}'),
-(91, 'beauty', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, 'a:4:{s:8:"facebook";s:32:"http://www.facebook.com/nukeviet";s:11:"google_plus";s:32:"https://www.google.com/+nukeviet";s:7:"youtube";s:37:"https://www.youtube.com/user/nukeviet";s:7:"twitter";s:28:"https://twitter.com/nukeviet";}'),
-(92, 'beauty', 'slider', 'global.slider_thammy.php', 'Hình ảnh khách hàng trước - sau', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 1, 'a:3:{s:7:"blockid";i:2;s:7:"numrows";i:7;s:9:"gioithieu";s:151:"<p>Tập hợp những hình ảnh thể hiện sự thay đổi rõ nét của khách hàng khi sử dụng dịch vụ tại Mỹ Phẩm ALAISHY.</p>";}'),
-(93, 'beauty', 'theme', 'global.news_tinhot.php', 'Hoạt động - Tin tức', '', 'no_title', '[TINHOT]', 0, '1', 1, '6', 0, 1, 'a:4:{s:9:"selectmod";s:4:"news";s:7:"blockid";i:1;s:6:"numrow";i:4;s:12:"title_length";i:0;}'),
-(96, 'beauty', 'page', 'global.html.php', 'Cam kết', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:"htmlcontent";s:364:"<div class="title-text text-center space-20"><h2><img alt="image support" height="100" src="/uploads/image-support.png" width="100" />HỖ TRỢ LIÊN TỤC 24/7</h2><p>Kỹ thuật viên của chúng tôi hỗ trợ khách hàng thông qua điện thoại, truy cập từ xa hoặc đến trực tiếp văn phòng. Hỗ trợ một cách nhanh chóng.</p></div>";}'),
-(97, 'beauty', 'page', 'global.html.php', 'Dịch vụ của SmartLine 1', '', 'no_title', '[TITLE_DV]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:27:"Dịch vụ của SmartLine";}'),
-(98, 'beauty', 'freecontent', 'global.service.php', 'global service', '', 'no_title', '[DICHVU]', 0, '1', 1, '6', 0, 2, 'a:4:{s:7:"blockid";i:2;s:7:"numrows";i:5;s:11:"title_profe";s:54:"BẠN CÓ ĐANG GẶP NHỮNG THÁCH THỨC VỀ CNTT?";s:9:"gioithieu";s:769:"<div style="display: block; width: 0px; height: 0px; padding: 0px; border: 0px; margin: 0px; position: absolute; top: 0px; left: -9999px; opacity: 0; overflow: hidden;">&nbsp;</div><h5>Nhân viên phụ trách IT rời bỏ.&nbsp;</h5><h5>Nhà cung cấp dịch vụ IT chất lượng nghèo nàn.</h5><h5>Không biết dữ liệu công ty có được bảo mật.</h5><h5>Tuyển dụng, đào tạo, giữ chân nhân sự IT.</h5><h5>Tự tìm hiểu, ứng dụng CNTT nhưng không biết đúng hay sai.</h5><h5>Không có đối tác IT tin cậy để tư vấn công nghệ.</h5><h5>Bộ phận IT ở nước ngoài, thời gian làm việc khác Việt nam.</h5><h5>Phòng IT không đủ nguồn lực hỗ trợ dự án mở rộng.</h5><h2>&nbsp;</h2>";}'),
-(99, 'beauty', 'theme', 'global.block_shops_cat_tabs.php', 'Đừng để vấn đề CNTT ảnh hưởng mục tiêu kinh doanh bạn&#33; Có chúng tôi lo mọi chuyện IT - đảm bảo bạn không thất vọng&#33;', '', 'no_title', '[SANPHAM]', 0, '1', 1, '6', 0, 1, 'a:8:{s:9:"selectmod";s:5:"shops";s:7:"blockid";a:1:{i:0;s:1:"1";}s:6:"numrow";i:3;s:12:"title_length";s:3:"240";s:12:"display_type";i:1;s:10:"blockwidth";s:3:"100";s:11:"blockheight";s:3:"100";s:13:"show_no_image";s:7:"/upload";}'),
-(100, 'beauty', 'freecontent', 'global.rate.php', 'đội ngũ SML', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 1, 'a:2:{s:7:"blockid";i:3;s:7:"numrows";i:6;}'),
-(101, 'beauty', 'freecontent', 'global.professionals.php', 'khách hàng đánh giá', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 2, 'a:2:{s:7:"blockid";i:4;s:7:"numrows";i:10;}'),
-(102, 'beauty', 'freecontent', 'global.gioithieu.php', 'Tại sao chọn smartline', '', 'no_title', '[LEFT_PANEL]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:"blockid";i:5;s:7:"numrows";i:4;s:11:"title_profe";s:27:"Tại sao chọn Smartline?";s:9:"gioithieu";s:0:"";}'),
-(104, 'beauty', 'freecontent', 'global.custommer.php', 'Đối tác dịch vụ', '', 'no_title', '[SUPPLY]', 0, '1', 1, '6', 0, 1, 'a:2:{s:7:"blockid";i:7;s:7:"numrows";i:6;}'),
-(105, 'beauty', 'theme', 'global.news_tinhot.php', 'Tin tiêu điểm', '/index.php?language=vi&nv=news&op=groups/Tin-tieu-diem', 'no_title', '[TINHOT]', 0, '1', 1, '6', 0, 2, 'a:4:{s:9:"selectmod";s:4:"news";s:7:"blockid";i:1;s:6:"numrow";i:4;s:12:"title_length";i:250;}'),
-(106, 'dashboard', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:58:"Công ty cổ phần phát triển nguồn mở Việt Nam";s:15:"company_address";s:72:"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội";s:16:"company_sortname";s:12:"VINADES.,JSC";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:0:"";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:326:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s";s:13:"company_phone";s:58:"+84-24-85872007[+842485872007]|+84-904762534[+84904762534]";s:11:"company_fax";s:15:"+84-24-35500914";s:13:"company_email";s:18:"contact@vinades.vn";s:15:"company_website";s:17:"http://vinades.vn";}'),
-(107, 'dashboard', 'menu', 'global.metismenu.php', 'menu crm', '', 'no_title', '[MENU_SIDEBAR]', 0, '1', 1, '6', 0, 1, 'a:2:{s:6:"menuid";i:2;s:12:"title_length";i:0;}'),
-(108, 'beauty', 'sliderabout', 'global.slider.php', 'slider about', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 1, 'a:3:{s:7:"blockid";i:1;s:7:"numrows";i:4;s:6:"plugin";s:4:"nivo";}'),
-(109, 'beauty', 'freecontent', 'global.custommer.php', 'Khách hàng tin dùng', '', 'no_title', '[PARTNER]', 0, '1', 1, '6', 0, 1, 'a:2:{s:7:"blockid";i:6;s:7:"numrows";i:6;}'),
-(112, 'sml', 'menu', 'global.smartline_menu.php', 'menu', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:"menuid";i:1;s:12:"title_length";i:0;}'),
-(113, 'sml', 'slider', 'global.slider.php', 'global slider', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 1, 'a:3:{s:7:"blockid";i:1;s:7:"numrows";i:3;s:6:"plugin";s:4:"nivo";}'),
-(114, 'sml', 'page', 'global.html.php', 'Ảnh quản cáo top right', '', 'no_title', '[TOP_RIGHT]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:306:"<p style="text-align: center;"><strong>LIÊN HỆ ĐỂ ĐƯỢC TƯ VẤN BÁO GIÁ TRỌN GÓI</strong></p><p style="text-align: center;"><img alt="hotline it support vn 300x62 (1)" height="62" src="/uploads/hotline-it-support.vn_-300x62-1.png" width="300" /></p><p style="text-align: center;">&nbsp;</p>";}'),
-(115, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:828:"<h1><span style="font-size:28px;"><span style="font-family:Georgia,serif;"><span style="color:rgb(0, 0, 102);"><strong>Team IT Manager thuê ngoài giúp gì cho doanh nghiệp ?</strong></span></span></span></h1><p><br /><br />Team IT Manager có đầy đủ&nbsp;<b>chứng chỉ quốc tế như CommTIA, Cisco, Azure, MCSE..</b>. không chỉ giúp cho doanh nghiệp hệ thống lại toàn bộ cơ sở hạ tầng CNTT. Ngoài ra còn có:<br /><br />&nbsp;</p><ol style="margin-left: 80px;">	<li>Ổn định hệ thống CNTT.</li>	<li>Thường xuyên cập nhật những công nghệ mới giúp tăng trưởng doanh số.</li>	<li>Cung cấp nhân sự hỗ trợ liên tục và nhanh chóng.</li>	<li>Tiết kiệm chi phí khi thuê được một đội ngũ nhưng chi phí bằng một người.</li></ol>";}'),
-(116, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[DICHVU]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:712:"<h1><span style="color:rgb(51, 0, 153);"><strong><span style="font-family:Times New Roman,Times,serif;"><span style="font-size:28px;">Khi nào cần tới giải pháp IT Manager thuê ngoài ?</span></span></strong></span></h1><p>Tất cả doanh nghiệp từ nhỏ đến lớn đều cần tới hệ thống tài sản CNTT cũng như dữ liệu quan trọng. Do đó, cần có bộ phận bảo vệ chúng.</p><p>Tuy nhiên, không phải doanh nghiệp nào cũng có thể tuyển dụng đội ngũ IT in-house để triển khai các giải pháp tốt nhất. Hay tốn thời gian tuyển dụng mà lại không tuyển được nhân sự IT có trình độ chuyên môn cao.</p><h4>&nbsp;</h4>";}'),
-(117, 'sml', 'page', 'global.html.php', 'Cơ sở hạ tầng', '', '', '[DICHVU1]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:258:"<ul style="margin-left: 40px;">	<li>Không quản lý được tài sản CNTT</li>	<li>Máy chủ doanh nghiệp khó quản lý</li>	<li>Không dự đoán được sự cố của tài sản</li>	<li>Giám sát an ninh các chi nhánh khó khăn</li></ul>";}'),
-(118, 'sml', 'page', 'global.html.php', 'Phần mềm', '', '', '[DICHVU2]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:329:"<ul style="margin-left: 40px;">	<li>Dữ liệu quan trọng chưa bảo mật</li>	<li>Toàn bộ dữ liệu rời rạc</li>	<li>Không quản lý được bên thứ 3</li>	<li>Hệ thống mạng không ổn định</li>	<li>Không có hệ thống quản lý tập trung</li>	<li>Quy trình quản lý rườm rà</li></ul>";}'),
-(119, 'sml', 'theme', 'global.block_shops_cat_tabs.php', 'Dịch vụ nào phù hợp với công ty của bạn?', '', 'no_title', '[SANPHAM]', 0, '1', 1, '6', 0, 1, 'a:8:{s:9:"selectmod";s:5:"shops";s:7:"blockid";a:1:{i:0;s:1:"1";}s:6:"numrow";i:5;s:12:"title_length";s:3:"100";s:12:"display_type";i:1;s:10:"blockwidth";s:4:"100%";s:11:"blockheight";s:4:"100%";s:13:"show_no_image";s:7:"/upload";}'),
-(120, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:1006:"<h1 style="text-align: center;"><strong><span style="font-family:Times New Roman,Times,serif;"><span style="font-size:28px;">Quy trình đơn giản để hợp tác triển khai giải pháp</span></span></strong></h1><p><strong>Việc tuyển dụng đội ngũ IT để quản lý toàn bộ hệ thống CNTT là vô cùng quan trọng và khó khăn</strong>. Vừa đảm bảo bảo mật thông tin doanh nghiệp vừa có trình độ chuyên môn cao.<br />Do đó, để triển khai giái pháp đội ngũ IT Manager thuê ngoài thành công với đối tác, chúng tôi sẽ&nbsp;<strong>triển khai theo tuần tự chuyên nghiệp nhất.</strong></p><p>Dưới đây là 5 bước khi bạn tìm thấy chúng tôi:</p>&nbsp;<div class="image-center" style="text-align: CENTER;"><img alt="ldp m care 1047 x 390 11 (2)" decoding="async" height="390" sizes="(max-width: 480px) 100vw, 1047px" src="/uploads/ldp-m-care-1047-x-390-11-2.png" title="Quy trình M-care" width="1047" /></div>";}'),
-(121, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:"htmlcontent";s:1843:"<h1>Hình ảnh triển khai dịch vụ IT SMARTLINE</h1><table border="0" cellpadding="1" cellspacing="1" style="width:100%;">	<tbody>		<tr>			<td><img alt="45863287 1925903850778433 8717335944908242944 n" decoding="async" height="300" sizes="(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, " src="/uploads/45863287_1925903850778433_8717335944908242944_n.jpg" width="602" /></td>			<td><img alt="14196117 1106877369347756 4552727126553401212 o" decoding="async" height="300" sizes="(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, " src="/uploads/14196117_1106877369347756_4552727126553401212_o.jpg" width="450" /></td>			<td><img alt="khao sat" decoding="async" height="450" sizes="(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, " src="/uploads/khao-sat.jpg" width="600" /></td>		</tr>		<tr>			<td><img alt="14188607 1099600130075480 3443467736566479321 o" decoding="async" height="300" sizes="(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, " src="/uploads/14188607_1099600130075480_3443467736566479321_o.jpg" width="533" /></td>			<td><img alt="12037971 928746340494194 6444422277835773201 n" decoding="async" height="300" sizes="(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, " src="/uploads/12037971_928746340494194_6444422277835773201_n.jpg" width="450" /></td>			<td><img alt="khao sat 2" decoding="async" height="450" sizes="(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, " src="/uploads/khao-sat-2.jpg" width="600" /></td>		</tr>	</tbody></table><br /><br /><br /><br /><br /><br />&nbsp;";}'),
-(126, 'sml', 'freecontent', 'global.rate.php', 'global free content', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 2, 'a:2:{s:7:"blockid";i:2;s:7:"numrows";i:4;}'),
-(127, 'sml', 'page', 'global.html.php', 'khảo sát', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:"htmlcontent";s:197:"<div class="image-center" style="text-align: CENTER;"><a href="https://smartline.vn/survey/form/"><img alt="button popup (1)" height="165" src="/uploads/button_popup-1.png" width="500" /></a></div>";}'),
-(128, 'sml', 'slidesurvey', 'global.slider.php', 'slide survey online', '', 'no_title', '[HEADER]', 0, '1', 1, '6', 0, 1, 'a:3:{s:7:"blockid";i:1;s:7:"numrows";i:3;s:6:"plugin";s:4:"nivo";}'),
-(130, 'sml', 'freecontent', 'global.partner.php', 'global service', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:"blockid";i:4;s:7:"numrows";i:4;s:11:"title_profe";s:21:"Đối Tác Smartline";s:7:"partner";s:130:"Trải qua nhiều năm tín nhiệm chúng tôi tự tin với dịch vụ chuyên nghiêp đang cung cấp cho quý khách hàng";}'),
-(131, 'sml', 'freecontent', 'global.gioithieu.php', 'global gioithieu', '', 'no_title', '[SUPPLY]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:"blockid";i:5;s:7:"numrows";i:4;s:11:"title_profe";s:27:"Tại sao chọn Smartline?";s:9:"gioithieu";s:840:"<p>Nếu bạn đang sử dụng đơn vị IT thuê ngoài nhưng đơn vị đó không thể đáp ứng nhu cầu của doanh nghiệp. Khi doanh nghiệp ngày càng phát triển dữ liệu thì thì việc quản lý tài sản – dữ liệu thì cũng tăng theo. Và doanh nghiệp bạn vẫn chưa thể quản lý được.</p><p>Khi chuyển qua dịch vụ tại SMARTLINE thì việc quản lý – nâng cấp – quy trình thì đơn giản hơn rất nhiều. Vì chúng tôi là những chuyên gia và sẽ giúp bạn giải quyết các bài toán khó đó của bạn.</p><p>Việc của doanh nghiệp chỉ là phát triển doanh nghiệp, còn về hạ tầng CNTT đã có giải pháp&nbsp;<b>cho thuê Team</b>&nbsp;<b>IT Manager&nbsp;từ Smartline</b>&nbsp;lo cho bạn&nbsp;<b>từ A đến Z.</b></p>";}'),
-(132, 'sml', 'theme', 'global.news_tinhot.php', 'Tin Tức &amp; Thủ Thuật', '/index.php?language=vi&nv=news&op=groups/Tin-moi-nhat', 'no_title', '[VIDEOS]', 0, '1', 1, '6', 0, 1, 'a:4:{s:9:"selectmod";s:4:"news";s:7:"blockid";i:2;s:6:"numrow";i:4;s:12:"title_length";i:0;}'),
-(133, 'sml_mobile', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'primary', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:58:"Công ty cổ phần phát triển nguồn mở Việt Nam";s:16:"company_sortname";s:12:"VINADES.,JSC";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:0:"";s:15:"company_address";s:72:"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:326:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s";s:13:"company_phone";s:74:"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;";s:11:"company_fax";s:15:"+84-24-35500914";s:13:"company_email";s:18:"contact@vinades.vn";s:15:"company_website";s:17:"http://vinades.vn";}'),
-(135, 'sml', 'page', 'global.html.php', 'logo', '', 'no_title', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:1:{s:11:"htmlcontent";s:106:"<div class="image-center"><img alt="Logo 162" height="56" src="/uploads/logo_162.png" width="162" /></div>";}'),
-(136, 'sml', 'page', 'global.html.php', 'cấp dịch vụ IT hàng đầu tại Việt Nam', '', 'no_title', '[DICHVU4]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:1209:"<h4>&nbsp;</h4><div class="title-text text-center space-20"><h2>Đơn vị cung cấp dịch vụ IT hàng đầu tại Việt Nam</h2><ul>	<li>Chúng tôi có kinh nghiệm gầm 8 năm trong lĩnh vực CNTT về bản quyền phần mềm.</li>	<li>Là nhà phân phối, đối tác, reseller của nhiều hãng phần mềm lớn như:&nbsp;<a href="https://www.microsoft.com/en-us/solution-providers/partnerdetails/tsg-service--trading-company-limited_615dc844-35d3-40c2-9db4-0439991ec82e/c8358a42-59b6-4ef6-924c-803a2343f028">Microsoft</a>, VMware, Teamviewer, Oracle, Cisco, HPE, Adobe, Autodesk…</li>	<li>Các kỹ thuật viên có đầy đủ chứng chỉ CNTT như: MCSA, MCSE, CCNP, CCNA, CISSP, MCITP, Security+ …</li>	<li>Chúng tôi đã cung cấp dịch vụ IT cho hơn 250 doanh nghiệp, tập đoàn lớn trên toàn quốc.</li>	<li>Triển khai dịch vụ IT thành công cho các doanh nghiệp trong nhiều lĩnh vực như: sản xuất, thương mại, đầu tư, y tế, giáo dục, ngân hàng…</li></ul><br /><br /><img alt="quy trinh lam viec it support vn 1536x584" height="571" src="/uploads/quy-trinh-lam-viec-it-support.vn_-1536x584.png" width="1500" /></div>";}'),
-(138, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 3, 'a:1:{s:11:"htmlcontent";s:135:"<div style="text-align: center;"><img alt="outsourcing banner" height="300" src="/uploads/outsourcing_banner.png" width="1000" /></div>";}'),
-(139, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[REGISTER]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:220:"<div style="text-align: center;"><span style="color:rgb(51, 51, 153);"><strong><span style="font-family:Georgia,serif;"><span style="font-size:36px;">PROFESSIONAL IT OUTSOURCE SERVICES</span></span></strong></span></div>";}'),
-(140, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[LEFT_PANEL]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:118:"<div style="text-align: center;"><img alt="it11" height="141" src="/uploads/slider/2022/it11.jpg" width="356" /></div>";}'),
-(141, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[RIGHT_PANEL]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:"htmlcontent";s:118:"<div style="text-align: center;"><img alt="it14" height="131" src="/uploads/slider/2022/it14.jpg" width="384" /></div>";}'),
-(142, 'sml', 'freecontent', 'global.gioithieu.php', 'global html', '', 'no_title', '[REGISTER]', 0, '1', 1, '6', 0, 2, 'a:4:{s:7:"blockid";i:6;s:7:"numrows";i:4;s:11:"title_profe";s:24:"Đối tác tin tưởng";s:9:"gioithieu";s:0:"";}'),
-(144, 'sml', 'freecontent', 'global.partner.php', 'global partner', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 2, 'a:4:{s:7:"blockid";i:4;s:7:"numrows";i:4;s:11:"title_profe";s:25:"Khách hàng phản hồi";s:7:"partner";s:0:"";}'),
-(143, 'sml', 'theme', 'global.block_shops_cat_tabs.php', 'BẢNG GIÁ DỊCH VỤ IT SUPPORT', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 3, 'a:8:{s:9:"selectmod";s:5:"shops";s:7:"blockid";a:1:{i:0;s:1:"1";}s:6:"numrow";i:3;s:12:"title_length";s:3:"100";s:12:"display_type";i:1;s:10:"blockwidth";s:3:"300";s:11:"blockheight";s:3:"300";s:13:"show_no_image";s:7:"/upload";}'),
-(145, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[SUPPLY]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:"htmlcontent";s:794:"<table border="1" cellpadding="1" cellspacing="1" style="width:100%;">	<tbody>		<tr>			<td style="text-align: center;">			<div class="image-center"><img alt="server 2" height="79" src="/uploads/freecontent/server-2.png" width="200" /></div>			</td>			<td style="text-align: center;">			<div class="image-center"><img alt="switch" height="79" src="/uploads/freecontent/switch.png" width="200" /></div>			</td>			<td style="text-align: center;">			<div class="image-center"><img alt="server" height="200" src="/uploads/freecontent/server.png" width="200" /></div>			</td>		</tr>		<tr>			<td>&nbsp;</td>			<td>&nbsp;</td>			<td>&nbsp;</td>		</tr>		<tr>			<td>&nbsp;</td>			<td>&nbsp;</td>			<td>&nbsp;</td>		</tr>		<tr>			<td>&nbsp;</td>			<td>&nbsp;</td>			<td>&nbsp;</td>		</tr>	</tbody></table>";}'),
-(147, 'sml', 'page', 'global.html.php', 'Đơn vị dịch vụ quản lý cntt', '', 'no_title', '[DICHVU4]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:"htmlcontent";s:1209:"<h4>&nbsp;</h4><div class="title-text text-center space-20"><h2>Đơn vị cung cấp dịch vụ IT hàng đầu tại Việt Nam</h2><ul>	<li>Chúng tôi có kinh nghiệm gầm 8 năm trong lĩnh vực CNTT về bản quyền phần mềm.</li>	<li>Là nhà phân phối, đối tác, reseller của nhiều hãng phần mềm lớn như:&nbsp;<a href="https://www.microsoft.com/en-us/solution-providers/partnerdetails/tsg-service--trading-company-limited_615dc844-35d3-40c2-9db4-0439991ec82e/c8358a42-59b6-4ef6-924c-803a2343f028">Microsoft</a>, VMware, Teamviewer, Oracle, Cisco, HPE, Adobe, Autodesk…</li>	<li>Các kỹ thuật viên có đầy đủ chứng chỉ CNTT như: MCSA, MCSE, CCNP, CCNA, CISSP, MCITP, Security+ …</li>	<li>Chúng tôi đã cung cấp dịch vụ IT cho hơn 250 doanh nghiệp, tập đoàn lớn trên toàn quốc.</li>	<li>Triển khai dịch vụ IT thành công cho các doanh nghiệp trong nhiều lĩnh vực như: sản xuất, thương mại, đầu tư, y tế, giáo dục, ngân hàng…</li></ul><br /><br /><img alt="quy trinh lam viec it support vn 1536x584" height="571" src="/uploads/quy-trinh-lam-viec-it-support.vn_-1536x584.png" width="1500" /></div>";}'),
-(148, 'sml', 'theme', 'global.news_tinhot.php', 'Tin mới nhất', '/index.php?language=vi&nv=news&op=groups/Tin-moi-nhat', 'no_title', '[VIDEOS]', 0, '1', 1, '6', 0, 2, 'a:4:{s:9:"selectmod";s:4:"news";s:7:"blockid";i:2;s:6:"numrow";i:4;s:12:"title_length";i:0;}'),
-(150, 'sml', 'quan-tri-he-thong', 'global.html.php', 'slide quản trị hẹ thống', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 4, 'a:1:{s:11:"htmlcontent";s:101:"<img alt="dich vu quan tri vtoc" height="380" src="/uploads/dich-vu-quan-tri-vtoc.jpg" width="980" />";}'),
-(151, 'smco', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:"company_name";s:58:"Công ty cổ phần phát triển nguồn mở Việt Nam";s:16:"company_sortname";s:12:"VINADES.,JSC";s:15:"company_regcode";s:0:"";s:16:"company_regplace";s:0:"";s:21:"company_licensenumber";s:0:"";s:22:"company_responsibility";s:0:"";s:15:"company_address";s:72:"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội";s:15:"company_showmap";i:1;s:14:"company_mapurl";s:326:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s";s:13:"company_phone";s:74:"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;";s:11:"company_fax";s:15:"+84-24-35500914";s:13:"company_email";s:18:"contact@vinades.vn";s:15:"company_website";s:17:"http://vinades.vn";}');
+(88, 'beauty', 'news', 'global.block_tophits.php', 'Tin xem nhiều', '', 'primary', '[RIGHT]', 0, '1', 1, '6', 1, 4, 'a:6:{s:10:\"number_day\";i:3650;s:6:\"numrow\";i:10;s:11:\"showtooltip\";i:1;s:16:\"tooltip_position\";s:6:\"bottom\";s:14:\"tooltip_length\";s:3:\"150\";s:7:\"nocatid\";a:2:{i:0;i:10;i:1;i:11;}}'),
+(91, 'beauty', 'theme', 'global.social.php', 'Social icon', '', 'no_title', '[SOCIAL_ICONS]', 0, '1', 1, '6', 1, 1, 'a:4:{s:8:\"facebook\";s:32:\"http://www.facebook.com/nukeviet\";s:11:\"google_plus\";s:32:\"https://www.google.com/+nukeviet\";s:7:\"youtube\";s:37:\"https://www.youtube.com/user/nukeviet\";s:7:\"twitter\";s:28:\"https://twitter.com/nukeviet\";}'),
+(92, 'beauty', 'slider', 'global.slider_thammy.php', 'Hình ảnh khách hàng trước - sau', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 1, 'a:3:{s:7:\"blockid\";i:2;s:7:\"numrows\";i:7;s:9:\"gioithieu\";s:151:\"<p>Tập hợp những hình ảnh thể hiện sự thay đổi rõ nét của khách hàng khi sử dụng dịch vụ tại Mỹ Phẩm ALAISHY.</p>\";}'),
+(93, 'beauty', 'theme', 'global.news_tinhot.php', 'Hoạt động - Tin tức', '', 'no_title', '[TINHOT]', 0, '1', 1, '6', 0, 1, 'a:4:{s:9:\"selectmod\";s:4:\"news\";s:7:\"blockid\";i:1;s:6:\"numrow\";i:4;s:12:\"title_length\";i:0;}'),
+(96, 'beauty', 'page', 'global.html.php', 'Cam kết', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:\"htmlcontent\";s:364:\"<div class=\"title-text text-center space-20\"><h2><img alt=\"image support\" height=\"100\" src=\"/uploads/image-support.png\" width=\"100\" />HỖ TRỢ LIÊN TỤC 24/7</h2><p>Kỹ thuật viên của chúng tôi hỗ trợ khách hàng thông qua điện thoại, truy cập từ xa hoặc đến trực tiếp văn phòng. Hỗ trợ một cách nhanh chóng.</p></div>\";}'),
+(97, 'beauty', 'page', 'global.html.php', 'Dịch vụ của SmartLine 1', '', 'no_title', '[TITLE_DV]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:27:\"Dịch vụ của SmartLine\";}'),
+(98, 'beauty', 'freecontent', 'global.service.php', 'global service', '', 'no_title', '[DICHVU]', 0, '1', 1, '6', 0, 2, 'a:4:{s:7:\"blockid\";i:2;s:7:\"numrows\";i:5;s:11:\"title_profe\";s:54:\"BẠN CÓ ĐANG GẶP NHỮNG THÁCH THỨC VỀ CNTT?\";s:9:\"gioithieu\";s:769:\"<div style=\"display: block; width: 0px; height: 0px; padding: 0px; border: 0px; margin: 0px; position: absolute; top: 0px; left: -9999px; opacity: 0; overflow: hidden;\">&nbsp;</div><h5>Nhân viên phụ trách IT rời bỏ.&nbsp;</h5><h5>Nhà cung cấp dịch vụ IT chất lượng nghèo nàn.</h5><h5>Không biết dữ liệu công ty có được bảo mật.</h5><h5>Tuyển dụng, đào tạo, giữ chân nhân sự IT.</h5><h5>Tự tìm hiểu, ứng dụng CNTT nhưng không biết đúng hay sai.</h5><h5>Không có đối tác IT tin cậy để tư vấn công nghệ.</h5><h5>Bộ phận IT ở nước ngoài, thời gian làm việc khác Việt nam.</h5><h5>Phòng IT không đủ nguồn lực hỗ trợ dự án mở rộng.</h5><h2>&nbsp;</h2>\";}'),
+(99, 'beauty', 'theme', 'global.block_shops_cat_tabs.php', 'Đừng để vấn đề CNTT ảnh hưởng mục tiêu kinh doanh bạn&#33; Có chúng tôi lo mọi chuyện IT - đảm bảo bạn không thất vọng&#33;', '', 'no_title', '[SANPHAM]', 0, '1', 1, '6', 0, 1, 'a:8:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:1:\"1\";}s:6:\"numrow\";i:3;s:12:\"title_length\";s:3:\"240\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";}'),
+(100, 'beauty', 'freecontent', 'global.rate.php', 'đội ngũ SML', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 1, 'a:2:{s:7:\"blockid\";i:3;s:7:\"numrows\";i:6;}'),
+(101, 'beauty', 'freecontent', 'global.professionals.php', 'khách hàng đánh giá', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 2, 'a:2:{s:7:\"blockid\";i:4;s:7:\"numrows\";i:10;}'),
+(102, 'beauty', 'freecontent', 'global.gioithieu.php', 'Tại sao chọn smartline', '', 'no_title', '[LEFT_PANEL]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:\"blockid\";i:5;s:7:\"numrows\";i:4;s:11:\"title_profe\";s:27:\"Tại sao chọn Smartline?\";s:9:\"gioithieu\";s:0:\"\";}'),
+(104, 'beauty', 'freecontent', 'global.custommer.php', 'Đối tác dịch vụ', '', 'no_title', '[SUPPLY]', 0, '1', 1, '6', 0, 1, 'a:2:{s:7:\"blockid\";i:7;s:7:\"numrows\";i:6;}'),
+(105, 'beauty', 'theme', 'global.news_tinhot.php', 'Tin tiêu điểm', '/index.php?language=vi&nv=news&op=groups/Tin-tieu-diem', 'no_title', '[TINHOT]', 0, '1', 1, '6', 0, 2, 'a:4:{s:9:\"selectmod\";s:4:\"news\";s:7:\"blockid\";i:1;s:6:\"numrow\";i:4;s:12:\"title_length\";i:250;}'),
+(106, 'dashboard', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:58:\"Công ty cổ phần phát triển nguồn mở Việt Nam\";s:15:\"company_address\";s:72:\"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội\";s:16:\"company_sortname\";s:12:\"VINADES.,JSC\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:0:\"\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:326:\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s\";s:13:\"company_phone\";s:58:\"+84-24-85872007[+842485872007]|+84-904762534[+84904762534]\";s:11:\"company_fax\";s:15:\"+84-24-35500914\";s:13:\"company_email\";s:18:\"contact@vinades.vn\";s:15:\"company_website\";s:17:\"http://vinades.vn\";}'),
+(107, 'dashboard', 'menu', 'global.metismenu.php', 'menu crm', '', 'no_title', '[MENU_SIDEBAR]', 0, '1', 1, '6', 0, 1, 'a:2:{s:6:\"menuid\";i:2;s:12:\"title_length\";i:0;}'),
+(108, 'beauty', 'sliderabout', 'global.slider.php', 'slider about', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 1, 'a:3:{s:7:\"blockid\";i:1;s:7:\"numrows\";i:4;s:6:\"plugin\";s:4:\"nivo\";}'),
+(109, 'beauty', 'freecontent', 'global.custommer.php', 'Khách hàng tin dùng', '', 'no_title', '[PARTNER]', 0, '1', 1, '6', 0, 1, 'a:2:{s:7:\"blockid\";i:6;s:7:\"numrows\";i:6;}'),
+(112, 'sml', 'menu', 'global.smartline_menu.php', 'menu', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '6', 1, 1, 'a:2:{s:6:\"menuid\";i:1;s:12:\"title_length\";i:0;}'),
+(113, 'sml', 'slider', 'global.slider.php', 'global slider', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 1, 'a:3:{s:7:\"blockid\";i:1;s:7:\"numrows\";i:3;s:6:\"plugin\";s:4:\"nivo\";}'),
+(114, 'sml', 'page', 'global.html.php', 'Ảnh quản cáo top right', '', 'no_title', '[TOP_RIGHT]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:306:\"<p style=\"text-align: center;\"><strong>LIÊN HỆ ĐỂ ĐƯỢC TƯ VẤN BÁO GIÁ TRỌN GÓI</strong></p><p style=\"text-align: center;\"><img alt=\"hotline it support vn 300x62 (1)\" height=\"62\" src=\"/uploads/hotline-it-support.vn_-300x62-1.png\" width=\"300\" /></p><p style=\"text-align: center;\">&nbsp;</p>\";}'),
+(115, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:828:\"<h1><span style=\"font-size:28px;\"><span style=\"font-family:Georgia,serif;\"><span style=\"color:rgb(0, 0, 102);\"><strong>Team IT Manager thuê ngoài giúp gì cho doanh nghiệp ?</strong></span></span></span></h1><p><br /><br />Team IT Manager có đầy đủ&nbsp;<b>chứng chỉ quốc tế như CommTIA, Cisco, Azure, MCSE..</b>. không chỉ giúp cho doanh nghiệp hệ thống lại toàn bộ cơ sở hạ tầng CNTT. Ngoài ra còn có:<br /><br />&nbsp;</p><ol style=\"margin-left: 80px;\">	<li>Ổn định hệ thống CNTT.</li>	<li>Thường xuyên cập nhật những công nghệ mới giúp tăng trưởng doanh số.</li>	<li>Cung cấp nhân sự hỗ trợ liên tục và nhanh chóng.</li>	<li>Tiết kiệm chi phí khi thuê được một đội ngũ nhưng chi phí bằng một người.</li></ol>\";}'),
+(116, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[DICHVU]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:712:\"<h1><span style=\"color:rgb(51, 0, 153);\"><strong><span style=\"font-family:Times New Roman,Times,serif;\"><span style=\"font-size:28px;\">Khi nào cần tới giải pháp IT Manager thuê ngoài ?</span></span></strong></span></h1><p>Tất cả doanh nghiệp từ nhỏ đến lớn đều cần tới hệ thống tài sản CNTT cũng như dữ liệu quan trọng. Do đó, cần có bộ phận bảo vệ chúng.</p><p>Tuy nhiên, không phải doanh nghiệp nào cũng có thể tuyển dụng đội ngũ IT in-house để triển khai các giải pháp tốt nhất. Hay tốn thời gian tuyển dụng mà lại không tuyển được nhân sự IT có trình độ chuyên môn cao.</p><h4>&nbsp;</h4>\";}'),
+(117, 'sml', 'page', 'global.html.php', 'Cơ sở hạ tầng', '', '', '[DICHVU1]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:258:\"<ul style=\"margin-left: 40px;\">	<li>Không quản lý được tài sản CNTT</li>	<li>Máy chủ doanh nghiệp khó quản lý</li>	<li>Không dự đoán được sự cố của tài sản</li>	<li>Giám sát an ninh các chi nhánh khó khăn</li></ul>\";}'),
+(118, 'sml', 'page', 'global.html.php', 'Phần mềm', '', '', '[DICHVU2]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:329:\"<ul style=\"margin-left: 40px;\">	<li>Dữ liệu quan trọng chưa bảo mật</li>	<li>Toàn bộ dữ liệu rời rạc</li>	<li>Không quản lý được bên thứ 3</li>	<li>Hệ thống mạng không ổn định</li>	<li>Không có hệ thống quản lý tập trung</li>	<li>Quy trình quản lý rườm rà</li></ul>\";}'),
+(119, 'sml', 'theme', 'global.block_shops_cat_tabs.php', 'Dịch vụ nào phù hợp với công ty của bạn?', '', 'no_title', '[SANPHAM]', 0, '1', 1, '6', 0, 1, 'a:8:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:1:\"1\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:4:\"100%\";s:11:\"blockheight\";s:4:\"100%\";s:13:\"show_no_image\";s:7:\"/upload\";}'),
+(120, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:1006:\"<h1 style=\"text-align: center;\"><strong><span style=\"font-family:Times New Roman,Times,serif;\"><span style=\"font-size:28px;\">Quy trình đơn giản để hợp tác triển khai giải pháp</span></span></strong></h1><p><strong>Việc tuyển dụng đội ngũ IT để quản lý toàn bộ hệ thống CNTT là vô cùng quan trọng và khó khăn</strong>. Vừa đảm bảo bảo mật thông tin doanh nghiệp vừa có trình độ chuyên môn cao.<br />Do đó, để triển khai giái pháp đội ngũ IT Manager thuê ngoài thành công với đối tác, chúng tôi sẽ&nbsp;<strong>triển khai theo tuần tự chuyên nghiệp nhất.</strong></p><p>Dưới đây là 5 bước khi bạn tìm thấy chúng tôi:</p>&nbsp;<div class=\"image-center\" style=\"text-align: CENTER;\"><img alt=\"ldp m care 1047 x 390 11 (2)\" decoding=\"async\" height=\"390\" sizes=\"(max-width: 480px) 100vw, 1047px\" src=\"/uploads/ldp-m-care-1047-x-390-11-2.png\" title=\"Quy trình M-care\" width=\"1047\" /></div>\";}'),
+(121, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:\"htmlcontent\";s:1843:\"<h1>Hình ảnh triển khai dịch vụ IT SMARTLINE</h1><table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:100%;\">	<tbody>		<tr>			<td><img alt=\"45863287 1925903850778433 8717335944908242944 n\" decoding=\"async\" height=\"300\" sizes=\"(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, \" src=\"/uploads/45863287_1925903850778433_8717335944908242944_n.jpg\" width=\"602\" /></td>			<td><img alt=\"14196117 1106877369347756 4552727126553401212 o\" decoding=\"async\" height=\"300\" sizes=\"(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, \" src=\"/uploads/14196117_1106877369347756_4552727126553401212_o.jpg\" width=\"450\" /></td>			<td><img alt=\"khao sat\" decoding=\"async\" height=\"450\" sizes=\"(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, \" src=\"/uploads/khao-sat.jpg\" width=\"600\" /></td>		</tr>		<tr>			<td><img alt=\"14188607 1099600130075480 3443467736566479321 o\" decoding=\"async\" height=\"300\" sizes=\"(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, \" src=\"/uploads/14188607_1099600130075480_3443467736566479321_o.jpg\" width=\"533\" /></td>			<td><img alt=\"12037971 928746340494194 6444422277835773201 n\" decoding=\"async\" height=\"300\" sizes=\"(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, \" src=\"/uploads/12037971_928746340494194_6444422277835773201_n.jpg\" width=\"450\" /></td>			<td><img alt=\"khao sat 2\" decoding=\"async\" height=\"450\" sizes=\"(min-width: 2200px) 100vw, (min-width: 794px) 391px, (min-width: 717px) 587px, (min-width: 640px) 717px, \" src=\"/uploads/khao-sat-2.jpg\" width=\"600\" /></td>		</tr>	</tbody></table><br /><br /><br /><br /><br /><br />&nbsp;\";}'),
+(126, 'sml', 'freecontent', 'global.rate.php', 'global free content', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 2, 'a:2:{s:7:\"blockid\";i:2;s:7:\"numrows\";i:4;}'),
+(127, 'sml', 'page', 'global.html.php', 'khảo sát', '', 'no_title', '[TOP]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:\"htmlcontent\";s:197:\"<div class=\"image-center\" style=\"text-align: CENTER;\"><a href=\"https://smartline.vn/survey/form/\"><img alt=\"button popup (1)\" height=\"165\" src=\"/uploads/button_popup-1.png\" width=\"500\" /></a></div>\";}'),
+(130, 'sml', 'freecontent', 'global.partner.php', 'global service', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:\"blockid\";i:4;s:7:\"numrows\";i:4;s:11:\"title_profe\";s:21:\"Đối Tác Smartline\";s:7:\"partner\";s:130:\"Trải qua nhiều năm tín nhiệm chúng tôi tự tin với dịch vụ chuyên nghiêp đang cung cấp cho quý khách hàng\";}'),
+(131, 'sml', 'freecontent', 'global.gioithieu.php', 'global gioithieu', '', 'no_title', '[SUPPLY]', 0, '1', 1, '6', 0, 1, 'a:4:{s:7:\"blockid\";i:5;s:7:\"numrows\";i:4;s:11:\"title_profe\";s:27:\"Tại sao chọn Smartline?\";s:9:\"gioithieu\";s:840:\"<p>Nếu bạn đang sử dụng đơn vị IT thuê ngoài nhưng đơn vị đó không thể đáp ứng nhu cầu của doanh nghiệp. Khi doanh nghiệp ngày càng phát triển dữ liệu thì thì việc quản lý tài sản – dữ liệu thì cũng tăng theo. Và doanh nghiệp bạn vẫn chưa thể quản lý được.</p><p>Khi chuyển qua dịch vụ tại SMARTLINE thì việc quản lý – nâng cấp – quy trình thì đơn giản hơn rất nhiều. Vì chúng tôi là những chuyên gia và sẽ giúp bạn giải quyết các bài toán khó đó của bạn.</p><p>Việc của doanh nghiệp chỉ là phát triển doanh nghiệp, còn về hạ tầng CNTT đã có giải pháp&nbsp;<b>cho thuê Team</b>&nbsp;<b>IT Manager&nbsp;từ Smartline</b>&nbsp;lo cho bạn&nbsp;<b>từ A đến Z.</b></p>\";}'),
+(132, 'sml', 'theme', 'global.news_tinhot.php', 'Tin Tức &amp; Thủ Thuật', '/index.php?language=vi&nv=news&op=groups/Tin-moi-nhat', 'no_title', '[VIDEOS]', 0, '1', 1, '6', 0, 1, 'a:4:{s:9:\"selectmod\";s:4:\"news\";s:7:\"blockid\";i:2;s:6:\"numrow\";i:4;s:12:\"title_length\";i:0;}'),
+(133, 'sml_mobile', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'primary', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:58:\"Công ty cổ phần phát triển nguồn mở Việt Nam\";s:16:\"company_sortname\";s:12:\"VINADES.,JSC\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:0:\"\";s:15:\"company_address\";s:72:\"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:326:\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s\";s:13:\"company_phone\";s:74:\"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;\";s:11:\"company_fax\";s:15:\"+84-24-35500914\";s:13:\"company_email\";s:18:\"contact@vinades.vn\";s:15:\"company_website\";s:17:\"http://vinades.vn\";}'),
+(135, 'sml', 'page', 'global.html.php', 'logo', '', 'no_title', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:1:{s:11:\"htmlcontent\";s:106:\"<div class=\"image-center\"><img alt=\"Logo 162\" height=\"56\" src=\"/uploads/logo_162.png\" width=\"162\" /></div>\";}'),
+(136, 'sml', 'page', 'global.html.php', 'cấp dịch vụ IT hàng đầu tại Việt Nam', '', 'no_title', '[DICHVU4]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:1209:\"<h4>&nbsp;</h4><div class=\"title-text text-center space-20\"><h2>Đơn vị cung cấp dịch vụ IT hàng đầu tại Việt Nam</h2><ul>	<li>Chúng tôi có kinh nghiệm gầm 8 năm trong lĩnh vực CNTT về bản quyền phần mềm.</li>	<li>Là nhà phân phối, đối tác, reseller của nhiều hãng phần mềm lớn như:&nbsp;<a href=\"https://www.microsoft.com/en-us/solution-providers/partnerdetails/tsg-service--trading-company-limited_615dc844-35d3-40c2-9db4-0439991ec82e/c8358a42-59b6-4ef6-924c-803a2343f028\">Microsoft</a>, VMware, Teamviewer, Oracle, Cisco, HPE, Adobe, Autodesk…</li>	<li>Các kỹ thuật viên có đầy đủ chứng chỉ CNTT như: MCSA, MCSE, CCNP, CCNA, CISSP, MCITP, Security+ …</li>	<li>Chúng tôi đã cung cấp dịch vụ IT cho hơn 250 doanh nghiệp, tập đoàn lớn trên toàn quốc.</li>	<li>Triển khai dịch vụ IT thành công cho các doanh nghiệp trong nhiều lĩnh vực như: sản xuất, thương mại, đầu tư, y tế, giáo dục, ngân hàng…</li></ul><br /><br /><img alt=\"quy trinh lam viec it support vn 1536x584\" height=\"571\" src=\"/uploads/quy-trinh-lam-viec-it-support.vn_-1536x584.png\" width=\"1500\" /></div>\";}'),
+(138, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[SLIDER]', 0, '1', 1, '6', 0, 3, 'a:1:{s:11:\"htmlcontent\";s:135:\"<div style=\"text-align: center;\"><img alt=\"outsourcing banner\" height=\"300\" src=\"/uploads/outsourcing_banner.png\" width=\"1000\" /></div>\";}'),
+(139, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[REGISTER]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:220:\"<div style=\"text-align: center;\"><span style=\"color:rgb(51, 51, 153);\"><strong><span style=\"font-family:Georgia,serif;\"><span style=\"font-size:36px;\">PROFESSIONAL IT OUTSOURCE SERVICES</span></span></strong></span></div>\";}'),
+(140, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[LEFT_PANEL]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:118:\"<div style=\"text-align: center;\"><img alt=\"it11\" height=\"141\" src=\"/uploads/slider/2022/it11.jpg\" width=\"356\" /></div>\";}'),
+(141, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[RIGHT_PANEL]', 0, '1', 1, '6', 0, 1, 'a:1:{s:11:\"htmlcontent\";s:118:\"<div style=\"text-align: center;\"><img alt=\"it14\" height=\"131\" src=\"/uploads/slider/2022/it14.jpg\" width=\"384\" /></div>\";}'),
+(142, 'sml', 'freecontent', 'global.gioithieu.php', 'global html', '', 'no_title', '[REGISTER]', 0, '1', 1, '6', 0, 2, 'a:4:{s:7:\"blockid\";i:6;s:7:\"numrows\";i:4;s:11:\"title_profe\";s:24:\"Đối tác tin tưởng\";s:9:\"gioithieu\";s:0:\"\";}'),
+(144, 'sml', 'freecontent', 'global.partner.php', 'global partner', '', 'no_title', '[THAMMY_TS]', 0, '1', 1, '6', 0, 2, 'a:4:{s:7:\"blockid\";i:4;s:7:\"numrows\";i:4;s:11:\"title_profe\";s:25:\"Khách hàng phản hồi\";s:7:\"partner\";s:0:\"\";}'),
+(143, 'sml', 'theme', 'global.block_shops_cat_tabs.php', 'BẢNG GIÁ DỊCH VỤ IT SUPPORT', '', 'no_title', '[DOINGU_BACSI]', 0, '1', 1, '6', 0, 3, 'a:8:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:1:\"1\";}s:6:\"numrow\";i:3;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"300\";s:11:\"blockheight\";s:3:\"300\";s:13:\"show_no_image\";s:7:\"/upload\";}'),
+(145, 'sml', 'page', 'global.html.php', 'global html', '', 'no_title', '[SUPPLY]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:\"htmlcontent\";s:794:\"<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:100%;\">	<tbody>		<tr>			<td style=\"text-align: center;\">			<div class=\"image-center\"><img alt=\"server 2\" height=\"79\" src=\"/uploads/freecontent/server-2.png\" width=\"200\" /></div>			</td>			<td style=\"text-align: center;\">			<div class=\"image-center\"><img alt=\"switch\" height=\"79\" src=\"/uploads/freecontent/switch.png\" width=\"200\" /></div>			</td>			<td style=\"text-align: center;\">			<div class=\"image-center\"><img alt=\"server\" height=\"200\" src=\"/uploads/freecontent/server.png\" width=\"200\" /></div>			</td>		</tr>		<tr>			<td>&nbsp;</td>			<td>&nbsp;</td>			<td>&nbsp;</td>		</tr>		<tr>			<td>&nbsp;</td>			<td>&nbsp;</td>			<td>&nbsp;</td>		</tr>		<tr>			<td>&nbsp;</td>			<td>&nbsp;</td>			<td>&nbsp;</td>		</tr>	</tbody></table>\";}'),
+(147, 'sml', 'page', 'global.html.php', 'Đơn vị dịch vụ quản lý cntt', '', 'no_title', '[DICHVU4]', 0, '1', 1, '6', 0, 2, 'a:1:{s:11:\"htmlcontent\";s:1209:\"<h4>&nbsp;</h4><div class=\"title-text text-center space-20\"><h2>Đơn vị cung cấp dịch vụ IT hàng đầu tại Việt Nam</h2><ul>	<li>Chúng tôi có kinh nghiệm gầm 8 năm trong lĩnh vực CNTT về bản quyền phần mềm.</li>	<li>Là nhà phân phối, đối tác, reseller của nhiều hãng phần mềm lớn như:&nbsp;<a href=\"https://www.microsoft.com/en-us/solution-providers/partnerdetails/tsg-service--trading-company-limited_615dc844-35d3-40c2-9db4-0439991ec82e/c8358a42-59b6-4ef6-924c-803a2343f028\">Microsoft</a>, VMware, Teamviewer, Oracle, Cisco, HPE, Adobe, Autodesk…</li>	<li>Các kỹ thuật viên có đầy đủ chứng chỉ CNTT như: MCSA, MCSE, CCNP, CCNA, CISSP, MCITP, Security+ …</li>	<li>Chúng tôi đã cung cấp dịch vụ IT cho hơn 250 doanh nghiệp, tập đoàn lớn trên toàn quốc.</li>	<li>Triển khai dịch vụ IT thành công cho các doanh nghiệp trong nhiều lĩnh vực như: sản xuất, thương mại, đầu tư, y tế, giáo dục, ngân hàng…</li></ul><br /><br /><img alt=\"quy trinh lam viec it support vn 1536x584\" height=\"571\" src=\"/uploads/quy-trinh-lam-viec-it-support.vn_-1536x584.png\" width=\"1500\" /></div>\";}'),
+(148, 'sml', 'theme', 'global.news_tinhot.php', 'Tin mới nhất', '/index.php?language=vi&nv=news&op=groups/Tin-moi-nhat', 'no_title', '[VIDEOS]', 0, '1', 1, '6', 0, 2, 'a:4:{s:9:\"selectmod\";s:4:\"news\";s:7:\"blockid\";i:2;s:6:\"numrow\";i:4;s:12:\"title_length\";i:0;}'),
+(151, 'smco', 'theme', 'global.company_info.php', 'Công ty chủ quản', '', 'simple', '[COMPANY_INFO]', 0, '1', 1, '6', 1, 1, 'a:13:{s:12:\"company_name\";s:58:\"Công ty cổ phần phát triển nguồn mở Việt Nam\";s:16:\"company_sortname\";s:12:\"VINADES.,JSC\";s:15:\"company_regcode\";s:0:\"\";s:16:\"company_regplace\";s:0:\"\";s:21:\"company_licensenumber\";s:0:\"\";s:22:\"company_responsibility\";s:0:\"\";s:15:\"company_address\";s:72:\"Phòng 1706 - Tòa nhà CT2 Nàng Hương, 583 Nguyễn Trãi, Hà Nội\";s:15:\"company_showmap\";i:1;s:14:\"company_mapurl\";s:326:\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2634.116366996857!2d105.79399620326203!3d20.9844946314258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac93055e2f2f%3A0x91f4b423089193dd!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gUGjDoXQgdHJp4buDbiBOZ3Xhu5NuIG3hu58gVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1558315703646!5m2!1svi!2s\";s:13:\"company_phone\";s:74:\"+84-24-85872007&#91;+842485872007&#93;|+84-904762534&#91;+84904762534&#93;\";s:11:\"company_fax\";s:15:\"+84-24-35500914\";s:13:\"company_email\";s:18:\"contact@vinades.vn\";s:15:\"company_website\";s:17:\"http://vinades.vn\";}'),
+(153, 'smco', 'menu', 'global.bootstrapsmc.php', 'global bootstrapsmc', '', 'no_title', '[MENU_SITE]', 0, '1', 1, '', 1, 1, 'a:2:{s:6:\"menuid\";i:3;s:12:\"title_length\";i:0;}'),
+(157, 'smco', 'theme', 'global.block_shops_cat_tabs.php', 'Laptop', '', 'no_title', '[TOP]', 0, '1', 1, '', 0, 1, 'a:9:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:3:{i:0;s:1:\"3\";i:1;s:2:\"15\";i:2;s:2:\"16\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";s:5:\"class\";s:21:\"hoangminh-icon-laptop\";}'),
+(158, 'smco', 'theme', 'global.block_shops_cat_tabs.php', 'Màn hình máy tính', '', 'no_title', '[TOP]', 0, '1', 1, '', 0, 2, 'a:9:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:2:\"11\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";s:5:\"class\";s:22:\"hoangminh-icon-monitor\";}'),
+(159, 'smco', 'theme', 'global.block_shops_cat_tabs.php', 'Máy tính để bàn', '', 'no_title', '[TOP]', 0, '1', 1, '', 0, 3, 'a:9:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:2:\"10\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";s:5:\"class\";s:23:\"hoangminh-icon-computer\";}'),
+(160, 'smco', 'theme', 'global.block_shops_cat_tabs.php', 'Workstation', '', 'no_title', '[TOP]', 0, '1', 1, '', 0, 4, 'a:9:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:2:\"12\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";s:5:\"class\";s:13:\"fa fa-deskpro\";}'),
+(161, 'smco', 'theme', 'global.block_shops_cat_tabs.php', 'Máy chủ', '', 'no_title', '[TOP]', 0, '1', 1, '', 0, 5, 'a:9:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:1:\"6\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";s:5:\"class\";s:12:\"fa fa-server\";}'),
+(162, 'smco', 'theme', 'global.block_shops_cat_tabs.php', 'Máy in', '', 'no_title', '[TOP]', 0, '1', 1, '', 0, 6, 'a:9:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:2:\"13\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";s:5:\"class\";s:0:\"\";}'),
+(163, 'smco', 'theme', 'global.block_shops_cat_tabs.php', 'Linh kiện máy tính', '', 'no_title', '[TOP]', 0, '1', 1, '', 0, 7, 'a:9:{s:9:\"selectmod\";s:5:\"shops\";s:7:\"blockid\";a:1:{i:0;s:1:\"4\";}s:6:\"numrow\";i:5;s:12:\"title_length\";s:3:\"100\";s:12:\"display_type\";i:1;s:10:\"blockwidth\";s:3:\"100\";s:11:\"blockheight\";s:3:\"100\";s:13:\"show_no_image\";s:7:\"/upload\";s:5:\"class\";s:0:\"\";}');
 
 -- --------------------------------------------------------
 
@@ -16990,11 +16953,10 @@ INSERT INTO `nv4_vi_blocks_groups` (`bid`, `theme`, `module`, `file_name`, `titl
 -- Table structure for table `nv4_vi_blocks_weight`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_blocks_weight` (
-  `bid` mediumint(9) NOT NULL DEFAULT '0',
-  `func_id` mediumint(9) NOT NULL DEFAULT '0',
-  `weight` mediumint(9) NOT NULL DEFAULT '0',
-  UNIQUE KEY `bid` (`bid`,`func_id`)
+CREATE TABLE `nv4_vi_blocks_weight` (
+  `bid` mediumint(9) NOT NULL DEFAULT 0,
+  `func_id` mediumint(9) NOT NULL DEFAULT 0,
+  `weight` mediumint(9) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -24788,7 +24750,6 @@ INSERT INTO `nv4_vi_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
 (112, 136, 1),
 (112, 139, 1),
 (127, 66, 2),
-(128, 136, 1),
 (130, 66, 1),
 (131, 66, 1),
 (132, 66, 1),
@@ -25213,11 +25174,216 @@ INSERT INTO `nv4_vi_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
 (133, 145, 1),
 (147, 144, 1),
 (143, 144, 1),
-(150, 144, 1),
 (148, 144, 1),
 (144, 144, 1),
 (131, 144, 1),
-(151, 1, 1);
+(151, 1, 1),
+(153, 1, 1),
+(153, 4, 1),
+(153, 5, 1),
+(153, 6, 1),
+(153, 7, 1),
+(153, 8, 1),
+(153, 9, 1),
+(153, 10, 1),
+(153, 11, 1),
+(153, 12, 1),
+(153, 13, 1),
+(153, 20, 1),
+(153, 21, 1),
+(153, 22, 1),
+(153, 23, 1),
+(153, 24, 1),
+(153, 25, 1),
+(153, 26, 1),
+(153, 27, 1),
+(153, 28, 1),
+(153, 29, 1),
+(153, 30, 1),
+(153, 32, 1),
+(153, 33, 1),
+(153, 34, 1),
+(153, 35, 1),
+(153, 36, 1),
+(153, 37, 1),
+(153, 38, 1),
+(153, 39, 1),
+(153, 40, 1),
+(153, 41, 1),
+(153, 42, 1),
+(153, 43, 1),
+(153, 44, 1),
+(153, 50, 1),
+(153, 51, 1),
+(153, 52, 1),
+(153, 55, 1),
+(153, 56, 1),
+(153, 57, 1),
+(153, 58, 1),
+(153, 59, 1),
+(153, 60, 1),
+(153, 61, 1),
+(153, 63, 1),
+(153, 64, 1),
+(153, 65, 1),
+(153, 66, 1),
+(153, 78, 1),
+(153, 94, 1),
+(153, 73, 1),
+(153, 87, 1),
+(153, 69, 1),
+(153, 79, 1),
+(153, 80, 1),
+(153, 76, 1),
+(153, 75, 1),
+(153, 88, 1),
+(153, 71, 1),
+(153, 95, 1),
+(153, 93, 1),
+(153, 81, 1),
+(153, 91, 1),
+(153, 74, 1),
+(153, 68, 1),
+(153, 67, 1),
+(153, 97, 1),
+(153, 103, 1),
+(153, 101, 1),
+(153, 106, 1),
+(153, 98, 1),
+(153, 100, 1),
+(153, 104, 1),
+(153, 113, 1),
+(153, 107, 1),
+(153, 112, 1),
+(153, 110, 1),
+(153, 109, 1),
+(153, 108, 1),
+(153, 111, 1),
+(153, 120, 1),
+(153, 116, 1),
+(153, 121, 1),
+(153, 115, 1),
+(153, 119, 1),
+(153, 117, 1),
+(153, 114, 1),
+(153, 118, 1),
+(153, 132, 1),
+(153, 133, 1),
+(153, 129, 1),
+(153, 124, 1),
+(153, 123, 1),
+(153, 130, 1),
+(153, 125, 1),
+(153, 134, 1),
+(153, 135, 1),
+(153, 127, 1),
+(153, 128, 1),
+(151, 41, 1),
+(151, 42, 1),
+(151, 43, 1),
+(151, 44, 1),
+(151, 55, 1),
+(151, 56, 1),
+(151, 57, 1),
+(151, 58, 1),
+(151, 59, 1),
+(151, 32, 1),
+(151, 120, 1),
+(151, 116, 1),
+(151, 121, 1),
+(151, 115, 1),
+(151, 119, 1),
+(151, 117, 1),
+(151, 114, 1),
+(151, 118, 1),
+(151, 97, 1),
+(151, 51, 1),
+(151, 66, 1),
+(151, 4, 1),
+(151, 5, 1),
+(151, 6, 1),
+(151, 7, 1),
+(151, 8, 1),
+(151, 9, 1),
+(151, 10, 1),
+(151, 11, 1),
+(151, 12, 1),
+(151, 13, 1),
+(151, 132, 1),
+(151, 133, 1),
+(151, 129, 1),
+(151, 124, 1),
+(151, 123, 1),
+(151, 130, 1),
+(151, 125, 1),
+(151, 134, 1),
+(151, 135, 1),
+(151, 127, 1),
+(151, 128, 1),
+(151, 52, 1),
+(151, 103, 1),
+(151, 101, 1),
+(151, 106, 1),
+(151, 98, 1),
+(151, 100, 1),
+(151, 104, 1),
+(151, 50, 1),
+(151, 78, 1),
+(151, 94, 1),
+(151, 73, 1),
+(151, 87, 1),
+(151, 69, 1),
+(151, 79, 1),
+(151, 80, 1),
+(151, 76, 1),
+(151, 75, 1),
+(151, 88, 1),
+(151, 71, 1),
+(151, 95, 1),
+(151, 93, 1),
+(151, 81, 1),
+(151, 91, 1),
+(151, 74, 1),
+(151, 68, 1),
+(151, 67, 1),
+(151, 60, 1),
+(151, 61, 1),
+(151, 33, 1),
+(151, 34, 1),
+(151, 35, 1),
+(151, 36, 1),
+(151, 37, 1),
+(151, 38, 1),
+(151, 39, 1),
+(151, 113, 1),
+(151, 107, 1),
+(151, 112, 1),
+(151, 110, 1),
+(151, 109, 1),
+(151, 108, 1),
+(151, 111, 1),
+(151, 63, 1),
+(151, 64, 1),
+(151, 65, 1),
+(151, 20, 1),
+(151, 21, 1),
+(151, 22, 1),
+(151, 23, 1),
+(151, 24, 1),
+(151, 25, 1),
+(151, 26, 1),
+(151, 27, 1),
+(151, 28, 1),
+(151, 29, 1),
+(151, 30, 1),
+(151, 40, 1),
+(157, 66, 1),
+(158, 66, 2),
+(159, 66, 3),
+(160, 66, 4),
+(161, 66, 5),
+(162, 66, 6),
+(163, 66, 7);
 
 -- --------------------------------------------------------
 
@@ -25225,26 +25391,23 @@ INSERT INTO `nv4_vi_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
 -- Table structure for table `nv4_vi_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_comment` (
-  `cid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `module` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `area` int(11) NOT NULL DEFAULT '0',
-  `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `pid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attach` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `post_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `post_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_ip` varchar(39) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `likes` mediumint(9) NOT NULL DEFAULT '0',
-  `dislikes` mediumint(9) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`cid`),
-  KEY `mod_id` (`module`,`area`,`id`),
-  KEY `post_time` (`post_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_comment` (
+  `cid` mediumint(8) UNSIGNED NOT NULL,
+  `module` varchar(55) NOT NULL,
+  `area` int(11) NOT NULL DEFAULT 0,
+  `id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `pid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `content` text NOT NULL,
+  `attach` varchar(255) NOT NULL DEFAULT '',
+  `post_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `userid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `post_name` varchar(100) NOT NULL,
+  `post_email` varchar(100) NOT NULL,
+  `post_ip` varchar(39) NOT NULL DEFAULT '',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `likes` mediumint(9) NOT NULL DEFAULT 0,
+  `dislikes` mediumint(9) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -25252,34 +25415,31 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_comment` (
 -- Table structure for table `nv4_vi_contact_department`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_contact_department` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `full_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fax` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `others` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cats` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admins` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_vi_contact_department` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `full_name` varchar(250) NOT NULL,
+  `alias` varchar(250) NOT NULL,
+  `image` varchar(255) NOT NULL DEFAULT '',
+  `phone` varchar(255) NOT NULL,
+  `fax` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `note` text NOT NULL,
+  `others` text NOT NULL,
+  `cats` text NOT NULL,
+  `admins` text NOT NULL,
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `weight` smallint(6) NOT NULL,
-  `is_default` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `full_name` (`full_name`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+  `is_default` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_contact_department`
 --
 
 INSERT INTO `nv4_vi_contact_department` (`id`, `full_name`, `alias`, `image`, `phone`, `fax`, `email`, `address`, `note`, `others`, `cats`, `admins`, `act`, `weight`, `is_default`) VALUES
-(1, 'Phòng Chăm sóc khách hàng', 'Cham-soc-khach-hang', '', '(08) 38.000.000[+84838000000]', '08 38.000.001', 'customer@mysite.com', '', 'Bộ phận tiếp nhận và giải quyết các yêu cầu, đề nghị, ý kiến liên quan đến hoạt động chính của doanh nghiệp', '{"viber":"myViber","skype":"mySkype","yahoo":"myYahoo"}', 'Tư vấn|Khiếu nại, phản ánh|Đề nghị hợp tác', '1/1/1/0;', 1, 1, 1),
-(2, 'Phòng Kỹ thuật', 'Ky-thuat', '', '(08) 38.000.002[+84838000002]', '08 38.000.003', 'technical@mysite.com', '', 'Bộ phận tiếp nhận và giải quyết các câu hỏi liên quan đến kỹ thuật', '{"viber":"myViber2","skype":"mySkype2","yahoo":"myYahoo2"}', 'Thông báo lỗi|Góp ý cải tiến', '1/1/1/0;', 1, 2, 0);
+(1, 'Phòng Chăm sóc khách hàng', 'Cham-soc-khach-hang', '', '(08) 38.000.000[+84838000000]', '08 38.000.001', 'customer@mysite.com', '', 'Bộ phận tiếp nhận và giải quyết các yêu cầu, đề nghị, ý kiến liên quan đến hoạt động chính của doanh nghiệp', '{\"viber\":\"myViber\",\"skype\":\"mySkype\",\"yahoo\":\"myYahoo\"}', 'Tư vấn|Khiếu nại, phản ánh|Đề nghị hợp tác', '1/1/1/0;', 1, 1, 1),
+(2, 'Phòng Kỹ thuật', 'Ky-thuat', '', '(08) 38.000.002[+84838000002]', '08 38.000.003', 'technical@mysite.com', '', 'Bộ phận tiếp nhận và giải quyết các câu hỏi liên quan đến kỹ thuật', '{\"viber\":\"myViber2\",\"skype\":\"mySkype2\",\"yahoo\":\"myYahoo2\"}', 'Thông báo lỗi|Góp ý cải tiến', '1/1/1/0;', 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -25287,15 +25447,13 @@ INSERT INTO `nv4_vi_contact_department` (`id`, `full_name`, `alias`, `image`, `p
 -- Table structure for table `nv4_vi_contact_reply`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_contact_reply` (
-  `rid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `reply_content` text COLLATE utf8mb4_unicode_ci,
-  `reply_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `reply_aid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`rid`),
-  KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_contact_reply` (
+  `rid` mediumint(8) UNSIGNED NOT NULL,
+  `id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `reply_content` text DEFAULT NULL,
+  `reply_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `reply_aid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -25303,27 +25461,25 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_contact_reply` (
 -- Table structure for table `nv4_vi_contact_send`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_contact_send` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `cid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `cat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `send_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `sender_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `sender_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sender_address` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sender_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sender_phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sender_ip` varchar(39) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `is_read` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `is_reply` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `is_processed` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `processed_by` int(10) unsigned NOT NULL DEFAULT '0',
-  `processed_time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `sender_name` (`sender_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=6 ;
+CREATE TABLE `nv4_vi_contact_send` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `cid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `cat` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `send_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `sender_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `sender_name` varchar(100) NOT NULL,
+  `sender_address` varchar(250) NOT NULL,
+  `sender_email` varchar(100) NOT NULL,
+  `sender_phone` varchar(20) DEFAULT '',
+  `sender_ip` varchar(39) NOT NULL DEFAULT '',
+  `is_read` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `is_reply` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `is_processed` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `processed_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `processed_time` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_contact_send`
@@ -25342,18 +25498,17 @@ INSERT INTO `nv4_vi_contact_send` (`id`, `cid`, `cat`, `title`, `content`, `send
 -- Table structure for table `nv4_vi_contact_supporter`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_contact_supporter` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `departmentid` smallint(5) unsigned NOT NULL,
-  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `others` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `weight` smallint(6) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_contact_supporter` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `departmentid` smallint(5) UNSIGNED NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL DEFAULT '',
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `others` text NOT NULL,
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `weight` smallint(6) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -25361,42 +25516,39 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_contact_supporter` (
 -- Table structure for table `nv4_vi_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer` (
-  `id` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `code` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Mã khách hàng',
-  `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tên',
-  `last_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Họ và tên đệm',
-  `main_phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Số điện thoại',
-  `other_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Số điện thoại khác',
-  `main_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Email',
-  `other_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Email khác',
-  `birthday` int(11) unsigned NOT NULL DEFAULT '0',
-  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `skype` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zalo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `website` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender` tinyint(1) unsigned NOT NULL DEFAULT '2' COMMENT 'Giới tính',
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Địa chỉ',
-  `unit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Đơn vị công tác',
-  `care_staff` mediumint(8) unsigned NOT NULL COMMENT 'Nhân viên chăm sóc KH',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `addtime` int(11) unsigned NOT NULL COMMENT 'Thời gian thêm',
-  `edittime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian sửa',
-  `userid_link` mediumint(8) unsigned NOT NULL COMMENT 'Tài khoản liên kết',
-  `userid` mediumint(8) unsigned NOT NULL COMMENT 'Người thêm',
-  `note` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Ghi chú',
+CREATE TABLE `nv4_vi_customer` (
+  `id` mediumint(8) NOT NULL,
+  `code` varchar(100) NOT NULL COMMENT 'Mã khách hàng',
+  `first_name` varchar(50) NOT NULL COMMENT 'Tên',
+  `last_name` varchar(100) NOT NULL COMMENT 'Họ và tên đệm',
+  `main_phone` varchar(20) NOT NULL COMMENT 'Số điện thoại',
+  `other_phone` varchar(255) NOT NULL COMMENT 'Số điện thoại khác',
+  `main_email` varchar(100) NOT NULL COMMENT 'Email',
+  `other_email` varchar(255) NOT NULL COMMENT 'Email khác',
+  `birthday` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `facebook` varchar(255) NOT NULL,
+  `skype` varchar(50) NOT NULL,
+  `zalo` varchar(255) NOT NULL,
+  `website` varchar(255) NOT NULL,
+  `gender` tinyint(1) UNSIGNED NOT NULL DEFAULT 2 COMMENT 'Giới tính',
+  `address` varchar(255) NOT NULL COMMENT 'Địa chỉ',
+  `unit` varchar(255) NOT NULL COMMENT 'Đơn vị công tác',
+  `care_staff` mediumint(8) UNSIGNED NOT NULL COMMENT 'Nhân viên chăm sóc KH',
+  `image` varchar(255) NOT NULL,
+  `addtime` int(11) UNSIGNED NOT NULL COMMENT 'Thời gian thêm',
+  `edittime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Thời gian sửa',
+  `userid_link` mediumint(8) UNSIGNED NOT NULL COMMENT 'Tài khoản liên kết',
+  `userid` mediumint(8) UNSIGNED NOT NULL COMMENT 'Người thêm',
+  `note` text NOT NULL COMMENT 'Ghi chú',
   `is_contacts` tinyint(1) NOT NULL COMMENT 'Loại khách hàng',
-  `type_id` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `tag_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `share_acc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'share với tài khoản',
-  `share_groups` smallint(4) unsigned NOT NULL COMMENT 'share với group',
-  `share_customer` smallint(4) unsigned NOT NULL COMMENT 'Khách hàng giới thiệu',
-  `tochu_canhan` smallint(4) unsigned NOT NULL DEFAULT '0' COMMENT 'Tổ chức hay cá nhân - 1 tổ chức 2 cá nhân',
-  `supplier` smallint(4) unsigned NOT NULL DEFAULT '0' COMMENT 'Nhà cung cấp',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `main_phone` (`main_phone`),
-  UNIQUE KEY `main_email` (`main_email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  `type_id` smallint(4) UNSIGNED NOT NULL DEFAULT 0,
+  `tag_id` varchar(100) NOT NULL,
+  `share_acc` varchar(100) NOT NULL COMMENT 'share với tài khoản',
+  `share_groups` smallint(4) UNSIGNED NOT NULL COMMENT 'share với group',
+  `share_customer` smallint(4) UNSIGNED NOT NULL COMMENT 'Khách hàng giới thiệu',
+  `tochu_canhan` smallint(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Tổ chức hay cá nhân - 1 tổ chức 2 cá nhân',
+  `supplier` smallint(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Nhà cung cấp'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -25404,26 +25556,24 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_customer` (
 -- Table structure for table `nv4_vi_customer_field`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer_field` (
-  `fid` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `field` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` int(10) unsigned NOT NULL DEFAULT '1',
-  `field_type` enum('number','date','textbox','textarea','editor','select','radio','checkbox','multiselect') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'textbox',
-  `field_choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sql_choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `match_type` enum('none','alphanumeric','email','url','regex','callback') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'none',
-  `match_regex` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `func_callback` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `min_length` int(11) NOT NULL DEFAULT '0',
-  `max_length` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `required` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `show_profile` tinyint(4) NOT NULL DEFAULT '1',
-  `class` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `language` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `default_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`fid`),
-  UNIQUE KEY `field` (`field`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_customer_field` (
+  `fid` mediumint(8) NOT NULL,
+  `field` varchar(25) NOT NULL,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `field_type` enum('number','date','textbox','textarea','editor','select','radio','checkbox','multiselect') NOT NULL DEFAULT 'textbox',
+  `field_choices` text NOT NULL,
+  `sql_choices` text NOT NULL,
+  `match_type` enum('none','alphanumeric','email','url','regex','callback') NOT NULL DEFAULT 'none',
+  `match_regex` varchar(250) NOT NULL DEFAULT '',
+  `func_callback` varchar(75) NOT NULL DEFAULT '',
+  `min_length` int(11) NOT NULL DEFAULT 0,
+  `max_length` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `required` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `show_profile` tinyint(4) NOT NULL DEFAULT 1,
+  `class` varchar(50) NOT NULL DEFAULT '',
+  `language` text NOT NULL,
+  `default_value` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -25431,9 +25581,8 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_customer_field` (
 -- Table structure for table `nv4_vi_customer_info`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer_info` (
-  `rows_id` mediumint(8) unsigned NOT NULL,
-  PRIMARY KEY (`rows_id`)
+CREATE TABLE `nv4_vi_customer_info` (
+  `rows_id` mediumint(8) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -25442,11 +25591,10 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_customer_info` (
 -- Table structure for table `nv4_vi_customer_share_acc`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer_share_acc` (
+CREATE TABLE `nv4_vi_customer_share_acc` (
   `userid` smallint(4) NOT NULL,
-  `customerid` mediumint(8) unsigned NOT NULL,
-  `permisson` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'Quyền',
-  UNIQUE KEY `tid` (`userid`,`customerid`,`permisson`)
+  `customerid` mediumint(8) UNSIGNED NOT NULL,
+  `permisson` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT 'Quyền'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -25455,12 +25603,11 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_customer_share_acc` (
 -- Table structure for table `nv4_vi_customer_tags`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer_tags` (
-  `tid` smallint(4) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tiêu đề',
-  `note` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Ghi chú',
-  PRIMARY KEY (`tid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_customer_tags` (
+  `tid` smallint(4) NOT NULL,
+  `title` varchar(255) NOT NULL COMMENT 'Tiêu đề',
+  `note` text NOT NULL COMMENT 'Ghi chú'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -25468,10 +25615,9 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_customer_tags` (
 -- Table structure for table `nv4_vi_customer_tags_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer_tags_customer` (
+CREATE TABLE `nv4_vi_customer_tags_customer` (
   `tid` smallint(4) NOT NULL,
-  `customerid` mediumint(8) unsigned NOT NULL,
-  UNIQUE KEY `tid` (`tid`,`customerid`)
+  `customerid` mediumint(8) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -25480,20 +25626,19 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_customer_tags_customer` (
 -- Table structure for table `nv4_vi_customer_types`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer_types` (
-  `id` smallint(4) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Loại khách hàng',
-  `note` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Ghi chú',
-  `title_mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'tiêu đề mail chào mừng',
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nội dung mail chào mừng',
-  `birthday_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tiêu đề chúc mừng sinh nhật',
-  `birthday_content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nội dung chúc mừng sinh nhật',
-  `accumulated_points_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tiêu đề điểm tích lũy',
-  `accumulated_points_content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nội dung điểm tích lũy',
-  `weight` smallint(4) unsigned NOT NULL,
-  `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_customer_types` (
+  `id` smallint(4) NOT NULL,
+  `title` varchar(255) NOT NULL COMMENT 'Loại khách hàng',
+  `note` text NOT NULL COMMENT 'Ghi chú',
+  `title_mail` varchar(255) NOT NULL COMMENT 'tiêu đề mail chào mừng',
+  `content` text NOT NULL COMMENT 'Nội dung mail chào mừng',
+  `birthday_title` varchar(255) NOT NULL COMMENT 'Tiêu đề chúc mừng sinh nhật',
+  `birthday_content` text NOT NULL COMMENT 'Nội dung chúc mừng sinh nhật',
+  `accumulated_points_title` varchar(255) NOT NULL COMMENT 'Tiêu đề điểm tích lũy',
+  `accumulated_points_content` text NOT NULL COMMENT 'Nội dung điểm tích lũy',
+  `weight` smallint(4) UNSIGNED NOT NULL,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -25501,127 +25646,11 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_customer_types` (
 -- Table structure for table `nv4_vi_customer_units`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_customer_units` (
-  `tid` smallint(4) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tiêu đề',
-  `note` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Ghi chú',
-  PRIMARY KEY (`tid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nv4_vi_degree_blocks`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_degree_blocks` (
-  `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`bid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `nv4_vi_degree_blocks`
---
-
-INSERT INTO `nv4_vi_degree_blocks` (`bid`, `title`, `description`) VALUES
-(1, 'Bằng Cấp', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nv4_vi_degree_rows`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_degree_rows` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `bid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `target` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '_blank|_self|_parent|_top',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `start_time` int(11) NOT NULL DEFAULT '0',
-  `end_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0: In-Active, 1: Active, 2: Expired',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `nv4_vi_degree_rows`
---
-
-INSERT INTO `nv4_vi_degree_rows` (`id`, `bid`, `title`, `description`, `link`, `target`, `image`, `start_time`, `end_time`, `status`) VALUES
-(1, 1, 'Project Management Professional (PMP)', 'Chứng chỉ Chuyên gia của Cisco – Enterprise Core chứng minh kiến ​​thức về triển khai các công nghệ mạng doanh nghiệp cốt lõi bao gồm IPv4 và IPv6, ảo hóa, cơ sở hạ tầng, đảm bảo mạng, bảo mật và tự động hóa.', '', '', 'pmp-600px.png', 1672185316, 0, 1),
-(2, 1, 'Scrum Foundation Professional Certificate', 'Những người đạt được Chứng chỉ Chuyên môn của Tổ chức Scrum đã phát triển các kỹ năng ở cấp độ đầu vào của mô hình Scrum trong hướng dẫn Scrum, 4 giá trị và 12 nguyên tắc của mô hình scrum', '', '', 'certiprof-badge-sfpc.png', 1672185404, 0, 1),
-(3, 1, 'Lifelong Learning', 'Người đạt được chứng chỉ CompTIA Security + có kiến ​​thức và kỹ năng cần thiết để thực hiện các chức năng bảo mật cốt lõi cần thiết cho bất kỳ vai trò an ninh mạng nào.', '', '', 'certiprof-badge-lll.png', 1672186025, 0, 1),
-(5, 1, 'Big Data Foundations - Level 1', 'Cá nhân sở hữu chứng chỉ này nắm được kiến thức nền tảng của big data và các ứng dụng của big data nhằm cung cấp dịch vụ tốt hơn cho khách hàng.', '', '', 'big_data_found_level_1_-_cc_-_2019.png', 1672186119, 0, 1),
-(6, 1, 'Data Science Foundations - Level 1', 'Người sở hữu chứng chỉ này có hiểu biết về các khả năng và cơ hội mà khoa học dữ liệu, phân tích và big data mang lại cho các ứng dụng mới trong bất kỳ ngành nào.', '', '', 'data_sci_found_level_1_-_cc_-_2019.png', 1672186216, 0, 1),
-(4, 1, 'CompTIA Security+ ce Certification', 'Người đạt được chứng chỉ CompTIA Security + có kiến ​​thức và kỹ năng cần thiết để thực hiện các chức năng bảo mật cốt lõi cần thiết cho bất kỳ vai trò an ninh mạng nào.', '', '', 'comptia_security_2bce.png', 1672186048, 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nv4_vi_dich_vu_quan_ly_it`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_dich_vu_quan_ly_it` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imagealt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imageposition` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `bodytext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `socialbutton` tinyint(4) NOT NULL DEFAULT '0',
-  `activecomm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `layout_func` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` smallint(4) NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot_post` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `nv4_vi_dich_vu_quan_ly_it`
---
-
-INSERT INTO `nv4_vi_dich_vu_quan_ly_it` (`id`, `title`, `alias`, `image`, `imagealt`, `imageposition`, `description`, `bodytext`, `keywords`, `socialbutton`, `activecomm`, `layout_func`, `weight`, `admin_id`, `add_time`, `edit_time`, `status`, `hitstotal`, `hot_post`) VALUES
-(1, 'IT OUTSOURCING LÀ GÌ? DOANH NGHIỆP CẦN CHÚ Ý GÌ KHI THUÊ NGOÀI DỊCH VỤ IT?', 'it-outsourcing-la-gi-doanh-nghiep-can-chu-y-gi-khi-thue-ngoai-dich-vu-it', 'bg_slide.jpg', '', 0, 'IT Outsourcing đang là xu hướng của các doanh nghiệp hiện nay. Việc thuê ngoài một công ty chuyên cung cấp dịch vụ IT để quản lý, bảo trì và điều hành mảng công nghệ thông tin một cách chuyên môn hơn sẽ cho phép doanh nghiệp nâng cao sức cạnh tranh, hiệu quả hoạt động của mình. Cùng Smartline tìm hiểu về IT Outsourcing là gì?, lợi ích, chi phí cũng như những điều mà doanh nghiệp cần lưu ý trước và trong khi thực hiện hình thức này nhé!', '<h3><strong>1. IT Outsourcing là gì?</strong></h3>\r\n\r\n<p>Outsource hay còn gọi là thuê ngoài, chỉ hình thức dịch vụ thuê nhân lực từ bên ngoài để triển khai và hoàn thiện các công việc, nhiệm vụ cụ thể của doanh nghiệp. Tương tự, IT outsourcing là&nbsp;<strong>thuê ngoài dịch vụ IT</strong>&nbsp;cho doanh nghiệp. Đây là việc thuê ngoài một công ty hoặc cá nhân, đội nhóm để cung cấp các dịch vụ với mục đích giải quyết các bài toán về quản lý, bảo trì và điều hành ở mảng công nghệ thông tin của doanh nghiệp.&nbsp;</p>\r\n\r\n<p>Những năm gần đây,&nbsp;<strong>IT Outsourcing</strong>&nbsp;đang bùng nổ mạnh mẽ, không chỉ ở các cường quốc như Trung Quốc hay Ấn Độ, mà còn ở các quốc gia đang phát triển như Việt Nam, Philippines… Việt Nam được nhiều chuyên gia đánh giá là thiên đường IT Outsourcing với mức chi phí khá rẻ, cũng như chất lượng dịch vụ đáp ứng được các yêu cầu của các nước tiên tiến.</p>\r\n\r\n<h3><strong>2. Khi nào doanh nghiệp nên thực hiện IT Outsourcing?</strong></h3>\r\n\r\n<p>Bất cứ doanh nghiệp ở ngành nghề nào, quy mô ra sao đều có thể xem xét thuê nhân sự IT từ bên ngoài. Ở các doanh nghiệp trẻ, mục tiêu có được bộ máy nhân sự hoàn chỉnh sẽ xếp sau các mục tiêu phát triển kinh doanh, thâm nhập thị trường. Việc chưa có đội ngũ IT sẽ khiến doanh nghiệp giảm sức cạnh tranh trong thời đại số này, vì vậy&nbsp;<strong>IT Outsourcing</strong>&nbsp;là một phương án nhằm tối ưu chi phí, hiệu quả kinh doanh.</p>\r\n\r\n<p>Với các tập đoàn lớn cũng vậy, khi nhận thấy chuyên môn của đội ngũ IT hiện tại không đáp ứng được sự phát triển của công ty, việc thuê ngoài sẽ đem lại sự cân bằng trong hoạt động của doanh nghiệp.</p>\r\n\r\n<figure><img alt="" height="NaN" sizes="(max-width: 600px) 100vw, 600px" src="https://irtech.com.vn/wp-content/uploads/2022/02/outsource-la-gi-6.jpeg" srcset="https://irtech.com.vn/wp-content/uploads/2022/02/outsource-la-gi-6.jpeg 600w, https://irtech.com.vn/wp-content/uploads/2022/02/outsource-la-gi-6-300x183.jpeg 300w" />\r\n<figcaption><em>Khi nào nên cân nhắc thực hiện IT Outsourcing</em></figcaption>\r\n</figure>\r\n\r\n<p><strong>Xem thêm:</strong>&nbsp;4 yếu tố cốt lõi giúp doanh nghiệp chuyển đổi số thành công</p>\r\n\r\n<h3><strong>3. Lợi ích của thuê ngoài dịch vụ IT</strong></h3>\r\n\r\n<h4><strong>Tiết kiệm chi phí</strong></h4>\r\n\r\n<p>Hiện nay, đào tạo và xây dựng đội ngũ IT riêng cho doanh nghiệp đòi hỏi thời gian và chi phí vô cùng lớn. Dịch vụ thuê ngoài nhân sự IT sẽ giảm đáng kể chi phí vận hành của doanh nghiệp, bên cạnh đó các doanh nghiệp còn có thể sử dụng nguồn nhân lực chất lượng cao của ngành.</p>\r\n\r\n<h4><strong>Đảm bảo nguồn nhân lực linh động, chuyên môn đáp ứng mọi yêu cầu</strong></h4>\r\n\r\n<p>Với đặc thù chuyên về CNTT, các công ty cung cấp dịch vụ thuê ngoài IT uôn đảm bảo có sẵn nhân lực với chuyên môn cần thiết để đáp ứng nhanh chóng mọi nhu cầu từ doanh nghiệp, kể cả giải quyết các sự cố đặc thù như lỗ hổng bảo mật,…&nbsp;</p>\r\n\r\n<p>Hơn nữa, các chuyên gia CNTT tại các công ty này sẽ có những giải pháp nhanh và hiệu quả giúp doanh nghiệp tập trung vào lĩnh vực chính mà vẫn đạt được ưu thế cạnh tranh.</p>\r\n\r\n<h4><strong>Tốc độ triển khai sản phẩm ra thị trường</strong></h4>\r\n\r\n<p>Trong thời đại “cá nhanh nuốt cá chậm”, tốc độ phát hành sản phẩm ra thị trường là lợi thế để doanh nghiệp cạnh tranh. Ví dụ như Slack, một công ty cung cấp công cụ và dịch vụ trực tuyến quản lí làm việc nhóm, đã thuê đơn vị outsource trong giai đoạn đầu của dự án và cải tổ hệ thống website, ứng dụng di động trong 6 tháng, công ty thu về ngay 630 triệu đô trong năm 2020. Vì vậy, việc thuê một đội ngũ chuyên môn cao, am hiểu thị trường sẽ mang lại doanh thu và vị thế cho doanh nghiệp sớm nhất có thể.</p>\r\n\r\n<figure><img alt="" height="NaN" sizes="(max-width: 600px) 100vw, 600px" src="https://irtech.com.vn/wp-content/uploads/2022/02/outsourcing-la-gi.jpg" srcset="https://irtech.com.vn/wp-content/uploads/2022/02/outsourcing-la-gi.jpg 600w, https://irtech.com.vn/wp-content/uploads/2022/02/outsourcing-la-gi-300x200.jpg 300w" />\r\n<figcaption><em>IT Outsourcing đem lại nhiều lợi ích cho doanh nghiệp</em></figcaption>\r\n</figure>\r\n\r\n<h3><strong>4. Điều chỉnh ngân sách phù hợp với nguồn lực</strong></h3>\r\n\r\n<p>Chi phí cho việc&nbsp;<strong>thuê ngoài dịch vụ IT</strong>&nbsp;không những tùy thuộc vào đối tác mà doanh nghiệp ký kết mà còn thay đổi dựa trên các mô hình outsource mà doanh nghiệp lựa chọn. Đó có thể là mô hình giá niêm yết, nơi doanh nghiệp đưa ra thời gian và yêu cầu cụ thể. Mô hình thời gian và công sức linh hoạt hơn, phù hợp với các dự án lâu dài. Hoặc doanh nghiệp có thể thuê các nhóm chuyên môn để được kiểm soát toàn bộ dự án, nhóm này được trả lương hàng tháng cộng với phí dịch vụ cho đối tác.</p>\r\n\r\n<p><strong>Xem thêm:</strong>&nbsp;Chuyển đổi số doanh nghiệp thời ‘Cá nhanh nuốt cá chậm’</p>\r\n\r\n<h3><strong>5. Những điều cần lưu ý khi thực hiện IT Outsourcing</strong></h3>\r\n\r\n<h4><strong>Chọn đối tác thuê ngoài dịch vụ IT phù hợp</strong></h4>\r\n\r\n<p>Hiện nay có rất nhiều đơn vị thực hiện outsource cho các dự án công nghệ. Chỉ lựa chọn trên tiêu chí giá cả là chưa đủ, doanh nghiệp cần xem xét các tiêu chí khác như chất lượng thành phẩm trước đây, phương pháp làm việc, tính minh bạch và đặc biệt là mức độ phù hợp của đơn vị với dự án.</p>\r\n\r\n<h4><strong>Thiếu giao tiếp</strong></h4>\r\n\r\n<p>Việc trao đổi về dự án giữa 2 công ty trong nước đã khó, giữa các công ty khác múi giờ còn khó hơn nhiều lần. Thông qua một quản lý dự án, phổ biến các yêu cầu của dự án ngay từ đầu, lên kế hoạch họp trực tuyến đều đặn để đảm bảo các yêu cầu kỹ thuật của dự án là những giải pháp cho vấn đề này.</p>\r\n\r\n<h4><strong>Kiểm soát chất lượng đầu ra</strong></h4>\r\n\r\n<p>Doanh nghiệp không bao giờ nên phó thác hoàn toàn việc kiểm soát đầu ra cho đội ngũ outsource. Chất lượng sản phẩm nên được đánh giá kỹ càng trước ngày ra mắt. Với những biện pháp như kiểm tra quy trình testing sản phẩm, sử dụng hệ thống phát hiện lỗi sẽ giúp doanh nghiệp tránh được các vấn đề về sau.</p>\r\n\r\n<h4><strong>Rò rỉ thông tin mật</strong></h4>\r\n\r\n<p>Trong việc phát triển các phần mềm, dự án, rò rỉ thông tin có thể xảy ra trong bất kì giai đoạn nào. Do đó, việc ký kết thỏa thuận bảo mật thông tin, đưa ra các quy định và thường xuyên cập nhật tiến độ sẽ giúp doanh nghiệp tránh được các rủi ro không đáng có.</p>\r\n\r\n<p>Nhìn chung, lợi ích của hình thức&nbsp;<strong>IT Outsourcing</strong>&nbsp;mang lại cho các doanh nghiệp là không nhỏ. Việc lựa chọn có thực hiện IT Outsourcing hay không sẽ tùy thuộc vào nhu cầu và điều kiện của từng doanh nghiệp. Qua bài viết trên, hi vọng doanh nghiệp sẽ có được cái nhìn tổng quát về hình thức này cũng như nắm rõ những vấn đề mà doanh nghiệp cần quan tâm trước và trong khi thực hiện.</p>\r\n\r\n<p>Là đơn vị tiên phong trong việc cung cấp các giải pháp công nghệ theo yêu cầu về IT Systems hy vọng sẽ là đối tác mẫn cán hỗ trợ doanh nghiệp giải quyết các bài toán khó trong vận hành – quản lý.&nbsp;Liên hệ ngay&nbsp;với chúng tôi để được tư vấn các&nbsp;<strong>dịch vụ IT outsourcing</strong>&nbsp;và hỗ trợ miễn phí từ các chuyên gia công nghệ.</p>', 'doanh nghiệp,chú ý', 1, '4', 'main-service', 1, 1, 1673098791, 1673136186, 1, 13, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nv4_vi_dich_vu_quan_ly_it_config`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_dich_vu_quan_ly_it_config` (
-  `config_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `config_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `config_name` (`config_name`)
+CREATE TABLE `nv4_vi_customer_units` (
+  `tid` smallint(4) NOT NULL,
+  `title` varchar(255) NOT NULL COMMENT 'Tiêu đề',
+  `note` text NOT NULL COMMENT 'Ghi chú'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `nv4_vi_dich_vu_quan_ly_it_config`
---
-
-INSERT INTO `nv4_vi_dich_vu_quan_ly_it_config` (`config_name`, `config_value`) VALUES
-('viewtype', '0'),
-('facebookapi', ''),
-('per_page', '20'),
-('news_first', '0'),
-('related_articles', '5'),
-('copy_page', '0'),
-('alias_lower', '1'),
-('socialbutton', 'facebook,twitter');
 
 -- --------------------------------------------------------
 
@@ -25629,12 +25658,11 @@ INSERT INTO `nv4_vi_dich_vu_quan_ly_it_config` (`config_name`, `config_value`) V
 -- Table structure for table `nv4_vi_freecontent_blocks`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_freecontent_blocks` (
-  `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`bid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=8 ;
+CREATE TABLE `nv4_vi_freecontent_blocks` (
+  `bid` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `description` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_freecontent_blocks`
@@ -25655,19 +25683,18 @@ INSERT INTO `nv4_vi_freecontent_blocks` (`bid`, `title`, `description`) VALUES
 -- Table structure for table `nv4_vi_freecontent_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_freecontent_rows` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `bid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `target` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '_blank|_self|_parent|_top',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `start_time` int(11) NOT NULL DEFAULT '0',
-  `end_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0: In-Active, 1: Active, 2: Expired',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=37 ;
+CREATE TABLE `nv4_vi_freecontent_rows` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `bid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `description` mediumtext NOT NULL,
+  `link` varchar(255) NOT NULL DEFAULT '',
+  `target` varchar(10) NOT NULL DEFAULT '' COMMENT '_blank|_self|_parent|_top',
+  `image` varchar(255) NOT NULL DEFAULT '',
+  `start_time` int(11) NOT NULL DEFAULT 0,
+  `end_time` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0: In-Active, 1: Active, 2: Expired'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_freecontent_rows`
@@ -25713,20 +25740,17 @@ INSERT INTO `nv4_vi_freecontent_rows` (`id`, `bid`, `title`, `description`, `lin
 -- Table structure for table `nv4_vi_menu`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_menu` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `title` (`title`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_vi_menu` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `title` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_menu`
 --
 
 INSERT INTO `nv4_vi_menu` (`id`, `title`) VALUES
-(1, 'Top Menu'),
-(2, 'Crm');
+(3, 'shop');
 
 -- --------------------------------------------------------
 
@@ -25734,65 +25758,43 @@ INSERT INTO `nv4_vi_menu` (`id`, `title`) VALUES
 -- Table structure for table `nv4_vi_menu_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_menu_rows` (
-  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `parentid` mediumint(8) unsigned NOT NULL,
-  `mid` smallint(6) NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
+CREATE TABLE `nv4_vi_menu_rows` (
+  `id` mediumint(9) NOT NULL,
+  `parentid` mediumint(8) UNSIGNED NOT NULL,
+  `mid` smallint(6) NOT NULL DEFAULT 0,
+  `title` varchar(255) NOT NULL,
+  `link` text NOT NULL,
+  `icon` varchar(255) DEFAULT '',
+  `image` varchar(255) DEFAULT '',
+  `note` varchar(255) DEFAULT '',
   `weight` int(11) NOT NULL,
-  `sort` int(11) NOT NULL DEFAULT '0',
-  `lev` int(11) NOT NULL DEFAULT '0',
-  `subitem` text COLLATE utf8mb4_unicode_ci,
-  `groups_view` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `module_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `op` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `target` tinyint(4) DEFAULT '0',
-  `css` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `active_type` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `parentid` (`parentid`,`mid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=50 ;
+  `sort` int(11) NOT NULL DEFAULT 0,
+  `lev` int(11) NOT NULL DEFAULT 0,
+  `subitem` text DEFAULT NULL,
+  `groups_view` varchar(255) DEFAULT '',
+  `module_name` varchar(255) DEFAULT '',
+  `op` varchar(255) DEFAULT '',
+  `target` tinyint(4) DEFAULT 0,
+  `css` varchar(255) DEFAULT '',
+  `active_type` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_menu_rows`
 --
 
 INSERT INTO `nv4_vi_menu_rows` (`id`, `parentid`, `mid`, `title`, `link`, `icon`, `image`, `note`, `weight`, `sort`, `lev`, `subitem`, `groups_view`, `module_name`, `op`, `target`, `css`, `active_type`, `status`) VALUES
-(1, 0, 1, 'Giới thiệu', '/index.php?language=vi&nv=about', '', '', '', 1, 1, 0, '', '6', 'about', '', 1, '', 0, 1),
-(2, 0, 1, 'Tin Tức', '/index.php?language=vi&nv=news', '', '', '', 3, 5, 0, '37,41,42,43,44,45,46', '6', 'news', '', 1, '', 0, 1),
-(26, 0, 2, 'Quản lý dự án', '', '', '', 'project', 3, 7, 0, '', '6', '0', '', 1, 'fa-project-diagram', 0, 1),
-(32, 24, 2, 'Hồ sơ nhân sự', '/index.php?language=vi&nv=personnel&op=workforce', '', '', '', 1, 2, 1, '', '6', 'personnel', 'workforce', 1, 'fa-circle', 0, 1),
-(25, 0, 2, 'Khách hàng', '', '', '', 'custommer', 2, 5, 0, '35', '6', '0', '', 1, 'fa-users', 0, 1),
-(24, 0, 2, 'Quản lý nhân sự', '', '', '', 'personnel', 1, 1, 0, '32,34,33', '6', 'personnel', '', 1, 'fa-id-card', 0, 1),
-(23, 0, 1, 'Support', '/index.php?language=vi&nv=personnel', '', '', '', 5, 17, 0, '', '6', 'personnel', '', 1, '', 0, 1),
-(7, 0, 1, 'Liên hệ', '/index.php?language=vi&nv=contact', '', '', '', 4, 16, 0, '', '6', 'contact', '', 1, '', 0, 1),
-(44, 2, 1, 'Content', '/index.php?language=vi&nv=news&amp;op=content', '', '', '', 5, 13, 1, '', '6', 'news', 'content', 1, '', 1, 1),
-(45, 2, 1, 'Rss', '/index.php?language=vi&nv=news&amp;op=rss', '', '', '', 6, 14, 1, '', '6', 'news', 'rss', 1, '', 1, 1),
-(43, 2, 1, 'Tuyển dụng', '/index.php?language=vi&nv=news&amp;op=Tuyen-dung', '', '', '', 4, 12, 1, '', '6', 'news', 'Tuyen-dung', 1, '', 1, 1),
-(42, 2, 1, 'Đối tác', '/index.php?language=vi&nv=news&amp;op=Doi-tac', '', '', '', 3, 11, 1, '', '6', 'news', 'Doi-tac', 1, '', 1, 1),
-(41, 2, 1, 'Sản phẩm', '/index.php?language=vi&nv=news&amp;op=San-pham', '', '', '', 2, 10, 1, '', '6', 'news', 'San-pham', 1, '', 1, 1),
-(39, 37, 1, 'Bản tin nội bộ', '/index.php?language=vi&nv=news&amp;op=Ban-tin-noi-bo', '', '', '', 2, 8, 2, '', '6', 'news', 'Ban-tin-noi-bo', 1, '', 1, 1),
-(40, 37, 1, 'Tin công nghệ', '/index.php?language=vi&nv=news&amp;op=Tin-cong-nghe', '', '', '', 3, 9, 2, '', '6', 'news', 'Tin-cong-nghe', 1, '', 1, 1),
-(38, 37, 1, 'Thông cáo báo chí', '/index.php?language=vi&nv=news&amp;op=thong-cao-bao-chi', '', '', '', 1, 7, 2, '', '6', 'news', 'thong-cao-bao-chi', 1, '', 1, 1),
-(36, 27, 2, 'Danh sách công việc', '/index.php?language=vi&nv=task', '', '', '', 1, 9, 1, '', '6', 'task', '', 1, 'fa-circle', 0, 1),
-(37, 2, 1, 'Tin tức', '/index.php?language=vi&nv=news&amp;op=Tin-tuc', '', '', '', 1, 6, 1, '38,39,40', '6', 'news', 'Tin-tuc', 1, '', 1, 1),
-(35, 25, 2, 'Khách hàng', '/index.php?language=vi&nv=customer', '', '', '', 1, 6, 1, '', '6', 'customer', '', 1, 'fa-circle', 0, 1),
-(34, 24, 2, 'Bảo Hiểm', '/index.php?language=vi&nv=personnel&op=Insurrance', '', '', '', 3, 4, 1, '', '6', 'personnel', 'Insurrance', 1, 'fa-circle', 0, 1),
-(33, 24, 2, 'Hợp đồng', '/index.php?language=vi&nv=personnel&op=contract', '', '', '', 2, 3, 1, '', '6', 'personnel', 'contract', 1, 'fa-circle', 0, 1),
-(31, 0, 2, 'Quy trình nghiệp vụ', '', '', '', '', 8, 13, 0, '', '6', '0', '', 1, 'fa-file', 0, 1),
-(29, 0, 2, 'Bản tin nội bộ', '', '', '', '', 6, 11, 0, '', '6', '0', '', 1, 'fa-newspaper', 0, 1),
-(30, 0, 2, 'Bảng mô tả công việc', '', '', '', '', 7, 12, 0, '', '6', '0', '', 1, 'fa-gem', 0, 1),
-(27, 0, 2, 'Quản lý công việc', '', '', '', 'task', 4, 8, 0, '36', '6', '0', '', 1, 'fa-project-diagram', 0, 1),
-(28, 0, 2, 'Quản lý Thu Chi', '', '', '', '', 5, 10, 0, '', '6', '0', '', 1, 'fa-briefcase', 0, 1),
-(46, 2, 1, 'Search', '/index.php?language=vi&nv=news&amp;op=search', '', '', '', 7, 15, 1, '', '6', 'news', 'search', 1, '', 1, 1),
-(47, 0, 1, 'Dịch vụ và giải pháp', '', '', '', '', 2, 2, 0, '48,49', '6', '0', '', 1, '', 0, 1),
-(48, 47, 1, 'Dịch vụ quản lý IT', '/index.php?language=vi&nv=dich-vu-quan-ly-it', '', '', '', 1, 3, 1, '', '6', 'dich-vu-quan-ly-it', '', 1, '', 0, 1),
-(49, 47, 1, 'Quản Trị Hệ Thống', '/index.php?language=vi&nv=quan-tri-he-thong', '', '', '', 2, 4, 1, '', '6', 'quan-tri-he-thong', '', 1, '', 0, 1);
+(58, 0, 3, 'Màn hình', '/index.php?language=vi&nv=shops&amp;op=man-hinh', '', '', '', 9, 9, 0, '', '', 'shops', 'man-hinh', 1, '', 1, 1),
+(59, 0, 3, 'Workstation', '/index.php?language=vi&nv=shops&amp;op=workstation', '', '', '', 10, 10, 0, '', '', 'shops', 'workstation', 1, '', 1, 1),
+(57, 0, 3, 'Máy tính để bàn', '/index.php?language=vi&nv=shops&amp;op=may-tinh-de-ban', '', '', '', 8, 8, 0, '', '', 'shops', 'may-tinh-de-ban', 1, '', 1, 1),
+(56, 0, 3, 'Thiết bị Thông minh', '/index.php?language=vi&nv=shops&amp;op=Thiet-bi-Thong-minh', '', '', '', 7, 7, 0, '', '', 'shops', 'Thiet-bi-Thong-minh', 1, '', 1, 1),
+(55, 0, 3, 'Thiết bị văn phòng', '/index.php?language=vi&nv=shops&amp;op=Thiet-bi-van-phong', '', '', '', 6, 6, 0, '', '', 'shops', 'Thiet-bi-van-phong', 1, '', 1, 1),
+(54, 0, 3, 'Thiết bị mạng', '/index.php?language=vi&nv=shops&amp;op=thiet-bi-mang', '', '', '', 5, 5, 0, '', '', 'shops', 'thiet-bi-mang', 1, '', 1, 1),
+(53, 0, 3, 'Máy chủ', '/index.php?language=vi&nv=shops&amp;op=may-chu', '', '', '', 4, 4, 0, '', '', 'shops', 'may-chu', 1, '', 1, 1),
+(52, 0, 3, 'Phụ kiện', '/index.php?language=vi&nv=shops&amp;op=Phu-kien', '', '', '', 3, 3, 0, '', '', 'shops', 'Phu-kien', 1, '', 1, 1),
+(50, 0, 3, 'Laptop', '/index.php?language=vi&nv=shops&amp;op=laptop', '', '', '', 1, 1, 0, '', '', 'shops', 'laptop', 1, '', 1, 1),
+(51, 0, 3, 'Linh kiện PC', '/index.php?language=vi&nv=shops&amp;op=linh-kien-pc', '', '', '', 2, 2, 0, '', '', 'shops', 'linh-kien-pc', 1, '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -25800,21 +25802,18 @@ INSERT INTO `nv4_vi_menu_rows` (`id`, `parentid`, `mid`, `title`, `link`, `icon`
 -- Table structure for table `nv4_vi_modfuncs`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_modfuncs` (
-  `func_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `func_name` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `func_custom_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `func_site_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `in_module` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `show_func` tinyint(4) NOT NULL DEFAULT '0',
-  `in_submenu` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `subweight` smallint(5) unsigned NOT NULL DEFAULT '1',
-  `setting` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`func_id`),
-  UNIQUE KEY `func_name` (`func_name`,`in_module`),
-  UNIQUE KEY `alias` (`alias`,`in_module`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=147 ;
+CREATE TABLE `nv4_vi_modfuncs` (
+  `func_id` mediumint(8) UNSIGNED NOT NULL,
+  `func_name` varchar(55) NOT NULL,
+  `alias` varchar(55) NOT NULL DEFAULT '',
+  `func_custom_name` varchar(255) NOT NULL,
+  `func_site_title` varchar(255) NOT NULL DEFAULT '',
+  `in_module` varchar(50) NOT NULL,
+  `show_func` tinyint(4) NOT NULL DEFAULT 0,
+  `in_submenu` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `subweight` smallint(5) UNSIGNED NOT NULL DEFAULT 1,
+  `setting` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_modfuncs`
@@ -25954,18 +25953,7 @@ INSERT INTO `nv4_vi_modfuncs` (`func_id`, `func_name`, `alias`, `func_custom_nam
 (132, 'main', 'main', 'Main', '', 'nvtools', 1, 1, 1, ''),
 (133, 'theme', 'theme', 'Theme', '', 'nvtools', 1, 1, 2, ''),
 (134, 'themecopy', 'themecopy', 'Themecopy', '', 'nvtools', 1, 1, 8, ''),
-(135, 'thememodulecp', 'thememodulecp', 'Thememodulecp', '', 'nvtools', 1, 1, 9, ''),
-(136, 'form', 'form', 'Form', '', 'survey', 1, 1, 2, ''),
-(137, 'main', 'main', 'Main', '', 'survey', 1, 1, 1, ''),
-(138, 'rss', 'rss', 'Rss', '', 'survey', 0, 0, 0, ''),
-(139, 'search', 'search', 'Search', '', 'survey', 1, 1, 3, ''),
-(140, 'sitemap', 'sitemap', 'Sitemap', '', 'survey', 0, 0, 0, ''),
-(141, 'main', 'main', 'Main', '', 'dich-vu-quan-ly-it', 1, 0, 1, ''),
-(142, 'rss', 'rss', 'Rss', '', 'dich-vu-quan-ly-it', 1, 0, 2, ''),
-(143, 'sitemap', 'sitemap', 'Sitemap', '', 'dich-vu-quan-ly-it', 0, 0, 0, ''),
-(144, 'main', 'main', 'Main', '', 'quan-tri-he-thong', 1, 0, 1, ''),
-(145, 'rss', 'rss', 'Rss', '', 'quan-tri-he-thong', 1, 0, 2, ''),
-(146, 'sitemap', 'sitemap', 'Sitemap', '', 'quan-tri-he-thong', 0, 0, 0, '');
+(135, 'thememodulecp', 'thememodulecp', 'Thememodulecp', '', 'nvtools', 1, 1, 9, '');
 
 -- --------------------------------------------------------
 
@@ -25973,11 +25961,10 @@ INSERT INTO `nv4_vi_modfuncs` (`func_id`, `func_name`, `alias`, `func_custom_nam
 -- Table structure for table `nv4_vi_modthemes`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_modthemes` (
+CREATE TABLE `nv4_vi_modthemes` (
   `func_id` mediumint(9) DEFAULT NULL,
-  `layout` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `theme` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  UNIQUE KEY `func_id` (`func_id`,`layout`,`theme`)
+  `layout` varchar(100) DEFAULT NULL,
+  `theme` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -26906,74 +26893,7 @@ INSERT INTO `nv4_vi_modthemes` (`func_id`, `layout`, `theme`) VALUES
 (135, 'left-main-right', 'sml'),
 (135, 'main', 'mobile_default'),
 (135, 'main', 'smartlinev2'),
-(135, 'main', 'sml_mobile'),
-(136, 'left-main', 'dashboard'),
-(136, 'left-main-right', 'beauty'),
-(136, 'left-main-right', 'default'),
-(136, 'left-main-right', 'smartline'),
-(136, 'left-main-right', 'smco'),
-(136, 'main', 'mobile_default'),
-(136, 'main', 'smartlinev2'),
-(136, 'main', 'sml'),
-(136, 'main', 'sml_mobile'),
-(137, 'left-main', 'dashboard'),
-(137, 'left-main-right', 'beauty'),
-(137, 'left-main-right', 'default'),
-(137, 'left-main-right', 'smartline'),
-(137, 'left-main-right', 'smco'),
-(137, 'main', 'mobile_default'),
-(137, 'main', 'smartlinev2'),
-(137, 'main', 'sml'),
-(137, 'main', 'sml_mobile'),
-(138, 'left-main-right', 'sml'),
-(139, 'left-main', 'dashboard'),
-(139, 'left-main-right', 'beauty'),
-(139, 'left-main-right', 'default'),
-(139, 'left-main-right', 'smartline'),
-(139, 'left-main-right', 'smco'),
-(139, 'main', 'mobile_default'),
-(139, 'main', 'smartlinev2'),
-(139, 'main', 'sml'),
-(139, 'main', 'sml_mobile'),
-(140, 'left-main-right', 'sml'),
-(141, 'left-main', 'dashboard'),
-(141, 'left-main-right', 'beauty'),
-(141, 'left-main-right', 'default'),
-(141, 'left-main-right', 'smartline'),
-(141, 'left-main-right', 'smco'),
-(141, 'left-main-right', 'sml'),
-(141, 'main', 'mobile_default'),
-(141, 'main', 'smartlinev2'),
-(141, 'main', 'sml_mobile'),
-(142, 'left-main', 'dashboard'),
-(142, 'left-main-right', 'beauty'),
-(142, 'left-main-right', 'default'),
-(142, 'left-main-right', 'smartline'),
-(142, 'left-main-right', 'smco'),
-(142, 'left-main-right', 'sml'),
-(142, 'main', 'mobile_default'),
-(142, 'main', 'smartlinev2'),
-(142, 'main', 'sml_mobile'),
-(143, 'left-main-right', 'sml'),
-(144, 'left-main', 'dashboard'),
-(144, 'left-main-right', 'beauty'),
-(144, 'left-main-right', 'default'),
-(144, 'left-main-right', 'smartline'),
-(144, 'left-main-right', 'smco'),
-(144, 'left-main-right', 'sml'),
-(144, 'main', 'mobile_default'),
-(144, 'main', 'smartlinev2'),
-(144, 'main', 'sml_mobile'),
-(145, 'left-main', 'dashboard'),
-(145, 'left-main-right', 'beauty'),
-(145, 'left-main-right', 'default'),
-(145, 'left-main-right', 'smartline'),
-(145, 'left-main-right', 'smco'),
-(145, 'left-main-right', 'sml'),
-(145, 'main', 'mobile_default'),
-(145, 'main', 'smartlinev2'),
-(145, 'main', 'sml_mobile'),
-(146, 'left-main-right', 'sml');
+(135, 'main', 'sml_mobile');
 
 -- --------------------------------------------------------
 
@@ -26981,29 +26901,28 @@ INSERT INTO `nv4_vi_modthemes` (`func_id`, `layout`, `theme`) VALUES
 -- Table structure for table `nv4_vi_modules`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_modules` (
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `module_file` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `module_data` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `module_upload` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `module_theme` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `custom_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `site_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `admin_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `set_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `main_file` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `admin_file` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `theme` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `mobile` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `groups_view` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `admins` varchar(4000) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `rss` tinyint(4) NOT NULL DEFAULT '1',
-  `sitemap` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`title`)
+CREATE TABLE `nv4_vi_modules` (
+  `title` varchar(50) NOT NULL,
+  `module_file` varchar(50) NOT NULL DEFAULT '',
+  `module_data` varchar(50) NOT NULL DEFAULT '',
+  `module_upload` varchar(50) NOT NULL DEFAULT '',
+  `module_theme` varchar(50) NOT NULL DEFAULT '',
+  `custom_title` varchar(255) NOT NULL,
+  `site_title` varchar(255) NOT NULL DEFAULT '',
+  `admin_title` varchar(255) NOT NULL DEFAULT '',
+  `set_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `main_file` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_file` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `theme` varchar(100) DEFAULT '',
+  `mobile` varchar(100) DEFAULT '',
+  `description` varchar(255) DEFAULT '',
+  `keywords` text DEFAULT NULL,
+  `groups_view` varchar(255) NOT NULL,
+  `weight` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `admins` varchar(4000) DEFAULT '',
+  `rss` tinyint(4) NOT NULL DEFAULT 1,
+  `sitemap` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -27011,35 +26930,30 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_modules` (
 --
 
 INSERT INTO `nv4_vi_modules` (`title`, `module_file`, `module_data`, `module_upload`, `module_theme`, `custom_title`, `site_title`, `admin_title`, `set_time`, `main_file`, `admin_file`, `theme`, `mobile`, `description`, `keywords`, `groups_view`, `weight`, `act`, `admins`, `rss`, `sitemap`) VALUES
-('about', 'page', 'about', 'about', 'page', 'Giới thiệu', '', '', 1658390704, 1, 1, '', '', '', '', '6', 1, 1, '', 1, 1),
-('news', 'news', 'news', 'news', 'news', 'Tin Tức', '', '', 1658390704, 1, 1, '', '', '', '', '6', 2, 1, '', 1, 1),
-('users', 'users', 'users', 'users', 'users', 'Thành viên', '', 'Tài khoản', 1658390704, 1, 1, '', '', '', '', '6', 3, 1, '', 0, 1),
-('contact', 'contact', 'contact', 'contact', 'contact', 'Liên hệ', '', '', 1658390704, 1, 1, '', '', '', '', '6', 4, 1, '', 0, 1),
-('statistics', 'statistics', 'statistics', 'statistics', 'statistics', 'Thống kê', '', '', 1658390704, 1, 1, '', '', '', 'online, statistics', '6', 5, 1, '', 0, 1),
-('voting', 'voting', 'voting', 'voting', 'voting', 'Thăm dò ý kiến', '', '', 1658390704, 1, 1, '', '', '', '', '6', 6, 1, '', 1, 1),
-('banners', 'banners', 'banners', 'banners', 'banners', 'Quảng cáo', '', '', 1658390704, 1, 1, '', '', '', '', '6', 7, 1, '', 0, 1),
-('seek', 'seek', 'seek', 'seek', 'seek', 'Tìm kiếm', '', '', 1658390704, 1, 0, '', '', '', '', '6', 8, 1, '', 0, 1),
-('menu', 'menu', 'menu', 'menu', 'menu', 'Menu Site', '', '', 1658390704, 0, 1, '', '', '', '', '6', 9, 1, '', 0, 1),
-('feeds', 'feeds', 'feeds', 'feeds', 'feeds', 'RSS-feeds', '', '', 1658390704, 1, 1, '', '', '', '', '6', 10, 1, '', 0, 1),
-('page', 'page', 'page', 'page', 'page', 'Page', '', '', 1658390704, 1, 1, '', '', '', '', '6', 11, 1, '', 1, 0),
-('comment', 'comment', 'comment', 'comment', 'comment', 'Bình luận', '', 'Quản lý bình luận', 1658390704, 0, 1, '', '', '', '', '6', 12, 1, '', 0, 1),
-('siteterms', 'page', 'siteterms', 'siteterms', 'page', 'Điều khoản sử dụng', '', '', 1658390704, 1, 1, '', '', '', '', '6', 13, 1, '', 1, 1),
-('freecontent', 'freecontent', 'freecontent', 'freecontent', 'freecontent', 'Giới thiệu sản phẩm', '', '', 1658390704, 0, 1, '', '', '', '', '6', 14, 1, '', 0, 1),
-('two-step-verification', 'two-step-verification', 'two_step_verification', 'two_step_verification', 'two-step-verification', 'Xác thực hai bước', '', '', 1658390704, 1, 0, '', '', '', '', '6', 15, 1, '', 0, 1),
-('home', 'home', 'home', 'home', 'home', 'Home', '', '', 1659667316, 1, 0, '', '', '', '', '6', 16, 1, '', 0, 0),
-('slider', 'slider', 'slider', 'slider', 'slider', 'Slider Home', '', '', 1659667357, 0, 1, '', '', '', '', '6', 17, 1, '', 0, 0),
-('shops', 'shops', 'shops', 'shops', 'shops', 'Sản phẩm', '', '', 1663339176, 1, 1, '', '', '', '', '1', 18, 1, '', 1, 1),
-('daskboard', 'daskboard', 'daskboard', 'daskboard', 'daskboard', 'Daskboard', '', '', 1663840382, 1, 0, 'dashboard', ':pcmod', '', '', '4', 19, 1, '', 0, 0),
-('personnel', 'personnel', 'personnel', 'personnel', 'personnel', 'Nhân sự', '', '', 1663841424, 1, 1, 'dashboard', ':pcmod', '', '', '4', 20, 1, '', 0, 0),
-('task', 'task', 'task', 'task', 'task', 'Quản lý công việc', '', '', 1663843140, 1, 1, 'dashboard', '', '', '', '4', 21, 1, '', 0, 0),
-('customer', 'customer', 'customer', 'customer', 'customer', 'Khách hàng', '', '', 1663861835, 1, 1, 'dashboard', ':pcmod', '', '', '4', 22, 1, '', 0, 0),
-('sliderabout', 'slider', 'sliderabout', 'sliderabout', 'slider', 'Slider ảnh about', '', '', 1663902125, 0, 1, '', '', '', '', '6', 23, 1, '', 0, 0),
-('survey', 'survey', 'survey', 'survey', 'survey', 'Khảo sát hạ tầng cntt', '', '', 1671477743, 1, 1, '', '', '', '', '6', 25, 1, '', 1, 1),
-('nvtools', 'nvtools', 'nvtools', 'nvtools', 'nvtools', 'nvtools', '', '', 1671476099, 1, 0, '', '', '', '', '3', 24, 1, '', 0, 0),
-('slidesurvey', 'slider', 'slidesurvey', 'slidesurvey', 'slider', 'Slide khảo sát', '', '', 1671624221, 0, 1, '', '', '', '', '6', 26, 1, '', 0, 0),
-('degree', 'degree', 'degree', 'degree', 'degree', 'Bằng Cấp', '', '', 1672185123, 0, 1, '', '', '', '', '6', 27, 1, '', 0, 0),
-('dich-vu-quan-ly-it', 'page', 'dich_vu_quan_ly_it', 'dich-vu-quan-ly-it', 'page', 'Dịch vụ quản lý IT', '', '', 1673098500, 1, 1, '', '', '', '', '6', 28, 1, '', 1, 1),
-('quan-tri-he-thong', 'page', 'quan_tri_he_thong', 'quan-tri-he-thong', 'page', 'Quản Trị Hệ Thống', '', '', 1674217215, 1, 1, '', '', '', '', '6', 29, 1, '', 1, 1);
+('about', 'page', 'about', 'about', 'page', 'Giới thiệu', '', '', 1658390704, 1, 1, '', '', '', '', '6', 1, 1, '5', 1, 1),
+('news', 'news', 'news', 'news', 'news', 'Tin Tức', '', '', 1658390704, 1, 1, '', '', '', '', '6', 2, 1, '5', 1, 1),
+('users', 'users', 'users', 'users', 'users', 'Thành viên', '', 'Tài khoản', 1658390704, 1, 1, '', '', '', '', '6', 3, 1, '5', 0, 1),
+('contact', 'contact', 'contact', 'contact', 'contact', 'Liên hệ', '', '', 1658390704, 1, 1, '', '', '', '', '6', 4, 1, '5', 0, 1),
+('statistics', 'statistics', 'statistics', 'statistics', 'statistics', 'Thống kê', '', '', 1658390704, 1, 1, '', '', '', 'online, statistics', '6', 5, 1, '5', 0, 1),
+('voting', 'voting', 'voting', 'voting', 'voting', 'Thăm dò ý kiến', '', '', 1658390704, 1, 1, '', '', '', '', '6', 6, 1, '5', 1, 1),
+('banners', 'banners', 'banners', 'banners', 'banners', 'Quảng cáo', '', '', 1658390704, 1, 1, '', '', '', '', '6', 7, 1, '5', 0, 1),
+('seek', 'seek', 'seek', 'seek', 'seek', 'Tìm kiếm', '', '', 1658390704, 1, 0, '', '', '', '', '6', 8, 1, '5', 0, 1),
+('menu', 'menu', 'menu', 'menu', 'menu', 'Menu Site', '', '', 1658390704, 0, 1, '', '', '', '', '6', 9, 1, '5', 0, 1),
+('feeds', 'feeds', 'feeds', 'feeds', 'feeds', 'RSS-feeds', '', '', 1658390704, 1, 1, '', '', '', '', '6', 10, 1, '5', 0, 1),
+('page', 'page', 'page', 'page', 'page', 'Page', '', '', 1658390704, 1, 1, '', '', '', '', '6', 11, 1, '5', 1, 0),
+('comment', 'comment', 'comment', 'comment', 'comment', 'Bình luận', '', 'Quản lý bình luận', 1658390704, 0, 1, '', '', '', '', '6', 12, 1, '5', 0, 1),
+('siteterms', 'page', 'siteterms', 'siteterms', 'page', 'Điều khoản sử dụng', '', '', 1658390704, 1, 1, '', '', '', '', '6', 13, 1, '5', 1, 1),
+('freecontent', 'freecontent', 'freecontent', 'freecontent', 'freecontent', 'Giới thiệu sản phẩm', '', '', 1658390704, 0, 1, '', '', '', '', '6', 14, 1, '5', 0, 1),
+('two-step-verification', 'two-step-verification', 'two_step_verification', 'two_step_verification', 'two-step-verification', 'Xác thực hai bước', '', '', 1658390704, 1, 0, '', '', '', '', '6', 15, 1, '5', 0, 1),
+('home', 'home', 'home', 'home', 'home', 'Home', '', '', 1659667316, 1, 0, '', '', '', '', '6', 16, 1, '5', 0, 0),
+('slider', 'slider', 'slider', 'slider', 'slider', 'Slider Home', '', '', 1659667357, 0, 1, '', '', '', '', '6', 17, 1, '5', 0, 0),
+('shops', 'shops', 'shops', 'shops', 'shops', 'Sản phẩm', '', '', 1663339176, 1, 1, '', '', '', '', '1', 18, 1, '3,4,5', 1, 1),
+('daskboard', 'daskboard', 'daskboard', 'daskboard', 'daskboard', 'Daskboard', '', '', 1663840382, 1, 0, 'dashboard', ':pcmod', '', '', '4', 19, 1, '5', 0, 0),
+('personnel', 'personnel', 'personnel', 'personnel', 'personnel', 'Nhân sự', '', '', 1663841424, 1, 1, 'dashboard', ':pcmod', '', '', '4', 20, 1, '5', 0, 0),
+('task', 'task', 'task', 'task', 'task', 'Quản lý công việc', '', '', 1663843140, 1, 1, 'dashboard', '', '', '', '4', 21, 1, '5', 0, 0),
+('customer', 'customer', 'customer', 'customer', 'customer', 'Khách hàng', '', '', 1663861835, 1, 1, 'dashboard', ':pcmod', '', '', '4', 22, 1, '5', 0, 0),
+('sliderabout', 'slider', 'sliderabout', 'sliderabout', 'slider', 'Slider ảnh about', '', '', 1663902125, 0, 1, '', '', '', '', '6', 23, 1, '5', 0, 0),
+('nvtools', 'nvtools', 'nvtools', 'nvtools', 'nvtools', 'nvtools', '', '', 1671476099, 1, 0, '', '', '', '', '3', 24, 1, '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -27047,52 +26961,39 @@ INSERT INTO `nv4_vi_modules` (`title`, `module_file`, `module_data`, `module_upl
 -- Table structure for table `nv4_vi_news_1`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_1` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=13 ;
+CREATE TABLE `nv4_vi_news_1` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -27100,52 +27001,39 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_1` (
 -- Table structure for table `nv4_vi_news_2`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_2` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=16 ;
+CREATE TABLE `nv4_vi_news_2` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -27153,52 +27041,39 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_2` (
 -- Table structure for table `nv4_vi_news_3`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_3` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=13 ;
+CREATE TABLE `nv4_vi_news_3` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -27206,52 +27081,39 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_3` (
 -- Table structure for table `nv4_vi_news_4`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_4` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=11 ;
+CREATE TABLE `nv4_vi_news_4` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -27259,52 +27121,39 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_4` (
 -- Table structure for table `nv4_vi_news_5`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_5` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_vi_news_5` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -27312,62 +27161,49 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_5` (
 -- Table structure for table `nv4_vi_news_6`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_6` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=20 ;
+CREATE TABLE `nv4_vi_news_6` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_6`
 --
 
 INSERT INTO `nv4_vi_news_6` (`id`, `catid`, `listcatid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `weight`, `publtime`, `exptime`, `archive`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `inhome`, `allowed_comm`, `allowed_rating`, `external_link`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `instant_active`, `instant_template`, `instant_creatauto`) VALUES
-(18, 6, '6', 0, 1, '', 5, 1673012483, 1673012483, 1, 3, 1438609140, 0, 2, 'Quý IV&#x002F;2014&#x3A; Hầu hết vụ tấn công mạng có nguồn gốc từ Trung Quốc', 'quy-iv-2014-hau-het-vu-tan-cong-mang-co-nguon-goc-tu-trung-quoc', '<strong>Đứng sau Trung Quốc về lưu lượng các cuộc tấn công không gian mạng trong quý IV/2014 không ai khác ngoài Mỹ, theo số liệu vừa được công ty cung cấp dịch vụ đám mây Akamai công bố hôm 25/3.</strong>', '2023_01/7be335477876db854960134c6e137164_xl.jpg', '7be335477876db854960134c6e137164 XL', 1, 1, '4', 1, 0, 6, 0, 0, 0, 0, '', 0),
-(16, 6, '6', 0, 1, '', 0, 1663836465, 1663836559, 1, 1, 1663836240, 0, 2, 'IT Helpdesk là gì và con đường phát triển sự nghiệp của nhân viên Helpdesk', 'it-helpdesk-la-gi-va-con-duong-phat-trien-su-nghiep-cua-nhan-vien-helpdesk', 'IT Helpdesk, mới nghe thì có vẻ đơn giản nhưng thực ra cũng làm khá nhiều người cảm thấy khó hiểu và lẫn lộn giữa các khái niệm IT Helpdesk, IT Service Desk… Vậy IT Helpdesk có phải là phòng IT không? Làm IT Helpdesk là làm gì và cơ hội phát triển nghề nghiệp thế nào? Có kiến thức kỹ năng gì để làm một IT helpdesk? Bài viết này sẽ đi giải đáp thắc mắc phần nào các câu hỏi đó.', 'https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp', '', 3, 1, '4', 1, 0, 21, 0, 0, 0, 0, '', 0),
-(17, 6, '6', 0, 1, '', 0, 1663836904, 1663836922, 1, 2, 1663836600, 0, 2, 'Thị trường tuyển dụng việc làm IT 2021-2022&#x3A; Nhìn lại và Hướng đến tương lai', 'thi-truong-tuyen-dung-viec-lam-it-2021-2022-nhin-lai-va-huong-den-tuong-lai', 'Thị trường tuyển dụng việc làm IT đã thực sự tiến vào “bình thường mới”? Cùng ITviec nhìn lại ảnh hưởng của năm 2021 đối với xu hướng tuyển dụng nhân viên IT tại Việt Nam và những thay đổi được dự đoán sẽ bùng nổ trong năm 2022.', 'https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg', '', 3, 1, '4', 1, 0, 21, 0, 0, 0, 0, '', 0),
-(19, 6, '6', 0, 1, '', 6, 1673012719, 1673012795, 1, 4, 1427290920, 0, 2, 'Cách nâng cấp Windows 10 Technical Preview qua Windows Update', 'cach-nang-cap-windows-10-technical-preview-qua-windows-update', '<strong>Sử dụng tính năng Windows Update sẵn có trong Windows 7 để nâng cấp phiên bản hệ điều hành mới nhất của Microsoft sẽ dễ dàng hơn so với cách cài mới (clean install). Phương thức này còn giữ lại các thiết đặt, cá nhân hóa và cả những ứng dụng quen thuộc của người dùng. Và đây cũng là điều mà bạn không thể làm được với Windows 8.1.</strong>', '2023_01/windows10_1.jpg', '', 1, 1, '4', 1, 0, 8, 0, 0, 0, 0, '', 0);
+(18, 6, '6', 0, 1, '', 5, 1673012483, 1673012483, 1, 3, 1438609140, 0, 2, 'Quý IV&#x002F;2014&#x3A; Hầu hết vụ tấn công mạng có nguồn gốc từ Trung Quốc', 'quy-iv-2014-hau-het-vu-tan-cong-mang-co-nguon-goc-tu-trung-quoc', '<strong>Đứng sau Trung Quốc về lưu lượng các cuộc tấn công không gian mạng trong quý IV/2014 không ai khác ngoài Mỹ, theo số liệu vừa được công ty cung cấp dịch vụ đám mây Akamai công bố hôm 25/3.</strong>', '2023_01/7be335477876db854960134c6e137164_xl.jpg', '7be335477876db854960134c6e137164 XL', 1, 1, '4', 1, 0, 9, 0, 0, 0, 0, '', 0),
+(16, 6, '6', 0, 1, '', 0, 1663836465, 1663836559, 1, 1, 1663836240, 0, 2, 'IT Helpdesk là gì và con đường phát triển sự nghiệp của nhân viên Helpdesk', 'it-helpdesk-la-gi-va-con-duong-phat-trien-su-nghiep-cua-nhan-vien-helpdesk', 'IT Helpdesk, mới nghe thì có vẻ đơn giản nhưng thực ra cũng làm khá nhiều người cảm thấy khó hiểu và lẫn lộn giữa các khái niệm IT Helpdesk, IT Service Desk… Vậy IT Helpdesk có phải là phòng IT không? Làm IT Helpdesk là làm gì và cơ hội phát triển nghề nghiệp thế nào? Có kiến thức kỹ năng gì để làm một IT helpdesk? Bài viết này sẽ đi giải đáp thắc mắc phần nào các câu hỏi đó.', 'https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp', '', 3, 1, '4', 1, 0, 23, 0, 0, 0, 0, '', 0),
+(17, 6, '6', 0, 1, '', 0, 1663836904, 1663836922, 1, 2, 1663836600, 0, 2, 'Thị trường tuyển dụng việc làm IT 2021-2022&#x3A; Nhìn lại và Hướng đến tương lai', 'thi-truong-tuyen-dung-viec-lam-it-2021-2022-nhin-lai-va-huong-den-tuong-lai', 'Thị trường tuyển dụng việc làm IT đã thực sự tiến vào “bình thường mới”? Cùng ITviec nhìn lại ảnh hưởng của năm 2021 đối với xu hướng tuyển dụng nhân viên IT tại Việt Nam và những thay đổi được dự đoán sẽ bùng nổ trong năm 2022.', 'https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg', '', 3, 1, '4', 1, 0, 24, 0, 0, 0, 0, '', 0),
+(19, 6, '6', 0, 1, '', 6, 1673012719, 1673012795, 1, 4, 1427290920, 0, 2, 'Cách nâng cấp Windows 10 Technical Preview qua Windows Update', 'cach-nang-cap-windows-10-technical-preview-qua-windows-update', '<strong>Sử dụng tính năng Windows Update sẵn có trong Windows 7 để nâng cấp phiên bản hệ điều hành mới nhất của Microsoft sẽ dễ dàng hơn so với cách cài mới (clean install). Phương thức này còn giữ lại các thiết đặt, cá nhân hóa và cả những ứng dụng quen thuộc của người dùng. Và đây cũng là điều mà bạn không thể làm được với Windows 8.1.</strong>', '2023_01/windows10_1.jpg', '', 1, 1, '4', 1, 0, 9, 0, 0, 0, 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -27375,52 +27211,39 @@ INSERT INTO `nv4_vi_news_6` (`id`, `catid`, `listcatid`, `topicid`, `admin_id`, 
 -- Table structure for table `nv4_vi_news_7`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_7` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_vi_news_7` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -27428,17 +27251,23 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_7` (
 -- Table structure for table `nv4_vi_news_admins`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_admins` (
-  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `catid` smallint(6) NOT NULL DEFAULT '0',
-  `admin` tinyint(4) NOT NULL DEFAULT '0',
-  `add_content` tinyint(4) NOT NULL DEFAULT '0',
-  `pub_content` tinyint(4) NOT NULL DEFAULT '0',
-  `edit_content` tinyint(4) NOT NULL DEFAULT '0',
-  `del_content` tinyint(4) NOT NULL DEFAULT '0',
-  `app_content` tinyint(4) NOT NULL DEFAULT '0',
-  UNIQUE KEY `userid` (`userid`,`catid`)
+CREATE TABLE `nv4_vi_news_admins` (
+  `userid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `catid` smallint(6) NOT NULL DEFAULT 0,
+  `admin` tinyint(4) NOT NULL DEFAULT 0,
+  `add_content` tinyint(4) NOT NULL DEFAULT 0,
+  `pub_content` tinyint(4) NOT NULL DEFAULT 0,
+  `edit_content` tinyint(4) NOT NULL DEFAULT 0,
+  `del_content` tinyint(4) NOT NULL DEFAULT 0,
+  `app_content` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `nv4_vi_news_admins`
+--
+
+INSERT INTO `nv4_vi_news_admins` (`userid`, `catid`, `admin`, `add_content`, `pub_content`, `edit_content`, `del_content`, `app_content`) VALUES
+(5, 0, 1, 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -27446,21 +27275,18 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_admins` (
 -- Table structure for table `nv4_vi_news_author`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_author` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` int(10) unsigned NOT NULL,
-  `alias` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `pseudonym` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `add_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `edit_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `active` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `numnews` mediumint(9) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uid` (`uid`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_vi_news_author` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `uid` int(10) UNSIGNED NOT NULL,
+  `alias` varchar(100) NOT NULL DEFAULT '',
+  `pseudonym` varchar(100) NOT NULL DEFAULT '',
+  `image` varchar(255) DEFAULT '',
+  `description` text DEFAULT NULL,
+  `add_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edit_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `active` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `numnews` mediumint(9) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_author`
@@ -27475,14 +27301,11 @@ INSERT INTO `nv4_vi_news_author` (`id`, `uid`, `alias`, `pseudonym`, `image`, `d
 -- Table structure for table `nv4_vi_news_authorlist`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_authorlist` (
+CREATE TABLE `nv4_vi_news_authorlist` (
   `id` int(11) NOT NULL,
   `aid` mediumint(9) NOT NULL,
-  `alias` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `pseudonym` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  UNIQUE KEY `id_aid` (`id`,`aid`),
-  KEY `aid` (`aid`),
-  KEY `alias` (`alias`)
+  `alias` varchar(100) NOT NULL DEFAULT '',
+  `pseudonym` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -27501,11 +27324,10 @@ INSERT INTO `nv4_vi_news_authorlist` (`id`, `aid`, `alias`, `pseudonym`) VALUES
 -- Table structure for table `nv4_vi_news_block`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_block` (
-  `bid` smallint(5) unsigned NOT NULL,
-  `id` int(10) unsigned NOT NULL,
-  `weight` int(10) unsigned NOT NULL,
-  UNIQUE KEY `bid` (`bid`,`id`)
+CREATE TABLE `nv4_vi_news_block` (
+  `bid` smallint(5) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `weight` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -27528,22 +27350,19 @@ INSERT INTO `nv4_vi_news_block` (`bid`, `id`, `weight`) VALUES
 -- Table structure for table `nv4_vi_news_block_cat`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_block_cat` (
-  `bid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `adddefault` tinyint(4) NOT NULL DEFAULT '0',
-  `numbers` smallint(6) NOT NULL DEFAULT '10',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` smallint(6) NOT NULL DEFAULT '0',
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`bid`),
-  UNIQUE KEY `title` (`title`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_vi_news_block_cat` (
+  `bid` smallint(5) UNSIGNED NOT NULL,
+  `adddefault` tinyint(4) NOT NULL DEFAULT 0,
+  `numbers` smallint(6) NOT NULL DEFAULT 10,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `image` varchar(255) DEFAULT '',
+  `description` varchar(255) DEFAULT '',
+  `weight` smallint(6) NOT NULL DEFAULT 0,
+  `keywords` text DEFAULT NULL,
+  `add_time` int(11) NOT NULL DEFAULT 0,
+  `edit_time` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_block_cat`
@@ -27559,37 +27378,33 @@ INSERT INTO `nv4_vi_news_block_cat` (`bid`, `adddefault`, `numbers`, `title`, `a
 -- Table structure for table `nv4_vi_news_cat`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_cat` (
-  `catid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `parentid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `titlesite` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `descriptionhtml` text COLLATE utf8mb4_unicode_ci,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `viewdescription` tinyint(4) NOT NULL DEFAULT '0',
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `sort` smallint(6) NOT NULL DEFAULT '0',
-  `lev` smallint(6) NOT NULL DEFAULT '0',
-  `viewcat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'viewcat_page_new',
-  `numsubcat` smallint(6) NOT NULL DEFAULT '0',
-  `subcatid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `numlinks` tinyint(3) unsigned NOT NULL DEFAULT '3',
-  `newday` tinyint(3) unsigned NOT NULL DEFAULT '2',
-  `featured` int(11) NOT NULL DEFAULT '0',
-  `ad_block_cat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `admins` text COLLATE utf8mb4_unicode_ci,
-  `add_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `edit_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `groups_view` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `status` smallint(6) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`catid`),
-  UNIQUE KEY `alias` (`alias`),
-  KEY `parentid` (`parentid`),
-  KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=8 ;
+CREATE TABLE `nv4_vi_news_cat` (
+  `catid` smallint(5) UNSIGNED NOT NULL,
+  `parentid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL,
+  `titlesite` varchar(250) DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `description` text DEFAULT NULL,
+  `descriptionhtml` text DEFAULT NULL,
+  `image` varchar(255) DEFAULT '',
+  `viewdescription` tinyint(4) NOT NULL DEFAULT 0,
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `sort` smallint(6) NOT NULL DEFAULT 0,
+  `lev` smallint(6) NOT NULL DEFAULT 0,
+  `viewcat` varchar(50) NOT NULL DEFAULT 'viewcat_page_new',
+  `numsubcat` smallint(6) NOT NULL DEFAULT 0,
+  `subcatid` varchar(255) DEFAULT '',
+  `numlinks` tinyint(3) UNSIGNED NOT NULL DEFAULT 3,
+  `newday` tinyint(3) UNSIGNED NOT NULL DEFAULT 2,
+  `featured` int(11) NOT NULL DEFAULT 0,
+  `ad_block_cat` varchar(255) NOT NULL DEFAULT '',
+  `keywords` text DEFAULT NULL,
+  `admins` text DEFAULT NULL,
+  `add_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edit_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `groups_view` varchar(255) DEFAULT '',
+  `status` smallint(6) NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_cat`
@@ -27610,13 +27425,12 @@ INSERT INTO `nv4_vi_news_cat` (`catid`, `parentid`, `title`, `titlesite`, `alias
 -- Table structure for table `nv4_vi_news_config_post`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_config_post` (
+CREATE TABLE `nv4_vi_news_config_post` (
   `group_id` smallint(6) NOT NULL,
   `addcontent` tinyint(4) NOT NULL,
   `postcontent` tinyint(4) NOT NULL,
   `editcontent` tinyint(4) NOT NULL,
-  `delcontent` tinyint(4) NOT NULL,
-  PRIMARY KEY (`group_id`)
+  `delcontent` tinyint(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -27637,22 +27451,21 @@ INSERT INTO `nv4_vi_news_config_post` (`group_id`, `addcontent`, `postcontent`, 
 -- Table structure for table `nv4_vi_news_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_detail` (
-  `id` int(10) unsigned NOT NULL,
-  `titlesite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bodyhtml` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `voicedata` text COLLATE utf8mb4_unicode_ci COMMENT 'Data giọng đọc json',
-  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourcetext` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `files` text COLLATE utf8mb4_unicode_ci,
-  `imgposition` tinyint(1) NOT NULL DEFAULT '1',
-  `layout_func` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `copyright` tinyint(1) NOT NULL DEFAULT '0',
-  `allowed_send` tinyint(1) NOT NULL DEFAULT '0',
-  `allowed_print` tinyint(1) NOT NULL DEFAULT '0',
-  `allowed_save` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+CREATE TABLE `nv4_vi_news_detail` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `titlesite` varchar(255) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
+  `bodyhtml` longtext NOT NULL,
+  `voicedata` text DEFAULT NULL COMMENT 'Data giọng đọc json',
+  `keywords` varchar(255) DEFAULT '',
+  `sourcetext` varchar(255) DEFAULT '',
+  `files` text DEFAULT NULL,
+  `imgposition` tinyint(1) NOT NULL DEFAULT 1,
+  `layout_func` varchar(100) DEFAULT '',
+  `copyright` tinyint(1) NOT NULL DEFAULT 0,
+  `allowed_send` tinyint(1) NOT NULL DEFAULT 0,
+  `allowed_print` tinyint(1) NOT NULL DEFAULT 0,
+  `allowed_save` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -27660,10 +27473,10 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_detail` (
 --
 
 INSERT INTO `nv4_vi_news_detail` (`id`, `titlesite`, `description`, `bodyhtml`, `voicedata`, `keywords`, `sourcetext`, `files`, `imgposition`, `layout_func`, `copyright`, `allowed_send`, `allowed_print`, `allowed_save`) VALUES
-(16, '', '', '<h2>IT Helpdesk là gì?</h2>\r\n\r\n<p>IT Helpdesk là một bộ phận thuộc phòng IT, có trách nhiệm hỗ trợ người sử dụng (nội bộ hoặc bên ngoài công ty) các vấn đề liên quan đến kỹ thuật hay dịch vụ IT.&nbsp; IT Helpdesk là nơi liên lạc và tiếp nhận các yêu cầu từ người sử dụng để xử lý hoặc chuyển đến các bộ phận thích hợp.</p>\r\n\r\n<p>Nhiệm vụ chính của IT Helpdesk:</p>\r\n\r\n<ul>\r\n	<li>Hỗ trợ người sử dụng khi có bất kỳ vấn đề về kỹ thuật liên quan đến phần cứng, phần mềm, mạng máy tính, điện thoại hay các ứng dụng trên máy tính người dùng.</li>\r\n	<li>Cung cấp thông tin về các dịch vụ IT khi có yêu cầu từ người sử dụng.</li>\r\n	<li>Chuyển thông tin đến các bộ phận liên quan khác trong phòng IT nhằm đảm bảo các yêu cầu hay sự cố được giải quyết. Theo dõi tiến độ xử lý và phản hồi người sự dụng khi cần thiết.</li>\r\n</ul>\r\n\r\n<figure aria-describedby="caption-attachment-1501" id="attachment_1501"><img alt="IT Helpdesk Objectives" data-pin-no-hover="true" height="614" loading="lazy" sizes="(max-width: 639px) 100vw, 639px" src="https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp" srcset="https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp 300w, https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-600x577.jpg.webp 600w, https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk.jpg.webp 618w" width="639" />\r\n<figcaption id="caption-attachment-1501">Nhiệm vụ của IT Helpdesk. Ảnh Quora</figcaption>\r\n</figure>\r\n\r\n<h2>Vị trí IT Helpdesk trong bộ phận IT</h2>\r\n\r\n<p>Với một công ty có ít nhân viên, có thể không có bộ phận IT Helpdesk riêng biệt trong phòng IT. Trong trường hợp đó công việc thường không được định nghĩa rõ ràng và một người có thể kiêm nhiều việc. Tuy nhiên với các công ty có nhiều nhân viên và hệ thống IT phức tạp thì IT Helpdesk là một bộ phận riêng biệt có chức năng và nhiệm vụ riêng. Trong khi&nbsp;<a href="https://itguru.vn/blog/lam-it-trong-cong-ty-non-tech-la-lam-gi/" rel="noopener noreferrer" target="_blank">các dịch vụ mà phòng IT cung cấp</a>&nbsp;là khá rộng, từ thiết kế, xây dựng, triển khai các ứng dụng, cơ sở hạ tầng IT đến thiết lập, quản lý các quy trình hoạt động của bộ phận IT, quản lý và giải quyết sự cố, quản lý thiết bị IT… thì IT Helpdesk là nơi đầu tiên tiếp nhận yêu cầu hay thông tin sự cố liên quan đến dịch vụ IT từ users trong các hoạt động hàng ngày của doanh nghiệp. Tùy vào vấn đề mà họ có thể xử lý ngay hoặc chuyển đến các bộ phận liên quan.</p>\r\n\r\n<h2>IT Helpdesk có quan trọng không?</h2>\r\n\r\n<p>Cho dù IT Helpdesk là việc kiêm nhiệm trong các công ty ít người hay có bộ phận rõ ràng trong các công ty đông nhân viên, trách nhiệm và nhiệm vụ của&nbsp;<a href="https://www.linkedin.com/pulse/hr-du-k%C3%BD-29-vi%E1%BA%BFt-k%E1%BB%B3-55-helpdesk-b%E1%BA%A1n-r%E1%BA%A5t-quan-tr%E1%BB%8Dng-nh%C6%B0ng-kh%C3%A1nh-v%C3%A2n/" rel="noopener noreferrer" target="_blank">IT Helpdesk là rất quan trọng</a>:</p>\r\n\r\n<ul>\r\n	<li>Cùng với các bộ phận khác trong phòng IT, IT helpdesk phải đảm bảo các sự cố được giải quyết theo cam kết chất lượng dịch vụ (SLA – Service Level Agreement) giữa phòng IT và doanh nghiệp. Thông thường các công ty đều có SLA rõ ràng và căn cứ vào đó để đáng giá chất lượng dịch vụ IT. SLA đơn giản hay phức tạp là tùy vào quy mô công ty, độ phức tạp của hệ thống IT mà công ty sử dụng.</li>\r\n	<li>Là bộ phận đầu tiên tiếp nhận các yêu cầu và thông tin từ người sử dụng trong hoạt động hàng ngày của doanh nghiệp.</li>\r\n	<li>Là nơi đầu tiên xử lý các sự cố liên quan đến máy tính của người sử dụng.</li>\r\n</ul>\r\n\r\n<h2>Kiến thức và kỹ năng cần có để làm IT Helpdesk</h2>\r\n\r\n<p>Để làm trong bộ phận IT Helpdesk, bạn cần có những kiến thức kỹ năng sau:</p>\r\n\r\n<p><strong>Kiến thức và kỹ năng về kỹ thuật:</strong></p>\r\n\r\n<ul>\r\n	<li>Nắm vững các kiến thức về phần cứng, các hệ điều hành, các phần mềm, hệ thống điện thoại mà công ty đang sử dụng.</li>\r\n	<li>Hiểu về các ứng dụng doanh nghiệp trong công ty.</li>\r\n	<li>Hiểu về cơ sở hạ tầng IT của công ty.</li>\r\n	<li>Nắm rõ các quy trình IT liên quan đến người sử dụng (IT policy, IT procedure).</li>\r\n	<li>Sử dụng thành thạo các ứng dụng quản lý dịch vụ IT (service desk application) nếu có. Các ứng dụng này được dùng để quản lý các ticket, thiết bị IT, quản lý sự thay đổi, quản lý sự cố…</li>\r\n</ul>\r\n\r\n<p><strong>Kỹ năng mềm và các kỹ năng khác:</strong></p>\r\n\r\n<ul>\r\n	<li>Kỹ năng giao tiếp</li>\r\n	<li>Kỹ năng làm việc nhóm</li>\r\n	<li>Kỹ năng làm việc độc lập</li>\r\n	<li>Kiên nhẫn</li>\r\n	<li>Học hỏi và luôn cập nhật kiến thức</li>\r\n	<li>Kỹ năng phân tích và xử lý sự cố (problem solving)</li>\r\n	<li>Tiếng Anh, nếu bạn muốn phát triển nghề nghiệp trong những môi trường các công ty nước ngoài.</li>\r\n</ul>\r\n\r\n<h2>Con đường phát triển sự nghiệp của nghề IT Helpdesk.</h2>\r\n\r\n<p><a href="https://news.zing.vn/3-quan-niem-sai-lam-cua-ban-tre-ve-nghe-it-post589963.html" rel="noopener noreferrer" target="_blank">Không như mọi người nghĩ</a>, con đường phát triển của những người làm IT Helpdesk là khá rộng. Làm việc trong bộ phận IT Helpdesk là khởi đầu tốt cho việc phát triển nghề nghiệp IT của bạn. Tất nhiên nó còn phụ thuộc vào khả năng cầu tiến và sự học hỏi của bạn. Sau đây là những vị trí tiếp theo mà các nhân viên Helpdesk có thể hướng đến:</p>\r\n\r\n<ul>\r\n	<li><strong>IT Helpdesk team leader:</strong>&nbsp;là vị trí dành cho những người có kinh nghiệm, có khả năng lãnh đạo nhóm.</li>\r\n	<li><strong>Network and system administrator:</strong>&nbsp;khi bạn đã có kiến thức kinh nghiệm cộng với sự nâng cấp bản thân với các bằng cấp về network như CCNA, CCNP… thì khả năng bạn chuyển sang các vị trí này là không khó khăn</li>\r\n	<li><strong>Server Administrator:</strong>&nbsp;học hỏi nâng cấp các kiến thức nền và thi lấy các chứng chỉ như MCSE của Microsoft, hoặc các kiến thức về hệ điều hành Linux, Unix… sẽ giúp bạn có cơ hội trở thành Server admin khi có cơ hội.</li>\r\n	<li><strong>Application administrator:</strong>&nbsp;tương tự như network hay sever, bạn có thể chuyển sang các vị trí hỗ trợ ứng dụng khi có cơ hội</li>\r\n	<li><strong>Security expert:</strong>&nbsp;đây cũng là một khả năng, nếu bạn chịu khó học thêm chuyên sâu về các kỹ thuật này. Làm trong bộ phận Helpdesk là cơ hội để bạn tiếp xúc học hỏi các chuyên gia cùng làm việc</li>\r\n	<li><strong>Database Administrator:</strong>&nbsp;đây cũng là một khả năng và nhiều DBA đã đi từ bộ phận IT Helpdesk.</li>\r\n	<li><strong>IT Manager, IT Project Manager:</strong>&nbsp;tất nhiên đây là nấc thang cao và cần thời gian. Trong thực tế có nhiều người sau khi qua các vị trí khác nhau, bắt đầu từ IT Helpdesk và đã thành công ở các vị trí cao hơn rất nhiều</li>\r\n	<li><strong>Và nhiều nữa:</strong>&nbsp;không giới hạn cho sự phát triển của bạn, miễn là bạn chịu khó học hỏi. Khi môi trường hiện tại không còn chỗ cho bạn phát triển hãy tìm một môi trường khác có nhiều cơ hội hơn</li>\r\n</ul>\r\n\r\n<figure aria-describedby="caption-attachment-1157" id="attachment_1157"><img alt="phát triển nghề nghiệp với IT Helpdesk" data-pin-no-hover="true" height="390" loading="lazy" sizes="(max-width: 520px) 100vw, 520px" src="https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk-300x225.jpg.webp" srcset="https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk-300x225.jpg.webp 300w, https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk-600x450.jpg.webp 600w, https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk.jpg.webp 668w" width="520" />\r\n<figcaption id="caption-attachment-1157">IT Helpdesk là khởi đầu hoàn hảo cho những bước tiếp theo của sự nghiệp</figcaption>\r\n</figure>\r\n\r\n<h2>Lương bổng phúc lợi IT Helpdesk</h2>\r\n\r\n<p>Theo khảo sát của các trang web tuyển dụng, mức lương phổ biến của IT Helpdesk từ 8 – 12 triệu đồng. Tùy vào kinh nghiệm, lĩnh vực công ty mà mức lương có thể lên đến 20 triệu đồng hoặc hơn.</p>\r\n\r\n<p>Một lưu ý là IT nói chung và IT Helpdesk nói riêng, lương có thể khác nhau khi làm trong các ngành khác nhau. Ví dụ IT Helpdesk ngân hàng có thể khác với IT Helpdesk ngành dầu khí, ngành hàng tiêu dùng… cho dù cùng số năm kinh nghiệm, công việc như nhau.</p>\r\n\r\n<h2>Những quan điểm sai lầm</h2>\r\n\r\n<p>Có rất nhiều quan điểm sai lầm về IT Helpdesk. Nhiều người thậm chí không biết được nhiệm vụ chính của một IT Helpdesk là gì và nghĩ họ là superman, làm được mọi thứ. Các sai lầm có thể kể đến:</p>\r\n\r\n<ul>\r\n	<li>IT Helpdesk biết tất cả mọi thứ liên quan đến IT: dù là những người được user liên lạc đầu tiên khi có sự cố trong quá trình làm việc với máy tính nhưng Helpdesk không phải gì cũng biết. Họ có thể biết rất rõ những sự cố hay yêu cầu liên quan đến máy tính của bạn, hoặc network của bạn có vấn đề gì nhưng nhiều vấn đề họ cần phải chuyển cho các bộ phận khác xử lý. Ví dụ những vấn đề liên quan đến các ứng dụng, hoặc server…</li>\r\n	<li>Không có cơ hội phát triển: như trên đã đề cập, rất nhiều cơ hội phát triển cho người làm IT Helpdesk, miễn là có ý cầu tiến và luôn tìm mọi cơ hội để học hỏi</li>\r\n	<li>Không tìm được việc gì khác mới làm IT Helpdesk: làm gì cũng cần kỹ năng, kinh nghiệm và Helpdesk cũng vậy. IT Helpdesk là bộ phận vô cùng quan trọng trong IT.</li>\r\n	<li>IT Helpdesk đụng đâu xử lý đó, không cần quy trình tiêu chuẩn gì: điều này hoàn toàn sai. Helpdesk hay support team là một bộ phận của IT và có những quy tắc, tiêu chuẩn hay framework cần phải tuân theo như ITIL (Informatio Technology Infrastructure Library) cùng các tiêu chuẩn khác.</li>\r\n	<li>Làm Helpdesk là sửa cả điện nước, điện thoại các kiểu: chuyện này là khá phổ biến trong các công ty nhỏ. Thực tế IT Helpdesk không có chức năng như vậy và việc nhờ họ làm thì cũng giống bạn nhờ ai đó trong công ty làm việc gì đó ngoài chuyên môn. Họ có thể giúp nhưng đó không phải là nhiệm vụ của họ.</li>\r\n</ul>\r\n\r\n<h2>Tìm việc Helpdesk ở đâu?</h2>\r\n\r\n<p>Bạn có thể tìm việc IT Helpdesk trên các trang web tuyển dụng, đặc biệt là các trang web tuyển dụng chuyên ngành IT và&nbsp;<a href="https://itguru.vn/">ITguru.vn</a>&nbsp;là một trong số đó. Trên Facebook hoặc Linkedin cũng có khá nhiều group chuyên tuyển dụng các vị trí này.</p>\r\n\r\n<p>Bạn có có đang là một IT Helpdesk hay có kinh nghiệm trong lĩnh vực này? Hãy chia sẻ cùng chúng tôi bên dưới nhé.</p>', NULL, '', '', '', 2, '', 0, 1, 1, 1),
-(17, '', '', '<p>Dựa vào những số liệu theo Khảo sát Nhà tuyển dụng IT năm 2022 do ITviec thực hiện, có thể tự tin khẳng định rằng năm 2022 sẽ là một năm sôi động của thị trường tuyển dụng IT với nhiều vị trí việc làm IT hot, mức lương tăng cho nhân viên mới và những chính sách phúc lợi hấp dẫn.</p>\r\n\r\n<blockquote>\r\n<p><em>Developer nhiều kinh nghiệm chuyên tìm&nbsp;<a href="https://itviec.com/?utm_medium=anchor_text&amp;utm_source=blog_30032022&amp;utm_campaign=es2022" rel="noopener" target="_blank"><strong>việc IT “chất”</strong></a>&nbsp;trên ITviec!</em></p>\r\n</blockquote>\r\n\r\n<h2><b>Tình hình tuyển dụng việc làm IT trong năm 2021</b></h2>\r\n\r\n<h3><strong>Sơ lược về tình hình tuyển dụng việc làm IT trong năm 2021</strong></h3>\r\n\r\n<p>Dịch bệnh COVID-19 đã tác động không nhỏ đến thị trường lao động thế giới. Ngoài việc tuyển dụng bị đình trệ hoặc đóng băng, nhà tuyển dụng bắt buộc phải thay đổi kế hoạch chiêu mộ nhân tài để thích nghi với những hoàn cảnh sống thay đổi mỗi ngày.</p>\r\n\r\n<p>Tại Việt Nam, cụ thể là ngành IT, theo kết quả Khảo sát Nhà tuyển dụng IT năm 2022, hơn 68% nhà tuyển dụng xác nhận rằng dịch bệnh COVID-19 đã ảnh hưởng đến kế hoạch tuyển dụng của họ trong năm 2021.</p>\r\n\r\n<p>Đồng thời, “<b>từ xa / remote</b>” là từ khóa định hình nên năm 2021 khi mọi quy trình từ ứng tuyển cho đến phỏng vấn gần như được thực hiện hoàn toàn qua trực tuyến.</p>\r\n\r\n<p>Những tưởng mọi việc không thay đổi nhiều, tuy nhiên, việc chuyển từ “offline” sang “online” đã dẫn đến những thay đổi lớn ảnh hưởng đến quy trình nhà tuyển dụng tìm kiếm nhân tài và quá trình ứng viên quyết định ứng tuyển/nhận lời mời làm việc từ một công ty.&nbsp;Khi thực hiện các cuộc phỏng vấn video online, các ứng viên khó có thể cảm nhận được rõ nét những văn hóa, giá trị mà nhà tuyển dụng muốn truyền tải.</p>\r\n\r\n<h3><strong>Nhu cầu tuyển dụng việc làm IT trong năm 2021</strong></h3>\r\n\r\n<p>Theo kết quả Khảo sát Nhà tuyển dụng 2022 từ ITviec, một tín hiệu lạc quan rằng các doanh nghiệp vẫn tiếp tục tăng số lượng tuyển dụng việc làm IT trong năm 2021 – gần 70% nhà tuyển dụng xác nhận rằng số lượng nhân viên IT của họ đã tăng hơn 10%.</p>\r\n<img alt="tuyển dụng it 2021 - employer survey itviec 2022" aria-describedby="caption-attachment-23138" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px" data-lazy-src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg" data-lazy-srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-300x167.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-200x111.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-768x428.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1536x856.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-2048x1141.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-100x56.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-700x390.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1600x891.jpg 1600w" data-ll-status="loaded" height="1426" sizes="(max-width: 2560px) 100vw, 2560px" src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg" srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-300x167.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-200x111.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-768x428.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1536x856.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-2048x1141.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-100x56.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-700x390.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1600x891.jpg 1600w" width="2560" />\r\n<p id="caption-attachment-23138">Số liệu phần trăm thể hiện mức độ tăng trưởng số lượng nhân viên IT thực tế của nhà tuyển dụng trong năm 2021.</p>\r\n\r\n<p>Cụ thể hơn, trong năm 2021, nhà tuyển dụng ưu tiên “săn đón” 3 vị trí sau đây nhiều hơn cả, chiếm đến hơn 60% tổng số câu trả lời:</p>\r\n\r\n<ul>\r\n	<li aria-level="1">Backend Developer</li>\r\n	<li aria-level="1">Frontend Developer</li>\r\n	<li aria-level="1">Fullstack Developer</li>\r\n</ul>\r\n\r\n<p>Theo ngay sau 3 vị trí trên chính là việc làm Tester / QA / QC&nbsp; chiếm hơn 10% trong danh sách những vị trí được ưu tiên tuyển dụng tại các doanh nghiệp IT Việt Nam.</p>\r\n\r\n<p>Nhờ vào việc tích cực tuyển dụng trong năm 2021, 82.3% nhà tuyển dụng tham gia Khảo sát trả lời rằng số lượng nhân viên IT trong doanh nghiệp đã tăng trưởng từ 10% đến hơn 30%. Hầu như rất ít công ty phải ngừng tuyển dụng trong năm 2021 dù dịch bệnh. Quả là một tín hiệu đáng mừng cho thị trường tuyển dụng việc làm IT dù phải chịu nhiều tác động nặng nề từ dịch COVID-19.</p>\r\n\r\n<blockquote>\r\n<p><em><a href="https://itviec.com/it-jobs/senior-developer?utm_medium=anchor_text&amp;utm_source=blog_30032022&amp;utm_campaign=es2022" rel="noopener" target="_blank"><strong>Job “chất” dành cho nhân viên IT chuyên môn cao</strong></a>&nbsp;luôn được đăng tuyển đều đặn trên ITviec!</em></p>\r\n</blockquote>\r\n\r\n<h3><strong>Mức lương tuyển dụng nhân viên IT thay đổi như thế nào trong năm 2021?</strong></h3>\r\n\r\n<p>Trong năm 2021, các nhà tuyển dụng đã không ngần ngại tăng mức lương cùng các gói thu nhập lên cao để thu hút nhân tài. Cụ thể, gần 60% nhà tuyển dụng chia sẻ với ITviec rằng họ đã tăng mức lương tuyển dụng nhân viên IT mới ít nhất&nbsp;<b>từ 10% trở lên</b>&nbsp;so với năm 2020.</p>\r\n<img alt="tuyển dụng it 2021 - employer survey itviec 2022 - lương nhân viên it" aria-describedby="caption-attachment-23139" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px" data-lazy-src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg" data-lazy-srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-768x423.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1536x847.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-2048x1129.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-700x386.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1600x882.jpg 1600w" data-ll-status="loaded" height="1411" sizes="(max-width: 2560px) 100vw, 2560px" src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg" srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-768x423.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1536x847.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-2048x1129.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-700x386.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1600x882.jpg 1600w" width="2560" />\r\n<p id="caption-attachment-23139">Số liệu phần trăm thể hiện mức độ tăng trưởng về mức lương mà nhà tuyển dụng đã áp dụng cho các vị trí IT mới trong năm 2021.</p>\r\n\r\n<p>Cũng theo Khảo sát Nhà tuyển dụng 2022, hơn 40% nhà tuyển dụng khẳng định rằng lương chính là yếu tố thu hút và nổi bật nhất trong các chính sách lợi ích dành cho nhân viên IT. Tuy nhiên, đó chưa phải là yếu tố duy nhất giúp các ứng viên IT đưa ra quyết định “chọn mặt gửi vàng” nhanh hơn.</p>\r\n\r\n<h3><strong>Nhà tuyển dụng làm thế nào để thu hút nhân tài IT trong thời kỳ dịch bệnh?</strong></h3>\r\n\r\n<p>Ngoại trừ mức lương hấp dẫn, nhà tuyển dụng đã tập trung vào nhiều chính sách, chiến lược khác nhau để thu hút nhân tài IT, nhất là những ứng viên hàng đầu. Các nhà tuyển dụng cố gắng thể hiện rằng công ty không chỉ là một nơi tuyệt vời để làm việc mà còn là một nơi để nhân viên IT để phát triển, được lắng nghe.</p>\r\n\r\n<p>Theo kết quả Khảo sát Nhà tuyển dụng 2022, sau đây là 4 điểm thu hút nhất đối với Lập trình viên khi ứng tuyển trong năm 2021:</p>\r\n\r\n<ul>\r\n	<li aria-level="1">Lương cao chiếm 38.4% trong tổng số kết quả</li>\r\n	<li aria-level="1">Môi trường làm việc năng động, linh hoạt chiếm 22.2%</li>\r\n	<li aria-level="1">Thưởng gia nhập công ty (Sign-on bonus) chiếm 14.1%</li>\r\n	<li aria-level="1">Dự án lớn chiếm 8.6%</li>\r\n</ul>\r\n\r\n<p>Chi tiết hơn:</p>\r\n<img alt="tuyển dụng it 2021 - employer survey itviec 2022 - lương nhân viên it" aria-describedby="caption-attachment-23140" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px" data-lazy-src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg" data-lazy-srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-300x175.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-200x116.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-768x447.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1536x894.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-2048x1192.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-100x58.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-700x407.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1600x931.jpg 1600w" data-ll-status="loaded" height="1490" sizes="(max-width: 2560px) 100vw, 2560px" src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg" srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-300x175.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-200x116.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-768x447.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1536x894.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-2048x1192.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-100x58.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-700x407.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1600x931.jpg 1600w" width="2560" />\r\n<p id="caption-attachment-23140">Số liệu phần trăm thể hiện những điểm thu hút nhất mà nhà tuyển dụng có thể offer đối với Lập trình viên khi ứng tuyển trong năm 2021.</p>\r\n\r\n<p>Trong đó, yếu tố “<b>môi trường làm việc linh hoạt</b>” là một chiến lược mới, chỉ mới được nhà tuyển dụng đưa vào những giá trị cốt lõi trong việc tuyển dụng trong năm 2021. Chính sách này được thể hiện rõ nét qua các chính sách về làm việc từ xa, hỗ trợ nhân viên thiết lập văn phòng tại nhà phù hợp nhất trong thời gian giãn cách xã hội.</p>\r\n\r\n<p>Sau khi mọi sinh hoạt trở lại bình thường, nhiều công ty vẫn tiếp tục áp dụng chính sách làm việc này để mọi nhân viên có thể hoàn thành công việc dù ở bất kỳ đâu.</p>\r\n\r\n<h2><b>Top 5 ngôn ngữ lập trình/việc làm IT không sợ thất nghiệp vào năm 2022</b></h2>\r\n\r\n<h3><strong>Dự đoán nhu cầu tuyển dụng việc làm IT trong năm 2022</strong></h3>\r\n\r\n<p>Khi tình hình dịch bệnh được kiểm soát và ổn định lại, mọi sinh hoạt có thể bắt đầu trở lại bình thường, các doanh nghiệp sẽ nhanh chóng lấy lại sự tự tin và tăng trưởng. Dựa trên dự đoán đó, hơn 80% doanh nghiệp tham gia Khảo sát đã tự tin chia sẻ rằng họ dự kiến gia tăng ít nhất 10% số lượng nhân viên IT trong năm 2022.</p>\r\n\r\n<p>Cụ thể hơn, sau đây là những vị trí và kỹ năng mà nhà tuyển dụng đang “săn đón” nhiều nhất trong năm 2022, theo thứ tự ưu tiên:</p>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td colspan="2"><b>Top những vị trí và kỹ năng được “săn đón” nhiều nhất năm 2022</b></td>\r\n		</tr>\r\n		<tr>\r\n			<td><b>Ngôn ngữ</b></td>\r\n			<td>\r\n			<ol>\r\n				<li aria-level="1">JavaScript</li>\r\n				<li aria-level="1">Java</li>\r\n				<li aria-level="1">C#</li>\r\n				<li aria-level="1">Node.js</li>\r\n				<li aria-level="1">PHP</li>\r\n			</ol>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td><b>Vị trí</b></td>\r\n			<td>\r\n			<ol>\r\n				<li aria-level="1">Backend Developer</li>\r\n				<li aria-level="1">Fullstack Developer</li>\r\n				<li aria-level="1">Frontend Developer</li>\r\n				<li aria-level="1">Tester/QA/QC</li>\r\n			</ol>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td><b>Cấp bậc</b></td>\r\n			<td>\r\n			<ol>\r\n				<li aria-level="1">Experienced (2-3 năm kinh nghiệm)</li>\r\n				<li aria-level="1">Senior (từ 3 năm kinh nghiệm trở lên)</li>\r\n			</ol>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<blockquote>\r\n<p><em>Tham khảo&nbsp;<a href="https://itviec.com/it-jobs/developer?utm_medium=anchor_text&amp;utm_source=blog_30032022&amp;utm_campaign=es2022" rel="noopener" target="_blank"><strong>việc làm Developer “chất” dành cho Developer dày dặn kinh nghiệm</strong></a>&nbsp;trên ITviec!</em></p>\r\n</blockquote>\r\n\r\n<h3><strong>Dự đoán lương nhân viên IT được tuyển dụng mới trong năm 2022</strong></h3>\r\n\r\n<p>Song song với những dự định đẩy mạnh việc tuyển dụng trong năm 2022, các nhà tuyển dụng cũng mang đến những chính sách về lương, thưởng cũng như các gói phúc lợi hấp dẫn hơn cho những vị trí nhân viên IT mới trong năm 2022.</p>\r\n\r\n<p>Cụ thể, gần 90% nhà tuyển dụng tham gia Khảo sát Nhà tuyển dụng 2022 trả lời họ sẽ&nbsp;<b>tăng trung bình 10%&nbsp;</b>mức lương khi tuyển một vị trí Lập trình viên mới hoặc cấp bậc Lead và Manager trong năm 2022.</p>\r\n<img alt="việc làm it 2022 - employer survey itviec 2022 - lương nhân viên it" aria-describedby="caption-attachment-23141" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px" data-lazy-src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg" data-lazy-srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-768x422.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1536x843.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-2048x1124.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-700x384.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1600x878.jpg 1600w" data-ll-status="loaded" height="1405" sizes="(max-width: 2560px) 100vw, 2560px" src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg" srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-768x422.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1536x843.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-2048x1124.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-700x384.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1600x878.jpg 1600w" width="2560" />\r\n<p id="caption-attachment-23141">Số liệu phần trăm thể hiện mức độ tăng trưởng về mức lương mà nhà tuyển dụng sẵn sàng offer khi tuyển một Lập trình viên mới trong năm 2022.</p>\r\n<br />\r\n<img alt="việc làm it 2022 - employer survey itviec 2022 - lương nhân viên it" aria-describedby="caption-attachment-23142" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px" data-lazy-src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg" data-lazy-srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-300x160.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-200x107.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-768x411.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1536x822.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-2048x1096.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-100x53.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-700x374.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1600x856.jpg 1600w" data-ll-status="loaded" height="1369" sizes="(max-width: 2560px) 100vw, 2560px" src="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg" srcset="https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-300x160.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-200x107.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-768x411.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1536x822.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-2048x1096.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-100x53.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-700x374.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1600x856.jpg 1600w" width="2560" />\r\n<p id="caption-attachment-23142">Số liệu phần trăm thể hiện mức độ tăng trưởng về mức lương mà nhà tuyển dụng sẵn sàng offer khi tuyển một vị trí IT Leader và Manager trong năm 2022.</p>\r\n\r\n<p>Ngoài phúc lợi về lương, nhà tuyển dụng cũng quyết định bổ sung thêm những chính sách quyền lợi mới trong năm 2022 để thu hút nhân tài:</p>\r\n\r\n<ul>\r\n	<li aria-level="1">Thời gian làm việc linh hoạt</li>\r\n	<li aria-level="1">Làm việc từ xa</li>\r\n	<li aria-level="1">Ngày phép bổ sung</li>\r\n</ul>\r\n\r\n<p>Có thể thấy, “làm việc từ xa” đã trở thành một phần không thể thiếu trong chính sách làm việc của nhiều công ty nhằm mang đến một môi trường làm việc tốt nhất cho nhân viên IT.&nbsp;Khi đã có những chính sách làm việc từ xa rõ ràng, nhân viên IT sẽ được hỗ trợ tốt nhất và linh hoạt lựa chọn hình thức làm việc thích hợp dưới bất kỳ trường hợp nào.</p>\r\n\r\n<p>Đây có lẽ là một trong những “dấu ấn” rõ nét nhất mà dịch bệnh COVID-19 để lại cho thị trường tuyển dụng trong những năm 2020, 2021 và sắp tới là 2022.</p>\r\n\r\n<h2><b>Về Khảo sát Nhà tuyển dụng hằng năm của ITviec</b></h2>\r\n\r\n<p>Khảo sát Nhà tuyển dụng hàng năm của ITviec cung cấp dữ liệu và thống kê độc quyền cho Nhà tuyển dụng tham gia trả lời Khảo sát.&nbsp;Với sự hỗ trợ của nhóm nghiên cứu, Khảo sát Nhà tuyển dụng hàng năm của ITviec hỗ trợ các nhà tuyển dụng IT hiểu rõ hơn về thị trường tuyển dụng việc làm IT tại Việt Nam và dự báo các cơ hội trong tương lai.</p>\r\n\r\n<p>Chúng tôi đặc biệt khuyến khích tất cả các nhà tuyển dụng IT trên ITviec tham gia vào cuộc khảo sát hàng năm này để cập nhật những phát hiện mới nhất và chuẩn bị cho một năm tuyển dụng bùng nổ đầy thuyết phục.</p>\r\n\r\n<figure><img alt="robby-2" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png" data-lazy-srcset="https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png 300w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-200x200.png 200w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-60x60.png 60w" data-ll-status="loaded" height="300" sizes="(max-width: 300px) 100vw, 300px" src="https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png" srcset="https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png 300w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-200x200.png 200w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-60x60.png 60w" width="300" /></figure>', NULL, '', '', '', 2, '', 0, 1, 1, 1),
+(16, '', '', '<h2>IT Helpdesk là gì?</h2>\r\n\r\n<p>IT Helpdesk là một bộ phận thuộc phòng IT, có trách nhiệm hỗ trợ người sử dụng (nội bộ hoặc bên ngoài công ty) các vấn đề liên quan đến kỹ thuật hay dịch vụ IT.&nbsp; IT Helpdesk là nơi liên lạc và tiếp nhận các yêu cầu từ người sử dụng để xử lý hoặc chuyển đến các bộ phận thích hợp.</p>\r\n\r\n<p>Nhiệm vụ chính của IT Helpdesk:</p>\r\n\r\n<ul>\r\n	<li>Hỗ trợ người sử dụng khi có bất kỳ vấn đề về kỹ thuật liên quan đến phần cứng, phần mềm, mạng máy tính, điện thoại hay các ứng dụng trên máy tính người dùng.</li>\r\n	<li>Cung cấp thông tin về các dịch vụ IT khi có yêu cầu từ người sử dụng.</li>\r\n	<li>Chuyển thông tin đến các bộ phận liên quan khác trong phòng IT nhằm đảm bảo các yêu cầu hay sự cố được giải quyết. Theo dõi tiến độ xử lý và phản hồi người sự dụng khi cần thiết.</li>\r\n</ul>\r\n\r\n<figure aria-describedby=\"caption-attachment-1501\" id=\"attachment_1501\"><img alt=\"IT Helpdesk Objectives\" data-pin-no-hover=\"true\" height=\"614\" loading=\"lazy\" sizes=\"(max-width: 639px) 100vw, 639px\" src=\"https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp\" srcset=\"https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp 300w, https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-600x577.jpg.webp 600w, https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk.jpg.webp 618w\" width=\"639\" />\r\n<figcaption id=\"caption-attachment-1501\">Nhiệm vụ của IT Helpdesk. Ảnh Quora</figcaption>\r\n</figure>\r\n\r\n<h2>Vị trí IT Helpdesk trong bộ phận IT</h2>\r\n\r\n<p>Với một công ty có ít nhân viên, có thể không có bộ phận IT Helpdesk riêng biệt trong phòng IT. Trong trường hợp đó công việc thường không được định nghĩa rõ ràng và một người có thể kiêm nhiều việc. Tuy nhiên với các công ty có nhiều nhân viên và hệ thống IT phức tạp thì IT Helpdesk là một bộ phận riêng biệt có chức năng và nhiệm vụ riêng. Trong khi&nbsp;<a href=\"https://itguru.vn/blog/lam-it-trong-cong-ty-non-tech-la-lam-gi/\" rel=\"noopener noreferrer\" target=\"_blank\">các dịch vụ mà phòng IT cung cấp</a>&nbsp;là khá rộng, từ thiết kế, xây dựng, triển khai các ứng dụng, cơ sở hạ tầng IT đến thiết lập, quản lý các quy trình hoạt động của bộ phận IT, quản lý và giải quyết sự cố, quản lý thiết bị IT… thì IT Helpdesk là nơi đầu tiên tiếp nhận yêu cầu hay thông tin sự cố liên quan đến dịch vụ IT từ users trong các hoạt động hàng ngày của doanh nghiệp. Tùy vào vấn đề mà họ có thể xử lý ngay hoặc chuyển đến các bộ phận liên quan.</p>\r\n\r\n<h2>IT Helpdesk có quan trọng không?</h2>\r\n\r\n<p>Cho dù IT Helpdesk là việc kiêm nhiệm trong các công ty ít người hay có bộ phận rõ ràng trong các công ty đông nhân viên, trách nhiệm và nhiệm vụ của&nbsp;<a href=\"https://www.linkedin.com/pulse/hr-du-k%C3%BD-29-vi%E1%BA%BFt-k%E1%BB%B3-55-helpdesk-b%E1%BA%A1n-r%E1%BA%A5t-quan-tr%E1%BB%8Dng-nh%C6%B0ng-kh%C3%A1nh-v%C3%A2n/\" rel=\"noopener noreferrer\" target=\"_blank\">IT Helpdesk là rất quan trọng</a>:</p>\r\n\r\n<ul>\r\n	<li>Cùng với các bộ phận khác trong phòng IT, IT helpdesk phải đảm bảo các sự cố được giải quyết theo cam kết chất lượng dịch vụ (SLA – Service Level Agreement) giữa phòng IT và doanh nghiệp. Thông thường các công ty đều có SLA rõ ràng và căn cứ vào đó để đáng giá chất lượng dịch vụ IT. SLA đơn giản hay phức tạp là tùy vào quy mô công ty, độ phức tạp của hệ thống IT mà công ty sử dụng.</li>\r\n	<li>Là bộ phận đầu tiên tiếp nhận các yêu cầu và thông tin từ người sử dụng trong hoạt động hàng ngày của doanh nghiệp.</li>\r\n	<li>Là nơi đầu tiên xử lý các sự cố liên quan đến máy tính của người sử dụng.</li>\r\n</ul>\r\n\r\n<h2>Kiến thức và kỹ năng cần có để làm IT Helpdesk</h2>\r\n\r\n<p>Để làm trong bộ phận IT Helpdesk, bạn cần có những kiến thức kỹ năng sau:</p>\r\n\r\n<p><strong>Kiến thức và kỹ năng về kỹ thuật:</strong></p>\r\n\r\n<ul>\r\n	<li>Nắm vững các kiến thức về phần cứng, các hệ điều hành, các phần mềm, hệ thống điện thoại mà công ty đang sử dụng.</li>\r\n	<li>Hiểu về các ứng dụng doanh nghiệp trong công ty.</li>\r\n	<li>Hiểu về cơ sở hạ tầng IT của công ty.</li>\r\n	<li>Nắm rõ các quy trình IT liên quan đến người sử dụng (IT policy, IT procedure).</li>\r\n	<li>Sử dụng thành thạo các ứng dụng quản lý dịch vụ IT (service desk application) nếu có. Các ứng dụng này được dùng để quản lý các ticket, thiết bị IT, quản lý sự thay đổi, quản lý sự cố…</li>\r\n</ul>\r\n\r\n<p><strong>Kỹ năng mềm và các kỹ năng khác:</strong></p>\r\n\r\n<ul>\r\n	<li>Kỹ năng giao tiếp</li>\r\n	<li>Kỹ năng làm việc nhóm</li>\r\n	<li>Kỹ năng làm việc độc lập</li>\r\n	<li>Kiên nhẫn</li>\r\n	<li>Học hỏi và luôn cập nhật kiến thức</li>\r\n	<li>Kỹ năng phân tích và xử lý sự cố (problem solving)</li>\r\n	<li>Tiếng Anh, nếu bạn muốn phát triển nghề nghiệp trong những môi trường các công ty nước ngoài.</li>\r\n</ul>\r\n\r\n<h2>Con đường phát triển sự nghiệp của nghề IT Helpdesk.</h2>\r\n\r\n<p><a href=\"https://news.zing.vn/3-quan-niem-sai-lam-cua-ban-tre-ve-nghe-it-post589963.html\" rel=\"noopener noreferrer\" target=\"_blank\">Không như mọi người nghĩ</a>, con đường phát triển của những người làm IT Helpdesk là khá rộng. Làm việc trong bộ phận IT Helpdesk là khởi đầu tốt cho việc phát triển nghề nghiệp IT của bạn. Tất nhiên nó còn phụ thuộc vào khả năng cầu tiến và sự học hỏi của bạn. Sau đây là những vị trí tiếp theo mà các nhân viên Helpdesk có thể hướng đến:</p>\r\n\r\n<ul>\r\n	<li><strong>IT Helpdesk team leader:</strong>&nbsp;là vị trí dành cho những người có kinh nghiệm, có khả năng lãnh đạo nhóm.</li>\r\n	<li><strong>Network and system administrator:</strong>&nbsp;khi bạn đã có kiến thức kinh nghiệm cộng với sự nâng cấp bản thân với các bằng cấp về network như CCNA, CCNP… thì khả năng bạn chuyển sang các vị trí này là không khó khăn</li>\r\n	<li><strong>Server Administrator:</strong>&nbsp;học hỏi nâng cấp các kiến thức nền và thi lấy các chứng chỉ như MCSE của Microsoft, hoặc các kiến thức về hệ điều hành Linux, Unix… sẽ giúp bạn có cơ hội trở thành Server admin khi có cơ hội.</li>\r\n	<li><strong>Application administrator:</strong>&nbsp;tương tự như network hay sever, bạn có thể chuyển sang các vị trí hỗ trợ ứng dụng khi có cơ hội</li>\r\n	<li><strong>Security expert:</strong>&nbsp;đây cũng là một khả năng, nếu bạn chịu khó học thêm chuyên sâu về các kỹ thuật này. Làm trong bộ phận Helpdesk là cơ hội để bạn tiếp xúc học hỏi các chuyên gia cùng làm việc</li>\r\n	<li><strong>Database Administrator:</strong>&nbsp;đây cũng là một khả năng và nhiều DBA đã đi từ bộ phận IT Helpdesk.</li>\r\n	<li><strong>IT Manager, IT Project Manager:</strong>&nbsp;tất nhiên đây là nấc thang cao và cần thời gian. Trong thực tế có nhiều người sau khi qua các vị trí khác nhau, bắt đầu từ IT Helpdesk và đã thành công ở các vị trí cao hơn rất nhiều</li>\r\n	<li><strong>Và nhiều nữa:</strong>&nbsp;không giới hạn cho sự phát triển của bạn, miễn là bạn chịu khó học hỏi. Khi môi trường hiện tại không còn chỗ cho bạn phát triển hãy tìm một môi trường khác có nhiều cơ hội hơn</li>\r\n</ul>\r\n\r\n<figure aria-describedby=\"caption-attachment-1157\" id=\"attachment_1157\"><img alt=\"phát triển nghề nghiệp với IT Helpdesk\" data-pin-no-hover=\"true\" height=\"390\" loading=\"lazy\" sizes=\"(max-width: 520px) 100vw, 520px\" src=\"https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk-300x225.jpg.webp\" srcset=\"https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk-300x225.jpg.webp 300w, https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk-600x450.jpg.webp 600w, https://itguru.vn/blog/wp-content/uploads/2020/02/phat-trien-nghe-nghiep-it-helpdesk.jpg.webp 668w\" width=\"520\" />\r\n<figcaption id=\"caption-attachment-1157\">IT Helpdesk là khởi đầu hoàn hảo cho những bước tiếp theo của sự nghiệp</figcaption>\r\n</figure>\r\n\r\n<h2>Lương bổng phúc lợi IT Helpdesk</h2>\r\n\r\n<p>Theo khảo sát của các trang web tuyển dụng, mức lương phổ biến của IT Helpdesk từ 8 – 12 triệu đồng. Tùy vào kinh nghiệm, lĩnh vực công ty mà mức lương có thể lên đến 20 triệu đồng hoặc hơn.</p>\r\n\r\n<p>Một lưu ý là IT nói chung và IT Helpdesk nói riêng, lương có thể khác nhau khi làm trong các ngành khác nhau. Ví dụ IT Helpdesk ngân hàng có thể khác với IT Helpdesk ngành dầu khí, ngành hàng tiêu dùng… cho dù cùng số năm kinh nghiệm, công việc như nhau.</p>\r\n\r\n<h2>Những quan điểm sai lầm</h2>\r\n\r\n<p>Có rất nhiều quan điểm sai lầm về IT Helpdesk. Nhiều người thậm chí không biết được nhiệm vụ chính của một IT Helpdesk là gì và nghĩ họ là superman, làm được mọi thứ. Các sai lầm có thể kể đến:</p>\r\n\r\n<ul>\r\n	<li>IT Helpdesk biết tất cả mọi thứ liên quan đến IT: dù là những người được user liên lạc đầu tiên khi có sự cố trong quá trình làm việc với máy tính nhưng Helpdesk không phải gì cũng biết. Họ có thể biết rất rõ những sự cố hay yêu cầu liên quan đến máy tính của bạn, hoặc network của bạn có vấn đề gì nhưng nhiều vấn đề họ cần phải chuyển cho các bộ phận khác xử lý. Ví dụ những vấn đề liên quan đến các ứng dụng, hoặc server…</li>\r\n	<li>Không có cơ hội phát triển: như trên đã đề cập, rất nhiều cơ hội phát triển cho người làm IT Helpdesk, miễn là có ý cầu tiến và luôn tìm mọi cơ hội để học hỏi</li>\r\n	<li>Không tìm được việc gì khác mới làm IT Helpdesk: làm gì cũng cần kỹ năng, kinh nghiệm và Helpdesk cũng vậy. IT Helpdesk là bộ phận vô cùng quan trọng trong IT.</li>\r\n	<li>IT Helpdesk đụng đâu xử lý đó, không cần quy trình tiêu chuẩn gì: điều này hoàn toàn sai. Helpdesk hay support team là một bộ phận của IT và có những quy tắc, tiêu chuẩn hay framework cần phải tuân theo như ITIL (Informatio Technology Infrastructure Library) cùng các tiêu chuẩn khác.</li>\r\n	<li>Làm Helpdesk là sửa cả điện nước, điện thoại các kiểu: chuyện này là khá phổ biến trong các công ty nhỏ. Thực tế IT Helpdesk không có chức năng như vậy và việc nhờ họ làm thì cũng giống bạn nhờ ai đó trong công ty làm việc gì đó ngoài chuyên môn. Họ có thể giúp nhưng đó không phải là nhiệm vụ của họ.</li>\r\n</ul>\r\n\r\n<h2>Tìm việc Helpdesk ở đâu?</h2>\r\n\r\n<p>Bạn có thể tìm việc IT Helpdesk trên các trang web tuyển dụng, đặc biệt là các trang web tuyển dụng chuyên ngành IT và&nbsp;<a href=\"https://itguru.vn/\">ITguru.vn</a>&nbsp;là một trong số đó. Trên Facebook hoặc Linkedin cũng có khá nhiều group chuyên tuyển dụng các vị trí này.</p>\r\n\r\n<p>Bạn có có đang là một IT Helpdesk hay có kinh nghiệm trong lĩnh vực này? Hãy chia sẻ cùng chúng tôi bên dưới nhé.</p>', NULL, '', '', '', 2, '', 0, 1, 1, 1),
+(17, '', '', '<p>Dựa vào những số liệu theo Khảo sát Nhà tuyển dụng IT năm 2022 do ITviec thực hiện, có thể tự tin khẳng định rằng năm 2022 sẽ là một năm sôi động của thị trường tuyển dụng IT với nhiều vị trí việc làm IT hot, mức lương tăng cho nhân viên mới và những chính sách phúc lợi hấp dẫn.</p>\r\n\r\n<blockquote>\r\n<p><em>Developer nhiều kinh nghiệm chuyên tìm&nbsp;<a href=\"https://itviec.com/?utm_medium=anchor_text&amp;utm_source=blog_30032022&amp;utm_campaign=es2022\" rel=\"noopener\" target=\"_blank\"><strong>việc IT “chất”</strong></a>&nbsp;trên ITviec!</em></p>\r\n</blockquote>\r\n\r\n<h2><b>Tình hình tuyển dụng việc làm IT trong năm 2021</b></h2>\r\n\r\n<h3><strong>Sơ lược về tình hình tuyển dụng việc làm IT trong năm 2021</strong></h3>\r\n\r\n<p>Dịch bệnh COVID-19 đã tác động không nhỏ đến thị trường lao động thế giới. Ngoài việc tuyển dụng bị đình trệ hoặc đóng băng, nhà tuyển dụng bắt buộc phải thay đổi kế hoạch chiêu mộ nhân tài để thích nghi với những hoàn cảnh sống thay đổi mỗi ngày.</p>\r\n\r\n<p>Tại Việt Nam, cụ thể là ngành IT, theo kết quả Khảo sát Nhà tuyển dụng IT năm 2022, hơn 68% nhà tuyển dụng xác nhận rằng dịch bệnh COVID-19 đã ảnh hưởng đến kế hoạch tuyển dụng của họ trong năm 2021.</p>\r\n\r\n<p>Đồng thời, “<b>từ xa / remote</b>” là từ khóa định hình nên năm 2021 khi mọi quy trình từ ứng tuyển cho đến phỏng vấn gần như được thực hiện hoàn toàn qua trực tuyến.</p>\r\n\r\n<p>Những tưởng mọi việc không thay đổi nhiều, tuy nhiên, việc chuyển từ “offline” sang “online” đã dẫn đến những thay đổi lớn ảnh hưởng đến quy trình nhà tuyển dụng tìm kiếm nhân tài và quá trình ứng viên quyết định ứng tuyển/nhận lời mời làm việc từ một công ty.&nbsp;Khi thực hiện các cuộc phỏng vấn video online, các ứng viên khó có thể cảm nhận được rõ nét những văn hóa, giá trị mà nhà tuyển dụng muốn truyền tải.</p>\r\n\r\n<h3><strong>Nhu cầu tuyển dụng việc làm IT trong năm 2021</strong></h3>\r\n\r\n<p>Theo kết quả Khảo sát Nhà tuyển dụng 2022 từ ITviec, một tín hiệu lạc quan rằng các doanh nghiệp vẫn tiếp tục tăng số lượng tuyển dụng việc làm IT trong năm 2021 – gần 70% nhà tuyển dụng xác nhận rằng số lượng nhân viên IT của họ đã tăng hơn 10%.</p>\r\n<img alt=\"tuyển dụng it 2021 - employer survey itviec 2022\" aria-describedby=\"caption-attachment-23138\" data-lazy-sizes=\"(max-width: 2560px) 100vw, 2560px\" data-lazy-src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg\" data-lazy-srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-300x167.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-200x111.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-768x428.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1536x856.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-2048x1141.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-100x56.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-700x390.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1600x891.jpg 1600w\" data-ll-status=\"loaded\" height=\"1426\" sizes=\"(max-width: 2560px) 100vw, 2560px\" src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg\" srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-300x167.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-200x111.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-768x428.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1536x856.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-2048x1141.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-100x56.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-700x390.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-1600x891.jpg 1600w\" width=\"2560\" />\r\n<p id=\"caption-attachment-23138\">Số liệu phần trăm thể hiện mức độ tăng trưởng số lượng nhân viên IT thực tế của nhà tuyển dụng trong năm 2021.</p>\r\n\r\n<p>Cụ thể hơn, trong năm 2021, nhà tuyển dụng ưu tiên “săn đón” 3 vị trí sau đây nhiều hơn cả, chiếm đến hơn 60% tổng số câu trả lời:</p>\r\n\r\n<ul>\r\n	<li aria-level=\"1\">Backend Developer</li>\r\n	<li aria-level=\"1\">Frontend Developer</li>\r\n	<li aria-level=\"1\">Fullstack Developer</li>\r\n</ul>\r\n\r\n<p>Theo ngay sau 3 vị trí trên chính là việc làm Tester / QA / QC&nbsp; chiếm hơn 10% trong danh sách những vị trí được ưu tiên tuyển dụng tại các doanh nghiệp IT Việt Nam.</p>\r\n\r\n<p>Nhờ vào việc tích cực tuyển dụng trong năm 2021, 82.3% nhà tuyển dụng tham gia Khảo sát trả lời rằng số lượng nhân viên IT trong doanh nghiệp đã tăng trưởng từ 10% đến hơn 30%. Hầu như rất ít công ty phải ngừng tuyển dụng trong năm 2021 dù dịch bệnh. Quả là một tín hiệu đáng mừng cho thị trường tuyển dụng việc làm IT dù phải chịu nhiều tác động nặng nề từ dịch COVID-19.</p>\r\n\r\n<blockquote>\r\n<p><em><a href=\"https://itviec.com/it-jobs/senior-developer?utm_medium=anchor_text&amp;utm_source=blog_30032022&amp;utm_campaign=es2022\" rel=\"noopener\" target=\"_blank\"><strong>Job “chất” dành cho nhân viên IT chuyên môn cao</strong></a>&nbsp;luôn được đăng tuyển đều đặn trên ITviec!</em></p>\r\n</blockquote>\r\n\r\n<h3><strong>Mức lương tuyển dụng nhân viên IT thay đổi như thế nào trong năm 2021?</strong></h3>\r\n\r\n<p>Trong năm 2021, các nhà tuyển dụng đã không ngần ngại tăng mức lương cùng các gói thu nhập lên cao để thu hút nhân tài. Cụ thể, gần 60% nhà tuyển dụng chia sẻ với ITviec rằng họ đã tăng mức lương tuyển dụng nhân viên IT mới ít nhất&nbsp;<b>từ 10% trở lên</b>&nbsp;so với năm 2020.</p>\r\n<img alt=\"tuyển dụng it 2021 - employer survey itviec 2022 - lương nhân viên it\" aria-describedby=\"caption-attachment-23139\" data-lazy-sizes=\"(max-width: 2560px) 100vw, 2560px\" data-lazy-src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg\" data-lazy-srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-768x423.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1536x847.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-2048x1129.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-700x386.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1600x882.jpg 1600w\" data-ll-status=\"loaded\" height=\"1411\" sizes=\"(max-width: 2560px) 100vw, 2560px\" src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg\" srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-768x423.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1536x847.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-2048x1129.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-700x386.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-2-1600x882.jpg 1600w\" width=\"2560\" />\r\n<p id=\"caption-attachment-23139\">Số liệu phần trăm thể hiện mức độ tăng trưởng về mức lương mà nhà tuyển dụng đã áp dụng cho các vị trí IT mới trong năm 2021.</p>\r\n\r\n<p>Cũng theo Khảo sát Nhà tuyển dụng 2022, hơn 40% nhà tuyển dụng khẳng định rằng lương chính là yếu tố thu hút và nổi bật nhất trong các chính sách lợi ích dành cho nhân viên IT. Tuy nhiên, đó chưa phải là yếu tố duy nhất giúp các ứng viên IT đưa ra quyết định “chọn mặt gửi vàng” nhanh hơn.</p>\r\n\r\n<h3><strong>Nhà tuyển dụng làm thế nào để thu hút nhân tài IT trong thời kỳ dịch bệnh?</strong></h3>\r\n\r\n<p>Ngoại trừ mức lương hấp dẫn, nhà tuyển dụng đã tập trung vào nhiều chính sách, chiến lược khác nhau để thu hút nhân tài IT, nhất là những ứng viên hàng đầu. Các nhà tuyển dụng cố gắng thể hiện rằng công ty không chỉ là một nơi tuyệt vời để làm việc mà còn là một nơi để nhân viên IT để phát triển, được lắng nghe.</p>\r\n\r\n<p>Theo kết quả Khảo sát Nhà tuyển dụng 2022, sau đây là 4 điểm thu hút nhất đối với Lập trình viên khi ứng tuyển trong năm 2021:</p>\r\n\r\n<ul>\r\n	<li aria-level=\"1\">Lương cao chiếm 38.4% trong tổng số kết quả</li>\r\n	<li aria-level=\"1\">Môi trường làm việc năng động, linh hoạt chiếm 22.2%</li>\r\n	<li aria-level=\"1\">Thưởng gia nhập công ty (Sign-on bonus) chiếm 14.1%</li>\r\n	<li aria-level=\"1\">Dự án lớn chiếm 8.6%</li>\r\n</ul>\r\n\r\n<p>Chi tiết hơn:</p>\r\n<img alt=\"tuyển dụng it 2021 - employer survey itviec 2022 - lương nhân viên it\" aria-describedby=\"caption-attachment-23140\" data-lazy-sizes=\"(max-width: 2560px) 100vw, 2560px\" data-lazy-src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg\" data-lazy-srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-300x175.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-200x116.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-768x447.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1536x894.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-2048x1192.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-100x58.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-700x407.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1600x931.jpg 1600w\" data-ll-status=\"loaded\" height=\"1490\" sizes=\"(max-width: 2560px) 100vw, 2560px\" src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg\" srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-300x175.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-200x116.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-768x447.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1536x894.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-2048x1192.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-100x58.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-700x407.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-3-1600x931.jpg 1600w\" width=\"2560\" />\r\n<p id=\"caption-attachment-23140\">Số liệu phần trăm thể hiện những điểm thu hút nhất mà nhà tuyển dụng có thể offer đối với Lập trình viên khi ứng tuyển trong năm 2021.</p>\r\n\r\n<p>Trong đó, yếu tố “<b>môi trường làm việc linh hoạt</b>” là một chiến lược mới, chỉ mới được nhà tuyển dụng đưa vào những giá trị cốt lõi trong việc tuyển dụng trong năm 2021. Chính sách này được thể hiện rõ nét qua các chính sách về làm việc từ xa, hỗ trợ nhân viên thiết lập văn phòng tại nhà phù hợp nhất trong thời gian giãn cách xã hội.</p>\r\n\r\n<p>Sau khi mọi sinh hoạt trở lại bình thường, nhiều công ty vẫn tiếp tục áp dụng chính sách làm việc này để mọi nhân viên có thể hoàn thành công việc dù ở bất kỳ đâu.</p>\r\n\r\n<h2><b>Top 5 ngôn ngữ lập trình/việc làm IT không sợ thất nghiệp vào năm 2022</b></h2>\r\n\r\n<h3><strong>Dự đoán nhu cầu tuyển dụng việc làm IT trong năm 2022</strong></h3>\r\n\r\n<p>Khi tình hình dịch bệnh được kiểm soát và ổn định lại, mọi sinh hoạt có thể bắt đầu trở lại bình thường, các doanh nghiệp sẽ nhanh chóng lấy lại sự tự tin và tăng trưởng. Dựa trên dự đoán đó, hơn 80% doanh nghiệp tham gia Khảo sát đã tự tin chia sẻ rằng họ dự kiến gia tăng ít nhất 10% số lượng nhân viên IT trong năm 2022.</p>\r\n\r\n<p>Cụ thể hơn, sau đây là những vị trí và kỹ năng mà nhà tuyển dụng đang “săn đón” nhiều nhất trong năm 2022, theo thứ tự ưu tiên:</p>\r\n\r\n<table>\r\n	<tbody>\r\n		<tr>\r\n			<td colspan=\"2\"><b>Top những vị trí và kỹ năng được “săn đón” nhiều nhất năm 2022</b></td>\r\n		</tr>\r\n		<tr>\r\n			<td><b>Ngôn ngữ</b></td>\r\n			<td>\r\n			<ol>\r\n				<li aria-level=\"1\">JavaScript</li>\r\n				<li aria-level=\"1\">Java</li>\r\n				<li aria-level=\"1\">C#</li>\r\n				<li aria-level=\"1\">Node.js</li>\r\n				<li aria-level=\"1\">PHP</li>\r\n			</ol>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td><b>Vị trí</b></td>\r\n			<td>\r\n			<ol>\r\n				<li aria-level=\"1\">Backend Developer</li>\r\n				<li aria-level=\"1\">Fullstack Developer</li>\r\n				<li aria-level=\"1\">Frontend Developer</li>\r\n				<li aria-level=\"1\">Tester/QA/QC</li>\r\n			</ol>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td><b>Cấp bậc</b></td>\r\n			<td>\r\n			<ol>\r\n				<li aria-level=\"1\">Experienced (2-3 năm kinh nghiệm)</li>\r\n				<li aria-level=\"1\">Senior (từ 3 năm kinh nghiệm trở lên)</li>\r\n			</ol>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<blockquote>\r\n<p><em>Tham khảo&nbsp;<a href=\"https://itviec.com/it-jobs/developer?utm_medium=anchor_text&amp;utm_source=blog_30032022&amp;utm_campaign=es2022\" rel=\"noopener\" target=\"_blank\"><strong>việc làm Developer “chất” dành cho Developer dày dặn kinh nghiệm</strong></a>&nbsp;trên ITviec!</em></p>\r\n</blockquote>\r\n\r\n<h3><strong>Dự đoán lương nhân viên IT được tuyển dụng mới trong năm 2022</strong></h3>\r\n\r\n<p>Song song với những dự định đẩy mạnh việc tuyển dụng trong năm 2022, các nhà tuyển dụng cũng mang đến những chính sách về lương, thưởng cũng như các gói phúc lợi hấp dẫn hơn cho những vị trí nhân viên IT mới trong năm 2022.</p>\r\n\r\n<p>Cụ thể, gần 90% nhà tuyển dụng tham gia Khảo sát Nhà tuyển dụng 2022 trả lời họ sẽ&nbsp;<b>tăng trung bình 10%&nbsp;</b>mức lương khi tuyển một vị trí Lập trình viên mới hoặc cấp bậc Lead và Manager trong năm 2022.</p>\r\n<img alt=\"việc làm it 2022 - employer survey itviec 2022 - lương nhân viên it\" aria-describedby=\"caption-attachment-23141\" data-lazy-sizes=\"(max-width: 2560px) 100vw, 2560px\" data-lazy-src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg\" data-lazy-srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-768x422.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1536x843.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-2048x1124.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-700x384.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1600x878.jpg 1600w\" data-ll-status=\"loaded\" height=\"1405\" sizes=\"(max-width: 2560px) 100vw, 2560px\" src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg\" srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-300x165.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-200x110.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-768x422.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1536x843.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-2048x1124.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-100x55.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-700x384.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-4-1600x878.jpg 1600w\" width=\"2560\" />\r\n<p id=\"caption-attachment-23141\">Số liệu phần trăm thể hiện mức độ tăng trưởng về mức lương mà nhà tuyển dụng sẵn sàng offer khi tuyển một Lập trình viên mới trong năm 2022.</p>\r\n<br />\r\n<img alt=\"việc làm it 2022 - employer survey itviec 2022 - lương nhân viên it\" aria-describedby=\"caption-attachment-23142\" data-lazy-sizes=\"(max-width: 2560px) 100vw, 2560px\" data-lazy-src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg\" data-lazy-srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-300x160.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-200x107.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-768x411.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1536x822.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-2048x1096.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-100x53.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-700x374.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1600x856.jpg 1600w\" data-ll-status=\"loaded\" height=\"1369\" sizes=\"(max-width: 2560px) 100vw, 2560px\" src=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg\" srcset=\"https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-scaled.jpg 640w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-300x160.jpg 300w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-200x107.jpg 200w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-768x411.jpg 768w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1536x822.jpg 1536w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-2048x1096.jpg 2048w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-100x53.jpg 100w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-700x374.jpg 700w, https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-5-1600x856.jpg 1600w\" width=\"2560\" />\r\n<p id=\"caption-attachment-23142\">Số liệu phần trăm thể hiện mức độ tăng trưởng về mức lương mà nhà tuyển dụng sẵn sàng offer khi tuyển một vị trí IT Leader và Manager trong năm 2022.</p>\r\n\r\n<p>Ngoài phúc lợi về lương, nhà tuyển dụng cũng quyết định bổ sung thêm những chính sách quyền lợi mới trong năm 2022 để thu hút nhân tài:</p>\r\n\r\n<ul>\r\n	<li aria-level=\"1\">Thời gian làm việc linh hoạt</li>\r\n	<li aria-level=\"1\">Làm việc từ xa</li>\r\n	<li aria-level=\"1\">Ngày phép bổ sung</li>\r\n</ul>\r\n\r\n<p>Có thể thấy, “làm việc từ xa” đã trở thành một phần không thể thiếu trong chính sách làm việc của nhiều công ty nhằm mang đến một môi trường làm việc tốt nhất cho nhân viên IT.&nbsp;Khi đã có những chính sách làm việc từ xa rõ ràng, nhân viên IT sẽ được hỗ trợ tốt nhất và linh hoạt lựa chọn hình thức làm việc thích hợp dưới bất kỳ trường hợp nào.</p>\r\n\r\n<p>Đây có lẽ là một trong những “dấu ấn” rõ nét nhất mà dịch bệnh COVID-19 để lại cho thị trường tuyển dụng trong những năm 2020, 2021 và sắp tới là 2022.</p>\r\n\r\n<h2><b>Về Khảo sát Nhà tuyển dụng hằng năm của ITviec</b></h2>\r\n\r\n<p>Khảo sát Nhà tuyển dụng hàng năm của ITviec cung cấp dữ liệu và thống kê độc quyền cho Nhà tuyển dụng tham gia trả lời Khảo sát.&nbsp;Với sự hỗ trợ của nhóm nghiên cứu, Khảo sát Nhà tuyển dụng hàng năm của ITviec hỗ trợ các nhà tuyển dụng IT hiểu rõ hơn về thị trường tuyển dụng việc làm IT tại Việt Nam và dự báo các cơ hội trong tương lai.</p>\r\n\r\n<p>Chúng tôi đặc biệt khuyến khích tất cả các nhà tuyển dụng IT trên ITviec tham gia vào cuộc khảo sát hàng năm này để cập nhật những phát hiện mới nhất và chuẩn bị cho một năm tuyển dụng bùng nổ đầy thuyết phục.</p>\r\n\r\n<figure><img alt=\"robby-2\" data-lazy-sizes=\"(max-width: 300px) 100vw, 300px\" data-lazy-src=\"https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png\" data-lazy-srcset=\"https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png 300w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-200x200.png 200w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-60x60.png 60w\" data-ll-status=\"loaded\" height=\"300\" sizes=\"(max-width: 300px) 100vw, 300px\" src=\"https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png\" srcset=\"https://itviec.com/blog/wp-content/uploads/2015/07/Robby2.png 300w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-200x200.png 200w, https://itviec.com/blog/wp-content/uploads/2015/07/Robby2-60x60.png 60w\" width=\"300\" /></figure>', NULL, '', '', '', 2, '', 0, 1, 1, 1),
 (18, '', '', '<p>Computerworld dẫn lại báo cáo của Akamai cho biết, Trung Quốc là quốc gia có lưu lượng xuất phát số lượng các cuộc tấn công mạng nhiều nhất trong quý IV/2014, theo sau đó là Mỹ.</p>\r\n\r\n<p>Trung Quốc và Mỹ là 2 quốc gia duy nhất chiếm trên 10% lưu lượng tấn công không gian mạng trong Top 10 các quốc gia và&nbsp;vùng lãnh thổ dẫn&nbsp;đầu&nbsp;về nguồn gốc các vụ tấn công mạng trong quý 4 năm ngoái.<br />\r\n<br />\r\nTrung Quốc được tường thuật là quốc gia xuất phát lưu lượng tấn công mạng nhiều nhất trong quý IV/2014.</p>\r\n\r\n<p>Theo Akamai, các quốc gia và vùng lãnh thổ còn lại có tên trong Top 10 chỉ đạt mức dưới 5%.&nbsp;Ví dụ, Đài Loan xếp ở vị trí thứ 3 với 4%.</p>\r\n\r\n<p>Báo cáo của Akamai cũng nêu rõ hình thức tấn công DDoS chiếm hơn 20% trong số vụ tấn công bảo mật được ghi nhận trong quý IV/2014, cụ thể là 327 vụ, tăng mạnh so với 270 vụ của quý 3 trước đó.</p>\r\n\r\n<p>Tính cho cả năm 2014, theo Akamai, đã có tổng cộng 1.150 vụ tấn công DDoS được giới hacker triển khai.</p>\r\n\r\n<p>Số vụ tấn công DDoS nhằm vào nhóm&nbsp;khu vực doanh nghiệp trong quý IV/2014 giảm còn 100 vụ so với 106 vụ của quý trước, trong khi đó số vụ tấn công nhằm vào khu vực nhà nước tăng từ 22 vụ trong quý III/2014 lên 38 vụ - mức tăng cao nhất. Số vụ tấn công nhằm&nbsp;vào khu vực thương mại, truyền thông - giải&nbsp;trí và công nghệ cao lần&nbsp;lượt&nbsp;đạt mức&nbsp;88, 51 và 50 vụ.</p>\r\n\r\n<p>Nếu chia theo khu vực, châu Mỹ là nơi hứng chịu nhiều nhất các vụ tấn công DDoS trong quý IV/2014 với 177 vụ (hay lượt tấn công), châu Á - TBD&nbsp;xếp sau với 98 vụ, còn châu Âu, Trung Đông và châu Phi cùng ở mức 52 vụ.</p>', '', '', 'Theo Pcworld.com.vn', '', 2, '', 0, 1, 1, 1),
-(19, '', '', '<p>So với Windows 8.1, hệ điều hành mới không chỉ thay đổi về giao diện người dùng mà còn tăng tính tiện dụng khi thao tác trên màn hình cảm ứng. Với Windows 10, Microsoft hy vọng sẽ làm hài lòng người dùng hài lòng với nhiều tính năng quen thuộc từng có trong Windows 7. Chẳng hạn một trong những thay đổi lớn nhất của Windows 10 là sự trở lại của trình đơn Start kết hợp giữa giao diện truyền thống của Windows 7 và các ô Live Tiles hiển thị thông tin của Windows 8.<br />\r\n<br />\r\n<strong>Lưu ý trước khi thực hiện</strong></p>\r\n\r\n<p>​<img alt="windows10 1" height="468" src="/uploads/news/2023_01/windows10_1.jpg" width="644" /></p>\r\n\r\n<p><br />\r\nVấn đề quan trọng nhất là liệu các ứng dụng hiện hành có chạy được với hệ điều hành mới sau khi nâng cấp không. Trước khi bắt đầu, bạn cần chạy công cụ Windows Upgrade Assistant (tải về tại đây http://go.microsoft.com/fwlink/p/?LinkId=261871) để quét kiểm tra tính tương thích với Windows 10 của các ứng dụng và phần cứng. Nếu máy tính của bạn có thể chạy được Windows 8.1, chắc chắn sẽ không có vấn đề khi nâng cấp phiên bản hệ điều hành mới hơn.</p>\r\n\r\n<p>Bạn cũng nên sao lưu dữ liệu cá nhân sang thiết bị lưu trữ gắn ngoài để để bảo chúng không bị ảnh hưởng trong trường hợp việc nâng cấp xảy ra sự cố.<br />\r\n<br />\r\nWindows 10 Technical Preview hiện đang trong giai đoạn thử nghiệm, vẫn còn nhiều lỗi và tính năng chưa hoàn chỉnh. Vì vậy không thực hiện việc này trên máy tính chính, được sử dụng cho công việc.<br />\r\n<br />\r\n<strong>Thực hiện</strong>​</p>\r\n\r\n<p><img alt="windows10 2" height="587" src="/uploads/news/2023_01/windows10_2.jpg" width="769" /></p>\r\n\r\n<p>Việc nâng cấp đòi hỏi bạn phải là thành viên trong chương trình Windows Insider. Truy cập website https://insider.windows.com, chọn Sign in và đăng nhập với tài khoản của bạn hoặc chọn Sign up now để tạo mới tài khoản.<br />\r\n<br />\r\nSau khi đăng nhập, nhấn chọn mục Start upgrade now trong giao diện cửa sổ mới xuất hiện. Tải về và cài đặt ứng dụng nhỏ để bắt đầu quá trình nâng cấp. Tiện ích này có tác dụng giúp Windows Update xác định phiên bản 32 bit hoặc 64 bit phù hợp với máy tính của bạn.<br />\r\n<br />\r\nKđộng lại máy tính theo yêu cầu và trong lần đăng nhập mới, bạn sẽ thấy Windows Update khởi chạy. Nhấn chọn Install để tải xuống bản cài đặt Windows 10 Technical Preview.</p>\r\n\r\n<p><img alt="windows10 3" height="512" src="/uploads/news/2023_01/windows10_3.jpg" width="769" /></p>\r\n\r\n<p>Kết thúc việc tải về, bạn sẽ thấy màn hình đầu tiên của quá trình cài đặt. Nhấn chọn Let’s get started để tiếp tục hoặc I changed my mind để hủy việc cài đặt nếu thay đổi ý định.<br />\r\n<br />\r\nTùy thuộc tốc độ mạng và cấu hình phần cứng mà thời gian cài đặt sẽ khác nhau. Thường mất khoảng một giờ hoặc lâu hơn và trong quá trình này, máy tính sẽ khởi động lại một vài lần.<br />\r\n<br />\r\nĐăng nhập máy tính bằng tài khoản Microsoft ở cuối quá trình cài đặt. Khởi chạy Windows Update lần nữa để tiếp tục cập nhật các bản cập nhật, sửa lỗi nhỏ và bổ sung những tính năng mới. Và kể từ lúc này, bạn sẽ có nhiều dịp làm quen với giao diện người dùng và những tính năng của hệ điều hành mới.</p>', '', '', 'Gizmag.com', '', 2, '', 0, 1, 1, 1);
+(19, '', '', '<p>So với Windows 8.1, hệ điều hành mới không chỉ thay đổi về giao diện người dùng mà còn tăng tính tiện dụng khi thao tác trên màn hình cảm ứng. Với Windows 10, Microsoft hy vọng sẽ làm hài lòng người dùng hài lòng với nhiều tính năng quen thuộc từng có trong Windows 7. Chẳng hạn một trong những thay đổi lớn nhất của Windows 10 là sự trở lại của trình đơn Start kết hợp giữa giao diện truyền thống của Windows 7 và các ô Live Tiles hiển thị thông tin của Windows 8.<br />\r\n<br />\r\n<strong>Lưu ý trước khi thực hiện</strong></p>\r\n\r\n<p>​<img alt=\"windows10 1\" height=\"468\" src=\"/uploads/news/2023_01/windows10_1.jpg\" width=\"644\" /></p>\r\n\r\n<p><br />\r\nVấn đề quan trọng nhất là liệu các ứng dụng hiện hành có chạy được với hệ điều hành mới sau khi nâng cấp không. Trước khi bắt đầu, bạn cần chạy công cụ Windows Upgrade Assistant (tải về tại đây http://go.microsoft.com/fwlink/p/?LinkId=261871) để quét kiểm tra tính tương thích với Windows 10 của các ứng dụng và phần cứng. Nếu máy tính của bạn có thể chạy được Windows 8.1, chắc chắn sẽ không có vấn đề khi nâng cấp phiên bản hệ điều hành mới hơn.</p>\r\n\r\n<p>Bạn cũng nên sao lưu dữ liệu cá nhân sang thiết bị lưu trữ gắn ngoài để để bảo chúng không bị ảnh hưởng trong trường hợp việc nâng cấp xảy ra sự cố.<br />\r\n<br />\r\nWindows 10 Technical Preview hiện đang trong giai đoạn thử nghiệm, vẫn còn nhiều lỗi và tính năng chưa hoàn chỉnh. Vì vậy không thực hiện việc này trên máy tính chính, được sử dụng cho công việc.<br />\r\n<br />\r\n<strong>Thực hiện</strong>​</p>\r\n\r\n<p><img alt=\"windows10 2\" height=\"587\" src=\"/uploads/news/2023_01/windows10_2.jpg\" width=\"769\" /></p>\r\n\r\n<p>Việc nâng cấp đòi hỏi bạn phải là thành viên trong chương trình Windows Insider. Truy cập website https://insider.windows.com, chọn Sign in và đăng nhập với tài khoản của bạn hoặc chọn Sign up now để tạo mới tài khoản.<br />\r\n<br />\r\nSau khi đăng nhập, nhấn chọn mục Start upgrade now trong giao diện cửa sổ mới xuất hiện. Tải về và cài đặt ứng dụng nhỏ để bắt đầu quá trình nâng cấp. Tiện ích này có tác dụng giúp Windows Update xác định phiên bản 32 bit hoặc 64 bit phù hợp với máy tính của bạn.<br />\r\n<br />\r\nKđộng lại máy tính theo yêu cầu và trong lần đăng nhập mới, bạn sẽ thấy Windows Update khởi chạy. Nhấn chọn Install để tải xuống bản cài đặt Windows 10 Technical Preview.</p>\r\n\r\n<p><img alt=\"windows10 3\" height=\"512\" src=\"/uploads/news/2023_01/windows10_3.jpg\" width=\"769\" /></p>\r\n\r\n<p>Kết thúc việc tải về, bạn sẽ thấy màn hình đầu tiên của quá trình cài đặt. Nhấn chọn Let’s get started để tiếp tục hoặc I changed my mind để hủy việc cài đặt nếu thay đổi ý định.<br />\r\n<br />\r\nTùy thuộc tốc độ mạng và cấu hình phần cứng mà thời gian cài đặt sẽ khác nhau. Thường mất khoảng một giờ hoặc lâu hơn và trong quá trình này, máy tính sẽ khởi động lại một vài lần.<br />\r\n<br />\r\nĐăng nhập máy tính bằng tài khoản Microsoft ở cuối quá trình cài đặt. Khởi chạy Windows Update lần nữa để tiếp tục cập nhật các bản cập nhật, sửa lỗi nhỏ và bổ sung những tính năng mới. Và kể từ lúc này, bạn sẽ có nhiều dịp làm quen với giao diện người dùng và những tính năng của hệ điều hành mới.</p>', '', '', 'Gizmag.com', '', 2, '', 0, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -27671,20 +27484,15 @@ INSERT INTO `nv4_vi_news_detail` (`id`, `titlesite`, `description`, `bodyhtml`, 
 -- Table structure for table `nv4_vi_news_logs`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_logs` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `sid` mediumint(9) NOT NULL DEFAULT '0',
-  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `log_key` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Khóa loại log, tùy vào lập trình',
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `set_time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `sid` (`sid`),
-  KEY `log_key` (`log_key`),
-  KEY `status` (`status`),
-  KEY `userid` (`userid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=8 ;
+CREATE TABLE `nv4_vi_news_logs` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `sid` mediumint(9) NOT NULL DEFAULT 0,
+  `userid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `log_key` varchar(60) NOT NULL DEFAULT '' COMMENT 'Khóa loại log, tùy vào lập trình',
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `note` varchar(255) NOT NULL DEFAULT '',
+  `set_time` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_logs`
@@ -27705,62 +27513,49 @@ INSERT INTO `nv4_vi_news_logs` (`id`, `sid`, `userid`, `log_key`, `status`, `not
 -- Table structure for table `nv4_vi_news_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_rows` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourceid` mediumint(9) NOT NULL DEFAULT '0',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  `weight` int(10) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgthumb` tinyint(4) NOT NULL DEFAULT '0',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `catid` (`catid`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `edittime` (`edittime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `status` (`status`),
-  KEY `instant_active` (`instant_active`),
-  KEY `instant_creatauto` (`instant_creatauto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=20 ;
+CREATE TABLE `nv4_vi_news_rows` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `author` varchar(250) DEFAULT '',
+  `sourceid` mediumint(9) NOT NULL DEFAULT 0,
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `homeimgthumb` tinyint(4) NOT NULL DEFAULT 0,
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hitscm` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `total_rating` int(11) NOT NULL DEFAULT 0,
+  `click_rating` int(11) NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_rows`
 --
 
 INSERT INTO `nv4_vi_news_rows` (`id`, `catid`, `listcatid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `weight`, `publtime`, `exptime`, `archive`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `inhome`, `allowed_comm`, `allowed_rating`, `external_link`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `instant_active`, `instant_template`, `instant_creatauto`) VALUES
-(16, 6, '6', 0, 1, '', 0, 1663836465, 1663836559, 1, 1, 1663836240, 0, 2, 'IT Helpdesk là gì và con đường phát triển sự nghiệp của nhân viên Helpdesk', 'it-helpdesk-la-gi-va-con-duong-phat-trien-su-nghiep-cua-nhan-vien-helpdesk', 'IT Helpdesk, mới nghe thì có vẻ đơn giản nhưng thực ra cũng làm khá nhiều người cảm thấy khó hiểu và lẫn lộn giữa các khái niệm IT Helpdesk, IT Service Desk… Vậy IT Helpdesk có phải là phòng IT không? Làm IT Helpdesk là làm gì và cơ hội phát triển nghề nghiệp thế nào? Có kiến thức kỹ năng gì để làm một IT helpdesk? Bài viết này sẽ đi giải đáp thắc mắc phần nào các câu hỏi đó.', 'https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp', '', 3, 1, '4', 1, 0, 21, 0, 0, 0, 0, '', 0),
-(17, 6, '6', 0, 1, '', 0, 1663836904, 1663836922, 1, 2, 1663836600, 0, 2, 'Thị trường tuyển dụng việc làm IT 2021-2022&#x3A; Nhìn lại và Hướng đến tương lai', 'thi-truong-tuyen-dung-viec-lam-it-2021-2022-nhin-lai-va-huong-den-tuong-lai', 'Thị trường tuyển dụng việc làm IT đã thực sự tiến vào “bình thường mới”? Cùng ITviec nhìn lại ảnh hưởng của năm 2021 đối với xu hướng tuyển dụng nhân viên IT tại Việt Nam và những thay đổi được dự đoán sẽ bùng nổ trong năm 2022.', 'https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg', '', 3, 1, '4', 1, 0, 21, 0, 0, 0, 0, '', 0),
-(18, 6, '6', 0, 1, '', 5, 1673012483, 1673012483, 1, 3, 1438609140, 0, 2, 'Quý IV&#x002F;2014&#x3A; Hầu hết vụ tấn công mạng có nguồn gốc từ Trung Quốc', 'quy-iv-2014-hau-het-vu-tan-cong-mang-co-nguon-goc-tu-trung-quoc', '<strong>Đứng sau Trung Quốc về lưu lượng các cuộc tấn công không gian mạng trong quý IV/2014 không ai khác ngoài Mỹ, theo số liệu vừa được công ty cung cấp dịch vụ đám mây Akamai công bố hôm 25/3.</strong>', '2023_01/7be335477876db854960134c6e137164_xl.jpg', '7be335477876db854960134c6e137164 XL', 1, 1, '4', 1, 0, 6, 0, 0, 0, 0, '', 0),
-(19, 6, '6', 0, 1, '', 6, 1673012719, 1673012795, 1, 4, 1427290920, 0, 2, 'Cách nâng cấp Windows 10 Technical Preview qua Windows Update', 'cach-nang-cap-windows-10-technical-preview-qua-windows-update', '<strong>Sử dụng tính năng Windows Update sẵn có trong Windows 7 để nâng cấp phiên bản hệ điều hành mới nhất của Microsoft sẽ dễ dàng hơn so với cách cài mới (clean install). Phương thức này còn giữ lại các thiết đặt, cá nhân hóa và cả những ứng dụng quen thuộc của người dùng. Và đây cũng là điều mà bạn không thể làm được với Windows 8.1.</strong>', '2023_01/windows10_1.jpg', '', 1, 1, '4', 1, 0, 8, 0, 0, 0, 0, '', 0);
+(16, 6, '6', 0, 1, '', 0, 1663836465, 1663836559, 1, 1, 1663836240, 0, 2, 'IT Helpdesk là gì và con đường phát triển sự nghiệp của nhân viên Helpdesk', 'it-helpdesk-la-gi-va-con-duong-phat-trien-su-nghiep-cua-nhan-vien-helpdesk', 'IT Helpdesk, mới nghe thì có vẻ đơn giản nhưng thực ra cũng làm khá nhiều người cảm thấy khó hiểu và lẫn lộn giữa các khái niệm IT Helpdesk, IT Service Desk… Vậy IT Helpdesk có phải là phòng IT không? Làm IT Helpdesk là làm gì và cơ hội phát triển nghề nghiệp thế nào? Có kiến thức kỹ năng gì để làm một IT helpdesk? Bài viết này sẽ đi giải đáp thắc mắc phần nào các câu hỏi đó.', 'https://itguru.vn/blog/wp-content/uploads/2020/02/Muc-tieu-IT-Helpdesk-300x288.jpg.webp', '', 3, 1, '4', 1, 0, 23, 0, 0, 0, 0, '', 0),
+(17, 6, '6', 0, 1, '', 0, 1663836904, 1663836922, 1, 2, 1663836600, 0, 2, 'Thị trường tuyển dụng việc làm IT 2021-2022&#x3A; Nhìn lại và Hướng đến tương lai', 'thi-truong-tuyen-dung-viec-lam-it-2021-2022-nhin-lai-va-huong-den-tuong-lai', 'Thị trường tuyển dụng việc làm IT đã thực sự tiến vào “bình thường mới”? Cùng ITviec nhìn lại ảnh hưởng của năm 2021 đối với xu hướng tuyển dụng nhân viên IT tại Việt Nam và những thay đổi được dự đoán sẽ bùng nổ trong năm 2022.', 'https://itviec.com/blog/wp-content/uploads/2022/03/viec-lam-it-employer-survey-itviec-2022-1-scaled.jpg', '', 3, 1, '4', 1, 0, 24, 0, 0, 0, 0, '', 0),
+(18, 6, '6', 0, 1, '', 5, 1673012483, 1673012483, 1, 3, 1438609140, 0, 2, 'Quý IV&#x002F;2014&#x3A; Hầu hết vụ tấn công mạng có nguồn gốc từ Trung Quốc', 'quy-iv-2014-hau-het-vu-tan-cong-mang-co-nguon-goc-tu-trung-quoc', '<strong>Đứng sau Trung Quốc về lưu lượng các cuộc tấn công không gian mạng trong quý IV/2014 không ai khác ngoài Mỹ, theo số liệu vừa được công ty cung cấp dịch vụ đám mây Akamai công bố hôm 25/3.</strong>', '2023_01/7be335477876db854960134c6e137164_xl.jpg', '7be335477876db854960134c6e137164 XL', 1, 1, '4', 1, 0, 9, 0, 0, 0, 0, '', 0),
+(19, 6, '6', 0, 1, '', 6, 1673012719, 1673012795, 1, 4, 1427290920, 0, 2, 'Cách nâng cấp Windows 10 Technical Preview qua Windows Update', 'cach-nang-cap-windows-10-technical-preview-qua-windows-update', '<strong>Sử dụng tính năng Windows Update sẵn có trong Windows 7 để nâng cấp phiên bản hệ điều hành mới nhất của Microsoft sẽ dễ dàng hơn so với cách cài mới (clean install). Phương thức này còn giữ lại các thiết đặt, cá nhân hóa và cả những ứng dụng quen thuộc của người dùng. Và đây cũng là điều mà bạn không thể làm được với Windows 8.1.</strong>', '2023_01/windows10_1.jpg', '', 1, 1, '4', 1, 0, 9, 0, 0, 0, 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -27768,51 +27563,47 @@ INSERT INTO `nv4_vi_news_rows` (`id`, `catid`, `listcatid`, `topicid`, `admin_id
 -- Table structure for table `nv4_vi_news_row_histories`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_row_histories` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `new_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `historytime` int(10) unsigned NOT NULL DEFAULT '0',
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `topicid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'ID người đăng',
-  `author` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `sourceid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `publtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(10) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `hometext` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `homeimgfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `homeimgalt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `inhome` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `allowed_rating` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `external_link` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `instant_active` tinyint(1) NOT NULL DEFAULT '0',
-  `instant_template` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `instant_creatauto` tinyint(1) NOT NULL DEFAULT '0',
-  `titlesite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bodyhtml` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `sourcetext` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `files` text COLLATE utf8mb4_unicode_ci,
-  `tags` text COLLATE utf8mb4_unicode_ci,
-  `internal_authors` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `imgposition` tinyint(1) NOT NULL DEFAULT '1',
-  `layout_func` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `copyright` tinyint(1) NOT NULL DEFAULT '0',
-  `allowed_send` tinyint(1) NOT NULL DEFAULT '0',
-  `allowed_print` tinyint(1) NOT NULL DEFAULT '0',
-  `allowed_save` tinyint(1) NOT NULL DEFAULT '0',
-  `changed_fields` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Các field thay đổi',
-  PRIMARY KEY (`id`),
-  KEY `new_id` (`new_id`),
-  KEY `historytime` (`historytime`),
-  KEY `admin_id` (`admin_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Lịch sử bài viết' AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_news_row_histories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `new_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `historytime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `catid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `listcatid` varchar(255) NOT NULL DEFAULT '',
+  `topicid` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ID người đăng',
+  `author` varchar(250) NOT NULL DEFAULT '',
+  `sourceid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `publtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exptime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `archive` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `hometext` text NOT NULL,
+  `homeimgfile` varchar(255) DEFAULT '',
+  `homeimgalt` varchar(255) DEFAULT '',
+  `inhome` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `allowed_comm` varchar(255) DEFAULT '',
+  `allowed_rating` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `external_link` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `instant_active` tinyint(1) NOT NULL DEFAULT 0,
+  `instant_template` varchar(100) NOT NULL DEFAULT '',
+  `instant_creatauto` tinyint(1) NOT NULL DEFAULT 0,
+  `titlesite` varchar(255) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
+  `bodyhtml` longtext NOT NULL,
+  `keywords` varchar(255) DEFAULT '',
+  `sourcetext` varchar(255) DEFAULT '',
+  `files` text DEFAULT NULL,
+  `tags` text DEFAULT NULL,
+  `internal_authors` varchar(255) NOT NULL DEFAULT '',
+  `imgposition` tinyint(1) NOT NULL DEFAULT 1,
+  `layout_func` varchar(100) DEFAULT '',
+  `copyright` tinyint(1) NOT NULL DEFAULT 0,
+  `allowed_send` tinyint(1) NOT NULL DEFAULT 0,
+  `allowed_print` tinyint(1) NOT NULL DEFAULT 0,
+  `allowed_save` tinyint(1) NOT NULL DEFAULT 0,
+  `changed_fields` text NOT NULL COMMENT 'Các field thay đổi'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Lịch sử bài viết';
 
 -- --------------------------------------------------------
 
@@ -27820,17 +27611,15 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_row_histories` (
 -- Table structure for table `nv4_vi_news_sources`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_sources` (
-  `sourceid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(10) unsigned NOT NULL,
-  `edit_time` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`sourceid`),
-  UNIQUE KEY `title` (`title`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=7 ;
+CREATE TABLE `nv4_vi_news_sources` (
+  `sourceid` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `link` varchar(255) DEFAULT '',
+  `logo` varchar(255) DEFAULT '',
+  `weight` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `add_time` int(10) UNSIGNED NOT NULL,
+  `edit_time` int(10) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_sources`
@@ -27850,17 +27639,15 @@ INSERT INTO `nv4_vi_news_sources` (`sourceid`, `title`, `link`, `logo`, `weight`
 -- Table structure for table `nv4_vi_news_tags`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_tags` (
-  `tid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `numnews` mediumint(9) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  PRIMARY KEY (`tid`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=43 ;
+CREATE TABLE `nv4_vi_news_tags` (
+  `tid` mediumint(8) UNSIGNED NOT NULL,
+  `numnews` mediumint(9) NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `image` varchar(255) DEFAULT '',
+  `description` text DEFAULT NULL,
+  `keywords` varchar(255) DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_tags`
@@ -27916,12 +27703,10 @@ INSERT INTO `nv4_vi_news_tags` (`tid`, `numnews`, `title`, `alias`, `image`, `de
 -- Table structure for table `nv4_vi_news_tags_id`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_tags_id` (
+CREATE TABLE `nv4_vi_news_tags_id` (
   `id` int(11) NOT NULL,
   `tid` mediumint(9) NOT NULL,
-  `keyword` varchar(65) COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `id_tid` (`id`,`tid`),
-  KEY `tid` (`tid`)
+  `keyword` varchar(65) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -27930,13 +27715,12 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_tags_id` (
 -- Table structure for table `nv4_vi_news_tmp`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_tmp` (
-  `id` mediumint(8) unsigned NOT NULL,
-  `admin_id` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `nv4_vi_news_tmp` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `admin_id` int(11) NOT NULL DEFAULT 0,
   `time_edit` int(11) NOT NULL,
   `time_late` int(11) NOT NULL,
-  `ip` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `ip` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -27945,20 +27729,17 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_tmp` (
 -- Table structure for table `nv4_vi_news_topics`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_topics` (
-  `topicid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` smallint(6) NOT NULL DEFAULT '0',
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`topicid`),
-  UNIQUE KEY `title` (`title`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_vi_news_topics` (
+  `topicid` smallint(5) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `image` varchar(255) DEFAULT '',
+  `description` varchar(255) DEFAULT '',
+  `weight` smallint(6) NOT NULL DEFAULT 0,
+  `keywords` text DEFAULT NULL,
+  `add_time` int(11) NOT NULL DEFAULT 0,
+  `edit_time` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_news_topics`
@@ -27973,20 +27754,16 @@ INSERT INTO `nv4_vi_news_topics` (`topicid`, `title`, `alias`, `image`, `descrip
 -- Table structure for table `nv4_vi_news_voices`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_news_voices` (
-  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
-  `voice_key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Khóa dùng trong Api sau này',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `add_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `edit_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `weight` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0: Dừng, 1: Hoạt động',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `title` (`title`),
-  KEY `weight` (`weight`),
-  KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_news_voices` (
+  `id` smallint(4) UNSIGNED NOT NULL,
+  `voice_key` varchar(50) NOT NULL DEFAULT '' COMMENT 'Khóa dùng trong Api sau này',
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
+  `add_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `edit_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `weight` smallint(4) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '0: Dừng, 1: Hoạt động'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -27994,36 +27771,34 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_news_voices` (
 -- Table structure for table `nv4_vi_page`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_page` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imagealt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imageposition` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `bodytext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `socialbutton` tinyint(4) NOT NULL DEFAULT '0',
-  `activecomm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `layout_func` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` smallint(6) NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot_post` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_vi_page` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `alias` varchar(250) NOT NULL,
+  `image` varchar(255) DEFAULT '',
+  `imagealt` varchar(255) DEFAULT '',
+  `imageposition` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `description` text DEFAULT NULL,
+  `bodytext` mediumtext NOT NULL,
+  `keywords` text DEFAULT NULL,
+  `socialbutton` tinyint(4) NOT NULL DEFAULT 0,
+  `activecomm` varchar(255) DEFAULT '',
+  `layout_func` varchar(100) DEFAULT '',
+  `weight` smallint(6) NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `add_time` int(11) NOT NULL DEFAULT 0,
+  `edit_time` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hot_post` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_page`
 --
 
 INSERT INTO `nv4_vi_page` (`id`, `title`, `alias`, `image`, `imagealt`, `imageposition`, `description`, `bodytext`, `keywords`, `socialbutton`, `activecomm`, `layout_func`, `weight`, `admin_id`, `add_time`, `edit_time`, `status`, `hitstotal`, `hot_post`) VALUES
-(1, 'Dịch vụ quản lý IT', 'dich-vu-quan-ly-it', '', '', 0, 'đang cập nhật', 'đang cập nhật', 'quản lý', 1, '4', 'main-service', 1, 1, 1673097971, 1673098187, 1, 1, 0);
+(1, 'Dịch vụ quản lý IT', 'dich-vu-quan-ly-it', '', '', 0, 'đang cập nhật', 'đang cập nhật', 'quản lý', 1, '4', 'main-service', 1, 1, 1673097971, 1673098187, 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -28031,10 +27806,9 @@ INSERT INTO `nv4_vi_page` (`id`, `title`, `alias`, `image`, `imagealt`, `imagepo
 -- Table structure for table `nv4_vi_page_config`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_page_config` (
-  `config_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `config_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `config_name` (`config_name`)
+CREATE TABLE `nv4_vi_page_config` (
+  `config_name` varchar(30) NOT NULL,
+  `config_value` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -28057,13 +27831,12 @@ INSERT INTO `nv4_vi_page_config` (`config_name`, `config_value`) VALUES
 -- Table structure for table `nv4_vi_personnel_allowances`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_allowances` (
-  `allowances_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `personnel_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `allow_id` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `money` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`allowances_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_personnel_allowances` (
+  `allowances_id` mediumint(8) UNSIGNED NOT NULL,
+  `personnel_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `allow_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `money` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -28071,17 +27844,15 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_allowances` (
 -- Table structure for table `nv4_vi_personnel_data`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_data` (
-  `data_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(235) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `group_name` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `date_added` int(10) unsigned NOT NULL DEFAULT '0',
-  `date_modified` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`data_id`),
-  UNIQUE KEY `title_group` (`title`,`group_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=108 ;
+CREATE TABLE `nv4_vi_personnel_data` (
+  `data_id` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(235) NOT NULL DEFAULT '',
+  `group_name` varchar(15) NOT NULL DEFAULT '',
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `date_added` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `date_modified` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_personnel_data`
@@ -28200,17 +27971,16 @@ INSERT INTO `nv4_vi_personnel_data` (`data_id`, `title`, `group_name`, `weight`,
 -- Table structure for table `nv4_vi_personnel_degrees`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_degrees` (
-  `degrees_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `personnel_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `type_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `level_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `date_from` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_to` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `specialization` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `place` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`degrees_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=9 ;
+CREATE TABLE `nv4_vi_personnel_degrees` (
+  `degrees_id` mediumint(8) UNSIGNED NOT NULL,
+  `personnel_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `type_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `level_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `date_from` varchar(11) NOT NULL,
+  `date_to` varchar(11) NOT NULL,
+  `specialization` varchar(255) NOT NULL,
+  `place` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_personnel_degrees`
@@ -28232,18 +28002,17 @@ INSERT INTO `nv4_vi_personnel_degrees` (`degrees_id`, `personnel_id`, `type_id`,
 -- Table structure for table `nv4_vi_personnel_experience`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_experience` (
-  `experience_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `personnel_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `position_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `date_from` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_to` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contact_info` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `work_desc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`experience_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=8 ;
+CREATE TABLE `nv4_vi_personnel_experience` (
+  `experience_id` mediumint(8) UNSIGNED NOT NULL,
+  `personnel_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `position_id` varchar(255) NOT NULL DEFAULT '',
+  `date_from` varchar(11) NOT NULL,
+  `date_to` varchar(11) NOT NULL,
+  `company_title` varchar(255) NOT NULL,
+  `contact_info` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `work_desc` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_personnel_experience`
@@ -28264,18 +28033,17 @@ INSERT INTO `nv4_vi_personnel_experience` (`experience_id`, `personnel_id`, `pos
 -- Table structure for table `nv4_vi_personnel_family`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_family` (
-  `family_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `personnel_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `relative_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `is_dependent` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `birthday` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `origin_state_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`family_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=9 ;
+CREATE TABLE `nv4_vi_personnel_family` (
+  `family_id` mediumint(8) UNSIGNED NOT NULL,
+  `personnel_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `relative_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `is_dependent` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `full_name` varchar(255) NOT NULL,
+  `birthday` varchar(11) NOT NULL,
+  `job` varchar(255) NOT NULL,
+  `origin_state_address` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_personnel_family`
@@ -28297,15 +28065,14 @@ INSERT INTO `nv4_vi_personnel_family` (`family_id`, `personnel_id`, `relative_id
 -- Table structure for table `nv4_vi_personnel_history_insurances`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_history_insurances` (
-  `history_insurances_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `personnel_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `date_from` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reason` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `salary_premium_base` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`history_insurances_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=8 ;
+CREATE TABLE `nv4_vi_personnel_history_insurances` (
+  `history_insurances_id` mediumint(8) UNSIGNED NOT NULL,
+  `personnel_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `date_from` varchar(10) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `reason` varchar(100) NOT NULL,
+  `salary_premium_base` varchar(14) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_personnel_history_insurances`
@@ -28326,17 +28093,16 @@ INSERT INTO `nv4_vi_personnel_history_insurances` (`history_insurances_id`, `per
 -- Table structure for table `nv4_vi_personnel_history_solves`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_history_solves` (
-  `history_solves_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `personnel_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `model` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `premium_date_get` int(10) unsigned NOT NULL DEFAULT '0',
-  `premium_date_complete` int(10) unsigned NOT NULL DEFAULT '0',
-  `premium_date_close` int(10) unsigned NOT NULL DEFAULT '0',
-  `premium_date_return` int(10) unsigned NOT NULL DEFAULT '0',
-  `price` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`history_solves_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=8 ;
+CREATE TABLE `nv4_vi_personnel_history_solves` (
+  `history_solves_id` mediumint(8) UNSIGNED NOT NULL,
+  `personnel_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `model` varchar(250) NOT NULL,
+  `premium_date_get` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `premium_date_complete` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `premium_date_close` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `premium_date_return` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `price` varchar(14) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_personnel_history_solves`
@@ -28357,93 +28123,81 @@ INSERT INTO `nv4_vi_personnel_history_solves` (`history_solves_id`, `personnel_i
 -- Table structure for table `nv4_vi_personnel_personnel`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_personnel` (
-  `personnel_id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `userid` mediumint(8) unsigned NOT NULL,
-  `personnel_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Mã nhân viên',
-  `timekeeping_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Mã chấm công',
-  `profile_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Mã hồ sơ',
-  `full_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Họ và tên',
-  `gender` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'Giới tính',
-  `birthday` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày sinh',
-  `place_of_birth` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Nơi sinh',
-  `origin_state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Nguyên quán',
-  `private_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'CMT/Căn cước/Hộ Chiếu',
-  `private_code_date` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày cấp CMT',
-  `private_code_place` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Nơi cấp',
-  `marital_status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'Tình trạng hôn nhân',
-  `nationality` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Quốc tịch',
-  `people` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Dân tộc: Kinh...',
-  `religious` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Tôn giáo',
-  `job_bank_account` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Số tài khoản BANK',
-  `job_bank_account_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Tên tài khoản BANK',
-  `job_bank_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'ID ngân hàng',
-  `job_bank_desc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Chi nhánh',
-  `job_tax` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Mã số thuế cá nhân',
-  `level_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Cấp bậc',
-  `level_school` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Trình độ phổ thông',
-  `level_academic` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Trình độ chuyên môn cao nhất',
-  `mobile` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Điện thoại',
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Email',
-  `home_address` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Địa chỉ nhà',
-  `place_home` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'Nơi ở thường trú',
-  `current_address` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Địa chỉ hiện tại',
-  `place_current` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'ID nơi ở hiện tại',
-  `photo` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Ảnh đại diện',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Ghi chú',
-  `contract_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Mã hợp đồng',
-  `contract_type` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Loại hợp đồng',
-  `department_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Phòng ban',
-  `work_type` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Hình thức làm việc',
-  `position_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Vị trí làm việc',
-  `job_title` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Chức vụ',
-  `work_place` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'ID nơi làm việc',
-  `date_start` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày hiệu lực',
-  `date_finish` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày kết thúc hợp đồng',
-  `date_reg` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày ký',
-  `signer_id` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'ID người ký',
-  `salary_date_from` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày đầu lương',
-  `salary_method_id` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `salary_money` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `premium_number` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Số sổ bảo hiểm',
-  `premium_insurance_status` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Trạng thái sổ',
-  `premium_personnel` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'Pháp nhân đóng',
-  `premium_card` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Số thẻ BHYT',
-  `premium_code` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'ĐK khám chữa bệnh',
-  `premium_place` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT 'ĐK khám chữa bệnh',
-  `insup_date_get` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'NV hoàn thiện HS',
-  `insup_date_complete` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'NS hoàn thiện HS',
-  `insup_date_receive` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày nhận thẻ BHYT',
-  `insup_date_return` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày trả thẻ BHYT',
-  `insdown_date_get` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày nhận sổ BH từ NLĐ',
-  `insdown_date_complete` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'NS hoàn thiện HS',
-  `insdown_date_apply` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày nhận sổ BH đã chốt',
-  `insdown_date_return` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Ngày trả số cho NLĐ',
-  `status_email` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Tạo tài khoản email',
-  `status_profile` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Sơ yếu lý lịch',
-  `status_document` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Bằng cấp, trình độ chuyên môn',
-  `status_photo` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Ảnh cá nhân',
-  `files` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Lịch sử giải quyết chế độ',
-  `status_identity_card` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `resign_to_bill` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `attachment` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `date_added` int(10) unsigned NOT NULL,
-  `date_modified` int(10) unsigned NOT NULL DEFAULT '0',
-  `userid_create` mediumint(8) unsigned NOT NULL,
-  `work_status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '1: đang làm việc, 2: thai sản, 3: Nghỉ việc',
-  PRIMARY KEY (`personnel_id`),
-  UNIQUE KEY `personnel_code` (`personnel_code`),
-  UNIQUE KEY `private_code` (`private_code`),
-  UNIQUE KEY `profile_code` (`profile_code`),
-  UNIQUE KEY `job_tax` (`job_tax`),
-  UNIQUE KEY `premium_number` (`premium_number`),
-  UNIQUE KEY `premium_card` (`premium_card`),
-  UNIQUE KEY `timekeeping_code` (`timekeeping_code`) USING BTREE,
-  KEY `userid_create` (`userid_create`),
-  KEY `group_id` (`department_id`),
-  KEY `date_added` (`date_added`),
-  KEY `date_modified` (`date_modified`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=5 ;
+CREATE TABLE `nv4_vi_personnel_personnel` (
+  `personnel_id` mediumint(9) NOT NULL,
+  `userid` mediumint(8) UNSIGNED NOT NULL,
+  `personnel_code` varchar(50) NOT NULL DEFAULT '' COMMENT 'Mã nhân viên',
+  `timekeeping_code` varchar(50) NOT NULL DEFAULT '' COMMENT 'Mã chấm công',
+  `profile_code` varchar(50) NOT NULL DEFAULT '' COMMENT 'Mã hồ sơ',
+  `full_name` varchar(100) NOT NULL DEFAULT '' COMMENT 'Họ và tên',
+  `gender` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT 'Giới tính',
+  `birthday` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày sinh',
+  `place_of_birth` varchar(250) NOT NULL DEFAULT '' COMMENT 'Nơi sinh',
+  `origin_state` varchar(255) NOT NULL DEFAULT '' COMMENT 'Nguyên quán',
+  `private_code` varchar(50) NOT NULL DEFAULT '' COMMENT 'CMT/Căn cước/Hộ Chiếu',
+  `private_code_date` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày cấp CMT',
+  `private_code_place` varchar(255) NOT NULL DEFAULT '' COMMENT 'Nơi cấp',
+  `marital_status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT 'Tình trạng hôn nhân',
+  `nationality` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Quốc tịch',
+  `people` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Dân tộc: Kinh...',
+  `religious` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Tôn giáo',
+  `job_bank_account` varchar(50) NOT NULL DEFAULT '' COMMENT 'Số tài khoản BANK',
+  `job_bank_account_name` varchar(250) NOT NULL DEFAULT '' COMMENT 'Tên tài khoản BANK',
+  `job_bank_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ID ngân hàng',
+  `job_bank_desc` varchar(100) NOT NULL DEFAULT '' COMMENT 'Chi nhánh',
+  `job_tax` varchar(100) NOT NULL DEFAULT '' COMMENT 'Mã số thuế cá nhân',
+  `level_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Cấp bậc',
+  `level_school` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Trình độ phổ thông',
+  `level_academic` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Trình độ chuyên môn cao nhất',
+  `mobile` varchar(100) NOT NULL DEFAULT '' COMMENT 'Điện thoại',
+  `email` varchar(100) NOT NULL DEFAULT '' COMMENT 'Email',
+  `home_address` varchar(100) NOT NULL DEFAULT '' COMMENT 'Địa chỉ nhà',
+  `place_home` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Nơi ở thường trú',
+  `current_address` varchar(100) NOT NULL DEFAULT '' COMMENT 'Địa chỉ hiện tại',
+  `place_current` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ID nơi ở hiện tại',
+  `photo` varchar(250) NOT NULL DEFAULT '' COMMENT 'Ảnh đại diện',
+  `description` text NOT NULL COMMENT 'Ghi chú',
+  `contract_code` varchar(50) NOT NULL DEFAULT '' COMMENT 'Mã hợp đồng',
+  `contract_type` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Loại hợp đồng',
+  `department_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Phòng ban',
+  `work_type` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Hình thức làm việc',
+  `position_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Vị trí làm việc',
+  `job_title` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Chức vụ',
+  `work_place` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ID nơi làm việc',
+  `date_start` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày hiệu lực',
+  `date_finish` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày kết thúc hợp đồng',
+  `date_reg` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày ký',
+  `signer_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ID người ký',
+  `salary_date_from` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày đầu lương',
+  `salary_method_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `salary_money` varchar(20) NOT NULL DEFAULT '',
+  `premium_number` varchar(50) NOT NULL DEFAULT '' COMMENT 'Số sổ bảo hiểm',
+  `premium_insurance_status` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Trạng thái sổ',
+  `premium_personnel` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Pháp nhân đóng',
+  `premium_card` varchar(50) NOT NULL DEFAULT '' COMMENT 'Số thẻ BHYT',
+  `premium_code` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ĐK khám chữa bệnh',
+  `premium_place` mediumint(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'ĐK khám chữa bệnh',
+  `insup_date_get` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'NV hoàn thiện HS',
+  `insup_date_complete` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'NS hoàn thiện HS',
+  `insup_date_receive` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày nhận thẻ BHYT',
+  `insup_date_return` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày trả thẻ BHYT',
+  `insdown_date_get` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày nhận sổ BH từ NLĐ',
+  `insdown_date_complete` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'NS hoàn thiện HS',
+  `insdown_date_apply` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày nhận sổ BH đã chốt',
+  `insdown_date_return` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ngày trả số cho NLĐ',
+  `status_email` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Tạo tài khoản email',
+  `status_profile` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Sơ yếu lý lịch',
+  `status_document` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Bằng cấp, trình độ chuyên môn',
+  `status_photo` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Ảnh cá nhân',
+  `files` mediumtext NOT NULL COMMENT 'Lịch sử giải quyết chế độ',
+  `status_identity_card` varchar(255) NOT NULL DEFAULT '',
+  `resign_to_bill` varchar(255) NOT NULL DEFAULT '',
+  `attachment` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `date_added` int(10) UNSIGNED NOT NULL,
+  `date_modified` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `userid_create` mediumint(8) UNSIGNED NOT NULL,
+  `work_status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '1: đang làm việc, 2: thai sản, 3: Nghỉ việc'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_personnel_personnel`
@@ -28458,25 +28212,22 @@ INSERT INTO `nv4_vi_personnel_personnel` (`personnel_id`, `userid`, `personnel_c
 -- Table structure for table `nv4_vi_personnel_premium`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_premium` (
-  `premium_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numlinks` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `sort` smallint(5) NOT NULL DEFAULT '0',
-  `lev` smallint(5) NOT NULL DEFAULT '0',
-  `numsubcat` smallint(5) NOT NULL DEFAULT '0',
-  `subcatid` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `date_added` int(11) unsigned NOT NULL DEFAULT '0',
-  `date_modified` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`premium_id`),
-  UNIQUE KEY `alias` (`alias`),
-  KEY `parent_id` (`parent_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_personnel_premium` (
+  `premium_id` smallint(5) UNSIGNED NOT NULL,
+  `parent_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL,
+  `alias` varchar(250) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
+  `numlinks` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `sort` smallint(5) NOT NULL DEFAULT 0,
+  `lev` smallint(5) NOT NULL DEFAULT 0,
+  `numsubcat` smallint(5) NOT NULL DEFAULT 0,
+  `subcatid` varchar(250) DEFAULT '',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `date_added` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `date_modified` int(11) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -28484,16 +28235,14 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_premium` (
 -- Table structure for table `nv4_vi_personnel_registermedical`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_registermedical` (
-  `registermedical_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `province_id` mediumint(8) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `weight` smallint(5) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `date_added` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`registermedical_id`),
-  UNIQUE KEY `title` (`title`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_personnel_registermedical` (
+  `registermedical_id` mediumint(8) UNSIGNED NOT NULL,
+  `province_id` mediumint(8) NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `weight` smallint(5) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `date_added` int(11) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -28501,10 +28250,9 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_registermedical` (
 -- Table structure for table `nv4_vi_personnel_setting`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_personnel_setting` (
-  `config_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `config_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `config_name` (`config_name`)
+CREATE TABLE `nv4_vi_personnel_setting` (
+  `config_name` varchar(50) NOT NULL DEFAULT '',
+  `config_value` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -28517,90 +28265,25 @@ INSERT INTO `nv4_vi_personnel_setting` (`config_name`, `config_value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nv4_vi_quan_tri_he_thong`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_quan_tri_he_thong` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imagealt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imageposition` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `bodytext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `socialbutton` tinyint(4) NOT NULL DEFAULT '0',
-  `activecomm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `layout_func` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` smallint(4) NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot_post` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `nv4_vi_quan_tri_he_thong`
---
-
-INSERT INTO `nv4_vi_quan_tri_he_thong` (`id`, `title`, `alias`, `image`, `imagealt`, `imageposition`, `description`, `bodytext`, `keywords`, `socialbutton`, `activecomm`, `layout_func`, `weight`, `admin_id`, `add_time`, `edit_time`, `status`, `hitstotal`, `hot_post`) VALUES
-(1, 'Quản trị hệ thống / It System Administration', 'it-system-administration', '', '', 0, 'Xu hướng thuê ngoài dịch vụ Quản trị hệ thống CNTT hiện đang bắt đầu phổ biến và phát triển tại Việt Nam không chỉ trong khối doanh nghiệp mà còn cả ở các cơ quan nhà nước. Thuê ngoài dịch vụ ứng dụng CNTT cho phép doanh nghiệp đạt lợi ích trên vốn, thời gian, hiệu quả của hệ thống và con người. Sử dụng dịch vụ quản trị thuê ngoài, các doanh nghiệp nhỏ và vừa có thể tối thiểu hóa đối với chi phí nhân sự quản trị CNTT mà vẫn có thể dễ dàng tiếp cận các hệ thống quản trị cao cấp, chuyên nghiệp.', '<p><strong>1. CÁC LỢI ÍCH CHO DOANH NGHIỆP KHI SỬ DỤNG DỊCH VỤ QUẢN TRỊ HỆ THỐNG CNTT TỪ HOÀNG GIA:</strong></p>\r\n\r\n<ul>\r\n	<li>Giúp doanh nghiệp đạt lợi ích trên vốn, thời gian, hiệu quả của hệ thống và con người.</li>\r\n	<li>Dễ dàng tiếp cận các hệ thống quản lý cao cấp mà không cần tốn nhiều chi phí cho việc đầu tư máy chủ, hệ thống mạng.</li>\r\n	<li>Đạt được lợi ích thông qua các công cụ, giải pháp tích hợp từ các hãng hàng đầu trên thế giới như IBM, BMC Software, CA Technologies cùng với đội ngũ quản trị viên chuyên nghiệp</li>\r\n	<li>Tối ưu về thiết kế và tiết kiệm thời gian triển khai để phục vụ các nghiệp vụ cốt lõi của riêng doanh nghiệp mình</li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><img alt="quan-tri-he-thong-mang-cntt" src="https://hgsi.com.vn/userfiles/images/quan-tri-he-thong-mang-cntt.jpg" /></p>\r\n\r\n<p><em>Quản trị hệ thống CNTT đem lại hiệu quả tối ưu, tiết kiệm chi phí</em></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>2. CÁC DỊCH VỤ QUẢN TRỊ HỆ THỐNG GỒM CÓ:</strong></p>\r\n\r\n<ul>\r\n	<li>Quản trị cơ bản: cài đặt và cấu hình server, cài đặt thêm 1 số phần mềm thông dụng, cập nhật hệ điều hành, hỗ trợ cài đặt antivirus, antispam (bản miễn phí) …</li>\r\n	<li>&nbsp;<strong><em>Quản trị hệ thống</em></strong>&nbsp;mạng, máy chủ và bảo mật.</li>\r\n	<li>Sao lưu, phục hồi dữ liệu.</li>\r\n	<li>Giám sát các thiết bị mạng.</li>\r\n	<li>Giám sát hệ thống máy chủ, hệ thống lưu trữ</li>\r\n	<li>Bảo dưỡng định kỳ hệ thống.</li>\r\n</ul>\r\n\r\n<p>Đến với <b><i>Smartline</i></b>&nbsp;bạn không lo phải tốn quá nhiều chi phí thuê nhân sự có tay nghề quản trị hệ thống CNTT mà vẫn có thể sử dụng hệ thống CNTT chuyên nghiệp, cao cấp phục vụ các hoạt động sản xuất, kinh doanh của doanh nghiệp.</p>', 'quản trị,hệ thống', 1, '4', 'main-service', 1, 1, 1674217641, 1674223231, 1, 7, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nv4_vi_quan_tri_he_thong_config`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_quan_tri_he_thong_config` (
-  `config_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `config_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `config_name` (`config_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `nv4_vi_quan_tri_he_thong_config`
---
-
-INSERT INTO `nv4_vi_quan_tri_he_thong_config` (`config_name`, `config_value`) VALUES
-('viewtype', '0'),
-('facebookapi', ''),
-('per_page', '20'),
-('news_first', '0'),
-('related_articles', '5'),
-('copy_page', '0'),
-('alias_lower', '1'),
-('socialbutton', 'facebook,twitter');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `nv4_vi_referer_stats`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_referer_stats` (
-  `host` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total` int(11) NOT NULL DEFAULT '0',
-  `month01` int(11) NOT NULL DEFAULT '0',
-  `month02` int(11) NOT NULL DEFAULT '0',
-  `month03` int(11) NOT NULL DEFAULT '0',
-  `month04` int(11) NOT NULL DEFAULT '0',
-  `month05` int(11) NOT NULL DEFAULT '0',
-  `month06` int(11) NOT NULL DEFAULT '0',
-  `month07` int(11) NOT NULL DEFAULT '0',
-  `month08` int(11) NOT NULL DEFAULT '0',
-  `month09` int(11) NOT NULL DEFAULT '0',
-  `month10` int(11) NOT NULL DEFAULT '0',
-  `month11` int(11) NOT NULL DEFAULT '0',
-  `month12` int(11) NOT NULL DEFAULT '0',
-  `last_update` int(11) NOT NULL DEFAULT '0',
-  UNIQUE KEY `host` (`host`),
-  KEY `total` (`total`)
+CREATE TABLE `nv4_vi_referer_stats` (
+  `host` varchar(250) NOT NULL,
+  `total` int(11) NOT NULL DEFAULT 0,
+  `month01` int(11) NOT NULL DEFAULT 0,
+  `month02` int(11) NOT NULL DEFAULT 0,
+  `month03` int(11) NOT NULL DEFAULT 0,
+  `month04` int(11) NOT NULL DEFAULT 0,
+  `month05` int(11) NOT NULL DEFAULT 0,
+  `month06` int(11) NOT NULL DEFAULT 0,
+  `month07` int(11) NOT NULL DEFAULT 0,
+  `month08` int(11) NOT NULL DEFAULT 0,
+  `month09` int(11) NOT NULL DEFAULT 0,
+  `month10` int(11) NOT NULL DEFAULT 0,
+  `month11` int(11) NOT NULL DEFAULT 0,
+  `month12` int(11) NOT NULL DEFAULT 0,
+  `last_update` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -28608,11 +28291,13 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_referer_stats` (
 --
 
 INSERT INTO `nv4_vi_referer_stats` (`host`, `total`, `month01`, `month02`, `month03`, `month04`, `month05`, `month06`, `month07`, `month08`, `month09`, `month10`, `month11`, `month12`, `last_update`) VALUES
-('pavietnam.vn', 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1674948141),
+('pavietnam.vn', 6, 3, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1679537543),
 ('netcraft.com', 4, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1677072529),
 ('smartline.vn', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1669833940),
-('', 60, 2, 6, 11, 0, 0, 0, 0, 0, 0, 0, 0, 41, 1679049129),
-('cato.brightcloud.com', 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1676638799);
+('', 223, 2, 6, 75, 89, 10, 0, 0, 0, 0, 0, 0, 41, 1683648272),
+('cato.brightcloud.com', 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1676638799),
+('bing.com', 7, 0, 0, 2, 4, 1, 0, 0, 0, 0, 0, 0, 0, 1682987215),
+('google.com', 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 1683154004);
 
 -- --------------------------------------------------------
 
@@ -28620,14 +28305,11 @@ INSERT INTO `nv4_vi_referer_stats` (`host`, `total`, `month01`, `month02`, `mont
 -- Table structure for table `nv4_vi_searchkeys`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_searchkeys` (
-  `id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `skey` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total` int(11) NOT NULL DEFAULT '0',
-  `search_engine` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  KEY `id` (`id`),
-  KEY `skey` (`skey`),
-  KEY `search_engine` (`search_engine`)
+CREATE TABLE `nv4_vi_searchkeys` (
+  `id` varchar(32) NOT NULL DEFAULT '',
+  `skey` varchar(250) NOT NULL,
+  `total` int(11) NOT NULL DEFAULT 0,
+  `search_engine` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -28636,37 +28318,35 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_searchkeys` (
 -- Table structure for table `nv4_vi_siteterms`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_siteterms` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imagealt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `imageposition` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `bodytext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keywords` text COLLATE utf8mb4_unicode_ci,
-  `socialbutton` tinyint(4) NOT NULL DEFAULT '0',
-  `activecomm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `layout_func` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `weight` smallint(6) NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `add_time` int(11) NOT NULL DEFAULT '0',
-  `edit_time` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hot_post` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+CREATE TABLE `nv4_vi_siteterms` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `alias` varchar(250) NOT NULL,
+  `image` varchar(255) DEFAULT '',
+  `imagealt` varchar(255) DEFAULT '',
+  `imageposition` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `description` text DEFAULT NULL,
+  `bodytext` mediumtext NOT NULL,
+  `keywords` text DEFAULT NULL,
+  `socialbutton` tinyint(4) NOT NULL DEFAULT 0,
+  `activecomm` varchar(255) DEFAULT '',
+  `layout_func` varchar(100) DEFAULT '',
+  `weight` smallint(6) NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `add_time` int(11) NOT NULL DEFAULT 0,
+  `edit_time` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `hitstotal` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `hot_post` tinyint(3) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_siteterms`
 --
 
 INSERT INTO `nv4_vi_siteterms` (`id`, `title`, `alias`, `image`, `imagealt`, `imageposition`, `description`, `bodytext`, `keywords`, `socialbutton`, `activecomm`, `layout_func`, `weight`, `admin_id`, `add_time`, `edit_time`, `status`, `hitstotal`, `hot_post`) VALUES
-(1, 'Chính sách bảo mật (Quyền riêng tư)', 'privacy', '', '', 0, 'Tài liệu này cung cấp cho bạn (người truy cập và sử dụng website) chính sách liên quan đến bảo mật và quyền riêng tư của bạn', '<strong><a id="index" name="index"></a>Danh mục</strong><br /> <a href="#1">Điều 1: Thu thập thông tin</a><br /> <a href="#2">Điều 2: Lưu trữ &amp; Bảo vệ thông tin</a><br /> <a href="#3">Điều 3: Sử dụng thông tin </a><br /> <a href="#4">Điều 4: Tiếp nhận thông tin từ các đối tác </a><br /> <a href="#5">Điều 5: Chia sẻ thông tin với bên thứ ba</a><br /> <a href="#6">Điều 6: Thay đổi chính sách bảo mật</a>  <hr  /> <h2><a id="1" name="1"></a>Điều 1: Thu thập thông tin</h2>  <h3>1.1. Thu thập tự động:</h3>  <div>Hệ thống này được xây dựng bằng mã nguồn NukeViet. Như mọi website hiện đại khác, chúng tôi sẽ thu thập địa chỉ IP và các thông tin web tiêu chuẩn khác của bạn như: loại trình duyệt, các trang bạn truy cập trong quá trình sử dụng dịch vụ, thông tin về máy tính &amp; thiết bị mạng v.v… cho mục đích phân tích thông tin phục vụ việc bảo mật và giữ an toàn cho hệ thống.</div>  <h3>1.2. Thu thập từ các khai báo của chính bạn:</h3>  <div>Các thông tin do bạn khai báo cho chúng tôi trong quá trình làm việc như: đăng ký tài khoản, liên hệ với chúng tôi... cũng sẽ được chúng tôi lưu trữ phục vụ công việc chăm sóc khách hàng sau này.</div>  <h3>1.3. Thu thập thông tin thông qua việc đặt cookies:</h3>  <p>Như mọi website hiện đại khác, khi bạn truy cập website, chúng tôi (hoặc các công cụ theo dõi hoặc thống kê hoạt động của website do các đối tác cung cấp) sẽ đặt một số File dữ liệu gọi là Cookies lên đĩa cứng hoặc bộ nhớ máy tính của bạn.</p>  <p>Một trong số những Cookies này có thể tồn tại lâu để thuận tiện cho bạn trong quá trình sử dụng, ví dụ như: lưu Email của bạn trong trang đăng nhập để bạn không phải nhập lại v.v…</p>  <h3>1.4. Thu thập và lưu trữ thông tin trong quá khứ:</h3>  <p>Bạn có thể thay đổi thông tin cá nhân của mình bất kỳ lúc nào bằng cách sử dụng chức năng tương ứng. Tuy nhiên chúng tôi sẽ lưu lại những thông tin bị thay đổi để chống các hành vi xóa dấu vết gian lận.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="2" name="2"></a>Điều 2: Lưu trữ &amp; Bảo vệ thông tin</h2>  <div>Hầu hết các thông tin được thu thập sẽ được lưu trữ tại cơ sở dữ liệu của chúng tôi.<br /> <br /> Chúng tôi bảo vệ dữ liệu cá nhân của các bạn bằng các hình thức như: mật khẩu, tường lửa, mã hóa cùng các hình thức thích hợp khác và chỉ cấp phép việc truy cập và xử lý dữ liệu cho các đối tượng phù hợp, ví dụ chính bạn hoặc các nhân viên có trách nhiệm xử lý thông tin với bạn thông qua các bước xác định danh tính phù hợp.<br /> <br /> Mật khẩu của bạn được lưu trữ và bảo vệ bằng phương pháp mã hoá trong cơ sở dữ liệu của hệ thống, vì thế nó rất an toàn. Tuy nhiên, chúng tôi khuyên bạn không nên dùng lại mật khẩu này trên các website khác. Mật khẩu của bạn là cách duy nhất để bạn đăng nhập vào tài khoản thành viên của mình trong website này, vì thế hãy cất giữ nó cẩn thận. Trong mọi trường hợp bạn không nên cung cấp thông tin mật khẩu cho bất kỳ người nào dù là người của chúng tôi, người của NukeViet hay bất kỳ người thứ ba nào khác trừ khi bạn hiểu rõ các rủi ro khi để lộ mật khẩu. Nếu quên mật khẩu, bạn có thể sử dụng chức năng “<a href="/users/lostpass/">Quên mật khẩu</a>” trên website. Để thực hiện việc này, bạn cần phải cung cấp cho hệ thống biết tên thành viên hoặc địa chỉ Email đang sử dụng của mình trong tài khoản, sau đó hệ thống sẽ tạo ra cho bạn mật khẩu mới và gửi đến cho bạn để bạn vẫn có thể đăng nhập vào tài khoản thành viên của mình.  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p> </div>  <h2><a id="3" name="3"></a>Điều 3: Sử dụng thông tin</h2>  <p>Thông tin thu thập được sẽ được chúng tôi sử dụng để:</p>  <div>- Cung cấp các dịch vụ hỗ trợ &amp; chăm sóc khách hàng.</div>  <div>- Thực hiện giao dịch thanh toán &amp; gửi các thông báo trong quá trình giao dịch.</div>  <div>- Xử lý khiếu nại, thu phí &amp; giải quyết sự cố.</div>  <div>- Ngăn chặn các hành vi có nguy cơ rủi ro, bị cấm hoặc bất hợp pháp và đảm bảo tuân thủ đúng chính sách “Thỏa thuận người dùng”.</div>  <div>- Đo đạc, tùy biến &amp; cải tiến dịch vụ, nội dung và hình thức của website.</div>  <div>- Gửi bạn các thông tin về chương trình Marketing, các thông báo &amp; chương trình khuyến mại.</div>  <div>- So sánh độ chính xác của thông tin cá nhân của bạn trong quá trình kiểm tra với bên thứ ba.</div>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="4" name="4"></a>Điều 4: Tiếp nhận thông tin từ các đối tác</h2>  <div>Khi sử dụng các công cụ giao dịch và thanh toán thông qua internet, chúng tôi có thể tiếp nhận thêm các thông tin về bạn như địa chỉ username, Email, số tài khoản ngân hàng... Chúng tôi kiểm tra những thông tin này với cơ sở dữ liệu người dùng của mình nhằm xác nhận rằng bạn có phải là khách hàng của chúng tôi hay không nhằm giúp việc thực hiện các dịch vụ cho bạn được thuận lợi.<br /> <br /> Các thông tin tiếp nhận được sẽ được chúng tôi bảo mật như những thông tin mà chúng tôi thu thập được trực tiếp từ bạn.</div>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="5" name="5"></a>Điều 5: Chia sẻ thông tin với bên thứ ba</h2>  <p>Chúng tôi sẽ không chia sẻ thông tin cá nhân, thông tin tài chính... của bạn cho các bên thứ 3 trừ khi được sự đồng ý của chính bạn hoặc khi chúng tôi buộc phải tuân thủ theo các quy định pháp luật hoặc khi có yêu cầu từ cơ quan công quyền có thẩm quyền.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="6" name="6"></a>Điều 6: Thay đổi chính sách bảo mật</h2>  <p>Chính sách Bảo mật này có thể thay đổi theo thời gian. Chúng tôi sẽ không giảm quyền của bạn theo Chính sách Bảo mật này mà không có sự đồng ý rõ ràng của bạn. Chúng tôi sẽ đăng bất kỳ thay đổi Chính sách Bảo mật nào trên trang này và, nếu những thay đổi này quan trọng, chúng tôi sẽ cung cấp thông báo nổi bật hơn (bao gồm, đối với một số dịch vụ nhất định, thông báo bằng email về các thay đổi của Chính sách Bảo mật).</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <p style="text-align: right;">Chính sách bảo mật mặc định này được xây dựng cho <a href="http://nukeviet.vn" target="_blank">NukeViet CMS</a>, được tham khảo từ website <a href="http://webnhanh.vn/vi/thiet-ke-web/detail/Chinh-sach-bao-mat-Quyen-rieng-tu-Privacy-Policy-2147/">webnhanh.vn</a></p>', '', 0, '4', '', 1, 1, 1658390704, 1658390704, 1, 19, 0),
-(2, 'Điều khoản và điều kiện sử dụng', 'terms-and-conditions', '', '', 0, 'Đây là các điều khoản và điều kiện áp dụng cho website này. Truy cập và sử dụng website tức là bạn đã đồng ý với các quy định này.', '<div>Cảm ơn bạn đã sử dụng. Xin vui lòng đọc các Điều khoản một cách cẩn thận, và <a href="/contact/">liên hệ</a> với chúng tôi nếu bạn có bất kỳ câu hỏi. Bằng việc truy cập hoặc sử dụng website của chúng tôi, bạn đồng ý bị ràng buộc bởi các <a href="/siteterms/terms-and-conditions.html">Điều khoản và điều kiện</a> sử dụng cũng như <a href="/siteterms/privacy.html">Chính sách bảo mật</a> của chúng tôi. Nếu không đồng ý với các quy định này, bạn vui lòng ngưng sử dụng website.<br /> <br /> <strong><a id="index" name="index"></a>Danh mục</strong><br /> <a href="#1">Điều 1: Điều khoản liên quan đến phần mềm vận hành website</a><br /> <a href="#2">Điều 2: Giới hạn cho việc sử dụng Website và các tài liệu trên website</a><br /> <a href="#3">Điều 3: Sử dụng thương hiệu</a><br /> <a href="#4">Điều 4: Các hành vi bị nghiêm cấm</a><br /> <a href="#5">Điều 5: Các đường liên kết đến các website khác</a><br /> <a href="#6">Điều 6: Từ chối bảo đảm</a><br /> <a href="#7">Điều 7: Luật áp dụng và cơ quan giải quyết tranh chấp</a><br /> <a href="#8">Điều 8: Thay đổi điều khoản và điều kiện sử dụng</a></div>  <hr  /> <h2><a id="1" name="1"></a>Điều khoản liên quan đến phần mềm vận hành website</h2>  <p>- Website của chúng tôi sử dụng hệ thống NukeViet, là giải pháp về website/ cổng thông tin nguồn mở được phát hành theo giấy phép bản quyền phần mềm tự do nguồn mở “<a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank">GNU General Public License</a>” (viết tắt là GNU/GPL hay GPL) và có thể tải về miễn phí tại trang web <a href="http://www.nukeviet.vn" target="_blank">www.nukeviet.vn</a>.<br /> - Website này do chúng tôi sở hữu, điều hành và duy trì. NukeViet (hiểu ở đây là “hệ thống NukeViet” (bao gồm nhân hệ thống NukeViet và các sản phẩm phái sinh như NukeViet CMS, NukeViet Portal, <a href="http://edu.nukeviet.vn" target="_blank">NukeViet Edu Gate</a>...), “www.nukeviet.vn”, “tổ chức NukeViet”, “ban điều hành NukeViet”, &quot;Ban Quản Trị NukeViet&quot; và nói chung là những gì liên quan đến NukeViet...) không liên quan gì đến việc chúng tôi điều hành website cũng như quy định bạn được phép làm và không được phép làm gì trên website này.<br /> - Hệ thống NukeViet là bộ mã nguồn được phát triển để xây dựng các website/ cổng thông tin trên mạng. Chúng tôi (chủ sở hữu, điều hành và duy trì website này) không hỗ trợ và khẳng định hay ngụ ý về việc có liên quan đến NukeViet. Để biết thêm nhiều thông tin về NukeViet, hãy ghé thăm website của NukeViet tại địa chỉ: <a href="http://nukeviet.vn" target="_blank">http://nukeviet.vn</a>.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="2" name="2"></a>Giới hạn cho việc sử dụng Website và các tài liệu trên website</h2>  <p>- Tất cả các quyền liên quan đến tất cả tài liệu và thông tin được hiển thị và/ hoặc được tạo ra sẵn cho Website này (ví dụ như những tài liệu được cung cấp để tải về) được quản lý, sở hữu hoặc được cho phép sử dụng bởi chúng tôi hoặc chủ sở hữu tương ứng với giấy phép tương ứng. Việc sử dụng các tài liệu và thông tin phải được tuân thủ theo giấy phép tương ứng được áp dụng cho chúng.<br /> - Ngoại trừ các tài liệu được cấp phép rõ ràng dưới dạng giấy phép tư liệu mở&nbsp;Creative Commons (gọi là giấy phép CC) cho phép bạn khai thác và chia sẻ theo quy định của giấy phép tư liệu mở, đối với các loại tài liệu không ghi giấy phép rõ ràng thì bạn không được phép sử dụng (bao gồm nhưng không giới hạn việc sao chép, chỉnh sửa toàn bộ hay một phần, đăng tải, phân phối, cấp phép, bán và xuất bản) bất cứ tài liệu nào mà không có sự cho phép trước bằng văn bản của chúng tôi ngoại trừ việc sử dụng cho mục đích cá nhân, nội bộ, phi thương mại.<br /> - Một số tài liệu hoặc thông tin có những điều khoản và điều kiện áp dụng riêng cho chúng không phải là giấy phép tư liệu mở, trong trường hợp như vậy, bạn được yêu cầu phải chấp nhận các điều khoản và điều kiện đó khi truy cập vào các tài liệu và thông tin này.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="3" name="3"></a>Sử dụng thương hiệu</h2>  <p>- VINADES.,JSC, NukeViet và thương hiệu gắn với NukeViet (ví dụ NukeViet CMS, NukeViet Portal, NukeViet Edu Gate...), logo công ty VINADES thuộc sở hữu của Công ty cổ phần phát triển nguồn mở Việt Nam.<br /> - Những tên sản phẩm, tên dịch vụ khác, logo và/ hoặc những tên công ty được sử dụng trong Website này là những tài sản đã được đăng ký độc quyền và được giữ bản quyền bởi những người sở hữu và/ hoặc người cấp phép tương ứng.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="4" name="4"></a>Các hành vi bị nghiêm cấm</h2>  <p>Người truy cập website này không được thực hiện những hành vi dưới đây khi sử dụng website:<br /> - Xâm phạm các quyền hợp pháp (bao gồm nhưng không giới hạn đối với các quyền riêng tư và chung) của người khác.<br /> - Gây ra sự thiệt hại hoặc bất lợi cho người khác.<br /> - Làm xáo trộn trật tự công cộng.<br /> - Hành vi liên quan đến tội phạm.<br /> - Tải lên hoặc phát tán thông tin riêng tư của tổ chức, cá nhân khác mà không được sự chấp thuận của họ.<br /> - Sử dụng Website này vào mục đích thương mại mà chưa được sự cho phép của chúng tôi.<br /> - Nói xấu, làm nhục, phỉ báng người khác.<br /> - Tải lên các tập tin chứa virus hoặc các tập tin bị hư mà có thể gây thiệt hại đến sự vận hành của máy tính khác.<br /> - Những hoạt động có khả năng ảnh hưởng đến hoạt động bình thường của website.<br /> - Những hoạt động mà chúng tôi cho là không thích hợp.<br /> - Những hoạt động bất hợp pháp hoặc bị cấm bởi pháp luật hiện hành.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="5" name="5"></a>Các đường liên kết đến các website khác</h2>  <p>- Các website của các bên thứ ba (không phải các trang do chúng tôi quản lý) được liên kết đến hoặc từ website này (&quot;Các website khác&quot;) được điều hành và duy trì hoàn toàn độc lập bởi các bên thứ ba đó và không nằm trong quyền điều khiển và/hoặc giám sát của chúng tôi. Việc truy cập các website khác phải được tuân thủ theo các điều khoản và điều kiện quy định bởi ban điều hành của website đó.<br /> - Chúng tôi không chịu trách nhiệm cho sự mất mát hoặc thiệt hại do việc truy cập và sử dụng các website bên ngoài, và bạn phải chịu mọi rủi ro khi truy cập các website đó.<br /> - Không có nội dung nào trong Website này thể hiện như một sự đảm bảo của chúng tôi về nội dung của các website khác và các sản phẩm và/ hoặc các dịch vụ xuất hiện và/ hoặc được cung cấp tại các website khác.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="6" name="6"></a>Từ chối bảo đảm</h2>  <p>NGOẠI TRỪ PHẠM VI BỊ CẤM THEO LUẬT PHÁP HIỆN HÀNH, CHÚNG TÔI SẼ:<br /> - KHÔNG CHỊU TRÁCH NHIỆM HAY BẢO ĐẢM, MỘT CÁCH RÕ RÀNG HAY NGỤ Ý, BAO GỒM SỰ BẢO ĐẢM VỀ TÍNH CHÍNH XÁC, MỨC ĐỘ TIN CẬY, HOÀN THIỆN, PHÙ HỢP CHO MỤC ĐÍCH CỤ THỂ, SỰ KHÔNG XÂM PHẠM QUYỀN CỦA BÊN THỨ 3 VÀ/HOẶC TÍNH AN TOÀN CỦA NỘI DỤNG WEBSITE NÀY, VÀ NHỮNG TUYÊN BỐ, ĐẢM BẢO CÓ LIÊN QUAN.<br /> - KHÔNG CHỊU TRÁCH NHIỆM CHO BẤT KỲ SỰ THIỆT HẠI HAY MẤT MÁT PHÁT SINH TỪ VIỆC TRUY CẬP VÀ SỬ DỤNG WEBSITE HAY VIỆC KHÔNG THỂ SỬ DỤNG WEBSITE.<br /> - CHÚNG TÔI CÓ THỂ THAY ĐỔI VÀ/HOẶC THAY THẾ NỘI DUNG CỦA WEBSITE NÀY, HOẶC TẠM HOÃN HOẶC NGƯNG CUNG CẤP CÁC DỊCH VỤ QUA WEBSITE NÀY VÀO BẤT KỲ THỜI ĐIỂM NÀO MÀ KHÔNG CẦN THÔNG BÁO TRƯỚC. CHÚNG TÔI SẼ KHÔNG CHỊU TRÁCH NHIỆM CHO BẤT CỨ THIỆT HẠI NÀO PHÁT SINH DO SỰ THAY ĐỔI HOẶC THAY THẾ NỘI DUNG CỦA WEBSITE.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="7" name="7"></a>Luật áp dụng và cơ quan giải quyết tranh chấp</h2>  <p>- Các Điều Khoản và Điều Kiện này được điều chỉnh và giải thích theo luật của Việt Nam trừ khi có điều khoản khác được cung cấp thêm. Tất cả tranh chấp phát sinh liên quan đến website này và các Điều Khoản và Điều Kiện sử dụng này sẽ được giải quyết tại các tòa án ở Việt Nam.<br /> - Nếu một phần nào đó của các Điều Khoản và Điều Kiện bị xem là không có giá trị, vô hiệu, hoặc không áp dụng được vì lý do nào đó, phần đó được xem như là phần riêng biệt và không ảnh hưởng đến tính hiệu lực của phần còn lại.<br /> - Trong trường hợp có sự mâu thuẫn giữa bản Tiếng Anh và bản Tiếng Việt của bản Điều Khoản và Điều Kiện này, bản Tiếng Việt sẽ được ưu tiên áp dụng.</p>  <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p>  <h2><a id="8" name="8"></a>Thay đổi điều khoản và điều kiện sử dụng</h2>  <div>Điều khoản và điều kiện sử dụng có thể thay đổi theo thời gian. Chúng tôi bảo lưu quyền thay đổi hoặc sửa đổi bất kỳ điều khoản và điều kiện cũng như các quy định khác, bất cứ lúc nào và theo ý mình. Chúng tôi sẽ có thông báo trên website khi có sự thay đổi. Tiếp tục sử dụng trang web này sau khi đăng các thay đổi tức là bạn đã chấp nhận các thay đổi đó. <p style="text-align: right;"><a href="#index">Trở lại danh mục</a></p> </div>', '', 0, '4', '', 2, 1, 1658390704, 1658390704, 1, 16, 0);
+(1, 'Chính sách bảo mật (Quyền riêng tư)', 'privacy', '', '', 0, 'Tài liệu này cung cấp cho bạn (người truy cập và sử dụng website) chính sách liên quan đến bảo mật và quyền riêng tư của bạn', '<strong><a id=\"index\" name=\"index\"></a>Danh mục</strong><br /> <a href=\"#1\">Điều 1: Thu thập thông tin</a><br /> <a href=\"#2\">Điều 2: Lưu trữ &amp; Bảo vệ thông tin</a><br /> <a href=\"#3\">Điều 3: Sử dụng thông tin </a><br /> <a href=\"#4\">Điều 4: Tiếp nhận thông tin từ các đối tác </a><br /> <a href=\"#5\">Điều 5: Chia sẻ thông tin với bên thứ ba</a><br /> <a href=\"#6\">Điều 6: Thay đổi chính sách bảo mật</a>  <hr  /> <h2><a id=\"1\" name=\"1\"></a>Điều 1: Thu thập thông tin</h2>  <h3>1.1. Thu thập tự động:</h3>  <div>Hệ thống này được xây dựng bằng mã nguồn NukeViet. Như mọi website hiện đại khác, chúng tôi sẽ thu thập địa chỉ IP và các thông tin web tiêu chuẩn khác của bạn như: loại trình duyệt, các trang bạn truy cập trong quá trình sử dụng dịch vụ, thông tin về máy tính &amp; thiết bị mạng v.v… cho mục đích phân tích thông tin phục vụ việc bảo mật và giữ an toàn cho hệ thống.</div>  <h3>1.2. Thu thập từ các khai báo của chính bạn:</h3>  <div>Các thông tin do bạn khai báo cho chúng tôi trong quá trình làm việc như: đăng ký tài khoản, liên hệ với chúng tôi... cũng sẽ được chúng tôi lưu trữ phục vụ công việc chăm sóc khách hàng sau này.</div>  <h3>1.3. Thu thập thông tin thông qua việc đặt cookies:</h3>  <p>Như mọi website hiện đại khác, khi bạn truy cập website, chúng tôi (hoặc các công cụ theo dõi hoặc thống kê hoạt động của website do các đối tác cung cấp) sẽ đặt một số File dữ liệu gọi là Cookies lên đĩa cứng hoặc bộ nhớ máy tính của bạn.</p>  <p>Một trong số những Cookies này có thể tồn tại lâu để thuận tiện cho bạn trong quá trình sử dụng, ví dụ như: lưu Email của bạn trong trang đăng nhập để bạn không phải nhập lại v.v…</p>  <h3>1.4. Thu thập và lưu trữ thông tin trong quá khứ:</h3>  <p>Bạn có thể thay đổi thông tin cá nhân của mình bất kỳ lúc nào bằng cách sử dụng chức năng tương ứng. Tuy nhiên chúng tôi sẽ lưu lại những thông tin bị thay đổi để chống các hành vi xóa dấu vết gian lận.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"2\" name=\"2\"></a>Điều 2: Lưu trữ &amp; Bảo vệ thông tin</h2>  <div>Hầu hết các thông tin được thu thập sẽ được lưu trữ tại cơ sở dữ liệu của chúng tôi.<br /> <br /> Chúng tôi bảo vệ dữ liệu cá nhân của các bạn bằng các hình thức như: mật khẩu, tường lửa, mã hóa cùng các hình thức thích hợp khác và chỉ cấp phép việc truy cập và xử lý dữ liệu cho các đối tượng phù hợp, ví dụ chính bạn hoặc các nhân viên có trách nhiệm xử lý thông tin với bạn thông qua các bước xác định danh tính phù hợp.<br /> <br /> Mật khẩu của bạn được lưu trữ và bảo vệ bằng phương pháp mã hoá trong cơ sở dữ liệu của hệ thống, vì thế nó rất an toàn. Tuy nhiên, chúng tôi khuyên bạn không nên dùng lại mật khẩu này trên các website khác. Mật khẩu của bạn là cách duy nhất để bạn đăng nhập vào tài khoản thành viên của mình trong website này, vì thế hãy cất giữ nó cẩn thận. Trong mọi trường hợp bạn không nên cung cấp thông tin mật khẩu cho bất kỳ người nào dù là người của chúng tôi, người của NukeViet hay bất kỳ người thứ ba nào khác trừ khi bạn hiểu rõ các rủi ro khi để lộ mật khẩu. Nếu quên mật khẩu, bạn có thể sử dụng chức năng “<a href=\"/users/lostpass/\">Quên mật khẩu</a>” trên website. Để thực hiện việc này, bạn cần phải cung cấp cho hệ thống biết tên thành viên hoặc địa chỉ Email đang sử dụng của mình trong tài khoản, sau đó hệ thống sẽ tạo ra cho bạn mật khẩu mới và gửi đến cho bạn để bạn vẫn có thể đăng nhập vào tài khoản thành viên của mình.  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p> </div>  <h2><a id=\"3\" name=\"3\"></a>Điều 3: Sử dụng thông tin</h2>  <p>Thông tin thu thập được sẽ được chúng tôi sử dụng để:</p>  <div>- Cung cấp các dịch vụ hỗ trợ &amp; chăm sóc khách hàng.</div>  <div>- Thực hiện giao dịch thanh toán &amp; gửi các thông báo trong quá trình giao dịch.</div>  <div>- Xử lý khiếu nại, thu phí &amp; giải quyết sự cố.</div>  <div>- Ngăn chặn các hành vi có nguy cơ rủi ro, bị cấm hoặc bất hợp pháp và đảm bảo tuân thủ đúng chính sách “Thỏa thuận người dùng”.</div>  <div>- Đo đạc, tùy biến &amp; cải tiến dịch vụ, nội dung và hình thức của website.</div>  <div>- Gửi bạn các thông tin về chương trình Marketing, các thông báo &amp; chương trình khuyến mại.</div>  <div>- So sánh độ chính xác của thông tin cá nhân của bạn trong quá trình kiểm tra với bên thứ ba.</div>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"4\" name=\"4\"></a>Điều 4: Tiếp nhận thông tin từ các đối tác</h2>  <div>Khi sử dụng các công cụ giao dịch và thanh toán thông qua internet, chúng tôi có thể tiếp nhận thêm các thông tin về bạn như địa chỉ username, Email, số tài khoản ngân hàng... Chúng tôi kiểm tra những thông tin này với cơ sở dữ liệu người dùng của mình nhằm xác nhận rằng bạn có phải là khách hàng của chúng tôi hay không nhằm giúp việc thực hiện các dịch vụ cho bạn được thuận lợi.<br /> <br /> Các thông tin tiếp nhận được sẽ được chúng tôi bảo mật như những thông tin mà chúng tôi thu thập được trực tiếp từ bạn.</div>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"5\" name=\"5\"></a>Điều 5: Chia sẻ thông tin với bên thứ ba</h2>  <p>Chúng tôi sẽ không chia sẻ thông tin cá nhân, thông tin tài chính... của bạn cho các bên thứ 3 trừ khi được sự đồng ý của chính bạn hoặc khi chúng tôi buộc phải tuân thủ theo các quy định pháp luật hoặc khi có yêu cầu từ cơ quan công quyền có thẩm quyền.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"6\" name=\"6\"></a>Điều 6: Thay đổi chính sách bảo mật</h2>  <p>Chính sách Bảo mật này có thể thay đổi theo thời gian. Chúng tôi sẽ không giảm quyền của bạn theo Chính sách Bảo mật này mà không có sự đồng ý rõ ràng của bạn. Chúng tôi sẽ đăng bất kỳ thay đổi Chính sách Bảo mật nào trên trang này và, nếu những thay đổi này quan trọng, chúng tôi sẽ cung cấp thông báo nổi bật hơn (bao gồm, đối với một số dịch vụ nhất định, thông báo bằng email về các thay đổi của Chính sách Bảo mật).</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <p style=\"text-align: right;\">Chính sách bảo mật mặc định này được xây dựng cho <a href=\"http://nukeviet.vn\" target=\"_blank\">NukeViet CMS</a>, được tham khảo từ website <a href=\"http://webnhanh.vn/vi/thiet-ke-web/detail/Chinh-sach-bao-mat-Quyen-rieng-tu-Privacy-Policy-2147/\">webnhanh.vn</a></p>', '', 0, '4', '', 1, 1, 1658390704, 1658390704, 1, 33, 0),
+(2, 'Điều khoản và điều kiện sử dụng', 'terms-and-conditions', '', '', 0, 'Đây là các điều khoản và điều kiện áp dụng cho website này. Truy cập và sử dụng website tức là bạn đã đồng ý với các quy định này.', '<div>Cảm ơn bạn đã sử dụng. Xin vui lòng đọc các Điều khoản một cách cẩn thận, và <a href=\"/contact/\">liên hệ</a> với chúng tôi nếu bạn có bất kỳ câu hỏi. Bằng việc truy cập hoặc sử dụng website của chúng tôi, bạn đồng ý bị ràng buộc bởi các <a href=\"/siteterms/terms-and-conditions.html\">Điều khoản và điều kiện</a> sử dụng cũng như <a href=\"/siteterms/privacy.html\">Chính sách bảo mật</a> của chúng tôi. Nếu không đồng ý với các quy định này, bạn vui lòng ngưng sử dụng website.<br /> <br /> <strong><a id=\"index\" name=\"index\"></a>Danh mục</strong><br /> <a href=\"#1\">Điều 1: Điều khoản liên quan đến phần mềm vận hành website</a><br /> <a href=\"#2\">Điều 2: Giới hạn cho việc sử dụng Website và các tài liệu trên website</a><br /> <a href=\"#3\">Điều 3: Sử dụng thương hiệu</a><br /> <a href=\"#4\">Điều 4: Các hành vi bị nghiêm cấm</a><br /> <a href=\"#5\">Điều 5: Các đường liên kết đến các website khác</a><br /> <a href=\"#6\">Điều 6: Từ chối bảo đảm</a><br /> <a href=\"#7\">Điều 7: Luật áp dụng và cơ quan giải quyết tranh chấp</a><br /> <a href=\"#8\">Điều 8: Thay đổi điều khoản và điều kiện sử dụng</a></div>  <hr  /> <h2><a id=\"1\" name=\"1\"></a>Điều khoản liên quan đến phần mềm vận hành website</h2>  <p>- Website của chúng tôi sử dụng hệ thống NukeViet, là giải pháp về website/ cổng thông tin nguồn mở được phát hành theo giấy phép bản quyền phần mềm tự do nguồn mở “<a href=\"http://www.gnu.org/licenses/old-licenses/gpl-2.0.html\" target=\"_blank\">GNU General Public License</a>” (viết tắt là GNU/GPL hay GPL) và có thể tải về miễn phí tại trang web <a href=\"http://www.nukeviet.vn\" target=\"_blank\">www.nukeviet.vn</a>.<br /> - Website này do chúng tôi sở hữu, điều hành và duy trì. NukeViet (hiểu ở đây là “hệ thống NukeViet” (bao gồm nhân hệ thống NukeViet và các sản phẩm phái sinh như NukeViet CMS, NukeViet Portal, <a href=\"http://edu.nukeviet.vn\" target=\"_blank\">NukeViet Edu Gate</a>...), “www.nukeviet.vn”, “tổ chức NukeViet”, “ban điều hành NukeViet”, &quot;Ban Quản Trị NukeViet&quot; và nói chung là những gì liên quan đến NukeViet...) không liên quan gì đến việc chúng tôi điều hành website cũng như quy định bạn được phép làm và không được phép làm gì trên website này.<br /> - Hệ thống NukeViet là bộ mã nguồn được phát triển để xây dựng các website/ cổng thông tin trên mạng. Chúng tôi (chủ sở hữu, điều hành và duy trì website này) không hỗ trợ và khẳng định hay ngụ ý về việc có liên quan đến NukeViet. Để biết thêm nhiều thông tin về NukeViet, hãy ghé thăm website của NukeViet tại địa chỉ: <a href=\"http://nukeviet.vn\" target=\"_blank\">http://nukeviet.vn</a>.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"2\" name=\"2\"></a>Giới hạn cho việc sử dụng Website và các tài liệu trên website</h2>  <p>- Tất cả các quyền liên quan đến tất cả tài liệu và thông tin được hiển thị và/ hoặc được tạo ra sẵn cho Website này (ví dụ như những tài liệu được cung cấp để tải về) được quản lý, sở hữu hoặc được cho phép sử dụng bởi chúng tôi hoặc chủ sở hữu tương ứng với giấy phép tương ứng. Việc sử dụng các tài liệu và thông tin phải được tuân thủ theo giấy phép tương ứng được áp dụng cho chúng.<br /> - Ngoại trừ các tài liệu được cấp phép rõ ràng dưới dạng giấy phép tư liệu mở&nbsp;Creative Commons (gọi là giấy phép CC) cho phép bạn khai thác và chia sẻ theo quy định của giấy phép tư liệu mở, đối với các loại tài liệu không ghi giấy phép rõ ràng thì bạn không được phép sử dụng (bao gồm nhưng không giới hạn việc sao chép, chỉnh sửa toàn bộ hay một phần, đăng tải, phân phối, cấp phép, bán và xuất bản) bất cứ tài liệu nào mà không có sự cho phép trước bằng văn bản của chúng tôi ngoại trừ việc sử dụng cho mục đích cá nhân, nội bộ, phi thương mại.<br /> - Một số tài liệu hoặc thông tin có những điều khoản và điều kiện áp dụng riêng cho chúng không phải là giấy phép tư liệu mở, trong trường hợp như vậy, bạn được yêu cầu phải chấp nhận các điều khoản và điều kiện đó khi truy cập vào các tài liệu và thông tin này.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"3\" name=\"3\"></a>Sử dụng thương hiệu</h2>  <p>- VINADES.,JSC, NukeViet và thương hiệu gắn với NukeViet (ví dụ NukeViet CMS, NukeViet Portal, NukeViet Edu Gate...), logo công ty VINADES thuộc sở hữu của Công ty cổ phần phát triển nguồn mở Việt Nam.<br /> - Những tên sản phẩm, tên dịch vụ khác, logo và/ hoặc những tên công ty được sử dụng trong Website này là những tài sản đã được đăng ký độc quyền và được giữ bản quyền bởi những người sở hữu và/ hoặc người cấp phép tương ứng.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"4\" name=\"4\"></a>Các hành vi bị nghiêm cấm</h2>  <p>Người truy cập website này không được thực hiện những hành vi dưới đây khi sử dụng website:<br /> - Xâm phạm các quyền hợp pháp (bao gồm nhưng không giới hạn đối với các quyền riêng tư và chung) của người khác.<br /> - Gây ra sự thiệt hại hoặc bất lợi cho người khác.<br /> - Làm xáo trộn trật tự công cộng.<br /> - Hành vi liên quan đến tội phạm.<br /> - Tải lên hoặc phát tán thông tin riêng tư của tổ chức, cá nhân khác mà không được sự chấp thuận của họ.<br /> - Sử dụng Website này vào mục đích thương mại mà chưa được sự cho phép của chúng tôi.<br /> - Nói xấu, làm nhục, phỉ báng người khác.<br /> - Tải lên các tập tin chứa virus hoặc các tập tin bị hư mà có thể gây thiệt hại đến sự vận hành của máy tính khác.<br /> - Những hoạt động có khả năng ảnh hưởng đến hoạt động bình thường của website.<br /> - Những hoạt động mà chúng tôi cho là không thích hợp.<br /> - Những hoạt động bất hợp pháp hoặc bị cấm bởi pháp luật hiện hành.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"5\" name=\"5\"></a>Các đường liên kết đến các website khác</h2>  <p>- Các website của các bên thứ ba (không phải các trang do chúng tôi quản lý) được liên kết đến hoặc từ website này (&quot;Các website khác&quot;) được điều hành và duy trì hoàn toàn độc lập bởi các bên thứ ba đó và không nằm trong quyền điều khiển và/hoặc giám sát của chúng tôi. Việc truy cập các website khác phải được tuân thủ theo các điều khoản và điều kiện quy định bởi ban điều hành của website đó.<br /> - Chúng tôi không chịu trách nhiệm cho sự mất mát hoặc thiệt hại do việc truy cập và sử dụng các website bên ngoài, và bạn phải chịu mọi rủi ro khi truy cập các website đó.<br /> - Không có nội dung nào trong Website này thể hiện như một sự đảm bảo của chúng tôi về nội dung của các website khác và các sản phẩm và/ hoặc các dịch vụ xuất hiện và/ hoặc được cung cấp tại các website khác.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"6\" name=\"6\"></a>Từ chối bảo đảm</h2>  <p>NGOẠI TRỪ PHẠM VI BỊ CẤM THEO LUẬT PHÁP HIỆN HÀNH, CHÚNG TÔI SẼ:<br /> - KHÔNG CHỊU TRÁCH NHIỆM HAY BẢO ĐẢM, MỘT CÁCH RÕ RÀNG HAY NGỤ Ý, BAO GỒM SỰ BẢO ĐẢM VỀ TÍNH CHÍNH XÁC, MỨC ĐỘ TIN CẬY, HOÀN THIỆN, PHÙ HỢP CHO MỤC ĐÍCH CỤ THỂ, SỰ KHÔNG XÂM PHẠM QUYỀN CỦA BÊN THỨ 3 VÀ/HOẶC TÍNH AN TOÀN CỦA NỘI DỤNG WEBSITE NÀY, VÀ NHỮNG TUYÊN BỐ, ĐẢM BẢO CÓ LIÊN QUAN.<br /> - KHÔNG CHỊU TRÁCH NHIỆM CHO BẤT KỲ SỰ THIỆT HẠI HAY MẤT MÁT PHÁT SINH TỪ VIỆC TRUY CẬP VÀ SỬ DỤNG WEBSITE HAY VIỆC KHÔNG THỂ SỬ DỤNG WEBSITE.<br /> - CHÚNG TÔI CÓ THỂ THAY ĐỔI VÀ/HOẶC THAY THẾ NỘI DUNG CỦA WEBSITE NÀY, HOẶC TẠM HOÃN HOẶC NGƯNG CUNG CẤP CÁC DỊCH VỤ QUA WEBSITE NÀY VÀO BẤT KỲ THỜI ĐIỂM NÀO MÀ KHÔNG CẦN THÔNG BÁO TRƯỚC. CHÚNG TÔI SẼ KHÔNG CHỊU TRÁCH NHIỆM CHO BẤT CỨ THIỆT HẠI NÀO PHÁT SINH DO SỰ THAY ĐỔI HOẶC THAY THẾ NỘI DUNG CỦA WEBSITE.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"7\" name=\"7\"></a>Luật áp dụng và cơ quan giải quyết tranh chấp</h2>  <p>- Các Điều Khoản và Điều Kiện này được điều chỉnh và giải thích theo luật của Việt Nam trừ khi có điều khoản khác được cung cấp thêm. Tất cả tranh chấp phát sinh liên quan đến website này và các Điều Khoản và Điều Kiện sử dụng này sẽ được giải quyết tại các tòa án ở Việt Nam.<br /> - Nếu một phần nào đó của các Điều Khoản và Điều Kiện bị xem là không có giá trị, vô hiệu, hoặc không áp dụng được vì lý do nào đó, phần đó được xem như là phần riêng biệt và không ảnh hưởng đến tính hiệu lực của phần còn lại.<br /> - Trong trường hợp có sự mâu thuẫn giữa bản Tiếng Anh và bản Tiếng Việt của bản Điều Khoản và Điều Kiện này, bản Tiếng Việt sẽ được ưu tiên áp dụng.</p>  <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p>  <h2><a id=\"8\" name=\"8\"></a>Thay đổi điều khoản và điều kiện sử dụng</h2>  <div>Điều khoản và điều kiện sử dụng có thể thay đổi theo thời gian. Chúng tôi bảo lưu quyền thay đổi hoặc sửa đổi bất kỳ điều khoản và điều kiện cũng như các quy định khác, bất cứ lúc nào và theo ý mình. Chúng tôi sẽ có thông báo trên website khi có sự thay đổi. Tiếp tục sử dụng trang web này sau khi đăng các thay đổi tức là bạn đã chấp nhận các thay đổi đó. <p style=\"text-align: right;\"><a href=\"#index\">Trở lại danh mục</a></p> </div>', '', 0, '4', '', 2, 1, 1658390704, 1658390704, 1, 28, 0);
 
 -- --------------------------------------------------------
 
@@ -28674,10 +28354,9 @@ INSERT INTO `nv4_vi_siteterms` (`id`, `title`, `alias`, `image`, `imagealt`, `im
 -- Table structure for table `nv4_vi_siteterms_config`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_siteterms_config` (
-  `config_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `config_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  UNIQUE KEY `config_name` (`config_name`)
+CREATE TABLE `nv4_vi_siteterms_config` (
+  `config_name` varchar(30) NOT NULL,
+  `config_value` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -28700,12 +28379,11 @@ INSERT INTO `nv4_vi_siteterms_config` (`config_name`, `config_value`) VALUES
 -- Table structure for table `nv4_vi_sliderabout_blocks`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_sliderabout_blocks` (
-  `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`bid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_vi_sliderabout_blocks` (
+  `bid` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `description` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_sliderabout_blocks`
@@ -28720,23 +28398,21 @@ INSERT INTO `nv4_vi_sliderabout_blocks` (`bid`, `title`, `description`) VALUES
 -- Table structure for table `nv4_vi_sliderabout_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_sliderabout_rows` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `bid` int(11) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Tên slide',
-  `title1` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `title2` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `more` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `link_href` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Liên kết',
-  `link_target` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '0: Trang hiện tại, 1: Cửa sổ mới',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Đường dẫn ảnh',
-  `addtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(11) unsigned NOT NULL DEFAULT '0',
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) unsigned NOT NULL DEFAULT '1' COMMENT '0: Dừng, 1: Hoạt động',
-  PRIMARY KEY (`id`),
-  KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_vi_sliderabout_rows` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `bid` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '' COMMENT 'Tên slide',
+  `title1` varchar(250) NOT NULL DEFAULT '',
+  `title2` varchar(250) NOT NULL DEFAULT '',
+  `more` varchar(250) NOT NULL DEFAULT '',
+  `link_href` varchar(255) NOT NULL DEFAULT '' COMMENT 'Liên kết',
+  `link_target` tinyint(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0: Trang hiện tại, 1: Cửa sổ mới',
+  `image` varchar(255) NOT NULL DEFAULT '' COMMENT 'Đường dẫn ảnh',
+  `addtime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) UNSIGNED NOT NULL DEFAULT 1 COMMENT '0: Dừng, 1: Hoạt động'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_sliderabout_rows`
@@ -28751,12 +28427,11 @@ INSERT INTO `nv4_vi_sliderabout_rows` (`id`, `bid`, `title`, `title1`, `title2`,
 -- Table structure for table `nv4_vi_slider_blocks`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_slider_blocks` (
-  `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`bid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+CREATE TABLE `nv4_vi_slider_blocks` (
+  `bid` mediumint(8) UNSIGNED NOT NULL,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `description` mediumtext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_slider_blocks`
@@ -28771,23 +28446,21 @@ INSERT INTO `nv4_vi_slider_blocks` (`bid`, `title`, `description`) VALUES
 -- Table structure for table `nv4_vi_slider_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_slider_rows` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `bid` int(10) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Tên slide',
-  `title1` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `title2` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `more` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `link_href` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Liên kết',
-  `link_target` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0: Trang hiện tại, 1: Cửa sổ mới',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Đường dẫn ảnh',
-  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(10) unsigned NOT NULL DEFAULT '0',
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '0: Dừng, 1: Hoạt động',
-  PRIMARY KEY (`id`),
-  KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=6 ;
+CREATE TABLE `nv4_vi_slider_rows` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `bid` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `title` varchar(250) NOT NULL DEFAULT '' COMMENT 'Tên slide',
+  `title1` varchar(250) NOT NULL DEFAULT '',
+  `title2` varchar(250) NOT NULL DEFAULT '',
+  `more` varchar(250) NOT NULL DEFAULT '',
+  `link_href` varchar(255) NOT NULL DEFAULT '' COMMENT 'Liên kết',
+  `link_target` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0: Trang hiện tại, 1: Cửa sổ mới',
+  `image` varchar(255) NOT NULL DEFAULT '' COMMENT 'Đường dẫn ảnh',
+  `addtime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `edittime` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `weight` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '0: Dừng, 1: Hoạt động'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_slider_rows`
@@ -28803,115 +28476,28 @@ INSERT INTO `nv4_vi_slider_rows` (`id`, `bid`, `title`, `title1`, `title2`, `mor
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nv4_vi_slidesurvey_blocks`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_slidesurvey_blocks` (
-  `bid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`bid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `nv4_vi_slidesurvey_blocks`
---
-
-INSERT INTO `nv4_vi_slidesurvey_blocks` (`bid`, `title`, `description`) VALUES
-(1, 'Home slider', 'Silder trang chủ');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nv4_vi_slidesurvey_rows`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_slidesurvey_rows` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `bid` int(11) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Tên slide',
-  `title1` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `title2` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `more` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `link_href` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Liên kết',
-  `link_target` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '0: Trang hiện tại, 1: Cửa sổ mới',
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Đường dẫn ảnh',
-  `addtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(11) unsigned NOT NULL DEFAULT '0',
-  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) unsigned NOT NULL DEFAULT '1' COMMENT '0: Dừng, 1: Hoạt động',
-  PRIMARY KEY (`id`),
-  KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `nv4_vi_slidesurvey_rows`
---
-
-INSERT INTO `nv4_vi_slidesurvey_rows` (`id`, `bid`, `title`, `title1`, `title2`, `more`, `link_href`, `link_target`, `image`, `addtime`, `edittime`, `weight`, `status`) VALUES
-(1, 1, 'Ảnh 1', '', '', '', '', 0, '2022/home_hero_bg_tree_new2.jpg', 1671624221, 1671624438, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nv4_vi_survey_row`
---
-
-CREATE TABLE IF NOT EXISTS `nv4_vi_survey_row` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usercomp` int(11) NOT NULL DEFAULT '0',
-  `desktop` int(11) NOT NULL DEFAULT '0',
-  `laptop` int(11) NOT NULL DEFAULT '0',
-  `print` int(11) NOT NULL DEFAULT '0',
-  `scan` int(11) NOT NULL DEFAULT '0',
-  `window` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `server` smallint(4) NOT NULL DEFAULT '0',
-  `servernum` int(11) NOT NULL DEFAULT '0',
-  `serverwindow` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `telecom` smallint(4) NOT NULL DEFAULT '0',
-  `tel_model` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `tel_mobile` int(11) NOT NULL DEFAULT '0',
-  `tel_ext` int(11) NOT NULL DEFAULT '0',
-  `camera` int(11) NOT NULL DEFAULT '0',
-  `camnum` int(11) NOT NULL DEFAULT '0',
-  `itos` smallint(4) NOT NULL DEFAULT '0',
-  `itosname` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `problem` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `email` smallint(4) NOT NULL DEFAULT '0',
-  `fullname` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `infoemail` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `infomobile` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `infocomname` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `infoaddress` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `nv4_vi_task`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_task` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` int(11) NOT NULL DEFAULT '0' COMMENT 'Id hạng mục',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `performer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Người thực hiện',
-  `groups_made` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nhóm thực hiện',
-  `begintime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian bắt đầu',
-  `exptime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian hoàn thành',
-  `realtime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian hoàn thành thực tế',
-  `description` text COLLATE utf8mb4_unicode_ci COMMENT 'Mô tả công việc',
-  `useradd` mediumint(8) unsigned NOT NULL COMMENT 'Người giao việc',
-  `projectid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `addtime` int(11) unsigned NOT NULL,
-  `edittime` int(11) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `priority` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Mức độ ưu tiên',
-  `files` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `progress` int(100) NOT NULL DEFAULT '0' COMMENT 'tiến trình công việc',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_task` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `catid` int(11) NOT NULL DEFAULT 0 COMMENT 'Id hạng mục',
+  `title` varchar(255) NOT NULL,
+  `performer` varchar(255) NOT NULL COMMENT 'Người thực hiện',
+  `groups_made` varchar(255) NOT NULL COMMENT 'Nhóm thực hiện',
+  `begintime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Thời gian bắt đầu',
+  `exptime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Thời gian hoàn thành',
+  `realtime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Thời gian hoàn thành thực tế',
+  `description` text DEFAULT NULL COMMENT 'Mô tả công việc',
+  `useradd` mediumint(8) UNSIGNED NOT NULL COMMENT 'Người giao việc',
+  `projectid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `addtime` int(11) UNSIGNED NOT NULL,
+  `edittime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `priority` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Mức độ ưu tiên',
+  `files` text NOT NULL,
+  `progress` int(100) NOT NULL DEFAULT 0 COMMENT 'tiến trình công việc'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -28919,24 +28505,23 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_task` (
 -- Table structure for table `nv4_vi_task_cat`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_task_cat` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `performer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Người thực hiện',
-  `groups_made` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nhóm thực hiện',
-  `begintime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian bắt đầu',
-  `exptime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian hoàn thành',
-  `realtime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian hoàn thành thực tế',
-  `description` text COLLATE utf8mb4_unicode_ci COMMENT 'Mô tả công việc',
-  `useradd` mediumint(8) unsigned NOT NULL COMMENT 'Người giao việc',
-  `projectid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `addtime` int(11) unsigned NOT NULL,
-  `edittime` int(11) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `priority` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Mức độ ưu tiên',
-  `files` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_task_cat` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `performer` varchar(255) NOT NULL COMMENT 'Người thực hiện',
+  `groups_made` varchar(255) NOT NULL COMMENT 'Nhóm thực hiện',
+  `begintime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Thời gian bắt đầu',
+  `exptime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Thời gian hoàn thành',
+  `realtime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Thời gian hoàn thành thực tế',
+  `description` text DEFAULT NULL COMMENT 'Mô tả công việc',
+  `useradd` mediumint(8) UNSIGNED NOT NULL COMMENT 'Người giao việc',
+  `projectid` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `addtime` int(11) UNSIGNED NOT NULL,
+  `edittime` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `priority` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Mức độ ưu tiên',
+  `files` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -28944,13 +28529,12 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_task_cat` (
 -- Table structure for table `nv4_vi_task_cat_follow`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_task_cat_follow` (
-  `catid` int(11) unsigned NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL COMMENT 'Người thực hiện',
-  `follow` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `readed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0: giao cho cá nhân, 1: giao cho nhóm',
-  UNIQUE KEY `catid` (`catid`,`userid`,`type`)
+CREATE TABLE `nv4_vi_task_cat_follow` (
+  `catid` int(11) UNSIGNED NOT NULL,
+  `userid` mediumint(8) UNSIGNED NOT NULL COMMENT 'Người thực hiện',
+  `follow` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `readed` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0: giao cho cá nhân, 1: giao cho nhóm'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -28959,10 +28543,9 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_task_cat_follow` (
 -- Table structure for table `nv4_vi_task_econtent`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_task_econtent` (
-  `action` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `econtent` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`action`)
+CREATE TABLE `nv4_vi_task_econtent` (
+  `action` varchar(100) NOT NULL,
+  `econtent` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -28980,26 +28563,24 @@ INSERT INTO `nv4_vi_task_econtent` (`action`, `econtent`) VALUES
 -- Table structure for table `nv4_vi_task_field`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_task_field` (
-  `fid` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `field` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `weight` int(10) unsigned NOT NULL DEFAULT '1',
-  `field_type` enum('number','date','textbox','textarea','editor','select','radio','checkbox','multiselect') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'textbox',
-  `field_choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sql_choices` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `match_type` enum('none','alphanumeric','email','url','regex','callback') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'none',
-  `match_regex` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `func_callback` varchar(75) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `min_length` int(11) NOT NULL DEFAULT '0',
-  `max_length` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `required` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `show_profile` tinyint(4) NOT NULL DEFAULT '1',
-  `class` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `language` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `default_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`fid`),
-  UNIQUE KEY `field` (`field`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE `nv4_vi_task_field` (
+  `fid` mediumint(8) NOT NULL,
+  `field` varchar(25) NOT NULL,
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `field_type` enum('number','date','textbox','textarea','editor','select','radio','checkbox','multiselect') NOT NULL DEFAULT 'textbox',
+  `field_choices` text NOT NULL,
+  `sql_choices` text NOT NULL,
+  `match_type` enum('none','alphanumeric','email','url','regex','callback') NOT NULL DEFAULT 'none',
+  `match_regex` varchar(250) NOT NULL DEFAULT '',
+  `func_callback` varchar(75) NOT NULL DEFAULT '',
+  `min_length` int(11) NOT NULL DEFAULT 0,
+  `max_length` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
+  `required` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `show_profile` tinyint(4) NOT NULL DEFAULT 1,
+  `class` varchar(50) NOT NULL DEFAULT '',
+  `language` text NOT NULL,
+  `default_value` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -29007,13 +28588,12 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_task_field` (
 -- Table structure for table `nv4_vi_task_follow`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_task_follow` (
-  `taskid` int(11) unsigned NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL COMMENT 'Người thực hiện',
-  `follow` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `readed` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0: giao cho cá nhân, 1: giao cho nhóm',
-  UNIQUE KEY `taskid` (`taskid`,`userid`,`type`)
+CREATE TABLE `nv4_vi_task_follow` (
+  `taskid` int(11) UNSIGNED NOT NULL,
+  `userid` mediumint(8) UNSIGNED NOT NULL COMMENT 'Người thực hiện',
+  `follow` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `readed` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0: giao cho cá nhân, 1: giao cho nhóm'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -29022,9 +28602,8 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_task_follow` (
 -- Table structure for table `nv4_vi_task_info`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_task_info` (
-  `rows_id` mediumint(8) unsigned NOT NULL,
-  PRIMARY KEY (`rows_id`)
+CREATE TABLE `nv4_vi_task_info` (
+  `rows_id` mediumint(8) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -29033,21 +28612,19 @@ CREATE TABLE IF NOT EXISTS `nv4_vi_task_info` (
 -- Table structure for table `nv4_vi_voting`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_voting` (
-  `vid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `question` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `acceptcm` int(11) NOT NULL DEFAULT '1',
-  `active_captcha` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `groups_view` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `publ_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `exp_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `act` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `vote_one` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0 cho phép vote nhiều lần 1 cho phép vote 1 lần',
-  PRIMARY KEY (`vid`),
-  UNIQUE KEY `question` (`question`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=4 ;
+CREATE TABLE `nv4_vi_voting` (
+  `vid` smallint(5) UNSIGNED NOT NULL,
+  `question` varchar(250) NOT NULL,
+  `link` varchar(255) DEFAULT '',
+  `acceptcm` int(11) NOT NULL DEFAULT 1,
+  `active_captcha` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `admin_id` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `groups_view` varchar(255) DEFAULT '',
+  `publ_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `exp_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `act` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `vote_one` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0 cho phép vote nhiều lần 1 cho phép vote 1 lần'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_voting`
@@ -29063,15 +28640,13 @@ INSERT INTO `nv4_vi_voting` (`vid`, `question`, `link`, `acceptcm`, `active_capt
 -- Table structure for table `nv4_vi_voting_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_voting_rows` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `vid` smallint(5) unsigned NOT NULL,
-  `title` varchar(245) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `hitstotal` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `vid` (`vid`,`title`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=14 ;
+CREATE TABLE `nv4_vi_voting_rows` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `vid` smallint(5) UNSIGNED NOT NULL,
+  `title` varchar(245) NOT NULL DEFAULT '',
+  `url` varchar(255) DEFAULT '',
+  `hitstotal` int(10) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `nv4_vi_voting_rows`
@@ -29094,11 +28669,1794 @@ INSERT INTO `nv4_vi_voting_rows` (`id`, `vid`, `title`, `url`, `hitstotal`) VALU
 -- Table structure for table `nv4_vi_voting_voted`
 --
 
-CREATE TABLE IF NOT EXISTS `nv4_vi_voting_voted` (
-  `vid` smallint(5) unsigned NOT NULL,
-  `voted` text COLLATE utf8mb4_unicode_ci,
-  UNIQUE KEY `vid` (`vid`)
+CREATE TABLE `nv4_vi_voting_voted` (
+  `vid` smallint(5) UNSIGNED NOT NULL,
+  `voted` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `nv4_attachment`
+--
+ALTER TABLE `nv4_attachment`
+  ADD PRIMARY KEY (`attachment_id`);
+
+--
+-- Indexes for table `nv4_authors`
+--
+ALTER TABLE `nv4_authors`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `nv4_authors_api_credential`
+--
+ALTER TABLE `nv4_authors_api_credential`
+  ADD UNIQUE KEY `credential_ident` (`credential_ident`),
+  ADD UNIQUE KEY `credential_secret` (`credential_secret`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
+-- Indexes for table `nv4_authors_api_role`
+--
+ALTER TABLE `nv4_authors_api_role`
+  ADD PRIMARY KEY (`role_id`);
+
+--
+-- Indexes for table `nv4_authors_config`
+--
+ALTER TABLE `nv4_authors_config`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `keyname` (`keyname`);
+
+--
+-- Indexes for table `nv4_authors_module`
+--
+ALTER TABLE `nv4_authors_module`
+  ADD PRIMARY KEY (`mid`),
+  ADD UNIQUE KEY `module` (`module`);
+
+--
+-- Indexes for table `nv4_authors_oauth`
+--
+ALTER TABLE `nv4_authors_oauth`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_id` (`admin_id`,`oauth_server`,`oauth_uid`),
+  ADD KEY `oauth_email` (`oauth_email`);
+
+--
+-- Indexes for table `nv4_banners_click`
+--
+ALTER TABLE `nv4_banners_click`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bid` (`bid`),
+  ADD KEY `click_day` (`click_day`),
+  ADD KEY `click_ip` (`click_ip`),
+  ADD KEY `click_country` (`click_country`),
+  ADD KEY `click_browse_key` (`click_browse_key`),
+  ADD KEY `click_os_key` (`click_os_key`);
+
+--
+-- Indexes for table `nv4_banners_plans`
+--
+ALTER TABLE `nv4_banners_plans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `title` (`title`);
+
+--
+-- Indexes for table `nv4_banners_rows`
+--
+ALTER TABLE `nv4_banners_rows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pid` (`pid`),
+  ADD KEY `clid` (`clid`);
+
+--
+-- Indexes for table `nv4_config`
+--
+ALTER TABLE `nv4_config`
+  ADD UNIQUE KEY `lang` (`lang`,`module`,`config_name`);
+
+--
+-- Indexes for table `nv4_cookies`
+--
+ALTER TABLE `nv4_cookies`
+  ADD UNIQUE KEY `cookiename` (`name`,`domain`,`path`),
+  ADD KEY `name` (`name`);
+
+--
+-- Indexes for table `nv4_counter`
+--
+ALTER TABLE `nv4_counter`
+  ADD UNIQUE KEY `c_type` (`c_type`,`c_val`);
+
+--
+-- Indexes for table `nv4_cronjobs`
+--
+ALTER TABLE `nv4_cronjobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `is_sys` (`is_sys`);
+
+--
+-- Indexes for table `nv4_extension_files`
+--
+ALTER TABLE `nv4_extension_files`
+  ADD PRIMARY KEY (`idfile`);
+
+--
+-- Indexes for table `nv4_ips`
+--
+ALTER TABLE `nv4_ips`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ip` (`ip`,`type`);
+
+--
+-- Indexes for table `nv4_language`
+--
+ALTER TABLE `nv4_language`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `filelang` (`idfile`,`lang_key`,`langtype`);
+
+--
+-- Indexes for table `nv4_language_file`
+--
+ALTER TABLE `nv4_language_file`
+  ADD PRIMARY KEY (`idfile`),
+  ADD UNIQUE KEY `module` (`module`,`admin_file`);
+
+--
+-- Indexes for table `nv4_location_country`
+--
+ALTER TABLE `nv4_location_country`
+  ADD PRIMARY KEY (`country_id`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD UNIQUE KEY `title` (`title`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_location_district`
+--
+ALTER TABLE `nv4_location_district`
+  ADD PRIMARY KEY (`district_id`),
+  ADD UNIQUE KEY `province_id_alias` (`province_id`,`alias`);
+
+--
+-- Indexes for table `nv4_location_province`
+--
+ALTER TABLE `nv4_location_province`
+  ADD PRIMARY KEY (`province_id`),
+  ADD UNIQUE KEY `name` (`title`),
+  ADD UNIQUE KEY `country_id_alias` (`country_id`,`alias`);
+
+--
+-- Indexes for table `nv4_location_ward`
+--
+ALTER TABLE `nv4_location_ward`
+  ADD PRIMARY KEY (`ward_id`),
+  ADD KEY `district_id` (`district_id`),
+  ADD KEY `address` (`address`(191)),
+  ADD KEY `title` (`title`);
+
+--
+-- Indexes for table `nv4_logs`
+--
+ALTER TABLE `nv4_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_notification`
+--
+ALTER TABLE `nv4_notification`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `send_to` (`send_to`),
+  ADD KEY `admin_view_allowed` (`admin_view_allowed`),
+  ADD KEY `logic_mode` (`logic_mode`);
+
+--
+-- Indexes for table `nv4_plugin`
+--
+ALTER TABLE `nv4_plugin`
+  ADD PRIMARY KEY (`pid`),
+  ADD UNIQUE KEY `plugin_file` (`plugin_file`);
+
+--
+-- Indexes for table `nv4_sessions`
+--
+ALTER TABLE `nv4_sessions`
+  ADD UNIQUE KEY `session_id` (`session_id`),
+  ADD KEY `onl_time` (`onl_time`);
+
+--
+-- Indexes for table `nv4_setup_extensions`
+--
+ALTER TABLE `nv4_setup_extensions`
+  ADD UNIQUE KEY `title` (`type`,`title`),
+  ADD KEY `id` (`id`),
+  ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `nv4_setup_language`
+--
+ALTER TABLE `nv4_setup_language`
+  ADD PRIMARY KEY (`lang`);
+
+--
+-- Indexes for table `nv4_shops_block`
+--
+ALTER TABLE `nv4_shops_block`
+  ADD UNIQUE KEY `bid` (`bid`,`id`);
+
+--
+-- Indexes for table `nv4_shops_block_cat`
+--
+ALTER TABLE `nv4_shops_block_cat`
+  ADD PRIMARY KEY (`bid`),
+  ADD UNIQUE KEY `vi_alias` (`vi_alias`);
+
+--
+-- Indexes for table `nv4_shops_carrier`
+--
+ALTER TABLE `nv4_shops_carrier`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_carrier_config`
+--
+ALTER TABLE `nv4_shops_carrier_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_carrier_config_items`
+--
+ALTER TABLE `nv4_shops_carrier_config_items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_carrier_config_location`
+--
+ALTER TABLE `nv4_shops_carrier_config_location`
+  ADD UNIQUE KEY `cid` (`cid`,`lid`);
+
+--
+-- Indexes for table `nv4_shops_catalogs`
+--
+ALTER TABLE `nv4_shops_catalogs`
+  ADD PRIMARY KEY (`catid`),
+  ADD UNIQUE KEY `vi_alias` (`vi_alias`),
+  ADD KEY `parentid` (`parentid`);
+
+--
+-- Indexes for table `nv4_shops_coupons`
+--
+ALTER TABLE `nv4_shops_coupons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_coupons_history`
+--
+ALTER TABLE `nv4_shops_coupons_history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_coupons_product`
+--
+ALTER TABLE `nv4_shops_coupons_product`
+  ADD UNIQUE KEY `cid` (`cid`,`pid`);
+
+--
+-- Indexes for table `nv4_shops_discounts`
+--
+ALTER TABLE `nv4_shops_discounts`
+  ADD PRIMARY KEY (`did`),
+  ADD KEY `begin_time` (`begin_time`,`end_time`);
+
+--
+-- Indexes for table `nv4_shops_field`
+--
+ALTER TABLE `nv4_shops_field`
+  ADD PRIMARY KEY (`fid`),
+  ADD UNIQUE KEY `field` (`field`);
+
+--
+-- Indexes for table `nv4_shops_field_value_vi`
+--
+ALTER TABLE `nv4_shops_field_value_vi`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rows_id` (`rows_id`,`field_id`);
+
+--
+-- Indexes for table `nv4_shops_files`
+--
+ALTER TABLE `nv4_shops_files`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_files_rows`
+--
+ALTER TABLE `nv4_shops_files_rows`
+  ADD UNIQUE KEY `id_files` (`id_files`,`id_rows`);
+
+--
+-- Indexes for table `nv4_shops_group`
+--
+ALTER TABLE `nv4_shops_group`
+  ADD PRIMARY KEY (`groupid`),
+  ADD UNIQUE KEY `vi_alias` (`vi_alias`),
+  ADD KEY `parentid` (`parentid`);
+
+--
+-- Indexes for table `nv4_shops_group_cateid`
+--
+ALTER TABLE `nv4_shops_group_cateid`
+  ADD UNIQUE KEY `groupid` (`groupid`,`cateid`);
+
+--
+-- Indexes for table `nv4_shops_group_items`
+--
+ALTER TABLE `nv4_shops_group_items`
+  ADD PRIMARY KEY (`pro_id`,`group_id`),
+  ADD KEY `pro_id` (`pro_id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
+-- Indexes for table `nv4_shops_group_quantity`
+--
+ALTER TABLE `nv4_shops_group_quantity`
+  ADD UNIQUE KEY `pro_id` (`pro_id`,`listgroup`);
+
+--
+-- Indexes for table `nv4_shops_location`
+--
+ALTER TABLE `nv4_shops_location`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parentid` (`parentid`);
+
+--
+-- Indexes for table `nv4_shops_money_vi`
+--
+ALTER TABLE `nv4_shops_money_vi`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Indexes for table `nv4_shops_orders`
+--
+ALTER TABLE `nv4_shops_orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD UNIQUE KEY `order_code` (`order_code`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `order_time` (`order_time`),
+  ADD KEY `shop_id` (`shop_id`);
+
+--
+-- Indexes for table `nv4_shops_orders_id`
+--
+ALTER TABLE `nv4_shops_orders_id`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `orderid` (`order_id`,`id`);
+
+--
+-- Indexes for table `nv4_shops_orders_id_group`
+--
+ALTER TABLE `nv4_shops_orders_id_group`
+  ADD UNIQUE KEY `orderid` (`order_i`,`group_id`);
+
+--
+-- Indexes for table `nv4_shops_orders_shipping`
+--
+ALTER TABLE `nv4_shops_orders_shipping`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `add_time` (`add_time`);
+
+--
+-- Indexes for table `nv4_shops_point`
+--
+ALTER TABLE `nv4_shops_point`
+  ADD PRIMARY KEY (`userid`);
+
+--
+-- Indexes for table `nv4_shops_point_history`
+--
+ALTER TABLE `nv4_shops_point_history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_review`
+--
+ALTER TABLE `nv4_shops_review`
+  ADD PRIMARY KEY (`review_id`);
+
+--
+-- Indexes for table `nv4_shops_rows`
+--
+ALTER TABLE `nv4_shops_rows`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `vi_alias` (`vi_alias`),
+  ADD KEY `listcatid` (`listcatid`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`);
+
+--
+-- Indexes for table `nv4_shops_shops`
+--
+ALTER TABLE `nv4_shops_shops`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_shops_carrier`
+--
+ALTER TABLE `nv4_shops_shops_carrier`
+  ADD UNIQUE KEY `shops_id` (`shops_id`,`carrier_id`);
+
+--
+-- Indexes for table `nv4_shops_tabs`
+--
+ALTER TABLE `nv4_shops_tabs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_tags_id_vi`
+--
+ALTER TABLE `nv4_shops_tags_id_vi`
+  ADD UNIQUE KEY `sid` (`id`,`tid`),
+  ADD KEY `tid` (`tid`);
+
+--
+-- Indexes for table `nv4_shops_tags_vi`
+--
+ALTER TABLE `nv4_shops_tags_vi`
+  ADD PRIMARY KEY (`tid`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_shops_template`
+--
+ALTER TABLE `nv4_shops_template`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_shops_transaction`
+--
+ALTER TABLE `nv4_shops_transaction`
+  ADD PRIMARY KEY (`transaction_id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `payment_id` (`payment_id`);
+
+--
+-- Indexes for table `nv4_shops_units`
+--
+ALTER TABLE `nv4_shops_units`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_shops_warehouse`
+--
+ALTER TABLE `nv4_shops_warehouse`
+  ADD PRIMARY KEY (`wid`);
+
+--
+-- Indexes for table `nv4_shops_warehouse_logs`
+--
+ALTER TABLE `nv4_shops_warehouse_logs`
+  ADD PRIMARY KEY (`logid`),
+  ADD KEY `wid` (`wid`);
+
+--
+-- Indexes for table `nv4_shops_warehouse_logs_group`
+--
+ALTER TABLE `nv4_shops_warehouse_logs_group`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `logid` (`logid`);
+
+--
+-- Indexes for table `nv4_shops_weight_vi`
+--
+ALTER TABLE `nv4_shops_weight_vi`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Indexes for table `nv4_shops_wishlist`
+--
+ALTER TABLE `nv4_shops_wishlist`
+  ADD PRIMARY KEY (`wid`);
+
+--
+-- Indexes for table `nv4_upload_dir`
+--
+ALTER TABLE `nv4_upload_dir`
+  ADD PRIMARY KEY (`did`),
+  ADD UNIQUE KEY `name` (`dirname`);
+
+--
+-- Indexes for table `nv4_upload_file`
+--
+ALTER TABLE `nv4_upload_file`
+  ADD UNIQUE KEY `did` (`did`,`title`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `nv4_vi_about`
+--
+ALTER TABLE `nv4_vi_about`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_about_config`
+--
+ALTER TABLE `nv4_vi_about_config`
+  ADD UNIQUE KEY `config_name` (`config_name`);
+
+--
+-- Indexes for table `nv4_vi_blocks_groups`
+--
+ALTER TABLE `nv4_vi_blocks_groups`
+  ADD PRIMARY KEY (`bid`),
+  ADD KEY `theme` (`theme`),
+  ADD KEY `module` (`module`),
+  ADD KEY `position` (`position`),
+  ADD KEY `exp_time` (`exp_time`);
+
+--
+-- Indexes for table `nv4_vi_blocks_weight`
+--
+ALTER TABLE `nv4_vi_blocks_weight`
+  ADD UNIQUE KEY `bid` (`bid`,`func_id`);
+
+--
+-- Indexes for table `nv4_vi_comment`
+--
+ALTER TABLE `nv4_vi_comment`
+  ADD PRIMARY KEY (`cid`),
+  ADD KEY `mod_id` (`module`,`area`,`id`),
+  ADD KEY `post_time` (`post_time`);
+
+--
+-- Indexes for table `nv4_vi_contact_department`
+--
+ALTER TABLE `nv4_vi_contact_department`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `full_name` (`full_name`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_contact_reply`
+--
+ALTER TABLE `nv4_vi_contact_reply`
+  ADD PRIMARY KEY (`rid`),
+  ADD KEY `id` (`id`);
+
+--
+-- Indexes for table `nv4_vi_contact_send`
+--
+ALTER TABLE `nv4_vi_contact_send`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sender_name` (`sender_name`);
+
+--
+-- Indexes for table `nv4_vi_contact_supporter`
+--
+ALTER TABLE `nv4_vi_contact_supporter`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_vi_customer`
+--
+ALTER TABLE `nv4_vi_customer`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `main_phone` (`main_phone`),
+  ADD UNIQUE KEY `main_email` (`main_email`);
+
+--
+-- Indexes for table `nv4_vi_customer_field`
+--
+ALTER TABLE `nv4_vi_customer_field`
+  ADD PRIMARY KEY (`fid`),
+  ADD UNIQUE KEY `field` (`field`);
+
+--
+-- Indexes for table `nv4_vi_customer_info`
+--
+ALTER TABLE `nv4_vi_customer_info`
+  ADD PRIMARY KEY (`rows_id`);
+
+--
+-- Indexes for table `nv4_vi_customer_share_acc`
+--
+ALTER TABLE `nv4_vi_customer_share_acc`
+  ADD UNIQUE KEY `tid` (`userid`,`customerid`,`permisson`);
+
+--
+-- Indexes for table `nv4_vi_customer_tags`
+--
+ALTER TABLE `nv4_vi_customer_tags`
+  ADD PRIMARY KEY (`tid`);
+
+--
+-- Indexes for table `nv4_vi_customer_tags_customer`
+--
+ALTER TABLE `nv4_vi_customer_tags_customer`
+  ADD UNIQUE KEY `tid` (`tid`,`customerid`);
+
+--
+-- Indexes for table `nv4_vi_customer_types`
+--
+ALTER TABLE `nv4_vi_customer_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_vi_customer_units`
+--
+ALTER TABLE `nv4_vi_customer_units`
+  ADD PRIMARY KEY (`tid`);
+
+--
+-- Indexes for table `nv4_vi_freecontent_blocks`
+--
+ALTER TABLE `nv4_vi_freecontent_blocks`
+  ADD PRIMARY KEY (`bid`);
+
+--
+-- Indexes for table `nv4_vi_freecontent_rows`
+--
+ALTER TABLE `nv4_vi_freecontent_rows`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_vi_menu`
+--
+ALTER TABLE `nv4_vi_menu`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `title` (`title`);
+
+--
+-- Indexes for table `nv4_vi_menu_rows`
+--
+ALTER TABLE `nv4_vi_menu_rows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parentid` (`parentid`,`mid`);
+
+--
+-- Indexes for table `nv4_vi_modfuncs`
+--
+ALTER TABLE `nv4_vi_modfuncs`
+  ADD PRIMARY KEY (`func_id`),
+  ADD UNIQUE KEY `func_name` (`func_name`,`in_module`),
+  ADD UNIQUE KEY `alias` (`alias`,`in_module`);
+
+--
+-- Indexes for table `nv4_vi_modthemes`
+--
+ALTER TABLE `nv4_vi_modthemes`
+  ADD UNIQUE KEY `func_id` (`func_id`,`layout`,`theme`);
+
+--
+-- Indexes for table `nv4_vi_modules`
+--
+ALTER TABLE `nv4_vi_modules`
+  ADD PRIMARY KEY (`title`);
+
+--
+-- Indexes for table `nv4_vi_news_1`
+--
+ALTER TABLE `nv4_vi_news_1`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_2`
+--
+ALTER TABLE `nv4_vi_news_2`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_3`
+--
+ALTER TABLE `nv4_vi_news_3`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_4`
+--
+ALTER TABLE `nv4_vi_news_4`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_5`
+--
+ALTER TABLE `nv4_vi_news_5`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_6`
+--
+ALTER TABLE `nv4_vi_news_6`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_7`
+--
+ALTER TABLE `nv4_vi_news_7`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_admins`
+--
+ALTER TABLE `nv4_vi_news_admins`
+  ADD UNIQUE KEY `userid` (`userid`,`catid`);
+
+--
+-- Indexes for table `nv4_vi_news_author`
+--
+ALTER TABLE `nv4_vi_news_author`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uid` (`uid`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_news_authorlist`
+--
+ALTER TABLE `nv4_vi_news_authorlist`
+  ADD UNIQUE KEY `id_aid` (`id`,`aid`),
+  ADD KEY `aid` (`aid`),
+  ADD KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_news_block`
+--
+ALTER TABLE `nv4_vi_news_block`
+  ADD UNIQUE KEY `bid` (`bid`,`id`);
+
+--
+-- Indexes for table `nv4_vi_news_block_cat`
+--
+ALTER TABLE `nv4_vi_news_block_cat`
+  ADD PRIMARY KEY (`bid`),
+  ADD UNIQUE KEY `title` (`title`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_news_cat`
+--
+ALTER TABLE `nv4_vi_news_cat`
+  ADD PRIMARY KEY (`catid`),
+  ADD UNIQUE KEY `alias` (`alias`),
+  ADD KEY `parentid` (`parentid`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `nv4_vi_news_config_post`
+--
+ALTER TABLE `nv4_vi_news_config_post`
+  ADD PRIMARY KEY (`group_id`);
+
+--
+-- Indexes for table `nv4_vi_news_detail`
+--
+ALTER TABLE `nv4_vi_news_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_vi_news_logs`
+--
+ALTER TABLE `nv4_vi_news_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sid` (`sid`),
+  ADD KEY `log_key` (`log_key`),
+  ADD KEY `status` (`status`),
+  ADD KEY `userid` (`userid`);
+
+--
+-- Indexes for table `nv4_vi_news_rows`
+--
+ALTER TABLE `nv4_vi_news_rows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `catid` (`catid`),
+  ADD KEY `topicid` (`topicid`),
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `title` (`title`),
+  ADD KEY `addtime` (`addtime`),
+  ADD KEY `edittime` (`edittime`),
+  ADD KEY `publtime` (`publtime`),
+  ADD KEY `exptime` (`exptime`),
+  ADD KEY `status` (`status`),
+  ADD KEY `instant_active` (`instant_active`),
+  ADD KEY `instant_creatauto` (`instant_creatauto`);
+
+--
+-- Indexes for table `nv4_vi_news_row_histories`
+--
+ALTER TABLE `nv4_vi_news_row_histories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `new_id` (`new_id`),
+  ADD KEY `historytime` (`historytime`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
+-- Indexes for table `nv4_vi_news_sources`
+--
+ALTER TABLE `nv4_vi_news_sources`
+  ADD PRIMARY KEY (`sourceid`),
+  ADD UNIQUE KEY `title` (`title`);
+
+--
+-- Indexes for table `nv4_vi_news_tags`
+--
+ALTER TABLE `nv4_vi_news_tags`
+  ADD PRIMARY KEY (`tid`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_news_tags_id`
+--
+ALTER TABLE `nv4_vi_news_tags_id`
+  ADD UNIQUE KEY `id_tid` (`id`,`tid`),
+  ADD KEY `tid` (`tid`);
+
+--
+-- Indexes for table `nv4_vi_news_tmp`
+--
+ALTER TABLE `nv4_vi_news_tmp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_vi_news_topics`
+--
+ALTER TABLE `nv4_vi_news_topics`
+  ADD PRIMARY KEY (`topicid`),
+  ADD UNIQUE KEY `title` (`title`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_news_voices`
+--
+ALTER TABLE `nv4_vi_news_voices`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `title` (`title`),
+  ADD KEY `weight` (`weight`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `nv4_vi_page`
+--
+ALTER TABLE `nv4_vi_page`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_page_config`
+--
+ALTER TABLE `nv4_vi_page_config`
+  ADD UNIQUE KEY `config_name` (`config_name`);
+
+--
+-- Indexes for table `nv4_vi_personnel_allowances`
+--
+ALTER TABLE `nv4_vi_personnel_allowances`
+  ADD PRIMARY KEY (`allowances_id`);
+
+--
+-- Indexes for table `nv4_vi_personnel_data`
+--
+ALTER TABLE `nv4_vi_personnel_data`
+  ADD PRIMARY KEY (`data_id`),
+  ADD UNIQUE KEY `title_group` (`title`,`group_name`);
+
+--
+-- Indexes for table `nv4_vi_personnel_degrees`
+--
+ALTER TABLE `nv4_vi_personnel_degrees`
+  ADD PRIMARY KEY (`degrees_id`);
+
+--
+-- Indexes for table `nv4_vi_personnel_experience`
+--
+ALTER TABLE `nv4_vi_personnel_experience`
+  ADD PRIMARY KEY (`experience_id`);
+
+--
+-- Indexes for table `nv4_vi_personnel_family`
+--
+ALTER TABLE `nv4_vi_personnel_family`
+  ADD PRIMARY KEY (`family_id`);
+
+--
+-- Indexes for table `nv4_vi_personnel_history_insurances`
+--
+ALTER TABLE `nv4_vi_personnel_history_insurances`
+  ADD PRIMARY KEY (`history_insurances_id`);
+
+--
+-- Indexes for table `nv4_vi_personnel_history_solves`
+--
+ALTER TABLE `nv4_vi_personnel_history_solves`
+  ADD PRIMARY KEY (`history_solves_id`);
+
+--
+-- Indexes for table `nv4_vi_personnel_personnel`
+--
+ALTER TABLE `nv4_vi_personnel_personnel`
+  ADD PRIMARY KEY (`personnel_id`),
+  ADD UNIQUE KEY `personnel_code` (`personnel_code`),
+  ADD UNIQUE KEY `private_code` (`private_code`),
+  ADD UNIQUE KEY `profile_code` (`profile_code`),
+  ADD UNIQUE KEY `job_tax` (`job_tax`),
+  ADD UNIQUE KEY `premium_number` (`premium_number`),
+  ADD UNIQUE KEY `premium_card` (`premium_card`),
+  ADD UNIQUE KEY `timekeeping_code` (`timekeeping_code`) USING BTREE,
+  ADD KEY `userid_create` (`userid_create`),
+  ADD KEY `group_id` (`department_id`),
+  ADD KEY `date_added` (`date_added`),
+  ADD KEY `date_modified` (`date_modified`);
+
+--
+-- Indexes for table `nv4_vi_personnel_premium`
+--
+ALTER TABLE `nv4_vi_personnel_premium`
+  ADD PRIMARY KEY (`premium_id`),
+  ADD UNIQUE KEY `alias` (`alias`),
+  ADD KEY `parent_id` (`parent_id`);
+
+--
+-- Indexes for table `nv4_vi_personnel_registermedical`
+--
+ALTER TABLE `nv4_vi_personnel_registermedical`
+  ADD PRIMARY KEY (`registermedical_id`),
+  ADD UNIQUE KEY `title` (`title`);
+
+--
+-- Indexes for table `nv4_vi_personnel_setting`
+--
+ALTER TABLE `nv4_vi_personnel_setting`
+  ADD UNIQUE KEY `config_name` (`config_name`);
+
+--
+-- Indexes for table `nv4_vi_referer_stats`
+--
+ALTER TABLE `nv4_vi_referer_stats`
+  ADD UNIQUE KEY `host` (`host`),
+  ADD KEY `total` (`total`);
+
+--
+-- Indexes for table `nv4_vi_searchkeys`
+--
+ALTER TABLE `nv4_vi_searchkeys`
+  ADD KEY `id` (`id`),
+  ADD KEY `skey` (`skey`),
+  ADD KEY `search_engine` (`search_engine`);
+
+--
+-- Indexes for table `nv4_vi_siteterms`
+--
+ALTER TABLE `nv4_vi_siteterms`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `alias` (`alias`);
+
+--
+-- Indexes for table `nv4_vi_siteterms_config`
+--
+ALTER TABLE `nv4_vi_siteterms_config`
+  ADD UNIQUE KEY `config_name` (`config_name`);
+
+--
+-- Indexes for table `nv4_vi_sliderabout_blocks`
+--
+ALTER TABLE `nv4_vi_sliderabout_blocks`
+  ADD PRIMARY KEY (`bid`);
+
+--
+-- Indexes for table `nv4_vi_sliderabout_rows`
+--
+ALTER TABLE `nv4_vi_sliderabout_rows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `nv4_vi_slider_blocks`
+--
+ALTER TABLE `nv4_vi_slider_blocks`
+  ADD PRIMARY KEY (`bid`);
+
+--
+-- Indexes for table `nv4_vi_slider_rows`
+--
+ALTER TABLE `nv4_vi_slider_rows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `nv4_vi_task`
+--
+ALTER TABLE `nv4_vi_task`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_vi_task_cat`
+--
+ALTER TABLE `nv4_vi_task_cat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `nv4_vi_task_cat_follow`
+--
+ALTER TABLE `nv4_vi_task_cat_follow`
+  ADD UNIQUE KEY `catid` (`catid`,`userid`,`type`);
+
+--
+-- Indexes for table `nv4_vi_task_econtent`
+--
+ALTER TABLE `nv4_vi_task_econtent`
+  ADD PRIMARY KEY (`action`);
+
+--
+-- Indexes for table `nv4_vi_task_field`
+--
+ALTER TABLE `nv4_vi_task_field`
+  ADD PRIMARY KEY (`fid`),
+  ADD UNIQUE KEY `field` (`field`);
+
+--
+-- Indexes for table `nv4_vi_task_follow`
+--
+ALTER TABLE `nv4_vi_task_follow`
+  ADD UNIQUE KEY `taskid` (`taskid`,`userid`,`type`);
+
+--
+-- Indexes for table `nv4_vi_task_info`
+--
+ALTER TABLE `nv4_vi_task_info`
+  ADD PRIMARY KEY (`rows_id`);
+
+--
+-- Indexes for table `nv4_vi_voting`
+--
+ALTER TABLE `nv4_vi_voting`
+  ADD PRIMARY KEY (`vid`),
+  ADD UNIQUE KEY `question` (`question`);
+
+--
+-- Indexes for table `nv4_vi_voting_rows`
+--
+ALTER TABLE `nv4_vi_voting_rows`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `vid` (`vid`,`title`);
+
+--
+-- Indexes for table `nv4_vi_voting_voted`
+--
+ALTER TABLE `nv4_vi_voting_voted`
+  ADD UNIQUE KEY `vid` (`vid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `nv4_attachment`
+--
+ALTER TABLE `nv4_attachment`
+  MODIFY `attachment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_authors_api_role`
+--
+ALTER TABLE `nv4_authors_api_role`
+  MODIFY `role_id` smallint(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_authors_config`
+--
+ALTER TABLE `nv4_authors_config`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_authors_module`
+--
+ALTER TABLE `nv4_authors_module`
+  MODIFY `mid` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `nv4_authors_oauth`
+--
+ALTER TABLE `nv4_authors_oauth`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_banners_click`
+--
+ALTER TABLE `nv4_banners_click`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_banners_plans`
+--
+ALTER TABLE `nv4_banners_plans`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `nv4_banners_rows`
+--
+ALTER TABLE `nv4_banners_rows`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_cronjobs`
+--
+ALTER TABLE `nv4_cronjobs`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `nv4_extension_files`
+--
+ALTER TABLE `nv4_extension_files`
+  MODIFY `idfile` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=970;
+
+--
+-- AUTO_INCREMENT for table `nv4_ips`
+--
+ALTER TABLE `nv4_ips`
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_language`
+--
+ALTER TABLE `nv4_language`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_language_file`
+--
+ALTER TABLE `nv4_language_file`
+  MODIFY `idfile` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_location_country`
+--
+ALTER TABLE `nv4_location_country`
+  MODIFY `country_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
+
+--
+-- AUTO_INCREMENT for table `nv4_location_district`
+--
+ALTER TABLE `nv4_location_district`
+  MODIFY `district_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=974;
+
+--
+-- AUTO_INCREMENT for table `nv4_location_province`
+--
+ALTER TABLE `nv4_location_province`
+  MODIFY `province_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+
+--
+-- AUTO_INCREMENT for table `nv4_location_ward`
+--
+ALTER TABLE `nv4_location_ward`
+  MODIFY `ward_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32249;
+
+--
+-- AUTO_INCREMENT for table `nv4_logs`
+--
+ALTER TABLE `nv4_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1471;
+
+--
+-- AUTO_INCREMENT for table `nv4_notification`
+--
+ALTER TABLE `nv4_notification`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `nv4_plugin`
+--
+ALTER TABLE `nv4_plugin`
+  MODIFY `pid` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_block_cat`
+--
+ALTER TABLE `nv4_shops_block_cat`
+  MODIFY `bid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_carrier`
+--
+ALTER TABLE `nv4_shops_carrier`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_carrier_config`
+--
+ALTER TABLE `nv4_shops_carrier_config`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_carrier_config_items`
+--
+ALTER TABLE `nv4_shops_carrier_config_items`
+  MODIFY `id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_catalogs`
+--
+ALTER TABLE `nv4_shops_catalogs`
+  MODIFY `catid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_coupons`
+--
+ALTER TABLE `nv4_shops_coupons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_coupons_history`
+--
+ALTER TABLE `nv4_shops_coupons_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_discounts`
+--
+ALTER TABLE `nv4_shops_discounts`
+  MODIFY `did` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_field`
+--
+ALTER TABLE `nv4_shops_field`
+  MODIFY `fid` mediumint(8) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_field_value_vi`
+--
+ALTER TABLE `nv4_shops_field_value_vi`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_files`
+--
+ALTER TABLE `nv4_shops_files`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_group`
+--
+ALTER TABLE `nv4_shops_group`
+  MODIFY `groupid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_location`
+--
+ALTER TABLE `nv4_shops_location`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_orders`
+--
+ALTER TABLE `nv4_shops_orders`
+  MODIFY `order_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_orders_id`
+--
+ALTER TABLE `nv4_shops_orders_id`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_orders_shipping`
+--
+ALTER TABLE `nv4_shops_orders_shipping`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_point_history`
+--
+ALTER TABLE `nv4_shops_point_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_review`
+--
+ALTER TABLE `nv4_shops_review`
+  MODIFY `review_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_rows`
+--
+ALTER TABLE `nv4_shops_rows`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_shops`
+--
+ALTER TABLE `nv4_shops_shops`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_tabs`
+--
+ALTER TABLE `nv4_shops_tabs`
+  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_tags_vi`
+--
+ALTER TABLE `nv4_shops_tags_vi`
+  MODIFY `tid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_template`
+--
+ALTER TABLE `nv4_shops_template`
+  MODIFY `id` mediumint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_transaction`
+--
+ALTER TABLE `nv4_shops_transaction`
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_units`
+--
+ALTER TABLE `nv4_shops_units`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_warehouse`
+--
+ALTER TABLE `nv4_shops_warehouse`
+  MODIFY `wid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_warehouse_logs`
+--
+ALTER TABLE `nv4_shops_warehouse_logs`
+  MODIFY `logid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_warehouse_logs_group`
+--
+ALTER TABLE `nv4_shops_warehouse_logs_group`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_weight_vi`
+--
+ALTER TABLE `nv4_shops_weight_vi`
+  MODIFY `id` tinyint(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_shops_wishlist`
+--
+ALTER TABLE `nv4_shops_wishlist`
+  MODIFY `wid` smallint(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_upload_dir`
+--
+ALTER TABLE `nv4_upload_dir`
+  MODIFY `did` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_about`
+--
+ALTER TABLE `nv4_vi_about`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_blocks_groups`
+--
+ALTER TABLE `nv4_vi_blocks_groups`
+  MODIFY `bid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_comment`
+--
+ALTER TABLE `nv4_vi_comment`
+  MODIFY `cid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_contact_department`
+--
+ALTER TABLE `nv4_vi_contact_department`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_contact_reply`
+--
+ALTER TABLE `nv4_vi_contact_reply`
+  MODIFY `rid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_contact_send`
+--
+ALTER TABLE `nv4_vi_contact_send`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_contact_supporter`
+--
+ALTER TABLE `nv4_vi_contact_supporter`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_customer`
+--
+ALTER TABLE `nv4_vi_customer`
+  MODIFY `id` mediumint(8) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_customer_field`
+--
+ALTER TABLE `nv4_vi_customer_field`
+  MODIFY `fid` mediumint(8) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_customer_tags`
+--
+ALTER TABLE `nv4_vi_customer_tags`
+  MODIFY `tid` smallint(4) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_customer_types`
+--
+ALTER TABLE `nv4_vi_customer_types`
+  MODIFY `id` smallint(4) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_customer_units`
+--
+ALTER TABLE `nv4_vi_customer_units`
+  MODIFY `tid` smallint(4) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_freecontent_blocks`
+--
+ALTER TABLE `nv4_vi_freecontent_blocks`
+  MODIFY `bid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_freecontent_rows`
+--
+ALTER TABLE `nv4_vi_freecontent_rows`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_menu`
+--
+ALTER TABLE `nv4_vi_menu`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_menu_rows`
+--
+ALTER TABLE `nv4_vi_menu_rows`
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_modfuncs`
+--
+ALTER TABLE `nv4_vi_modfuncs`
+  MODIFY `func_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_1`
+--
+ALTER TABLE `nv4_vi_news_1`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_2`
+--
+ALTER TABLE `nv4_vi_news_2`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_3`
+--
+ALTER TABLE `nv4_vi_news_3`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_4`
+--
+ALTER TABLE `nv4_vi_news_4`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_5`
+--
+ALTER TABLE `nv4_vi_news_5`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_6`
+--
+ALTER TABLE `nv4_vi_news_6`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_7`
+--
+ALTER TABLE `nv4_vi_news_7`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_author`
+--
+ALTER TABLE `nv4_vi_news_author`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_block_cat`
+--
+ALTER TABLE `nv4_vi_news_block_cat`
+  MODIFY `bid` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_cat`
+--
+ALTER TABLE `nv4_vi_news_cat`
+  MODIFY `catid` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_logs`
+--
+ALTER TABLE `nv4_vi_news_logs`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_rows`
+--
+ALTER TABLE `nv4_vi_news_rows`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_row_histories`
+--
+ALTER TABLE `nv4_vi_news_row_histories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_sources`
+--
+ALTER TABLE `nv4_vi_news_sources`
+  MODIFY `sourceid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_tags`
+--
+ALTER TABLE `nv4_vi_news_tags`
+  MODIFY `tid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_topics`
+--
+ALTER TABLE `nv4_vi_news_topics`
+  MODIFY `topicid` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_news_voices`
+--
+ALTER TABLE `nv4_vi_news_voices`
+  MODIFY `id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_page`
+--
+ALTER TABLE `nv4_vi_page`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_allowances`
+--
+ALTER TABLE `nv4_vi_personnel_allowances`
+  MODIFY `allowances_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_data`
+--
+ALTER TABLE `nv4_vi_personnel_data`
+  MODIFY `data_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_degrees`
+--
+ALTER TABLE `nv4_vi_personnel_degrees`
+  MODIFY `degrees_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_experience`
+--
+ALTER TABLE `nv4_vi_personnel_experience`
+  MODIFY `experience_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_family`
+--
+ALTER TABLE `nv4_vi_personnel_family`
+  MODIFY `family_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_history_insurances`
+--
+ALTER TABLE `nv4_vi_personnel_history_insurances`
+  MODIFY `history_insurances_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_history_solves`
+--
+ALTER TABLE `nv4_vi_personnel_history_solves`
+  MODIFY `history_solves_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_personnel`
+--
+ALTER TABLE `nv4_vi_personnel_personnel`
+  MODIFY `personnel_id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_premium`
+--
+ALTER TABLE `nv4_vi_personnel_premium`
+  MODIFY `premium_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_personnel_registermedical`
+--
+ALTER TABLE `nv4_vi_personnel_registermedical`
+  MODIFY `registermedical_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_siteterms`
+--
+ALTER TABLE `nv4_vi_siteterms`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_sliderabout_blocks`
+--
+ALTER TABLE `nv4_vi_sliderabout_blocks`
+  MODIFY `bid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_sliderabout_rows`
+--
+ALTER TABLE `nv4_vi_sliderabout_rows`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_slider_blocks`
+--
+ALTER TABLE `nv4_vi_slider_blocks`
+  MODIFY `bid` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_slider_rows`
+--
+ALTER TABLE `nv4_vi_slider_rows`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_task`
+--
+ALTER TABLE `nv4_vi_task`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_task_cat`
+--
+ALTER TABLE `nv4_vi_task_cat`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_task_field`
+--
+ALTER TABLE `nv4_vi_task_field`
+  MODIFY `fid` mediumint(8) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_voting`
+--
+ALTER TABLE `nv4_vi_voting`
+  MODIFY `vid` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `nv4_vi_voting_rows`
+--
+ALTER TABLE `nv4_vi_voting_rows`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
