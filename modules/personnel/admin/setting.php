@@ -65,6 +65,8 @@ if( ! empty( $savesetting ) )
 
 	$getSetting = array();
 	$getSetting['perpage'] = $nv_Request->get_int( 'perpage', 'post', 0 ); 
+	$getSetting['employer_group'] = $nv_Request->get_int( 'employer_group', 'post', 0 ); 
+	$getSetting['appapi'] = $nv_Request->get_string( 'appapi', 'post', 0 ); 
 	$getSetting['perpage'] = !empty( $getSetting['perpage'] ) ? $getSetting['perpage'] : 1;
 	// $getSetting['active_comment'] = $nv_Request->get_int( 'active_comment', 'post', 0 ); 
 	// $getSetting['active_capcha'] = $nv_Request->get_int( 'active_comment', 'post', 0 ); 
@@ -113,7 +115,9 @@ else
 	$getSetting['notification_email'] = "<textarea class=\"form-control\" style=\"width: 100%\" name=\"notification_email\" id=\"' . $module_data . '_notification_email\" rows=\"8\">" . $data['notification_email'] . "</textarea>";
 }  */
 
-
+$groups_list = nv_groups_list();
+unset($groups_list[1], $groups_list[2], $groups_list[3], $groups_list[4], $groups_list[5], $groups_list[7]);
+$employer_group = $groups_list;
 $xtpl = new XTemplate( 'setting.tpl', NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $module_file );
 $xtpl->assign( 'LANG', $lang_module );
 $xtpl->assign( 'GLANG', $lang_global );
@@ -125,7 +129,14 @@ $xtpl->assign( 'OP', $op );
 $xtpl->assign( 'DATA', $getSetting  );
 $xtpl->assign( 'LINK_COMMENT', NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=comment&' . NV_OP_VARIABLE . '=config&mod_name=' . $module_name  );
 $xtpl->assign( 'LINK_CAPTCHA', NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=settings&' . NV_OP_VARIABLE . '=security#settingCaptcha'  );
- 
+ foreach ($employer_group as $group_id => $group_title) {
+	$xtpl->assign('GROUP', [
+		'group_id' => $group_id,
+		'group_title' => $group_title,
+		'selected' => $group_id == $getSetting['employer_group'] ? ' selected="selected"' : ''
+	]);
+	$xtpl->parse('main.employer_group');
+}
 if( $nv_Request->get_string( $module_data . '_success', 'session' ) )
 {
 	$xtpl->assign( 'SUCCESS', $nv_Request->get_string( $module_data . '_success', 'session' ) );

@@ -1001,7 +1001,7 @@
 					<div class="row">
 						<div class="col-12">
 							<a href="#" onclick="history.back(1);" class="btn btn-secondary btn-sm">Hủy</a>
-							<input type="submit" id="submitreg" value="Thêm nhân sự" class="btn btn-success btn-sm float-right">
+							<input type="submit" id="submitreg" value="{PESOLNEL_ACTION}" class="btn btn-success btn-sm float-right">
 						</div>
 					</div>
 				</div>
@@ -1426,7 +1426,7 @@ function AddDatepicker(selector){
 		changeMonth : true,    
 		changeYear : true,     
 		showOtherMonths : true,
-		buttonText: '<i class="far fa-calendar-alt"></i>',
+		buttonText: '',
 		buttonImage : "",      
 		buttonImageOnly : false,
 		yearRange: "-100:+0",  
@@ -1442,7 +1442,7 @@ function AddDatepicker2(selector){
 		changeMonth : true,    
 		changeYear : true,     
 		showOtherMonths : true,
-		buttonText: '<i class="far fa-calendar-alt"></i>',
+		buttonText: '',
 		buttonImage : "",      
 		buttonImageOnly : false
 	});                        
@@ -1956,7 +1956,7 @@ $(function () {
 					<!-- BEGIN:add -->
 					mess+= '<a class="btn btn-block btn-info btn-flat" href="javascript:location.reload();">Nhập tiếp</a>';
 					<!-- END:add -->
-					mess+= '<a class="btn btn-block btn-info btn-flat" href="javascript:void(0);">Tới danh sách</a>';
+					mess+= '<a class="btn btn-block btn-info btn-flat" href="{LIST_PERSOLNEL}">Tới danh sách</a>';
 					           
 					$('#sitemodal').find('.modal-dialog').addClass('h-100 my-0 mx-auto d-flex flex-column justify-content-center');
 					$('#sitemodal').modal().find('.modal-body').html(mess);

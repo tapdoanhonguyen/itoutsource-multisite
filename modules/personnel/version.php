@@ -12,8 +12,8 @@ if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
 $module_version = array(  
 	'name' => 'Personnel', 
-	'modfuncs' => 'main,detail,workforce,Insurrance,kpi,contract,register', 
-	'submenu' => 'workforce,contract,Insurrance', 
+	'modfuncs' => 'main,detail,workforce,Insurrance,kpi,contract,register,timekeeping,punch', 
+	'submenu' => 'workforce,contract,Insurrance,timekeeping,punch', 
 	'change_alias' => '',
 	'is_sysmod' => 0, 
 	'virtual' => 1,  

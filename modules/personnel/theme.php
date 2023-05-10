@@ -220,6 +220,8 @@ function ThemeViewRegister( $dataContent, $dataJson, $dataAddress )
 	$xtpl->assign( 'TOKEN', md5( $client_info['session_id'] . $global_config['sitekey'] ) );
 	$xtpl->assign( 'DATA', $dataContent );
 	$xtpl->assign( 'JSONDATA', json_encode( $dataJson ) );
+	$xtpl->assign( 'LIST_PERSOLNEL', nv_url_rewrite( NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=workforce', true ) );
+	
 	$xtpl->assign( 'family_row', count( $dataContent['family'] ) );
 	$xtpl->assign( 'degrees_row', count( $dataContent['degrees'] ) );
 	$xtpl->assign( 'experience_row', count( $dataContent['experience'] ) );
@@ -230,6 +232,7 @@ function ThemeViewRegister( $dataContent, $dataJson, $dataAddress )
 	
 	if( $dataContent['personnel_id'] == 0 )
 	{
+		$xtpl->assign( 'PESOLNEL_ACTION', $lang_module['register_create'] );
 		$xtpl->parse( 'main.empty_data' );
 		$xtpl->parse( 'main.add' );
 		
@@ -237,6 +240,7 @@ function ThemeViewRegister( $dataContent, $dataJson, $dataAddress )
 	}
 	else
 	{
+		$xtpl->assign( 'PESOLNEL_ACTION', $lang_module['register_update'] );
 		$xtpl->parse( 'main.exist_data' );	
 	}
 	if( isset( $dataContent['family'] ) )
@@ -639,4 +643,77 @@ function ThemeViewClassError( $error )
  
 	$xtpl->parse( 'main' );
 	return $xtpl->text( 'main' );
+}
+
+
+/**
+ * nv_theme_timekeeper_main()
+ * 
+ * @param mixed $array_data
+ * @return
+ */
+function nv_theme_timekeeper_main($array_data, $array_locationid)
+{
+    global $getSetting,$module_info, $lang_module, $lang_global, $op, $module_config, $module_name;
+
+    $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_info['module_theme']);
+    $xtpl->assign('LANG', $lang_module);
+    $xtpl->assign('GLANG', $lang_global);
+	$xtpl->assign('GOGGLEMAP_API', $getSetting['appapi']);
+	$xtpl->assign( 'TEMPLATE', $module_info['template'] );
+	foreach ($array_locationid as $group_id => $group_title) {
+		$xtpl->assign('LOCATION', [
+			'key' => $group_id,
+			'title' => $group_title['title'],
+			'selected' => $group_id == $array_data['locationid'] ? ' selected="selected"' : ''
+		]);
+		$xtpl->parse('main.location');
+	}
+	
+    //------------------
+    // Viết code vào đây
+    //------------------
+
+    $xtpl->parse('main');
+    return $xtpl->text('main');
+}
+
+/**
+ * nv_theme_timekeeper_punch()
+ * 
+ * @param mixed $array_data
+ * @return
+ */
+function nv_theme_timekeeper_punch($array_data, $array_locationid)
+{
+    global $getSetting,$module_info, $lang_module, $lang_global, $op, $module_config, $module_name;
+
+    $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_info['module_theme']);
+    $xtpl->assign('LANG', $lang_module);
+    $xtpl->assign('GLANG', $lang_global);
+	$xtpl->assign('GOGGLEMAP_API', $getSetting['appapi']);
+	$xtpl->assign( 'TEMPLATE', $module_info['template'] );
+	foreach ($array_locationid as $group_id => $group_title) {
+		$xtpl->assign('LOCATION', [
+			'key' => $group_id,
+			'title' => $group_title['title'],
+			'selected' => $group_id == $array_data['locationid'] ? ' selected="selected"' : ''
+		]);
+		$xtpl->parse('main.location');
+	}
+	if($array_data['cout_time_check'] == 0){
+		$xtpl->assign( 'TYPELOGIN', 0 );
+		$xtpl->assign( 'IDLOGIN', 0 );
+		$xtpl->assign( 'ACTION_LOGIN', $lang_module['login'] );
+	}else{
+		$xtpl->assign( 'TYPELOGIN', 1 );
+		$xtpl->assign( 'IDLOGIN',  $array_data['idlogin']);
+		$xtpl->assign( 'ACTION_LOGIN',  $lang_module['logout']);
+	}
+    //------------------
+    // Viết code vào đây
+    //------------------
+
+    $xtpl->parse('main');
+    return $xtpl->text('main');
 }

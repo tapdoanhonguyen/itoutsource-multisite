@@ -13,7 +13,14 @@ if( ! defined( 'NV_IS_MOD_PERSONNEL' ) ) die( 'Stop!!!' );
 $page_title = $module_info['custom_title'];
 $key_words = $module_info['keywords'];
 $json = array();
-
+$array_userid_users = array();
+$array_userid = array();
+$_sql = 'SELECT * FROM nv4_users as u  left join nv4_users_groups_users as gu on u.userid = gu.userid where gu.group_id = ' . $getSetting['employer_group'];
+$_query = $db->query($_sql);
+while ($_row = $_query->fetch()) {
+    $array_userid_users[$_row['userid']] = $_row;
+	$array_userid[] = $_row['userid']; 
+}
 if( ACTION_METHOD == 'download' )
 {
 	$file_name = $nv_Request->get_string( 'file_name', 'get', '' );
@@ -274,11 +281,12 @@ if( ACTION_METHOD == 'getData' )
 		$item['link_view'] = nv_url_rewrite( NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=register/' . $item['personnel_id'] . '-' .  strtolower( change_alias( $item['full_name'] ) ) . $global_config['rewrite_exturl'], true );
 		$itemx[0] = ($offset + $stt);
 		$itemx[1] = $item['personnel_code'];
-		$itemx[2] = '<a href="'. $item['link_view'] .'" class="full_name">'. $item['full_name'] .'</a>';
-		$itemx[3] = $item['department_id'];
-		$itemx[4] =  $item['position_id'];
-		$itemx[5] =  $item['job_title'];
-		$itemx[6] = date('d/m/Y', $item['date_start']);
+		$itemx[2] = '<a href="'. $item['link_view'] .'" class="username">'. $array_userid_users[$item['userid']]['username'] .'</a>';
+		$itemx[3] = '<a href="'. $item['link_view'] .'" class="full_name">'. $item['full_name'] .'</a>';
+		$itemx[4] = $item['department_id'];
+		$itemx[5] =  $item['position_id'];
+		$itemx[6] =  $item['job_title'];
+		$itemx[7] = date('d/m/Y', $item['date_start']);
 		$json['data'][] = $itemx;
 		++$stt;
 	}

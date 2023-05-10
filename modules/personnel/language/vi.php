@@ -160,4 +160,6 @@ $lang_module['thankyou_email']='Chúc mừng bạn đã đăng ký khóa học %
 $lang_module['error_cateory_permission']='Bạn không có quyền truy cập chuyên mục này';
 
 
- 
+ $lang_module['login']='Đăng nhập';
+ $lang_module['logout']='Đăng xuất';
+ $lang_module['no_login']='Bạn chưa đăng nhập';

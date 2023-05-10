@@ -309,6 +309,7 @@ elseif( ACTION_METHOD == 'create' || ACTION_METHOD == 'update' )
 					if($dataContent['birthday'] < 0) {$dataContent['birthday'] = 0;}
 					if($dataContent['private_code_date'] < 0) {$dataContent['private_code_date'] = 0;}
 					if($dataContent['marital_status'] < 0) {$dataContent['marital_status'] = 0;}
+					
 					if($dataContent['work_type'] < 0) {$dataContent['work_type'] = 0;}
 					$stmt = $db->prepare( 'INSERT INTO ' . TABLE_PERSONNEL_NAME . '_personnel SET 
 						userid=' . intval( $dataContent['userid'] ) . ',
@@ -598,8 +599,14 @@ elseif( ACTION_METHOD == 'create' || ACTION_METHOD == 'update' )
 				try
 				{
 					
+					if($dataContent['gender'] < 0) {$dataContent['gender'] = 0;}
 					if($dataContent['level_school'] < 0) {$dataContent['level_school'] = 0;}
 					if($dataContent['department_id'] < 0) {$dataContent['department_id'] = 0;}
+					if($dataContent['birthday'] < 0) {$dataContent['birthday'] = 0;}
+					if($dataContent['private_code_date'] < 0) {$dataContent['private_code_date'] = 0;}
+					if($dataContent['marital_status'] < 0) {$dataContent['marital_status'] = 0;}
+					
+					if($dataContent['work_type'] < 0) {$dataContent['work_type'] = 0;}
 					$stmt = $db->prepare( 'UPDATE ' . TABLE_PERSONNEL_NAME . '_personnel SET 
 						userid=' . intval( $dataContent['userid'] ) . ',
 						timekeeping_code=:timekeeping_code,
@@ -880,7 +887,7 @@ elseif( ACTION_METHOD == 'create' || ACTION_METHOD == 'update' )
 				}
 				catch ( PDOException $e )
 				{
-					$error['warning'] = $lang_module['register_error_save'];
+					$error[] = array('input' => '', 'mess' => $lang_module['register_error_save']);
 					var_dump($e);die;
 				}
 				

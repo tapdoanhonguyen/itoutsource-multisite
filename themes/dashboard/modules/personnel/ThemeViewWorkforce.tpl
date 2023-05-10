@@ -31,6 +31,7 @@
 								<div class="icheck-danger"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" class="all" id="check_all{TAB.key}"><label for="check_all{TAB.key}"></label></div>
 							</th>
 							<th>Mã nhân viên</th>
+							<th>Tài khoản</th>
 							<th>Họ và tên</th>
 							<th>Phòng ban</th>
 							<th>Vị trí</th>
@@ -243,7 +244,7 @@ function getDataTable( tab )
 		 'searchable': false,
 		 'orderable': false,
 		 'render': function (data, type, full, meta){
-			 return '<span class="text-department" data="' + $('<div/>').text(data).html() + '"></span>'; 
+			 return data; 
 		 }
 		 
 	  },{
@@ -251,7 +252,7 @@ function getDataTable( tab )
 		 'searchable': false,
 		 'orderable': false,
 		 'render': function (data, type, full, meta){
-			 return '<span class="text-position" data="' + $('<div/>').text(data).html() + '"></span>'; 
+			 return '<span class="text-department" data="' + $('<div/>').text(data).html() + '"></span>'; 
 		 }
 		 
 	  },{
@@ -259,8 +260,16 @@ function getDataTable( tab )
 		 'searchable': false,
 		 'orderable': false,
 		 'render': function (data, type, full, meta){
+			 return '<span class="text-position" data="' + $('<div/>').text(data).html() + '"></span>'; 
+		 } 
+	  },{
+		 'targets': 6,
+		 'searchable': false,
+		 'orderable': false,
+		 'render': function (data, type, full, meta){
 			 return '<span class="text-jobtitle" data="' + $('<div/>').text(data).html() + '"></span>'; 
 		 } 
+	  
 	  }],
 	})
  

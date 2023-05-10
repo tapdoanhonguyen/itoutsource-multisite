@@ -41,5 +41,5 @@ ini_set('session.cookie_httponly', '1');
 ini_set('session.gc_maxlifetime', '3600');
 ini_set('user_agent', 'NV4');
 
-$serverInfoUpdated = true;
-$iniSaveTime = 1683496144;
+$serverInfoUpdated = false;
+$iniSaveTime = 1683681248;

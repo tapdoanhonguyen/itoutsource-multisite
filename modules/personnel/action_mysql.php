@@ -245,7 +245,9 @@ $sql_create_module[] = "CREATE TABLE IF NOT EXISTS " . $db_config['prefix'] . "_
 ) ENGINE=MyISAM";
  
 $sql_create_module[] = "INSERT INTO  " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_setting (config_name, config_value) VALUES
-('perpage', '100')";
+('perpage', '100'),
+('employer_group', '6'),
+('appapi', '')";
 
 // $sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . " (personnel_id, userid, first_name, last_name, gender, birthday, main_phone, other_phone, main_email, other_email, address, knowledge, image, jointime, position, part, date_added, date_modified, createtime, duetime, cycle, useradd, status) VALUES
 // (2, 6, 'Vinh', 'Lê Thúc', 1, 466273439, '0963027720', '094902770', 'vinh.lethuc@nv4.vn', 'thucvinh.nv4@gmail.com', '35/6 Bùi Quang Là, Phường 12, Quận Gò Vấp, Hồ Chí Minh', 'Đại Học', '', 1499444639, 'Giám đốc', '5,1', 1563453079, 1574871435, 1499444639, 0, 12, 1, 1),
