@@ -43,8 +43,17 @@
 				<tr>
 					<td> {VIEW.number} </td>
 					<td> {VIEW.title} </td>
-					<td> {VIEW.theme} </td>
-					<td> {VIEW.module} </td>
+					<td> 
+						<!-- BEGIN: theme -->
+					
+						{theme}
+						<!-- END: theme -->
+					</td>
+					<td> 
+						<!-- BEGIN: module -->
+						{module}
+						<!-- END: module -->
+					</td>
 					<td class="text-center"><i class="fa fa-edit fa-lg">&nbsp;</i> <a href="{VIEW.link_edit}#edit">{LANG.edit}</a> - <em class="fa fa-trash-o fa-lg">&nbsp;</em> <a href="{VIEW.link_delete}" onclick="return confirm(nv_is_del_confirm[0]);">{LANG.delete}</a></td>
 				</tr>
 				<!-- END: loop -->

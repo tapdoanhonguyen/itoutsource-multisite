@@ -22,6 +22,19 @@ function nv_chang_cat(catid, mod) {
     return;
 }
 
+function nv_chang_supply_weight(id, mod) {
+    var nv_timer = nv_settimeout_disable('id_weight_' + id, 5000);
+    var new_vid = $('#id_weight_' + id).val();
+    $.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=supply&nocache=' + new Date().getTime(), 'id=' + id + '&ajax_action=1&new_vid=' + new_vid, function(res) {
+        var r_split = res.split('_');
+        if (r_split[0] != 'OK') {
+            alert(nv_is_change_act_confirm[2]);
+        }
+        clearTimeout(nv_timer);
+        window.location.href = window.location.href;
+    });
+    return;
+}
 function nv_show_list_cat(parentid) {
     if (document.getElementById('module_show_list')) {
         $('#module_show_list').load(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=list_cat&parentid=' + parentid + '&nocache=' + new Date().getTime());
@@ -371,7 +384,23 @@ function nv_add_otherimage() {
     $("#otherimage").append(newitem);
     file_items++;
 }
+function nv_add_product() {
+//	var newitem = "<div class=\"form-group\"><input class=\"form-control\" value=\"\" name=\"otherimage[]\" id=\"otherimage_" + file_items + "\" style=\"width : 80%\" maxlength=\"255\" />";
+    //newitem += "&nbsp;<input type=\"button\" class=\"btn btn-info\" value=\"" + file_selectfile + "\" name=\"selectfile\" onclick=\"nv_open_browse( '" + nv_base_adminurl + "index.php?" + nv_name_variable + "=upload&popup=1&area=otherimage_" + file_items + "&path=" + file_dir + "&type=file&currentpath=" + currentpath + "', 'NVImg', 850, 400, 'resizable=no,scrollbars=no,toolbar=no,location=no,status=no' ); return false; \" /></div>";
 
+    var newitem = '';
+    newitem += "<div class=\"form-group\">";
+    newitem += "<div class=\"input-group\">";
+    newitem += "	<input class=\"form-control\" type=\"text\" name=\"product[]\" id=\"product_" + file_items + "\" />";
+    newitem += "	<span class=\"input-group-btn\">";
+    newitem += "		";
+    newitem += "	</span>";
+    newitem += "</div>";
+    newitem += "</div>";
+
+    $("#otherimage").append(newitem);
+    file_items++;
+}
 function nv_add_title() {
     var a = "<tr><td><input class=\"form-control\" value=\"\" name=\"custom[title_config][]\" style=\"width : 80%\" maxlength=\"255\"  type=\"text\"/></td>";
     a += "<td><input class=\"form-control\" value=\"\" name=\"custom[content_config][]\" style=\"width : 80%\" maxlength=\"255\"  type=\"text\"/></td></tr>";
@@ -505,7 +534,18 @@ function nv_change_active_files( id )
         $('#change_active_' + id).prop('checked', new_status ? false : true);
     }
 }
+function nv_change_active_supply( id )
+{
+    var new_status = $('#change_status_' + id).is(':checked') ? 1 : 0;
+    if (confirm(nv_is_change_act_confirm[0])) {
+        var nv_timer = nv_settimeout_disable('change_status_' + id, 3000);
+        $.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=supply&nocache=' + new Date().getTime(), 'change_status=1&id=' + id + '&new_status=' + new_status, function(res) {
 
+        });
+    } else {
+        $('#change_status_' + id).prop('checked', new_status ? false : true);
+    }
+}
 // Sắp xếp thứ tự các nhóm tùy biến dữ liệu
 function nv_chang_weight(vid) {
     var nv_timer = nv_settimeout_disable('change_weight_' + vid, 5000);

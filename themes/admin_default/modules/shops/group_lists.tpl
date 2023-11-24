@@ -16,6 +16,7 @@
 				<th>{LANG.groupview_page}</th>
 				<th class="text-center">{LANG.inhome}</th>
 				<th class="text-center">{LANG.indetail} <span class="info_icon" data-toggle="tooltip" title="" data-original-title="{LANG.indetail_note}">&nbsp;</span></th>
+				<th class="text-center">{LANG.infilter} <span class="info_icon" data-toggle="tooltip" title="" data-original-title="{LANG.infilter_note}">&nbsp;</span></th>
 				<th class="text-center">{LANG.in_order}</th>
 				<th class="w150">&nbsp;</th>
 			</tr>
@@ -52,6 +53,13 @@
 						<!-- BEGIN: indetail -->
 						<option value="{OPTION.key}"{OPTION.selected}>{OPTION.title}</option>
 						<!-- END: indetail -->
+					</select>
+				</td>
+				<td class="text-center">
+					<select class="form-control" id="id_infilter_{ROW.groupid}" onchange="nv_chang_group('{ROW.groupid}','infilter');">
+						<!-- BEGIN: infilter -->
+						<option value="{OPTION.key}"{OPTION.selected}>{OPTION.title}</option>
+						<!-- END: infilter -->
 					</select>
 				</td>
 				<td class="text-center">
