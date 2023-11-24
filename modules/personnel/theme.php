@@ -654,21 +654,96 @@ function ThemeViewClassError( $error )
  */
 function nv_theme_timekeeper_main($array_data, $array_locationid)
 {
-    global $getSetting,$module_info, $lang_module, $lang_global, $op, $module_config, $module_name;
+    global $getSetting,$module_info, $lang_module, $lang_global, $op, $module_config, $module_name, $user_info, $array_userid_users;
 
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_info['module_theme']);
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('GLANG', $lang_global);
 	$xtpl->assign('GOGGLEMAP_API', $getSetting['appapi']);
 	$xtpl->assign( 'TEMPLATE', $module_info['template'] );
-	foreach ($array_locationid as $group_id => $group_title) {
-		$xtpl->assign('LOCATION', [
-			'key' => $group_id,
-			'title' => $group_title['title'],
-			'selected' => $group_id == $array_data['locationid'] ? ' selected="selected"' : ''
-		]);
-		$xtpl->parse('main.location');
+	$xtpl->assign( 'DATE_TIMEKEEPING', date("d/m/Y", NV_CURRENTTIME )); 
+	if($array_data['locationid'] > 0){
+		foreach ($array_locationid as $group_id => $group_title) {
+			$xtpl->assign('LOCATION', [
+				'key' => $group_id,
+				'title' => $group_title['title'],
+				'selected' => $group_id == $array_data['locationid'] ? ' selected="selected"' : ''
+			]);
+			$xtpl->parse('main.location');
+		}
 	}
+	if(!empty($array_data['time_week'])){
+		$i=0;
+		foreach($array_data['time_week'] as $key => $values){
+			
+			$xtpl->assign( 'DATE', $values );
+			$xtpl->parse('main.time_week');
+			foreach($values['datetimekeeping'] as $key => $value){
+				$xtpl->assign( 'TIMEKEEPING', $value );
+				$xtpl->parse('main.time_week_look.loop');
+			}
+			
+			$xtpl->parse('main.time_week_look');
+			if($i>5) {
+				break;
+			}
+			$i++;
+		}
+		foreach($array_data['time_week'] as $key => $values){
+			
+			if(date("Y-m-d", NV_CURRENTTIME ) == $key){
+				foreach($values['datetimekeeping'] as $key => $value){
+					$xtpl->assign( 'TIMEKEEPING_CURRENT', $value );
+					$xtpl->parse('main.time_current_look.time');
+				}
+			
+				
+			
+			}
+			
+		}
+		
+		
+		
+	}
+	$xtpl->parse('main.time_current_look');
+	$xtpl->parse('main.time_week_loop');
+	
+	if(in_array("1", $user_info['in_groups'])||in_array("2", $user_info['in_groups'])||in_array($getSetting['employer_manager'], $user_info['in_groups'])){
+		foreach($array_userid_users as $u =>$ui){
+			
+				$value = array(
+					"userid" => $u,
+					"username" => $ui['username']
+				);
+			
+			$xtpl->assign( 'USER_EMPLOYER', $value );
+			$xtpl->parse('main.admin_tab.users_timekeeping');
+			$xtpl->parse('main.admin_tab_2.users_report');
+			
+		}
+		$xtpl->parse('main.admin');
+		$xtpl->parse('main.admin_tab');
+		$xtpl->parse('main.admin_tab_2');
+	}else{
+		foreach($array_userid_users as $u =>$ui){
+			if($u == $user_info['userid']){
+				$value = array(
+					"userid" => $u,
+					"username" => $ui['username'],
+					"selected" => 'selected'
+				);
+				$xtpl->assign( 'USER_EMPLOYER', $value );
+				$xtpl->parse('main.admin_tab_2.users_report');
+			}
+			
+			
+		
+		}
+		
+		$xtpl->parse('main.admin_tab_2');
+	}
+	
 	
     //------------------
     // Viết code vào đây
@@ -701,6 +776,7 @@ function nv_theme_timekeeper_punch($array_data, $array_locationid)
 		]);
 		$xtpl->parse('main.location');
 	}
+	$array_data['punch_date'] = date("d/m/Y", NV_CURRENTTIME);
 	if($array_data['cout_time_check'] == 0){
 		$xtpl->assign( 'TYPELOGIN', 0 );
 		$xtpl->assign( 'IDLOGIN', 0 );
@@ -710,6 +786,58 @@ function nv_theme_timekeeper_punch($array_data, $array_locationid)
 		$xtpl->assign( 'IDLOGIN',  $array_data['idlogin']);
 		$xtpl->assign( 'ACTION_LOGIN',  $lang_module['logout']);
 	}
+	$xtpl->assign( 'DATA', $array_data );
+    //------------------
+    // Viết code vào đây
+    //------------------
+
+    $xtpl->parse('main');
+    return $xtpl->text('main');
+}
+
+/**
+ * nv_theme_timekeeper_schedule()
+ * 
+ * @param mixed $array_data
+ * @return
+ */
+function nv_theme_timekeeper_schedule($array_data, $array_locationid)
+{
+    global $getSetting,$module_info, $lang_module, $lang_global, $op, $module_config, $module_name,$module_upload;
+
+    $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_info['module_theme']);
+    $xtpl->assign('LANG', $lang_module);
+    $xtpl->assign('GLANG', $lang_global);
+	$xtpl->assign('NV_LANG_VARIABLE', NV_LANG_VARIABLE);
+	$xtpl->assign('NV_LANG_DATA', NV_LANG_DATA);
+	$xtpl->assign('NV_BASE_SITEURL', NV_BASE_SITEURL);
+	$xtpl->assign('NV_NAME_VARIABLE', NV_NAME_VARIABLE);
+	$xtpl->assign('NV_OP_VARIABLE', NV_OP_VARIABLE);
+	$xtpl->assign('MODULE_NAME', $module_name);
+	$xtpl->assign('MODULE_UPLOAD', $module_upload);
+	$xtpl->assign('NV_ASSETS_DIR', NV_ASSETS_DIR);
+	$xtpl->assign('OP', $op);
+	$xtpl->assign('GOGGLEMAP_API', $getSetting['appapi']);
+	$xtpl->assign( 'TEMPLATE', $module_info['template'] );
+	foreach ($array_locationid as $group_id => $group_title) {
+		$xtpl->assign('LOCATION', [
+			'key' => $group_id,
+			'title' => $group_title['title'],
+			'selected' => $group_id == $array_data['locationid'] ? ' selected="selected"' : ''
+		]);
+		$xtpl->parse('main.location');
+	}
+	$array_data['punch_date'] = date("d/m/Y", NV_CURRENTTIME);
+	if($array_data['cout_time_check'] == 0){
+		$xtpl->assign( 'TYPELOGIN', 0 );
+		$xtpl->assign( 'IDLOGIN', 0 );
+		$xtpl->assign( 'ACTION_LOGIN', $lang_module['login'] );
+	}else{
+		$xtpl->assign( 'TYPELOGIN', 1 );
+		$xtpl->assign( 'IDLOGIN',  $array_data['idlogin']);
+		$xtpl->assign( 'ACTION_LOGIN',  $lang_module['logout']);
+	}
+	$xtpl->assign( 'DATA', $array_data );
     //------------------
     // Viết code vào đây
     //------------------

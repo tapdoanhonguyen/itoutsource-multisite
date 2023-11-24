@@ -40,7 +40,7 @@
 							  <div class="oxd-layout-context" data-v-130c27f5="">
 							  <div class="orangehrm-background-container">
 							  <div class="orangehrm-card-container">
-							  <h6 class="oxd-text oxd-text--h6 orangehrm-main-title" data-v-7b563373="">Đăng nhập ( * Yêu cầu) </h6>
+							  <h6 class="oxd-text oxd-text--h6 orangehrm-main-title" data-v-7b563373="">{ACTION_LOGIN} ( * Yêu cầu) </h6>
 							  <hr class="oxd-divider" role="separator" aria-orientation="horizontal" data-v-9f847659="">
 							  
 							  <div class="orangehrm-paper-container">
@@ -51,11 +51,12 @@
 							  <input type="text" name="lat" id="lat" value="" style="display:none">
 							  <input type="text" name="lng" id="lng" value="" style="display:none">
 							  <input type="text" name="address" id="address" value="" style="display:none">
+							  <input type="text" name="imgdata" id="imgdata" value="" style="display:none">
 							  <input type="submit" name="submit" id="checkinsubmit" style="display:none" value="Save">
 							  <div class="oxd-form-row" data-v-2130bd2a="" data-v-3d5e6918="">
 							  <div class="oxd-grid-2 orangehrm-full-width-grid" data-v-d7b71de4="" data-v-3d5e6918="">
 							  <div class=" ">
-							  <video id="video" width="640" height="480" autoplay></video>
+							  <video id="video" width="100%" height="100%" autoplay playsinline></video>
 							  </div>
 							  
 							  
@@ -89,7 +90,7 @@
 								  <label class="oxd-label" data-v-30ff22b1="" data-v-957b4417="">Ghi chú </label>
 								  </div>
 								  <div class="" data-v-957b4417="">
-								  <textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" placeholder="Type here" data-v-bd337f32="">
+								  <textarea class="oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical" placeholder="Type here" data-v-bd337f32="" name="note">
 								  </textarea>
 								  </div>
 								  <div class="row">
@@ -134,20 +135,23 @@
 							  
 							  
 	 <script>
+	 
+	 
+	 
+	 
       $(document).ready(function() {
+
+
+		  
+		var video = document.getElementById('video');
+	  
         // Lấy camera được liệt kê đầu tiên của thiết bị
-        navigator.mediaDevices.getUserMedia({ 
-          audio: false,
-          video: { 
-            width: 640, height: 480 
-          }
-        })
+        navigator.mediaDevices.getUserMedia({ video: true })
         .then(function(stream) {
-          var video = document.getElementById('video');
+          
           // Thiết lập stream để hiển thị ảnh từ camera
           video.srcObject = stream;
           video.play();
-         
           // Bắt sự kiện click vào nút chụp ảnh
           $('#capturein').click(function(){
             // Sử dụng thư viện ImageMagick để xử lý hình ảnh
@@ -157,12 +161,16 @@
 				var ctx = canvas.getContext('2d');
 				ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 				var imgdata = canvas.toDataURL();
+				this.disabled = true;
 				$('#imgdata').val('');
 				$('#imgdata').val(imgdata);
 				$('#typelogin').val({TYPELOGIN});
 				$('#checkinsubmit').click();
 				
-          });
+          })
+		  .catch(function(error) {
+			console.error('Lỗi truy cập camera:', error);
+		  });
 		 
 		  <!-- BEGIN: jvcheckout1 -->
 		   // Bắt sự kiện click vào nút chụp ảnh
@@ -288,5 +296,9 @@
           console.log("Geolocation not supported by this browser");
         }
       }
+	  
+	  
+	  
+	  
     </script>						  
 <!-- END: main -->

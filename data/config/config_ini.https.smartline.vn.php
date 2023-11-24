@@ -39,7 +39,8 @@ ini_set('display_startup_errors', '0');
 ini_set('log_errors', '0');
 ini_set('session.cookie_httponly', '1');
 ini_set('session.gc_maxlifetime', '3600');
+ini_set('track_errors', '1');
 ini_set('user_agent', 'NV4');
 
 $serverInfoUpdated = true;
-$iniSaveTime = 1683701231;
+$iniSaveTime = 1700715306;

@@ -127,6 +127,24 @@
 		<origin><![CDATA[true]]></origin>
 	</extension>
 	<extension>
+		<id><![CDATA[0]]></id>
+		<type><![CDATA[module]]></type>
+		<name><![CDATA[dbkk]]></name>
+		<version><![CDATA[4.5.03]]></version>
+		<date><![CDATA[Sat, 29 Apr 2023 07:51:29 GMT]]></date>
+		<new_version><![CDATA[]]></new_version>
+		<new_date><![CDATA[]]></new_date>
+		<author><![CDATA[DACLOI.,JSC (saka.dacloi@gmail.com)]]></author>
+		<license><![CDATA[]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[Mã các xã khó khăn 2021 - Các xã không có trong danh sách học sinh không phải điền khi làm hồ sơ]]></message>
+		<link><![CDATA[]]></link>
+		<support><![CDATA[]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[false]]></origin>
+	</extension>
+	<extension>
 		<id><![CDATA[307]]></id>
 		<type><![CDATA[theme]]></type>
 		<name><![CDATA[default]]></name>
@@ -361,6 +379,24 @@
 		<origin><![CDATA[false]]></origin>
 	</extension>
 	<extension>
+		<id><![CDATA[309]]></id>
+		<type><![CDATA[module]]></type>
+		<name><![CDATA[photos]]></name>
+		<version><![CDATA[1.4.04]]></version>
+		<date><![CDATA[Sat, 29 Apr 2023 03:53:25 GMT]]></date>
+		<new_version><![CDATA[1.4.05]]></new_version>
+		<new_date><![CDATA[Sat, 29 Apr 2023 03:53:25 GMT]]></new_date>
+		<author><![CDATA[anhyeuviolet (nguyentiendat713@gmail.com)]]></author>
+		<license><![CDATA[GNU - GPL]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[Module xem và Chia sẻ hình ảnh dựa trên NukeViet 4.x]]></message>
+		<link><![CDATA[https://nukeviet.vn/vi/store/modules/photos/]]></link>
+		<support><![CDATA[https://nukeviet.vn/vi/store/modules/photos/]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[true]]></origin>
+	</extension>
+	<extension>
 		<id><![CDATA[284]]></id>
 		<type><![CDATA[module]]></type>
 		<name><![CDATA[seek]]></name>
@@ -561,6 +597,24 @@
 	<extension>
 		<id><![CDATA[0]]></id>
 		<type><![CDATA[module]]></type>
+		<name><![CDATA[storehouse]]></name>
+		<version><![CDATA[4.3.03]]></version>
+		<date><![CDATA[Fri, 10 Aug 2018 07:54:46 GMT]]></date>
+		<new_version><![CDATA[]]></new_version>
+		<new_date><![CDATA[]]></new_date>
+		<author><![CDATA[Thuong Mai So (hoangnt@nguyenvan.vn)]]></author>
+		<license><![CDATA[]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[Module Quản lý kho hàng]]></message>
+		<link><![CDATA[]]></link>
+		<support><![CDATA[]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[false]]></origin>
+	</extension>
+	<extension>
+		<id><![CDATA[0]]></id>
+		<type><![CDATA[module]]></type>
 		<name><![CDATA[survey]]></name>
 		<version><![CDATA[0.3.03]]></version>
 		<date><![CDATA[Mon, 19 Dec 2022 19:22:04 GMT]]></date>
@@ -585,6 +639,24 @@
 		<new_version><![CDATA[]]></new_version>
 		<new_date><![CDATA[]]></new_date>
 		<author><![CDATA[TDFOSS.,LTD (contact@tdfoss.vn)]]></author>
+		<license><![CDATA[]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[]]></message>
+		<link><![CDATA[]]></link>
+		<support><![CDATA[]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[false]]></origin>
+	</extension>
+	<extension>
+		<id><![CDATA[0]]></id>
+		<type><![CDATA[module]]></type>
+		<name><![CDATA[timekeeper]]></name>
+		<version><![CDATA[4.5.03]]></version>
+		<date><![CDATA[Sat, 29 Apr 2023 12:51:07 GMT]]></date>
+		<new_version><![CDATA[]]></new_version>
+		<new_date><![CDATA[]]></new_date>
+		<author><![CDATA[Tập Đoàn Họ Nguyễn (tgd@tapdoanhonguyen.com)]]></author>
 		<license><![CDATA[]]></license>
 		<mode><![CDATA[other]]></mode>
 		<message><![CDATA[]]></message>
@@ -629,6 +701,24 @@
 		<updateable>
 		</updateable>
 		<origin><![CDATA[true]]></origin>
+	</extension>
+	<extension>
+		<id><![CDATA[0]]></id>
+		<type><![CDATA[module]]></type>
+		<name><![CDATA[vngpt]]></name>
+		<version><![CDATA[4.5.03]]></version>
+		<date><![CDATA[Sun, 14 May 2023 12:50:24 GMT]]></date>
+		<new_version><![CDATA[]]></new_version>
+		<new_date><![CDATA[]]></new_date>
+		<author><![CDATA[DACLOI.,JSC (saka.dacloi@gmail.com)]]></author>
+		<license><![CDATA[]]></license>
+		<mode><![CDATA[other]]></mode>
+		<message><![CDATA[]]></message>
+		<link><![CDATA[]]></link>
+		<support><![CDATA[]]></support>
+		<updateable>
+		</updateable>
+		<origin><![CDATA[false]]></origin>
 	</extension>
 	<extension>
 		<id><![CDATA[21]]></id>

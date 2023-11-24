@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plan>
+  <id>4</id>
+  <lang></lang>
+  <title>Dịch vụ IT trọn gói</title>
+  <form>sequential</form>
+  <width>1903</width>
+  <height>675</height>
+  <banners>
+    <banners_item>
+      <id>3</id>
+      <title>Dịch vụ IT trọn gói</title>
+      <clid>1</clid>
+      <file_name>smartline-banner-dich-vu-it-tron-goi_1.png</file_name>
+      <imageforswf>smartline-banner-dich-vu-it-tron-goi.png</imageforswf>
+      <file_ext>png</file_ext>
+      <file_mime>image/png</file_mime>
+      <file_width>1903</file_width>
+      <file_height>675</file_height>
+      <file_alt></file_alt>
+      <file_click>#formtuvan</file_click>
+      <target>_self</target>
+      <bannerhtml></bannerhtml>
+      <publ_time>1700621040</publ_time>
+      <exp_time>0</exp_time>
+    </banners_item>
+  </banners>
+</plan>

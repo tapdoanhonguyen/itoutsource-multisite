@@ -1,0 +1,195 @@
+/**
+* @Project NUKEVIET 4.x
+* @Author Thạch Cảnh Bình <bnhthach@gmail.com>
+* @Copyright (C) 2023 Thạch Cảnh Bình. All rights reserved
+* @License: Not free read more http://nukeviet.vn/vi/store/modules/nvtools/
+* @Createdate Fri, 24 Feb 2023 14:29:02 GMT
+*/
+.row.match-height {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.match-height>[class*=col] {
+    display: flex;
+    flex-flow: column;
+}
+
+.match-height>[class*=col]>.card {
+    flex: 1 1 auto;
+}
+
+.card {
+    border: none;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
+    transition: all .3s ease-in-out,background 0s,color 0s,border-color 0s;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(34,41,47,.125);
+    border-radius: 0.428rem;
+}
+
+.card .card-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: none;
+    padding: 1.5rem;
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+.card-header:first-child {
+    border-radius: calc(0.428rem - 1px) calc(0.428rem - 1px) 0 0;
+}
+
+.card .card-header .card-title {
+    margin-bottom: 0;
+}
+
+.card .card-title {
+    font-weight: bolder;
+    font-size: 1.4rem;
+}
+
+.cus-btn-default {
+    border-radius: 5px;
+    padding: 3px 10px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.btn-default {
+    border: 1px solid #ccc;
+}
+
+.feather {
+    font-family: feather!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card .card-header+.card-body, .card .card-header+.card-content>.card-body:first-of-type {
+    padding-top: 0;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 5px 10px;
+}
+
+.bg-rose {
+    background-color: #ff925a !important;
+}
+
+.sticky-header {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.card .table {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0.357rem;
+}
+
+.sticky-header thead {
+    background: #888;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+    z-index: 10;
+}
+
+.table thead tr th {
+    text-align: center;
+    vertical-align: middle!important;
+}
+.sticky-header thead tr th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+}
+
+.table tfoot th, .table thead th {
+    vertical-align: top;
+    text-transform: none;
+    font-size: 1.2rem;
+    letter-spacing: .5px;
+    font-weight: 400;
+}
+.table:not(.table-dark):not(.table-light) tfoot:not(.thead-dark) th, .table:not(.table-dark):not(.table-light) thead:not(.thead-dark) th {
+    background-color: #f3f2f7;
+}
+
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+.text-white {
+    color: #fff !important;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0 !important;
+}
+.font-35 {
+    font-size: 20px !important;
+}
+.ml-auto, .mx-auto {
+    margin-left: auto !important;
+}
+.bx {
+    font-family: 'boxicons' !important;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    line-height: inherit;
+    display: inline-block;
+    text-transform: none;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bx-user:before {
+    content: "\ebbf";
+}
+.bg-primary-blue {
+    background-color: #258FE5 !important;
+}
+
+.bg-sunset {
+    background-color: #23CFB7 !important;
+}
+.panel-heading{
+    padding: 10px 0px;
+}
+.khung{
+    padding-top: 20px;
+}
+.left_nhan_su{
+    text-align: left !important;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plan>
+  <id>5</id>
+  <lang></lang>
+  <title>Doanh nghiệp</title>
+  <form>random</form>
+  <width>1904</width>
+  <height>386</height>
+  <banners>
+    <banners_item>
+      <id>4</id>
+      <title>HIỆN ĐẠI HÓA CHO DOANH NGHIỆP CỦA BẠN</title>
+      <clid>1</clid>
+      <file_name>smartline-background-main.png</file_name>
+      <imageforswf></imageforswf>
+      <file_ext>png</file_ext>
+      <file_mime>image/png</file_mime>
+      <file_width>1904</file_width>
+      <file_height>386</file_height>
+      <file_alt>Dịch vụ IT trọn gói của SMARTLINE  là một bước đệm an toàn và nhanh chóng nhất cho doanh nghiệp bạn hòa nhập với nền CNTT thế hệ mới trong giai đoạn chuyển đổi số như hiện nay.</file_alt>
+      <file_click></file_click>
+      <target>_self</target>
+      <bannerhtml></bannerhtml>
+      <publ_time>1700728440</publ_time>
+      <exp_time>0</exp_time>
+    </banners_item>
+  </banners>
+</plan>

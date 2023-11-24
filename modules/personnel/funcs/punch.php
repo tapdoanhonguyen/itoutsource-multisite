@@ -34,7 +34,7 @@ if (defined('NV_IS_USER') || defined('NV_IS_ADMIN')){
 		$array_userid[] = $_row['userid']; 
 	}
 	$array_locationid = array();
-	$_sql = 'SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_data where group_name="work_place"';
+	$_sql = 'SELECT * FROM ' . TABLE_PERSONNEL_NAME . '_data where group_name="work_place" ORDER BY weight ASC';
 	$_query = $db->query($_sql);
 	while ($_row = $_query->fetch()) {
 		$array_locationid[$_row['data_id']] = $_row;
@@ -50,7 +50,10 @@ if (defined('NV_IS_USER') || defined('NV_IS_ADMIN')){
 					$row['type_login'] = $nv_Request->get_int('typelogin', 'post', 0);
 					$row['locationid'] = $nv_Request->get_int('locationid', 'post', 0);
 					$row['address'] = $nv_Request->get_title('address', 'post', 0);
+					$row['note'] = $nv_Request->get_textarea('note', 'post', 0);
 					$data = $nv_Request->get_title('imgdata', 'post', '');
+					
+					
 					// Loại bỏ các ký tự lạ và mã hóa dữ liệu ảnh
 					$filteredData = str_replace('data:image/png;base64,', '', $data);
 					$filteredData = str_replace(' ', '+', $filteredData);
@@ -65,7 +68,7 @@ if (defined('NV_IS_USER') || defined('NV_IS_ADMIN')){
 					$row['ip'] = $client_info['ip'];
 					$row['browse'] = $client_info['browser']['key'] . '-' . $client_info['client_os']['key'];
 
-					$stmt = $db->prepare('INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_timekeeper (userid, locationid, date_login, time_login, type_login, image_file, image_data, lat, lng, address, ip, browse) VALUES (:userid, :locationid, :date_login, :time_login, :type_login, :image_file, :image_data, :lat, :lng, :address, :ip, :browse)');
+					$stmt = $db->prepare('INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_timekeeper (userid, locationid, date_login, time_login, type_login, image_file, note, lat, lng, address, ip, browse) VALUES (:userid, :locationid, :date_login, :time_login, :type_login, :image_file, :note, :lat, :lng, :address, :ip, :browse)');
 
 					$stmt->bindParam(':userid', $row['userid'], PDO::PARAM_INT);
 					$stmt->bindParam(':date_login', $row['date_login'], PDO::PARAM_INT);
@@ -74,7 +77,7 @@ if (defined('NV_IS_USER') || defined('NV_IS_ADMIN')){
 					$stmt->bindParam(':time_login', $row['time_login'], PDO::PARAM_STR);
 					$stmt->bindParam(':type_login', $row['type_login'], PDO::PARAM_INT);
 					$stmt->bindParam(':image_file', $row['image_file'], PDO::PARAM_STR);
-					$stmt->bindParam(':image_data', $row['image_data'], PDO::PARAM_STR);
+					$stmt->bindParam(':note', $row['note'], PDO::PARAM_STR);
 					$stmt->bindParam(':lat', $row['lat'], PDO::PARAM_STR);
 					$stmt->bindParam(':lng', $row['lng'], PDO::PARAM_STR);
 					$stmt->bindParam(':address', $row['address'], PDO::PARAM_STR);
@@ -87,8 +90,13 @@ if (defined('NV_IS_USER') || defined('NV_IS_ADMIN')){
 				if ($exc) {
 					$id = $db->lastInsertId();
 					if (empty($row['id'])) {
-						
-						file_put_contents(NV_ROOTDIR . '/' . NV_UPLOADS_DIR . '/timekeeper/capture/' . $fileName, $decodedData);
+						$stmtn = $db->prepare('INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_timekeeper_image (id, userid, image_data) VALUES (:id, :userid, :image_data)');
+
+						$stmtn->bindParam(':id', $id, PDO::PARAM_INT);
+						$stmtn->bindParam(':userid', $row['userid'], PDO::PARAM_INT);
+						$stmtn->bindParam(':image_data', $row['image_data'], PDO::PARAM_STR);
+						$excn = $stmtn->execute();
+						file_put_contents(NV_ROOTDIR . '/' . NV_UPLOADS_DIR . '/personnel/timekeeper/capture/' . $fileName, $decodedData);
 						if($row['idlogin'] > 0){
 							$stmtl = $db->prepare('UPDATE ' . NV_PREFIXLANG . '_' . $module_data . '_timekeeper SET parentid = ' . $id . ' WHERE id=' . $row['idlogin']);
 							$stmtl->execute();
@@ -100,7 +108,7 @@ if (defined('NV_IS_USER') || defined('NV_IS_ADMIN')){
 						file_put_contents(NV_ROOTDIR . '/' . NV_UPLOADS_DIR . '/timekeeper/capture/' . $fileName, $decodedData);
 						nv_insert_logs(NV_LANG_DATA, $module_name, 'Check Out', 'ID: ' . $row['id'], $user_info['userid']);
 					}
-					nv_redirect_location(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op);
+					nv_redirect_location(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=timekeeping');
 				}
 			} catch(PDOException $e) {
 				trigger_error($e->getMessage());
