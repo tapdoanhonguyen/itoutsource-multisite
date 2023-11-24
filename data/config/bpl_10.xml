@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plan>
+  <id>10</id>
+  <lang></lang>
+  <title>CẦN IT MANAGER - GỌI NGAY IT SMARTLINE</title>
+  <form>random</form>
+  <width>1904</width>
+  <height>386</height>
+  <banners>
+    <banners_item>
+      <id>9</id>
+      <title>CẦN IT MANAGER - GỌI NGAY IT SMARTLINE</title>
+      <clid>1</clid>
+      <file_name>smartline-background-main_2.png</file_name>
+      <imageforswf>smartline-background-main_1.png</imageforswf>
+      <file_ext>png</file_ext>
+      <file_mime>image/png</file_mime>
+      <file_width>1904</file_width>
+      <file_height>386</file_height>
+      <file_alt>IT Manager của SMARTLINE chính là một mảnh ghép hoàn hảo cho doanh nghiệp bạn từng bước tiến đến nền công nghệ 4.0 nhanh chóng, hiệu quả và an toàn nhất</file_alt>
+      <file_click></file_click>
+      <target>_self</target>
+      <bannerhtml></bannerhtml>
+      <publ_time>1700804413</publ_time>
+      <exp_time>0</exp_time>
+    </banners_item>
+  </banners>
+</plan>
