@@ -153,6 +153,7 @@ if( !nv_function_exists( 'nv_block_photos_new' ) )
 			$xtpl = new XTemplate( 'block_photos_new.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/modules/' . $mod_file );
 			$xtpl->assign( 'BLOCK_ID', $blockID );
 			$xtpl->assign( 'TEMPLATE', $block_theme );
+			$xtpl->assign('BLOCK_TITLE', $block_config['title']);
 			$xtpl->assign( 'MODULE_FILE', $mod_file );
 			foreach( $list as $album )
 			{

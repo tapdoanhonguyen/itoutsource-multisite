@@ -117,7 +117,7 @@ if (!nv_function_exists('nv_block_freecontent')) {
 
         $sql = 'SELECT id, title, description, image, link, target FROM ' . NV_PREFIXLANG . '_' . $site_mods[$module]['module_data'] . '_rows WHERE status = 1 AND bid = ' . $block_config['blockid'];
         $list = $nv_Cache->db($sql, 'id', $module);
-
+		
         if (!empty($list)) {
             if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $site_mods[$module]['module_file'] . '/block.free_content.tpl')) {
                 $block_theme = $global_config['module_theme'];
@@ -129,6 +129,8 @@ if (!nv_function_exists('nv_block_freecontent')) {
 
             $xtpl = new XTemplate('block.free_content.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/modules/' . $site_mods[$module]['module_file']);
 
+			$xtpl->assign('BLOCK_TITLE', $block_config['title']);
+			$xtpl->assign('TEMPLATE', $block_theme);
             shuffle($list);
             if ($block_config['numrows'] <= sizeof($list)) {
                 $list = array_slice($list, 0, $block_config['numrows']);

@@ -34,7 +34,10 @@ if ($shop_module_config['review_active'] == '1') {
 }
 
 if ($shop_module_config['active_warehouse']) {
-    $submenu['warehouse_logs'] = $lang_module['warehouse_logs'];
+    $submenu['purchases'] = $lang_module['purchases'];
+	$submenu['purchases_list'] = $lang_module['purchases_list'];
+	$submenu['supply'] = $lang_module['supply'];
+	$submenu['warehouses'] = $lang_module['warehouses'];
 }
 $submenu_price=array();
 $submenu_price['updateprice'] = $lang_module['updateprice'];

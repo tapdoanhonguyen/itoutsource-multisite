@@ -54,18 +54,37 @@ while (list ($pro_id) = $_query->fetch(3)) {
 }
 $array_pro_id = array_unique($array_pro_id);
 $array_pro_id = !empty($array_pro_id) ? implode(',', $array_pro_id) : 0;
-
+if($sorts == 3){
+		$where = ' AND discount_id > 0 ';
+		$sql_groups .= $where;
+	}
+	if($sorts == 4){
+		$where = ' AND num_sell > 0 ';
+		$sql_groups .= $where;
+	}
+	$orderby = '';
+    if ($sorts == 0) {
+        $orderby = 'id DESC ';
+    } elseif ($sorts == 1) {
+        $orderby = 'product_price ASC, id DESC ';
+    } elseif ($sorts == 2) {
+        $orderby = ' product_price DESC, id DESC ';
+    }elseif ($sorts == 3){
+		$orderby = ' product_price ASC, id DESC ';
+	}else{
+		$orderby = ' num_sell DESC, id DESC ';
+	}
 // Fetch Limit
 $db->sqlreset()
     ->select('COUNT(*)')
     ->from($db_config['prefix'] . '_' . $module_data . '_rows')
-    ->where('status=1 AND id IN ( ' . $array_pro_id . ' )');
+    ->where('status=1 AND id IN ( ' . $array_pro_id . ' )' . $where);
 
 $num_items = $db->query($db->sql())
     ->fetchColumn();
 
 $db->select('id, listcatid, publtime, ' . NV_LANG_DATA . '_title, ' . NV_LANG_DATA . '_alias, ' . NV_LANG_DATA . '_hometext, homeimgalt, homeimgfile, homeimgthumb, product_code, product_number, product_price, money_unit, showprice, ' . NV_LANG_DATA . '_gift_content, gift_from, gift_to')
-    ->order('id DESC')
+    ->order($orderby)
     ->limit($per_page)
     ->offset(($page - 1) * $per_page);
 

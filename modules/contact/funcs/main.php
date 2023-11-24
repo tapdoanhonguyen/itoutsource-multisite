@@ -88,11 +88,12 @@ if (defined('NV_IS_USER')) {
  * Nhan thong tin va gui den admin
  */
 if ($nv_Request->isset_request('checkss', 'post')) {
+	
     $checkss = $nv_Request->get_title('checkss', 'post', '');
     if ($checkss != NV_CHECK_SESSION) {
         exit();
     }
-
+	
     /*
      * Ajax
      */
@@ -111,7 +112,7 @@ if ($nv_Request->isset_request('checkss', 'post')) {
 
         exit($form);
     }
-
+	
     unset($fcaptcha);
     // Xác định giá trị của captcha nhập vào nếu sử dụng reCaptcha
     if ($module_captcha == 'recaptcha') {
@@ -164,13 +165,13 @@ if ($nv_Request->isset_request('checkss', 'post')) {
         ]);
     }
 
-    if (($fcon = $nv_Request->get_editor('fcon', '', NV_ALLOWED_HTML_TAGS)) == '') {
+/*     if (($fcon = $nv_Request->get_editor('fcon', '', NV_ALLOWED_HTML_TAGS)) == '') {
         nv_jsonOutput([
             'status' => 'error',
             'input' => 'fcon',
             'mess' => $lang_module['error_content']
         ]);
-    }
+    } */
 
     $fcat = $nv_Request->get_int('fcat', 'post', 0);
     if (isset($cats[$fcat])) {

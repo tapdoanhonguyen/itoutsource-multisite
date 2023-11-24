@@ -188,6 +188,16 @@ if ( defined( 'NV_IS_ADMIN' ) ) {
 			$view['link_edit'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;cid=' . $view['cid'];
 			$view['link_delete'] = NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $op . '&amp;delete_cid=' . $view['cid'] . '&amp;delete_checkss=' . md5( $view['cid'] . NV_CACHE_PREFIX . $client_info['session_id'] );
 			$xtpl->assign( 'VIEW', $view );
+			$themes = explode(',',$view['theme']);
+			foreach($themes as $theme){
+				$xtpl->assign( 'theme', $theme );
+				$xtpl->parse( 'main.view.loop.theme' );
+			}
+			$modules = explode(',',$view['module']);
+			foreach($modules as $module){
+				$xtpl->assign( 'module', $module );
+				$xtpl->parse( 'main.view.loop.module' );
+			}
 			$xtpl->parse( 'main.view.loop' );
 		}
 		$xtpl->parse( 'main.view' );

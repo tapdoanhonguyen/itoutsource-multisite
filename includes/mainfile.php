@@ -80,7 +80,6 @@ define('SYSTEM_CACHEDIR', NV_CACHEDIR);
 define('NV_USERS_GLOBALTABLE', $db_config['dbsystem'] . '.' . $db_config['prefix'] . '_users');
 define('NV_GROUPS_GLOBALTABLE', $db_config['dbsystem'] . '.' . $db_config['prefix'] . '_users_groups');
 define('NV_GROUPSDETAIL_GLOBALTABLE', $db_config['dbsystem'] . '.' . $db_config['prefix'] . '_users_groups_detail');
-
 // Neu khong co IP
 if (NV_CLIENT_IP == 'none') {
     exit('Error: Your IP address is not correct');

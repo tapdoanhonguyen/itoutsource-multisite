@@ -398,12 +398,6 @@ if ($nv_Request->get_int('save', 'post') == 1) {
             'input' => 'catid',
             'msg' => $lang_module['error_cat']
         ));
-    } elseif ($pro_config['use_shipping'] and empty($rowcontent['product_weight'])) {
-        nv_jsonOutput(array(
-            'error' => 1,
-            'input' => 'f_weight',
-            'msg' => $lang_module['error_weight']
-        ));
     } elseif (trim(strip_tags($rowcontent['hometext'])) == '') {
         nv_jsonOutput(array(
             'error' => 1,
@@ -423,7 +417,15 @@ if ($nv_Request->get_int('save', 'post') == 1) {
             'msg' => $lang_module['error_product_price']
         ));
     }
-
+/*
+ elseif ($pro_config['use_shipping'] and empty($rowcontent['product_weight'])) {
+        nv_jsonOutput(array(
+            'error' => 1,
+            'input' => 'f_weight',
+            'msg' => $lang_module['error_weight']
+        ));
+    }
+*/
     // Kiem tra nhom bat buoc
     $group_cat = [];
     $result = $db->query('SELECT groupid FROM ' . $db_config['prefix'] . '_' . $module_data . '_group_cateid WHERE cateid = ' . $rowcontent['listcatid']);
@@ -581,7 +583,7 @@ if ($nv_Request->get_int('save', 'post') == 1) {
         $data_insert['homeimgalt'] = $rowcontent['homeimgalt'];
         $data_insert['otherimage'] = $rowcontent['otherimage'];
         $data_insert['ratingdetail'] = $rowcontent['ratingdetail'];
-        $data_insert['allowed_comm'] = $rowcontent['allowed_comm'];
+        $data_insert['allowed_comm'] = 0;
 
         foreach ($field_lang as $field_lang_i) {
             list ($flang, $fname) = $field_lang_i;
@@ -597,6 +599,7 @@ if ($nv_Request->get_int('save', 'post') == 1) {
         }
 
         unset($sth);
+		//print_r($data_insert);die;
         $rowcontent['id'] = $db->insert_id($sql, 'catid', $data_insert);
 
         if ($rowcontent['id'] > 0) {

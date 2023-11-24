@@ -26,7 +26,7 @@ function BoldKeywordInStr($str, $keyword)
     return $str;
 }
 
-$key = nv_substr($nv_Request->get_title('q', 'get', '', 1), 0, 100);
+$key = nv_substr($nv_Request->get_title('q', 'get', '', 0), 0, 300);
 $from_date = $nv_Request->get_title('from_date', 'get', '', 1);
 $to_date = $nv_Request->get_title('to_date', 'get', '', 1);
 $catid = $nv_Request->get_int('catid', 'get', 0);
@@ -34,7 +34,7 @@ $check_num = $nv_Request->get_int('choose', 'get', 1);
 $pages = $nv_Request->get_int('page', 'get', 1);
 $date_array['from_date'] = $from_date;
 $date_array['to_date'] = $to_date;
-$per_pages = 20;
+$per_pages = 1000;
 
 $array_cat_search = array();
 $array_cat_search[0] = array(
@@ -65,16 +65,19 @@ $contents = call_user_func('search_theme', $key, $check_num, $date_array, $array
 $where = '';
 $tbl_src = '';
 
-if (strlen($key) >= NV_MIN_SEARCH_LENGTH) {
+if (strlen($key) >= 0) {
+	
+	
     $dbkey = $db->dblikeescape($key);
-    $where = "AND ( product_code LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_title LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_bodytext LIKE '%" . $dbkey . "%' ) ";
+	$dbkey = str_replace(' ','%',$dbkey);
+    $where = "AND ( product_code LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_title LIKE '%" . $dbkey . "%'  OR " . NV_LANG_DATA . "_bodytext LIKE '%" . $dbkey . "%' ) ";
 
     if ($pro_config['sortdefault'] == 0) {
         $orderby = 'id DESC';
     } elseif ($pro_config['sortdefault'] == 1) {
-        $orderby = 'product_price ASC, t1.id DESC';
+        $orderby = 'product_price ASC, id DESC';
     } else {
-        $orderby = 'product_price DESC, t1.id DESC';
+        $orderby = 'product_price DESC, id DESC';
     }
 
     if ($catid != 0) {
@@ -99,17 +102,15 @@ if (strlen($key) >= NV_MIN_SEARCH_LENGTH) {
 
     // Fetch Limit
     $db->sqlreset()->select('COUNT(*)')->from($table_search)->where('status =1 ' . $where);
-
     $numRecord = $db->query($db->sql())->fetchColumn();
 
-    $db->select('id, ' . NV_LANG_DATA . '_title, ' . NV_LANG_DATA . '_alias, listcatid, ' . NV_LANG_DATA . '_hometext, publtime, homeimgfile, homeimgthumb')->order($orderby)->limit($per_pages)->offset(($page - 1) * $per_page);
-
+    $db->select('id, ' . NV_LANG_DATA . '_title, ' . NV_LANG_DATA . '_alias, listcatid, ' . NV_LANG_DATA . '_hometext, publtime, homeimgfile, homeimgthumb, showprice, product_price, money_unit')->order($orderby)->limit($per_pages)->offset(($page - 1) * $per_page);
     $result = $db->query($db->sql());
 
     $array_content = array();
     $url_link = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=';
 
-    while (list($id, $title, $alias, $listcatid, $hometext, $publtime, $homeimgfile, $homeimgthumb) = $result->fetch(3)) {
+    while (list($id, $title, $alias, $listcatid, $hometext, $publtime, $homeimgfile, $homeimgthumb, $showprice, $product_price, $money_unit) = $result->fetch(3)) {
         if ($homeimgthumb == 1) {
             //image thumb
 
@@ -133,12 +134,19 @@ if (strlen($key) >= NV_MIN_SEARCH_LENGTH) {
             'title' => $title,
             'alias' => $alias,
             'listcatid' => $listcatid,
-            'hometext' => $hometext,
             'publtime' => $publtime,
             'homeimgthumb' => $thumb,
+            'showprice' => $showprice,
+            'product_price' => $product_price,
+            'money_unit' => $money_unit
+
+             
         );
     }
-    $contents .= call_user_func('search_result_theme', $key, $numRecord, $per_pages, $pages, $array_content, $url_link, $catid);
+    
+      
+
+    $contents .= call_user_func('search_result_theme', $key, $numRecord, $per_pages, $pages, $array_content ,  $url_link, $catid);
 }
 
 if (empty($key)) {

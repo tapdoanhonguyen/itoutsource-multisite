@@ -127,11 +127,11 @@ function nv_menu_blocks($block_config)
 function nv_menu_blocks_active($cat)
 {
     if ($cat['current'] === true and !$cat['html_class']) {
-        $class = ' class="current"';
+        $class = 'current';
     } elseif ($cat['current'] === false and $cat['html_class']) {
-        $class = ' class="' . $cat['html_class'] . '"';
+        $class = '' . $cat['html_class'] . '';
     } elseif ($cat['current'] === true and $cat['html_class']) {
-        $class = ' class="' . $cat['html_class'] . ' current"';
+        $class = '' . $cat['html_class'] . ' current';
     } else {
         $class = '';
     }

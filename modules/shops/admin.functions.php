@@ -69,6 +69,10 @@ $allow_func = array(
     'shops',
     'getprice',
     'review',
+    'supply',
+    'purchases',
+    'purchases_list',
+    'warehouses',
     'warehouse',
     'warehouse_logs',
     'download',
@@ -457,7 +461,7 @@ function shops_show_group_list($parentid = 0)
         $xtpl->parse('main.catnav');
     }
 
-    $sql = "SELECT groupid, parentid, " . NV_LANG_DATA . "_title, " . NV_LANG_DATA . "_description, weight, viewgroup, numsubgroup, inhome, indetail, in_order FROM " . $db_config['prefix'] . "_" . $module_data . "_group WHERE parentid = '" . $parentid . "' ORDER BY weight ASC";
+    $sql = "SELECT groupid, parentid, " . NV_LANG_DATA . "_title, " . NV_LANG_DATA . "_description, weight, viewgroup, numsubgroup, inhome, indetail, infilter, in_order FROM " . $db_config['prefix'] . "_" . $module_data . "_group WHERE parentid = '" . $parentid . "' ORDER BY weight ASC";
     $result = $db->query($sql);
     $num = $result->rowCount();
 
@@ -468,7 +472,7 @@ function shops_show_group_list($parentid = 0)
             $lang_global['yes']
         );
 
-        while (list ($groupid, $parentid, $title, $description, $weight, $viewgroup, $numsubgroup, $inhome, $indetail, $in_order) = $result->fetch(3)) {
+        while (list ($groupid, $parentid, $title, $description, $weight, $viewgroup, $numsubgroup, $inhome, $indetail, $infilter, $in_order) = $result->fetch(3)) {
             $array_viewgroup = $array_viewcat_nosub;
             if (!array_key_exists($viewgroup, $array_viewgroup)) {
                 $viewgroup = "viewgrid";
@@ -509,6 +513,13 @@ function shops_show_group_list($parentid = 0)
                     "selected" => $key == $indetail ? " selected=\"selected\"" : ""
                 ));
                 $xtpl->parse('main.data.loop.indetail');
+				
+				$xtpl->assign('OPTION', array(
+                    "key" => $key,
+                    "title" => $val,
+                    "selected" => $key == $infilter ? " selected=\"selected\"" : ""
+                ));
+                $xtpl->parse('main.data.loop.infilter');
 
                 $xtpl->assign('OPTION', array(
                     "key" => $key,
@@ -924,7 +935,7 @@ function email_new_order_payment($content, $data_content, $data_pro, $data_table
 
     $xtpl = new XTemplate("email_new_order_payment.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file);
     $xtpl->assign('LANG', $lang_module);
-    $xtpl->assign('CONTENT', $content);
+    $xtpl->assign('CONTENT',  $content);
 
     $xtpl->parse('main');
     return $xtpl->text('main');

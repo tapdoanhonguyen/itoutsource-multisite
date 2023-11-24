@@ -195,7 +195,7 @@
                     </div>	
                     
                 </div>
-				<!-- BEGIN: admin_tab -->
+				
                 <div class="tab-pane fade" id="tab-table3">
                     <div class="card-body">
                         <div class="row">
@@ -232,13 +232,22 @@
 																	<div class="oxd-date-input" data-v-4a95a2e0="">
 																	
 																	
-																	
+																	<!-- BEGIN: admin_tab -->
 																	
 																		<select id="users_timekeeping" name="users_timekeeping"  placeholder="{DATE_TIMEKEEPING}" class="oxd-select-text oxd-select-text">
 																			<!-- BEGIN:users_timekeeping -->
 																				<option value="{USER_EMPLOYER.userid}" > {USER_EMPLOYER.username} </option>
 																			<!-- END:users_timekeeping -->
 																		</select>
+																	<!-- END: admin_tab -->
+																	<!-- BEGIN: user_tab -->
+																	
+																		<select id="users_timekeeping" name="users_timekeeping"  placeholder="{DATE_TIMEKEEPING}" class="oxd-select-text oxd-select-text" >
+																			<!-- BEGIN:users_timekeeping -->
+																				<option value="{USER_EMPLOYER.userid}" > {USER_EMPLOYER.username} </option>
+																			<!-- END:users_timekeeping -->
+																		</select>
+																	<!-- END: user_tab -->
 																	</div>
 																</div>
 															</div>
@@ -289,10 +298,70 @@
  
                 <div class="tab-pane fade" id="tab-table4">
                     <div class="card-body">
-						
+						<form class="oxd-form" novalidate="" data-v-d5bfe35b="" data-v-50a2ff8a="" id="usersreport">
+											<div class="oxd-form-row" data-v-2130bd2a="" data-v-50a2ff8a="">
+												<div class="oxd-grid-3 orangehrm-full-width-grid" data-v-d7b71de4="" data-v-50a2ff8a="" >
+													<div class="oxd-grid-item oxd-grid-item--gutters" data-v-c93bdbf3="" data-v-50a2ff8a="" >
+														<div class="oxd-input-group oxd-input-field-bottom-space col-12" data-v-957b4417="" data-v-50a2ff8a="">
+															<div class="oxd-input-group__label-wrapper" data-v-957b4417="">
+																<label class="oxd-label oxd-input-field-required" data-v-30ff22b1="" data-v-957b4417="">Chọn nhân viên</label>
+															</div>
+															<div class="" data-v-957b4417="">
+																<div class="oxd-date-wrapper" data-v-4a95a2e0="">
+																	<div class="oxd-date-input" data-v-4a95a2e0="">
+																	
+																	<!-- BEGIN: admin_tab_2 -->
+																	
+																	
+																		<select id="users_report" name="users[]"  multiple class="oxd-select-text oxd-select-text" >
+																			<!-- BEGIN:users_report -->
+																				<option value="{USER_EMPLOYER.userid}" {USER_EMPLOYER.selected}> {USER_EMPLOYER.username}</option>
+																			<!-- END:users_report -->
+																		</select>
+																	<!-- END: admin_tab_2 -->
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="oxd-grid-item oxd-grid-item--gutters" data-v-c93bdbf3="" data-v-50a2ff8a="">
+														<div class="oxd-input-group oxd-input-field-bottom-space col-12" data-v-957b4417="" data-v-50a2ff8a="">
+															<div class="oxd-input-group__label-wrapper" data-v-957b4417="">
+																<label class="oxd-label oxd-input-field-required" data-v-30ff22b1="" data-v-957b4417="">Ngày bắt đầu</label>
+															</div>
+															<div class="" data-v-957b4417="">
+																<div class="oxd-date-wrapper" data-v-4a95a2e0="">
+																	<div class="oxd-date-input" data-v-4a95a2e0="">
+																		<input id="date_begin_report" name="date_begin_report" class="oxd-input oxd-input--active datepicker" placeholder="{DATE_TIMEKEEPING}" value="{DATE_TIMEKEEPING}" data-v-1f99f73c="" data-v-4a95a2e0="">
+																			
+																	</div>
+																</div>
+															</div>
+															<div class="oxd-input-group__label-wrapper" data-v-957b4417="">
+																<label class="oxd-label oxd-input-field-required" data-v-30ff22b1="" data-v-957b4417="">Ngày kết thúc</label>
+															</div>
+															<div class="" data-v-957b4417="">
+																<div class="oxd-date-wrapper" data-v-4a95a2e0="">
+																	<div class="oxd-date-input" data-v-4a95a2e0="">
+																		<input id="date_end_report" name="date_end_report" class="oxd-input oxd-input--active datepicker" placeholder="{DATE_TIMEKEEPING}" value="{DATE_TIMEKEEPING}" data-v-1f99f73c="" data-v-4a95a2e0="">
+																			
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<hr class="oxd-divider" role="separator" aria-orientation="horizontal" data-v-9f847659="" data-v-50a2ff8a="">
+											<div class="oxd-form-actions" data-v-19c2496b="" data-v-50a2ff8a="">
+												<p class="oxd-text oxd-text--p orangehrm-form-hint" data-v-7b563373="" data-v-319fc346="" data-v-50a2ff8a=""> * Yêu cầu</p>
+												<button type="submit" class="oxd-button oxd-button--medium oxd-button--secondary" data-v-10d463b7="" data-v-50a2ff8a=""> Xem </button>
+											</div>
+										</form>
+										<br data-v-usersreport="">
 					 </div>
                 </div>
-				<!-- END: admin_tab -->
+				
  
             
 				
@@ -311,6 +380,16 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={GOGGLEMAP_API}&callback=initMap" async defer></script>
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+<link type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link type="text/css" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+
 <script type="text/javascript">
  
                          
@@ -784,7 +863,224 @@ $(function () {
 			}                  
 		});                    
 	}); 
+	$("#usersreport").on('submit', function(e) {
+			e.preventDefault();
+			const fruitsSelect = document.getElementById("users_report");
+            const selectedFruits = [];
+			var brElement = document.querySelector('br[data-v-usersreport]');
 
+			// Kiểm tra nếu tìm thấy thẻ <br>
+			if (brElement) {
+				var elementToRemove = brElement.nextSibling;
+
+			  // Loại bỏ phần tử HTML
+			  if (elementToRemove) {
+				elementToRemove.parentNode.removeChild(elementToRemove);
+			  }
+			   // Tạo đối tượng HTML mới
+			var newElement = document.createElement('div');
+			var messall='';
+			messall += '<div  data-v-32e798aa="">' +
+												'<div  data-v-32e798aa="">' +
+													
+													
+														'<div class="main-viewport">' +
+															'<div class="viewports">' +
+																
+																	'<div  >' +
+																		
+																		'<div >' +
+																			'<table id="example" style="width: 100%;">';
+																				
+																	messall +='<thead>';
+																	messall +='<tr>';
+
+																					messall +='<td  >' +
+																								'Nhân viên' +
+																							'<//td>';
+																					messall +='<td  >' +
+																								'Ngày chấm công' +
+																							'<//td>' +
+																							'<td >';
+																								
+																									
+																									messall +='Giờ vào';
+																								
+																					messall +='</td><td> Văn phòng </td><td> Giờ ra </td><td> Văn phòng </td>' +
+																							'<td >' +
+																								'Tổng thời gian làm việc trong ngày' +
+																							'</td>';
+				
+																							
+																				messall +='</tr>';
+																				messall +='</thead>';
+																				messall +='<tbody id="tableuserreport">';
+																				messall +='</tbody>';
+			}
+			 if (brElement) {
+				messall +='' +
+																					
+																				
+																			'</table>' +
+																		'</div>' +
+																		'<div class="footer-wrapper">' +
+																			
+																		'</div>' +
+																	'</div>' +
+																
+																'<div class="draggable-wrapper hidden">' +
+																	'<div class="draggable">' +
+																		'<span class="revo-alt-icon">' +
+																		'</span>' +
+																		'<span>' +
+																		'</span>' +
+																	'</div>' +
+																	'<div class="drag-position">' +
+																	'</div>' +
+																'</div>' +
+															'</div>' +
+														'</div>' +
+														
+													
+													
+												'</div>' +
+											'</div>';
+				newElement.innerHTML = messall;
+				  // Chèn đối tượng HTML mới vào sau thẻ <br>
+				  brElement.parentNode.insertBefore(newElement, brElement.nextSibling);
+				  
+				}
+																							
+            for (let i = 0; i < fruitsSelect.options.length; i++) {
+                if (fruitsSelect.options[i].selected) {
+                    selectedFruits.push(fruitsSelect.options[i].value);
+	
+                }
+				
+            }
+			var i =0;
+			selectedFruits.forEach((row) => {
+					$.ajax({               
+						type: "POST",      
+						dataType: 'json',  
+						url: script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=timekeeping&action=usersreport&second=' + new Date().getTime(),
+						data: $('#usersreport').serialize()+'&userslist=' + row,
+						beforeSend: function() {
+							$('#submitreg').prop('disabled', true);
+							$('.message').remove();
+							$('.text-danger').remove();
+							$('.has-error').removeClass('has-error');
+							$('.tab-content').after('<div class="overlay d-flex justify-content-center align-items-center"><i class="fas fa-2x fa-sync-alt fa-spin"></i></div>');
+						},	               
+						complete: function() {
+							$('#submitreg').prop('disabled', false);
+							$('div[class="tooltip fade top in"]').remove();
+							 $('.overlay').remove();
+							 if ( i == (selectedFruits.length -1) ) {
+									$.when.apply($).done(function() {
+										$('#example').DataTable( {
+											dom: 'Bfrtip',
+											buttons: [
+												'copy', 'csv', 'excel', 'pdf', 'print'
+											]
+										} );
+									});
+								}else{
+								i++;
+								}
+							 
+						},                 
+						success: function(json) {
+							if( json['success'] )
+							{     
+								
+							//$('.usersreport-body').html('');
+									
+							
+							$.each(json['data'],function(key,data){
+								$.each(data,function(key,user_data_time){
+									//console.log(user_data_time);
+									$.each(user_data_time['data'],function(key,data_time){
+										var mess = '';
+										mess +='<tr>';
+												
+											mess +='<td>' +
+														data_time['fullname'] +
+													'</td>' +
+													'';
+											mess +='<td>' +
+														user_data_time['date'] +
+													'</td>';
+															mess += '<td> ' + data_time['time_login'] + '</td>';
+															mess += '<td> ' + data_time['location'] + '</td>';
+															mess += '<td> ';
+															if(data_time['time_checkout'] != null){
+																mess += '' + data_time['time_checkout'];
+															}
+															mess += '</td>';
+															mess += '<td> ';
+															if(data_time['time_checkout'] != null){
+																mess += '' + data_time['location_checkout'];
+															}
+																mess += '</td>';
+														
+											mess +='' +
+													'<td>' +
+														data_time['duration'] +
+													'</td></tr>';
+													$('#tableuserreport').append(mess);
+														
+										});
+									});	
+								});		
+																				
+								 
+								 
+								 					
+								//$('.usersreport-body').html(mess);
+								//$('.total_duration').html(json['total_duration']);
+								//$('.records').html(json['records_found']);
+								
+							}              
+							else if( json['error'] )
+							{              
+										   
+								var mess = ''+
+								'<div class="modal-headerx">'+
+								'<h5 class="modal-title" >Thông báo</h5>'+
+								'</div>';  
+								 $(json['error']).each(function(i, item){
+										   
+									var obj = $('#' + item.input);
+									obj.attr('data-error', item.mess);
+									obj.parent().addClass('has-error');
+									obj.addClass('tooltip-current');
+									$('.tooltip-current').tooltip({'title': obj.attr('data-error')});
+									mess+= '<div class="alert-danger"><i class="fa fa-exclamation-circle"></i> ' + item.mess + '</div>';
+								});        
+								$('#sitemodal').find('.modal-dialog').addClass('h-100 my-0 mx-auto d-flex flex-column justify-content-center');
+								$('#sitemodal').modal().find('.modal-body').html(mess);
+							}              
+							setTimeout(function(){$('.message').slideUp(1000).remove()}, 1000)	
+						},                 
+						error: function(xhr, ajaxOptions, thrownError) {
+							 $('.overlay').remove();
+							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						}                  
+					}); 
+					
+										
+					
+               
+				
+            });
+			
+			
+				
+
+				
+							
+		}); 
 
 	
 });  

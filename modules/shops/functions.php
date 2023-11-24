@@ -29,7 +29,9 @@ $groupid = 0;
 $array_displays = [
     '0' => $lang_module['displays_new'],
     '1' => $lang_module['displays_price_asc'],
-    '2' => $lang_module['displays_price_desc']
+    '2' => $lang_module['displays_price_desc'],
+    '3' => $lang_module['displays_price_discount'],
+    '4' => $lang_module['displays_price_bestsale']
 ];
 
 // Categories
@@ -335,6 +337,7 @@ function nv_custom_tpl($name_file, $array_custom, $array_custom_lang, $idtemplat
     $result = $db->query($sql);
     while ($row = $result->fetch()) {
         $row['tab'] = unserialize($row['tab']);
+		print_r($row['tab']);
         if (!empty($row['tab'])) {
             foreach ($row['tab'] as $key => $value) {
                 if (in_array($key, $idtemplates)) {
@@ -345,12 +348,14 @@ function nv_custom_tpl($name_file, $array_custom, $array_custom_lang, $idtemplat
     }
 
     $html = '';
+	
     $xtpl = new XTemplate($name_file, NV_ROOTDIR . '/' . NV_ASSETS_DIR . '/' . $module_upload . '/files_tpl');
     $xtpl->assign('CUSTOM_LANG', $array_custom_lang);
     $xtpl->assign('CUSTOM_DATA', $array_custom);
     $count = 0;
-
+	
     foreach ($array_custom as $key => $value) {
+		
         if (isset($arr[$key]) and !empty($value)) {
             $xtpl->parse('main.' . $key);
             $count++;

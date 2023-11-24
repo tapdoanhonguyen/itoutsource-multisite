@@ -153,7 +153,7 @@ if (!nv_function_exists('nv_block_partner')) {
             } else {
                 $block_theme = 'default';
             }
-
+			//print_r(NV_ROOTDIR . '/themes/' . $block_theme . '/modules/' . $site_mods[$module]['module_file']);
             $xtpl = new XTemplate('block.partner.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/modules/' . $site_mods[$module]['module_file']);
 			$xtpl->assign('BLOCK_TITLE', $block_config['title']);
 			$xtpl->assign('TEMPLATE', $block_theme);
@@ -174,11 +174,11 @@ if (!nv_function_exists('nv_block_partner')) {
 				++$a;
 				$xtpl->assign('ROW', $row);
 				if ($a == 1) {
-				$xtpl->parse('main.loop1');
+				$xtpl->parse('main.loop');
                 } elseif ($a == 2) {
-				$xtpl->parse('main.loop2');
+				$xtpl->parse('main.loop');
                 } elseif ($a == 3) {
-				$xtpl->parse('main.loop3');
+				$xtpl->parse('main.loop');
                 } else {
 				$xtpl->parse('main.loop');
                 }

@@ -15,11 +15,11 @@ define('NV_IS_MOD_NVTOOLS', true);
 
 // Thu muc compiler
 define('NV_SOURCE', NV_ROOTDIR . '/uploads/' . $module_upload . '/compiler');
-
-if (!(defined('NV_IS_GODADMIN'))) {
+//print_r(NV_IS_GODADMIN);die;
+/* if (!(defined('NV_IS_GODADMIN'))) {
     $redirect = '<meta http-equiv="Refresh" content="3;URL=' . nv_url_rewrite(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA, true) . '" />';
     nv_info_die($lang_module['error_title'], $lang_module['error_title'], $lang_module['error_content'] . $redirect);
-}
+} */
 
 /**
  * nv_mkdir_nvtools()

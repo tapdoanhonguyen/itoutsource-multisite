@@ -14,16 +14,57 @@ if (!defined('NV_IS_MOD_SHOPS')) {
 
 $ajax = $nv_Request->isset_request('ajax', 'get,post');
 $listgroupid = $nv_Request->get_string('listgroupid', 'get,post', '');
+$mode = $nv_Request->get_string('mode', 'get,post', '');
 $array_id_group = [];
+
 
 if ($ajax) {
     // Xem qua ajax (lọc theo loại sản phẩm)
     $page = $nv_Request->get_int('page', 'get,post', 1);
+	
     $catid = $nv_Request->get_int('catid', 'get,post', 0);
-
+	
+	
+	$pricestart_old = $pricestart = $nv_Request->get_int('pricestart', 'session', 0);
+    $pricestart = $nv_Request->get_int('pricestart', 'get,post,', $pricestart_old);
+    $priceend = $nv_Request->get_int('priceend', 'get,post', 0);
+	/* if(empty($pricestart)){
+		$nv_Request->set_Session('pricestart', $pricestart, NV_LIVE_SESSION_TIME);
+		$pricestart = $nv_Request->get_int('pricestart', 'session', 0);
+	}
+	if($priceend==0){
+		$priceend = $nv_Request->get_int('priceend', 'session', 0);
+	} */
     if (!empty($listgroupid)) {
         $array_id_group = array_map('intval', explode(',', $listgroupid));
     }
+	
+	if($mode == 'ajax_sub_groups'){
+		$groupid = $nv_Request->get_int('groupid', 'get,post', 0);
+		$array_cat = GetCatidInParent($catid);
+		$subgroup = GetGroupidInParent($groupid, 0, 1);
+		$data=array();
+		if (!empty($subgroup)) {
+			$i=0;
+			foreach ($subgroup as $subgroup_id) {
+				
+					$resulid = array();
+					$resulid = $db->query('SELECT groupid FROM ' . $db_config['prefix'] . '_' . $module_data . '_group_cateid WHERE groupid = ' . $subgroup_id . ' and  cateid in (' . implode(',',$array_cat) . ')')->fetch(3);
+					if($resulid ){
+						if(in_array($subgroup_id,$array_id_group)){
+							continue;
+						}else{
+							$global_array_group[$subgroup_id]['mainalias'] = $global_array_group[$groupid]['alias'];
+							$data[] = $global_array_group[$subgroup_id];
+						}
+						
+					}
+				
+				$i++;
+			}
+		}
+		print_r(json_encode($data));die(); 
+	}
 }
 
 if (empty($catid)) {
@@ -122,9 +163,13 @@ if (empty($contents)) {
         $orderby = 'id DESC ';
     } elseif ($sorts == 1) {
         $orderby = 'product_price ASC, id DESC ';
-    } else {
+    } elseif ($sorts == 2) {
         $orderby = ' product_price DESC, id DESC ';
-    }
+    }elseif ($sorts == 3){
+		$orderby = ' product_price ASC, id DESC ';
+	}else{
+		$orderby = ' num_sell DESC, id DESC ';
+	}
 
     // Lọc sản phẩm theo nhóm
     $sql_groups = '';
@@ -155,7 +200,34 @@ if (empty($contents)) {
 
         $sql_groups = ' AND t1.id IN ( ' . $sql_groups . ' )';
     }
-
+	$current_theme_type = (isset($global_config['current_theme_type']) and !empty($global_config['current_theme_type']) and in_array($global_config['current_theme_type'], array_keys($icons), true)) ? $global_config['current_theme_type'] : 'd';
+    //print_r($client_info);
+	$mobileUserAgents = array(
+        'iPhone', 'Android', 'Windows Phone', 'BlackBerry', 'Opera Mini', 'Mobile Safari'
+    );
+	//print_r(in_array($client_info['client_os']['name'],$mobileUserAgents));
+	if(!empty($pricestart) && in_array($client_info['client_os']['name'],$mobileUserAgents) != 1 ){ 
+		$where = ' AND t1.product_price > ' . $pricestart;
+		$sql_groups .= $where;
+		$nv_Request->set_Session('pricestart', $pricestart, NV_LIVE_SESSION_TIME);
+	}else{
+		unset($_SESSION['pricestart']);
+	}
+	if(!empty($priceend) && in_array($client_info['client_os']['name'],$mobileUserAgents) != 1){
+		$where = ' AND t1.product_price < ' . $priceend;
+		$sql_groups .= $where;
+		$nv_Request->set_Session('priceend', $priceend, NV_LIVE_SESSION_TIME);
+	}else{
+		unset($_SESSION['priceend']);
+	}
+	if($sorts == 3){
+		$where = ' AND t1.discount_id > 0 ';
+		$sql_groups .= $where;
+	}
+	if($sorts == 4){
+		$where = ' AND t1.num_sell > 0 ';
+		$sql_groups .= $where;
+	}
     if ($global_array_shops_cat[$catid]['viewcat'] == 'view_home_cat' and $global_array_shops_cat[$catid]['numsubcat'] > 0) {
         // Hiển thị theo loại sản phẩm
         $data_content = [];

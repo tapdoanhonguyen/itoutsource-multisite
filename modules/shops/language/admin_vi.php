@@ -45,6 +45,8 @@ $lang_module['numsubcat'] = 'Số loại sản phẩm con';
 $lang_module['inhome'] = 'Hiển thị trang chủ';
 $lang_module['indetail'] = 'Hiển thị cùng sản phẩm';
 $lang_module['indetail_note'] = 'Hiển thị thông tin nhóm sản phẩm đi kèm tên sản phẩm';
+$lang_module['infilter'] = 'Hiển thị cùng bộ lọc';
+$lang_module['infilter_note'] = 'Hiển thị thông tin trong bộ lọc sản phẩm';
 $lang_module['in_order'] = 'Hiển thị khi đặt hàng';
 $lang_module['numlinks'] = 'Số liên kết';
 $lang_module['description'] = 'Miêu tả';
@@ -720,3 +722,59 @@ $lang_module['ad_block_top'] = 'Block bên trên chuyên mục';
 $lang_module['ad_block_bot'] = 'Block bên dưới chuyên mục';
 
 $lang_module['error_cat_update'] = 'Tồn tại thuộc tính <strong>%s</strong> của loại sản phẩm bắt buộc chọn khi nhập nên không thể thay đổi';
+
+//Lang for function purchases
+$lang_module['purchases'] = 'Thêm nhập hàng';
+$lang_module['add'] = 'Thêm mới';
+$lang_module['reference_no'] = 'Mã nhập hàng';
+$lang_module['date'] = 'Ngày nhập';
+$lang_module['supplier_id'] = 'Nhập tại nhà cung cấp';
+$lang_module['warehouse_id'] = 'Nhập vào kho';
+$lang_module['note'] = 'Ghi chú';
+$lang_module['total'] = 'Tổng tiền sản phẩm';
+$lang_module['product_discount'] = 'Tổng giám giá theo sản phẩm';
+$lang_module['order_discount_id'] = 'Order discount id';
+$lang_module['order_discount'] = 'Tổng giảm giá theo đơn hàng';
+$lang_module['total_discount'] = 'Tổng giảm giá';
+$lang_module['product_tax'] = 'Thuế sp';
+$lang_module['order_tax_id'] = 'Order tax id';
+$lang_module['order_tax'] = 'Thuế đơn hàng';
+$lang_module['total_tax'] = 'Tổng tiền thuế';
+$lang_module['grand_total'] = 'Tổng cộng';
+$lang_module['paid'] = 'Paid';
+$lang_module['payment_status'] = 'Thanh toán';
+$lang_module['created_by'] = 'Created by';
+$lang_module['updated_by'] = 'Updated by';
+$lang_module['updated_at'] = 'Updated at';
+$lang_module['attachment'] = 'Đính kèm';
+$lang_module['payment_term'] = 'Payment term';
+$lang_module['due_date'] = 'Ngày trả hàng';
+$lang_module['return_id'] = 'Return id';
+$lang_module['surcharge'] = 'Surcharge';
+$lang_module['return_purchase_ref'] = 'Return purchase ref';
+$lang_module['return_purchase_total'] = 'Return purchase total';
+$lang_module['cgst'] = 'Cgst';
+$lang_module['sgst'] = 'Sgst';
+$lang_module['igst'] = 'Igst';
+$lang_module['puidsite'] = 'Puidsite';
+$lang_module['puparentid'] = 'Puparentid';
+
+//Lang for function purchases
+$lang_module['search_submit'] = 'Tìm kiếm';
+
+//Lang for function purchases_list
+$lang_module['purchases_list'] = 'Quản lý nhập hàng';
+
+//Lang for function supply
+$lang_module['supply'] = 'Quản lý nhà cung cấp';
+$lang_module['vi_title'] = 'Tên nhà cung cấp';
+$lang_module['error_required_vi_title'] = 'Lỗi: bạn cần nhập dữ liệu cho Tên nhà cung cấp';
+$lang_module['search_supply'] = 'Tên nhà cung cấp';
+
+//Lang for function warehouses
+$lang_module['warehouses'] = 'warehouses';
+$lang_module['code'] = 'Code';
+$lang_module['address'] = 'Address';
+$lang_module['map'] = 'Map';
+$lang_module['phone'] = 'Phone';
+$lang_module['email'] = 'Email';

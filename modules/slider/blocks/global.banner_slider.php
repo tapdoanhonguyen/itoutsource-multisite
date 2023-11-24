@@ -100,7 +100,7 @@ if (!nv_function_exists('nv_block_banner_slider')) {
 
             foreach ($list as $l) {
                 $l['image'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $l['image'];
-                $l['image_alt'] = empty($l['title']) ? basename($l['image']) : $l['title'] . ' ' . $l['title1'] . ' ' . $l['title2'];
+                $l['image_alt'] = empty($l['title']) ? basename($l['image']) : $l['title'];
                 $l['link_target'] = $l['link_target'] ? ' target="_blank"' : '';
 
                 $xtpl->assign('ROW', $l);
@@ -111,17 +111,8 @@ if (!nv_function_exists('nv_block_banner_slider')) {
                     $xtpl->parse('main.loop.image_only');
                 }
 
-                if (!empty($l['title'])) {
-                    $xtpl->parse('main.loop.title');
-                }
-                if (!empty($l['title1'])) {
-                    $xtpl->parse('main.loop.title1');
-                }
-                if (!empty($l['title2'])) {
-                    $xtpl->parse('main.loop.title2');
-                }
-                if (!empty($l['link_href'])) {
-                    $xtpl->parse('main.loop.more');
+                if (!empty($l['description'])) {
+                    $xtpl->parse('main.loop.caption');
                 }
 
                 $xtpl->parse('main.loop');

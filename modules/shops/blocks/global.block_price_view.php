@@ -86,7 +86,9 @@ if (!function_exists('nv_view_product_price')) {
      */
     function nv_view_product_price($block_config)
     {
-        global $site_mods, $module_info, $nv_Request, $catid;
+        global $site_mods, $global_config, $module_info, $nv_Request, $catid, $global_array_shops_cat;
+		$catid_old= $nv_Request->get_int('catid', 'session', 0);
+		$nv_Request->set_Session('catid', $catid, NV_LIVE_SESSION_TIME);
 
         $cataid = $nv_Request->get_int('cata', 'get', 0);
 
@@ -115,9 +117,27 @@ if (!function_exists('nv_view_product_price')) {
         $xtpl->assign('NV_BASE_SITEURL', NV_BASE_SITEURL);
         $xtpl->assign('TEMPLATE', $block_theme);
         $xtpl->assign('MODULE_FILE', $mod_file);
+		$xtpl->assign('CATID', $catid);
+		$xtpl->assign('REWRITE_ENABLE', $global_config['rewrite_enable'] ? 'true' : 'false');
+		$xtpl->assign('AJAX_URL', nv_url_rewrite(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module . '&' . NV_OP_VARIABLE . '=' . $global_array_shops_cat[$catid]['alias'], true));
+        $xtpl->assign('LINK_URL', rtrim(nv_url_rewrite(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module . '&' . NV_OP_VARIABLE . '=' . $global_array_shops_cat[$catid]['alias'], true), '/'));
 
         $val = $block_config['price_begin'];
-
+		$xtpl->assign('PRICEMIN', $block_config['price_begin']);
+		$xtpl->assign('PRICESTEP', $block_config['price_step']);
+		$xtpl->assign('PRICEMAX', $block_config['price_end']);
+		
+		//print_r($catid_old);print_r('/'.$catid.'/');
+		if($catid != $catid_old){
+			$nv_Request->set_Session('pricestart', $val, NV_LIVE_SESSION_TIME);
+			$nv_Request->set_Session('priceend', $block_config['price_step']*780, NV_LIVE_SESSION_TIME);
+		}
+        $start_old = $nv_Request->get_int('pricestart','session',$val);
+        $end_old = $nv_Request->get_int('priceend','session',$block_config['price_step']*780);
+		//print_r($start_old);
+		$xtpl->assign('PRICESTART', $start_old);
+		$xtpl->assign('PRICEEND', $end_old);
+		//$nv_Request->set_Session('pricestart', $val, NV_LIVE_SESSION_TIME);
         while (true) {
             $price1 = $val;
             $price2 = $val + $block_config['price_step'];

@@ -105,53 +105,94 @@ if (!function_exists('nv_filter_product_cat')) {
         $xtpl->assign('LINK_URL', rtrim(nv_url_rewrite(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $global_array_shops_cat[$catid]['alias'], true), '/'));
 
         $catid = GetParentCatFilter($catid);
-        $result = $db->query('SELECT groupid FROM ' . $db_config['prefix'] . '_' . $site_mods[$module]['module_data'] . '_group_cateid WHERE cateid = ' . $catid);
+		//SELECT sgc.groupid FROM nv4_shops_group_cateid as sgc LEFT JOIN nv4_shops_group as sg on sgc.groupid = sg.groupid WHERE sgc.cateid = 44 ORDER BY sg.weight;
+        $result = $db->query('SELECT sgc.groupid FROM ' . $db_config['prefix'] . '_' . $site_mods[$module]['module_data'] . '_group_cateid as sgc LEFT JOIN ' . $db_config['prefix'] . '_' . $site_mods[$module]['module_data'] . '_group as sg on sgc.groupid = sg.groupid WHERE sgc.cateid = ' . $catid . ' ORDER BY sg.weight');
         $i = 0;
-        while (list ($groupid) = $result->fetch(3)) {
+		$k = 0;
+		while (list ($groupid) = $result->fetch(3)) {
+			
             $groupinfo = $global_array_group[$groupid];
-
             $groupinfo['key'] = str_replace('-', '_', $groupinfo['alias']);
             $groupinfo['class'] = strtolower($groupinfo['alias']);
-            $xtpl->assign('MAIN_GROUP', $groupinfo);
+			//print_r($global_array_group[$groupid]);
+			if($groupinfo['parentid'] == 0 && $groupinfo['infilter'] == 1){
+				$xtpl->assign('MAIN_GROUP', $groupinfo);
+				
+				$subgroup = GetGroupidInParent($groupid, 0, 1);
+				$j=0;
+				if (!empty($subgroup)) {
+					
+					foreach ($subgroup as $subgroup_id) {
+						$resulid = array();
+						$resulid = $db->query('SELECT groupid FROM ' . $db_config['prefix'] . '_' . $site_mods[$module]['module_data'] . '_group_cateid WHERE groupid = ' . $subgroup_id . ' and  cateid in (' . implode(',',$array_cat) . ')')->fetch(3);
+						if($resulid ){
+							if($j==4){
+								
+								$xtpl->parse('main.group.sub_group.more');
+							}elseif($j>4){
+								
+							}else{
+								
+								if (!empty($global_array_group[$subgroup_id]['image'])) {
+									$global_array_group[$subgroup_id]['image'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $global_array_group[$subgroup_id]['image'];
+								}
 
-            $subgroup = GetGroupidInParent($groupid, 0, 1);
-            if (!empty($subgroup)) {
-                foreach ($subgroup as $subgroup_id) {
-                    if (!empty($global_array_group[$subgroup_id]['image'])) {
-                        $global_array_group[$subgroup_id]['image'] = NV_BASE_SITEURL . NV_UPLOADS_DIR . '/' . $module_upload . '/' . $global_array_group[$subgroup_id]['image'];
-                    }
+								$global_array_group[$subgroup_id]['checked'] = '';
+								if (in_array($subgroup_id, $array_id_group)) {
+									$global_array_group[$subgroup_id]['checked'] = ' checked="checked"';
+								}
 
-                    $global_array_group[$subgroup_id]['checked'] = '';
-                    if (in_array($subgroup_id, $array_id_group)) {
-                        $global_array_group[$subgroup_id]['checked'] = ' checked="checked"';
-                    }
+								$xtpl->assign('SUB_GROUP', $global_array_group[$subgroup_id]);
 
-                    $xtpl->assign('SUB_GROUP', $global_array_group[$subgroup_id]);
-
-                    if ($group_style[$groupid] == 'label') {
-                        if (!empty($global_array_group[$subgroup_id]['checked'])) {
-                            $xtpl->parse('main.group.sub_group.loop.label.active');
-                        }
-                        $xtpl->parse('main.group.sub_group.loop.label');
-                    } elseif ($group_style[$groupid] == 'image') {
-                        if (!empty($global_array_group[$subgroup_id]['checked'])) {
-                            $xtpl->parse('main.group.sub_group.loop.image.active');
-                        }
-                        $xtpl->parse('main.group.sub_group.loop.image');
-                    } else {
-                        $xtpl->parse('main.group.sub_group.loop.checkbox');
-                    }
-                    $xtpl->parse('main.group.sub_group.loop');
-                }
-                $xtpl->parse('main.group.sub_group');
-            }
-            if ($i == 0) {
+								if ($group_style[$groupid] == 'label') {
+									if (!empty($global_array_group[$subgroup_id]['checked'])) {
+										$xtpl->parse('main.group.sub_group.loop.label.active');
+									}
+									$xtpl->parse('main.group.sub_group.loop.label');
+								} elseif ($group_style[$groupid] == 'image') {
+									if (!empty($global_array_group[$subgroup_id]['checked'])) {
+										$xtpl->parse('main.group.sub_group.loop.image.active');
+									}
+									$xtpl->parse('main.group.sub_group.loop.image');
+								} else {
+									$xtpl->parse('main.group.sub_group.loop.checkbox');
+								}
+								
+								$xtpl->parse('main.group.sub_group.loop');
+							}	
+							$j++;
+						}
+						
+							
+					}
+					
+					$xtpl->parse('main.group.sub_group');
+				}
+				$k++;
+				if($k>4){
+					
+					$xtpl->assign('hide', 'style="display:none"');
+				}
+				if($k>5 and $groupinfo['parentid'] == 0 ){
+					$xtpl->assign('class', '');
+					if( $groupinfo['infilter'] == 1)
+						$xtpl->parse('main.group.show_sub_group');
+				}else{
+					$xtpl->assign('class', 'show');
+					$xtpl->parse('main.group.no_sub_group');
+				}
+			}
+			
+             if ($i == 0) {
                 $xtpl->parse('main.group.border_top');
             }
-            $xtpl->parse('main.group');
+			if($groupinfo['parentid'] == 0 ){
+				if( $groupinfo['infilter'] == 1)
+				$xtpl->parse('main.group');
+			}
             $i++;
         }
-
+//die;	
         $xtpl->parse('main');
         return $xtpl->text('main');
     }

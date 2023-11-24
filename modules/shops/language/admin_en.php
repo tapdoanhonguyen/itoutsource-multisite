@@ -679,3 +679,57 @@ $lang_module['ad_block_show'] = 'Show secondary blocks';
 $lang_module['ad_block_top'] = 'Block above the category';
 $lang_module['ad_block_bot'] = 'Block below the category';
 $lang_module['error_cat_update'] = 'The attribute <strong>%s</strong> of the product type is mandatory when entering, and can not be changed';
+
+//Lang for function purchases
+$lang_module['purchases'] = 'purchases';
+$lang_module['reference_no'] = 'Reference no';
+$lang_module['date'] = 'Date';
+$lang_module['supplier_id'] = 'Supplier id';
+$lang_module['warehouse_id'] = 'Warehouse id';
+$lang_module['note'] = 'Note';
+$lang_module['total'] = 'Total';
+$lang_module['product_discount'] = 'Product discount';
+$lang_module['order_discount_id'] = 'Order discount id';
+$lang_module['order_discount'] = 'Order discount';
+$lang_module['total_discount'] = 'Total discount';
+$lang_module['product_tax'] = 'Product tax';
+$lang_module['order_tax_id'] = 'Order tax id';
+$lang_module['order_tax'] = 'Order tax';
+$lang_module['total_tax'] = 'Total tax';
+$lang_module['grand_total'] = 'Grand total';
+$lang_module['paid'] = 'Paid';
+$lang_module['payment_status'] = 'Payment status';
+$lang_module['created_by'] = 'Created by';
+$lang_module['updated_by'] = 'Updated by';
+$lang_module['updated_at'] = 'Updated at';
+$lang_module['attachment'] = 'Attachment';
+$lang_module['payment_term'] = 'Payment term';
+$lang_module['due_date'] = 'Due date';
+$lang_module['return_id'] = 'Return id';
+$lang_module['surcharge'] = 'Surcharge';
+$lang_module['return_purchase_ref'] = 'Return purchase ref';
+$lang_module['return_purchase_total'] = 'Return purchase total';
+$lang_module['cgst'] = 'Cgst';
+$lang_module['sgst'] = 'Sgst';
+$lang_module['igst'] = 'Igst';
+$lang_module['puidsite'] = 'Puidsite';
+$lang_module['puparentid'] = 'Puparentid';
+
+//Lang for function purchases
+$lang_module['search_submit'] = 'Search';
+
+//Lang for function purchases_list
+$lang_module['purchases_list'] = 'purchases_list';
+
+//Lang for function supply
+$lang_module['supply'] = 'supply';
+$lang_module['vi_title'] = 'Vi title';
+$lang_module['error_required_vi_title'] = 'Error: Required fields enter the Vi title';
+
+//Lang for function warehouses
+$lang_module['warehouses'] = 'warehouses';
+$lang_module['code'] = 'Code';
+$lang_module['address'] = 'Address';
+$lang_module['map'] = 'Map';
+$lang_module['phone'] = 'Phone';
+$lang_module['email'] = 'Email';

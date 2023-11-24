@@ -144,23 +144,23 @@ if (!nv_function_exists('nv_block_gioithieu')) {
 
         $sql = 'SELECT id, title, description, image, link, target FROM ' . NV_PREFIXLANG . '_' . $site_mods[$module]['module_data'] . '_rows WHERE status = 1 AND bid = ' . $block_config['blockid'];
         $list = $nv_Cache->db($sql, 'id', $module);
+		if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $site_mods[$module]['module_file'] . '/block.gioithieu.tpl')) {
+			$block_theme = $global_config['module_theme'];
+		} elseif (file_exists(NV_ROOTDIR . '/themes/' . $global_config['site_theme'] . '/modules/' . $site_mods[$module]['module_file'] . '/block.gioithieu.tpl')) {
+			$block_theme = $global_config['site_theme'];
+		} else {
+			$block_theme = 'default';
+		}
 
+		$xtpl = new XTemplate('block.gioithieu.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/modules/' . $site_mods[$module]['module_file']);
+		$xtpl->assign('BLOCK_TITLE', $block_config['title']);
+		$xtpl->assign('TEMPLATE', $block_theme);
+		$xtpl->assign('TITLE_PROFE', $block_config['title_profe']);
+		$gioithieu = $block_config['gioithieu'];
+		//$gioithieu = nv_clean60($gioithieu, 300);
+		$xtpl->assign( 'GIOITHIEU', $gioithieu );
         if (!empty($list)) {
-            if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/' . $site_mods[$module]['module_file'] . '/block.gioithieu.tpl')) {
-                $block_theme = $global_config['module_theme'];
-            } elseif (file_exists(NV_ROOTDIR . '/themes/' . $global_config['site_theme'] . '/modules/' . $site_mods[$module]['module_file'] . '/block.gioithieu.tpl')) {
-                $block_theme = $global_config['site_theme'];
-            } else {
-                $block_theme = 'default';
-            }
-
-            $xtpl = new XTemplate('block.gioithieu.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/modules/' . $site_mods[$module]['module_file']);
-			$xtpl->assign('BLOCK_TITLE', $block_config['title']);
-			$xtpl->assign('TEMPLATE', $block_theme);
-			$xtpl->assign('TITLE_PROFE', $block_config['title_profe']);
-			$gioithieu = strip_tags($block_config['gioithieu']);
-            //$gioithieu = nv_clean60($gioithieu, 300);
-			$xtpl->assign( 'GIOITHIEU', $gioithieu );
+            
 
             shuffle($list);
             if ($block_config['numrows'] <= sizeof($list)) {
@@ -184,11 +184,12 @@ if (!nv_function_exists('nv_block_gioithieu')) {
                 }
             }
 
-            $xtpl->parse('main');
-            return $xtpl->text('main');
+            
         }
+		$xtpl->parse('main');
+        return $xtpl->text('main');
 
-        return '';
+        //return '';
     }
 }
 
