@@ -19,7 +19,7 @@
 		   <div class="bg-cover " data-lazyload2="{NV_BASE_SITEURL}themes/{TEMPLATE}/images/shutterstock_258687632.jpg" style='background-image: url("{NV_BASE_SITEURL}themes/{TEMPLATE}/images/loading.svg");'>
 				<div class="wraper">
 					<div class="container pd-tb-50 space-20" >
-					{MODULE_CONTENT}
+					
 					</div>
 				</div>
 		 </div>

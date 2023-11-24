@@ -27,4 +27,26 @@
 }
 .cardutline .card-header{
 	background:#f9f9f9f9
+	
+}
+#capturein{
+	width: 300px;
+    height: 100px;
+    font-size: xxx-large;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: var(--oxd-secondary-font-color,#fff);
+    background-color: #225393;
+    font-family: Nunito Sans,sans-serif;
+    font-weight: 600;
+    border: 0;
+    border-radius: 3em;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    padding-right: 32px;
+    padding-left: 32px;
+    min-width: 100px;
+    margin: auto;
 }
