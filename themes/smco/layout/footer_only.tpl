@@ -7,6 +7,7 @@
         <div id="openidBt" data-result="" data-redirect=""></div>
         <!-- BEGIN: crossdomain_listener -->
         <script type="text/javascript">
+		$('.mfp-wrap').hide();
         function nvgSSOReciver(event) {
             if (event.origin !== '{SSO_REGISTER_ORIGIN}') {
                 return false;
@@ -25,6 +26,9 @@
         window.addEventListener('message', nvgSSOReciver, false);
         </script>
         <!-- END: crossdomain_listener -->
+		 <script type="text/javascript">
+		$('.mfp-wrap').hide();
+		</script>
         <script src="{NV_STATIC_URL}themes/{TEMPLATE}/js/bootstrap.min.js"></script>
     </body>
 </html>

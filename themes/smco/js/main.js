@@ -546,7 +546,7 @@ $(function() {
     });
 
     // Tooltip
-    $(".form-tooltip").tooltip({
+/*     $(".form-tooltip").tooltip({
         selector: "[data-toggle=tooltip]",
         container: "body"
     });
@@ -556,7 +556,7 @@ $(function() {
         title: function() {
             return ("" == $(this).data("img") || !$(this).data("img") ? "" : '<img class="img-thumbnail pull-left" src="' + $(this).data("img") + '" width="90" />') + $(this).data("content")
         }
-    });
+    }); */
 
     // Change site lang
     $(".nv_change_site_lang").change(function() {

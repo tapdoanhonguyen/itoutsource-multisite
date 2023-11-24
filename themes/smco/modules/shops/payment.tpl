@@ -70,7 +70,7 @@
     <span class="text-right help-block"><strong>{LANG.product_unit_price}:</strong> {unit}</span>
     <!-- END: price6 -->
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover">
+        <table class="table table-striped table-bordered table-hover" id="fpro">
             <thead>
                 <tr>
                     <th align="center" width="30px"> {LANG.order_no_products} </th>
@@ -95,15 +95,15 @@
                 <!-- BEGIN: loop -->
                 <tr {bg}>
                     <td align="center"> {pro_no} </td>
-                    <td><a title="{product_name}" href="{link_pro}">{product_name}</a><!-- BEGIN: display_group -->
+                    <td><a title="{product_name}" href="{link_pro}">{product_name}</a><!-- BEGIN: display_groups -->
                     <p>
                         <!-- BEGIN: group -->
                         <span class="show"><span class="text-muted">{group.parent_title}: <strong>{group.title}</strong></span></span>
                         <!-- END: group -->
-                    </p><!-- END: display_group --></td>
-                    <!-- BEGIN: sub_group -->
+                    </p><!-- END: display_groups --></td>
+                    <!-- BEGIN: sub_groups -->
                     
-                    <!-- END: sub_group -->
+                    <!-- END: sub_groups -->
                     <!-- BEGIN: price2 -->
                     <td class="money text-right"><strong>{product_price}</strong></td>
                     <!-- END: price2 -->

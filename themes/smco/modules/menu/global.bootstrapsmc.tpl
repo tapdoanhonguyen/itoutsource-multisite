@@ -5,9 +5,9 @@
     <!-- END: loop -->
 </ul>
 <!-- END: submenu -->
-<ul class="categories-menu content-row mb-0"><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-canon/" title="Máy Photocopy Canon"><img class="cat-image" src="//smartlineco.com/uploads/ccanon.png" alt=""><span class="menu-title">Máy Photocopy Canon</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-hp/" title="Máy Photocopy HP"><img class="cat-image" src="//smartlineco.com/wp-content/uploads/2018/08/c05482422.png" alt=""><span class="menu-title">Máy Photocopy HP</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-ricoh/" title="Máy Photocopy Ricoh"><img class="cat-image" src="//smartlineco.com/uploads/ricoh-copier-1.jpg" alt=""><span class="menu-title">Máy Photocopy Ricoh</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-minolta/" title="Máy Photocopy Minolta"><img class="cat-image" src="//smartlineco.com/uploads/minolta.jpg" alt=""><span class="menu-title">Máy Photocopy Minolta</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-sharp/" title="Máy Photocopy Sharp"><img class="cat-image" src="//smartlineco.com/uploads/sharp.jpg" alt=""><span class="menu-title">Máy Photocopy Sharp</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-toshiba/" title="Máy Photocopy Toshiba"><img class="cat-image" src="//smartlineco.com/wp-content/uploads/2018/08/09_eS3508LP_DSDF_4cst_1109_F_AB_NBG-NEW.jpg" alt=""><span class="menu-title">Máy Photocopy Toshiba</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-xerox/" title="Máy Photocopy Fuji-Xerox"><img class="cat-image" src="//smartlineco.com/uploads/xerox.jpg" alt=""><span class="menu-title">Máy Photocopy Fuji-Xerox</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-cu/" title="Máy Photocopy Cũ/ ĐQSD"><img class="cat-image" src="//smartlineco.com/uploads/abc.jpg" alt=""><span class="menu-title">Máy Photocopy Cũ/ ĐQSD</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-mau/" title="Máy Photocopy Màu"><img class="cat-image" src="//smartlineco.com/wp-content/uploads/2023/03/c3320.jpg" alt=""><span class="menu-title">Máy Photocopy Màu</span></a></li></ul>				
+				
 <!-- BEGIN: main -->
-<ul class="nav header-nav header-bottom-nav nav-left  nav-uppercase">
+<ul class="nav header-nav header-bottom-nav nav-left  nav-uppercase" id="menu-site-default">
 <!-- BEGIN: top_menu -->
 <li id="menu-item-32229" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-32229 menu-item-design-full-width menu-item-has-block has-dropdown">
 <a href="{TOP_MENU.link}" class="nav-top-link" aria-expanded="false" aria-haspopup="menu">{TOP_MENU.title_trim}
@@ -18,8 +18,7 @@
 <!-- BEGIN: sub --> 
 <div class="sub-menu nav-dropdown" style="">
 	<section class="section" id="section_1086352210">
-<div class="bg section-bg fill bg-fill bg-loaded">
-</div>
+<div class="bg section-bg fill bg-fill bg-loaded"></div>
 <div class="section-content relative">
 <div class="row" id="row-684991259">
 <div id="col-1525499400" class="col medium-12 small-12 large-9">
@@ -28,22 +27,6 @@
 <div class="product_taxonomies_menu-content container product_taxonomies_style_default  tab-content-inner">
 {SUB} 
 
-</div>
-</div>
-</div>
-</div>
-<div id="col-505072320" class="col medium-12 small-12 large-3">
-<div class="col-inner">
-<div class="box has-hover   has-hover box-text-bottom">
-<div class="box-image" style="width:90%;">
-<div class="">
-<img width="450" height="300" src="//smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378.jpg" class="attachment- size-" alt="" loading="lazy" srcset="//smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378.jpg 450w, //smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378-300x200.jpg 300w, //smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378-247x165.jpg 247w" sizes="(max-width: 450px) 100vw, 450px">											</div>
-</div>
-<div class="box-text text-center">
-<div class="box-text-inner">
-<h4>Máy photocopy kỹ thuật số thế hệ mới</h4>
-<p>Hoàng Minh Office - Chuyên Cung Cấp Máy Photocopy Chính Hãng Cho Văn Phòng &amp; Cơ Quan. Dịch Vụ Bảo Hành Chuyên Nghiệp 24/7</p>
-</div>
 </div>
 </div>
 </div>
@@ -521,3 +504,23 @@ height: 150px;
         $(window).resize(checkWidthMenu);
     });
 </script>
+<div id="col-505072320" class="col medium-12 small-12 large-3">
+<div class="col-inner">
+<div class="box has-hover   has-hover box-text-bottom">
+<div class="box-image" style="width:90%;">
+<div class="">
+<img width="450" height="300" src="//smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378.jpg" class="attachment- size-" alt="" loading="lazy" srcset="//smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378.jpg 450w, //smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378-300x200.jpg 300w, //smartlineco.com/wp-content/uploads/2023/01/z4069941837904_5b18795b0abb48d7fda9ffc8895de378-247x165.jpg 247w" sizes="(max-width: 450px) 100vw, 450px">											</div>
+</div>
+<div class="box-text text-center">
+<div class="box-text-inner">
+<h4>Máy photocopy kỹ thuật số thế hệ mới</h4>
+<p>Hoàng Minh Office - Chuyên Cung Cấp Máy Photocopy Chính Hãng Cho Văn Phòng &amp; Cơ Quan. Dịch Vụ Bảo Hành Chuyên Nghiệp 24/7</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<ul class="categories-menu content-row mb-0"><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-canon/" title="Máy Photocopy Canon"><img class="cat-image" src="//smartlineco.com/uploads/ccanon.png" alt=""><span class="menu-title">Máy Photocopy Canon</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-hp/" title="Máy Photocopy HP"><img class="cat-image" src="//smartlineco.com/wp-content/uploads/2018/08/c05482422.png" alt=""><span class="menu-title">Máy Photocopy HP</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-ricoh/" title="Máy Photocopy Ricoh"><img class="cat-image" src="//smartlineco.com/uploads/ricoh-copier-1.jpg" alt=""><span class="menu-title">Máy Photocopy Ricoh</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-minolta/" title="Máy Photocopy Minolta"><img class="cat-image" src="//smartlineco.com/uploads/minolta.jpg" alt=""><span class="menu-title">Máy Photocopy Minolta</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-sharp/" title="Máy Photocopy Sharp"><img class="cat-image" src="//smartlineco.com/uploads/sharp.jpg" alt=""><span class="menu-title">Máy Photocopy Sharp</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photo-toshiba/" title="Máy Photocopy Toshiba"><img class="cat-image" src="//smartlineco.com/wp-content/uploads/2018/08/09_eS3508LP_DSDF_4cst_1109_F_AB_NBG-NEW.jpg" alt=""><span class="menu-title">Máy Photocopy Toshiba</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-xerox/" title="Máy Photocopy Fuji-Xerox"><img class="cat-image" src="//smartlineco.com/uploads/xerox.jpg" alt=""><span class="menu-title">Máy Photocopy Fuji-Xerox</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-cu/" title="Máy Photocopy Cũ/ ĐQSD"><img class="cat-image" src="//smartlineco.com/uploads/abc.jpg" alt=""><span class="menu-title">Máy Photocopy Cũ/ ĐQSD</span></a></li><li class="taxonomy-item"><a class="" href="//smartlineco.com/danh-muc/may-photocopy/may-photocopy-mau/" title="Máy Photocopy Màu"><img class="cat-image" src="//smartlineco.com/wp-content/uploads/2023/03/c3320.jpg" alt=""><span class="menu-title">Máy Photocopy Màu</span></a></li></ul>

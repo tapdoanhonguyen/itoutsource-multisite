@@ -70,7 +70,7 @@ ul.slimmenu li {
 }
 
 ul.slimmenu li a{
-    padding: 15px 26px;
+    padding: 20px 18px;
 }
 ul.slimmenu li ul li a, ul.slimmenu.collapsed li a {
 	padding: 10px;
@@ -102,10 +102,10 @@ ul.slimmenu > li:last-child {
 }
 ul.slimmenu > li > a {
 	display: block;
-	color: rgb(0, 0, 102);
+	color: rgb(10 86 158);
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	font-weight: 400;
+	font-size: 18px;
+	font-weight: 800;
 	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
 	background: none;
 }

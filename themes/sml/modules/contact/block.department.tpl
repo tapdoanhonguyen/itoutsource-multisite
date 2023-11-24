@@ -3,7 +3,7 @@
 		<table class="table">
 			<tbody>
 				<tr>
-					<td colspan="2" class="active"><strong>{LANG.department}: {DEPARTMENT.full_name}</strong></td>
+					<td colspan="2" class="active"><strong> {DEPARTMENT.full_name}</strong></td>
 				</tr>
 				<!-- BEGIN: phone -->
 				<tr>

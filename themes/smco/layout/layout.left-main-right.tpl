@@ -6,6 +6,26 @@
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-13 col-sm-push-6 col-md-push-5">
+		<div class="single-product-header">
+			<div class="container">
+				<!-- BEGIN: breadcrumbs -->
+				<!-- Ẩn breadcrumb nếu thuộc vào category websosanh  -->
+				<nav class="woocommerce-breadcrumb breadcrumbs uppercase">
+				<a href="{THEME_SITE_HREF}">{LANG.Home}</a>
+				<!-- BEGIN: loop -->
+				<span class="divider">/</span>
+				<a href="{BREADCRUMBS.link}">{BREADCRUMBS.title}</a> 
+				<!-- END: loop -->
+				</nav>	
+				
+				
+				<!-- END: breadcrumbs -->
+			
+			
+			
+				
+			</div>
+		</div>
         [TOP]
         {MODULE_CONTENT}
         [BOTTOM]

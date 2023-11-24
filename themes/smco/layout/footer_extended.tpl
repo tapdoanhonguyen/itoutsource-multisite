@@ -6,172 +6,33 @@
 <div class="section-content relative">
 <div class="row" id="row-2111165123">
 <div id="col-1684071626" class="col medium-6 small-6 large-4">
-<div class="col-inner">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:68px;">
-<i class="hoangminh-icon-printer"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Phòng bán hàng trực tuyến và showroom</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;"></div>
-</div>         
-</div>
-</a>
-<div id="text-310922591" class="text">
-<p>66/6/3A Bùi Đình Túy, Q.Bình Thạnh, TPHCM<br>
-0988.455.066 | 090.999.7381<br>
-sales@smartline.com.vn<br>
-Giờ làm việc: 8h-17h30 (từ thứ 2 đến thứ 7)</p>
-<style>
-#text-310922591 {
-text-align: center;
-color: rgb(255, 255, 255);
-}
-#text-310922591 > * {
-color: rgb(255, 255, 255);
-}
-</style>
-</div>
-</div>
+[FOOTER1]
 </div>
 <div id="col-1621173110" class="col medium-6 small-6 large-4">
-<div class="col-inner">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:68px;">
-<i class="hoangminh-icon-cooperate"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Phòng dự án và khách hàng đại lý</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;"></div>
-</div>         
-</div>
-</a>
-<div id="text-2318286554" class="text">
-<p>66/6/3A Bùi Đình Túy, Q.Bình Thạnh, TPHCM<br>
-0988 455 066<br>
-partner@smartline.com.vn<br>
-Giờ làm việc: 8h-18h (từ thứ 2 đến thứ 7)</p>
-<style>
-#text-2318286554 {
-text-align: center;
-color: rgb(255, 255, 255);
-}
-#text-2318286554 > * {
-color: rgb(255, 255, 255);
-}
-</style>
-</div>
-</div>
+[FOOTER2]
 </div>
 <div id="col-523868381" class="col hide-for-small medium-12 small-12 large-4">
-<div class="col-inner">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:68px;">
-<i class="hoangminh-icon-payment"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Phương thức thanh toán</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;"></div>
-</div>         
-</div>
-</a>
-<div class="row align-center" id="row-711649522">
-<div id="col-1537578182" class="col small-12 large-12">
-<div class="col-inner">
-<div class="container hm-repeater-icons">
-<div class="hm-repeater-icons-wrapper relative" id="hoangminh-icon-repeater-600832824">
-<div class="row">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:30px;">
-<i class="hoangminh-icon-qr-payment"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">QR Code</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;"></div>
-</div>         
-</div>
-</a>
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:30px;">
-<i class="hoangminh-icon-cash-payment"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Tiền mặt</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;"></div>
-</div>         
-</div>
-</a>
-
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:30px;">
-<i class="hoangminh-icon-internet-banking"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Internet Banking</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;"></div>
-</div>         
-</div>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+[FOOTER3]
 </div>
 <div id="col-819945578" class="col show-for-small medium-4 small-12 large-4">
-<div class="col-inner">
-<div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
-<div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://smartlineco.com/huong-dan-mua-hang/">
-<span class="ux-menu-link__text">
-Hướng dẫn mua hàng			</span>
-</a>
-</div>
-<div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://smartlineco.com/quy-dinh-doi-tra-hang/">
-<span class="ux-menu-link__text">
-Quy định đổi trả hàng			</span>
-</a>
-</div>
-<div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://smartlineco.com/phuong-thuc-thanh-toan/">
-<span class="ux-menu-link__text">
-Phương thức thanh toán			</span>
-</a>
-</div>
-<div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://smartlineco.com/chinh-sach-van-chuyen/">
-<span class="ux-menu-link__text">
-Chính sách vận chuyển			</span>
-</a>
-</div>
-<div class="ux-menu-link flex menu-item">
-<a class="ux-menu-link__link flex" href="https://smartlineco.com/chinh-sach-bao-hanh/">
-<span class="ux-menu-link__text">
-Chính sách bảo hành			</span>
-</a>
-</div>
-</div>
-</div>
+[MENU_FOOTER]
 </div>
 <style>
-#row-2111165123 > .col > .col-inner {
-padding: 30px 0px 30px 0px;
-}
+
 </style>
 </div>
+</div>
+
+</section>
+
 <div class="is-divider divider clearfix" style="max-width:100%;height:1px;background-color:rgb(255, 255, 255);"></div>
+<section class="section" id="section_406601064">
 <div class="row" id="row-1281046365">
 <div id="col-306225694" class="col footer-bottom-left medium-6 small-12 large-6">
 <div class="col-inner">
-<div class="ux-logo has-hover align-middle ux_logo inline-block" style="max-width: 100%!important; width: 216.25954198473px!important"><div class="ux-logo-link block image-" title="" href="" style="padding: 15px;"><img src="//smartlineco.com/uploads/logo_162.png" title="" alt="" class="ux-logo-image block" style="height:80px;"></div></div>
-<div id="text-4059899032" class="text">
-<h3>Công ty TNHH <br>SmartLine</h3>
-<p>Địa chỉ: 66/6/3A Bùi Đình Túy, Q.Bình Thạnh, TPHCM <br>Điện thoại: 0988.455.066<br>Fax: <br>Email: sales@smartline.com</p>
+[COMPANY_INFO]
 <style>
-#text-4059899032 {
+#text-4059899032, #text-4059899032 span, #text-4059899032 em, .company-address{
 color: rgb(255, 255, 255);
 }
 #text-4059899032 > * {
@@ -203,13 +64,15 @@ callback: cb
 </div>
 <div id="col-305287083" class="col footer-bottom-right medium-6 small-12 large-6">
 <div class="col-inner">
-<div class="video video-fit mb" style="padding-top:350px;"><p><iframe loading="lazy" title="Video giới thiệu máy in HP Laser 107W | DTEX" width="1020" height="574" src="https://www.youtube.com/embed/U6SSaCsmUpg?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></p>
+<div class="video video-fit mb" style="padding-top:350px;"><p>
+<iframe loading="lazy" title="New Dell 24 Touch USB-C® Hub Monitor - P2424HT" width="1020" height="574" src="https://www.youtube.com/embed/G3r-J7Ped7s?si=PJlhRUsAFV3vsun7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+</p>
 </div>
 </div>
 </div>
 <style>
 #row-1281046365 > .col > .col-inner {
-padding: 30px 0px 30px 0px;
+padding: 30px 0px 0px 0px;
 }
 </style>
 </div>
@@ -218,6 +81,13 @@ padding: 30px 0px 30px 0px;
 #section_406601063 {
 padding-top: 30px;
 padding-bottom: 30px;
+background-color: #0fb3b0;
+}
+#section_406601064 {
+
+background-color: #0a569e;
+}
+div#row-1281046365 {
 background-color: #0a569e;
 }
 #section_406601063 .ux-shape-divider--top svg {
@@ -227,6 +97,19 @@ height: 150px;
 #section_406601063 .ux-shape-divider--bottom svg {
 height: 150px;
 --divider-width: 100%;
+}
+#text-2318286554 span,#text-2318286554 em{
+color:#fff;
+}
+#section_565576353{
+padding-top: 30px;
+    padding-bottom: 0px;
+}
+#section_565576353 .section-title-container{
+margin-bottom: 0px;
+}
+#col-1684071626, #col-1621173110, #col-523868381{
+padding-bottom: 0px;
 }
 </style>
 </section>
@@ -247,22 +130,52 @@ height: 150px;
 <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=36298" target="_blank"><img src="https://smartlineco.com/staging/wp-content/uploads/2022/03/logoSaleNoti.png" alt="img" class="img-responsive" width="150"></a>          </div>
 -->
 </div>
-<div class="footer-primary pull-left">
+<div class="footer-primary">
 <div class="copyright-footer">
 <p>Bản quyền 2023
 © thuộc công ty <strong>SmartLine</strong>
 <br>
-GPDK kinh doanh &amp; mã số thuế: 0106891853 do sở kế hoạch và đầu từ TP. HCM cấp ngày 3/07/2015.</p>                </div>
+GPDK kinh doanh &amp; mã số thuế: 0313399946 do sở kế hoạch và đầu từ TP. HCM cấp ngày 14/08/2015.</p>                </div>
 </div>
 </div>
 </div>
 </div>
 <!-- End footer copyright -->
 <!-- Start quick button sticky in Footer -->
-<div class="contact-box-bottom">
+<div class="contact-box-bottom" >
+<style>
+#mySidenav a {
+  position: absolute;
+  right: -160px;
+   width: 190px;
+   height: 60px;
+  transition: 0.3s;
+  
+  
+  color: white;
+}
+
+#mySidenav a:hover {
+  right: 0;
+}
+#about {
+  bottom: 20px;
+ 
+}
+
+#blog {
+  bottom: 80px;
+ 
+}
+
+#projects {
+  bottom: 140px;
+ 
+}
+</style>
 <!-- Check if facebook message link don't empty -->
 <!-- Check if zalo chat don't empty -->
-<a class="contact-box-wrapper nut-chat-zalo" href="https://zalo.me/4067080557852658465" rel="nofollow" target="_blank">
+<a class="contact-box-wrapper nut-chat-zalo" href="https://zalo.me/2805736878254341383" rel="nofollow" target="_blank" id="about">
 <div class="contact-icon-box" style="border: none;">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
 <defs>
@@ -287,11 +200,11 @@ GPDK kinh doanh &amp; mã số thuế: 0106891853 do sở kế hoạch và đầ
 </svg>
 </div>
 <div class="contact-info">
-<p><span class="label-title">Chat Zalo</span> <span class="label-time">(8h-24h)</span></p>
+<p><span class="label-title">Chat Zalo tư vấn</span> <span class="label-time">(8:00-22:00)</span></p>
 </div>
 </a>
 <!-- Check sale number don't empty -->
-<a class="contact-box-wrapper nut-goi-hotline hotline-sale" href="tel:090 328 2609 ">
+<a class="contact-box-wrapper nut-goi-hotline hotline-sale" href="tel: 02873008119 " id="blog">
 <div class="contact-icon-box">
 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
 <g id="Group_317" data-name="Group 317" transform="translate(-1619 -881)">
@@ -307,11 +220,11 @@ GPDK kinh doanh &amp; mã số thuế: 0106891853 do sở kế hoạch và đầ
 </svg>
 </div>
 <div class="contact-info">
-<p><span class="label-title">Hotline mua hàng</span> <span class="label-time">(8h-24h)</span></p>
+<p><span class="label-title">Hotline mua hàng</span> <span class="label-time">(8:00-22:00)</span></p>
 </div>
 </a>
 <!-- Check services number if don't empty -->
-<a class="contact-box-wrapper nut-goi-hotline hotline-service" href="tel:0243 935 1760">
+<a class="contact-box-wrapper nut-goi-hotline hotline-service" href="tel:02873008119" id="projects">
 <div class="contact-icon-box">
 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
 <g id="Group_318" data-name="Group 318" transform="translate(-1619 -955)">
@@ -327,16 +240,16 @@ GPDK kinh doanh &amp; mã số thuế: 0106891853 do sở kế hoạch và đầ
 </svg>
 </div>
 <div class="contact-info">
-<p><span class="label-title">Hotline dịch vụ</span> <span class="label-time">(8h-17h30)</span></p>
+<p><span class="label-title">Hotline dịch vụ</span> <span class="label-time">(8:00-22:00)</span></p>
 </div>
 </a>
 </div>
 <!-- End quick button sticky in Footer -->
 <!-- Start Footer toolbar on bottom mobile -->
 <div class="footer_mobile_call visible-xs">
-<a href="tel:090 328 2609" class="call-now">
+<a href="tel:028 7300 8119" class="call-now">
 <i class="icon-phone"></i> GỌI MUA HÀNG        </a>
-<a href="https://zalo.me/4067080557852658465" class="showroom">
+<a href="https://zalo.me/2805736878254341383" class="showroom">
 <i class="hoangminh-icon hoangminh-icon-zalo"></i> Zalo OA        </a>
 </div>
 <!-- End Footer toolbar on bottom mobile -->

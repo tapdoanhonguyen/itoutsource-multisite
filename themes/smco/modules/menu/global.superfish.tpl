@@ -32,7 +32,7 @@
 	}); 
 </script>
 <div class="style_nav">
-	<ul id="sample-menu-4" class="sf-menu sf-navbar sf-js-enabled sf-shadow">
+	<ul id="sample-menu-4" class="sf-menu sf-navbar sf-js-enabled nav-left  nav-uppercase">
 		<!-- BEGIN: loopcat1 -->
 		<li {CAT1.class}>
 			<a title="{CAT1.note}" class="sf-with-ul" href="{CAT1.link}"{CAT1.target}><strong>{CAT1.title}</strong></a>

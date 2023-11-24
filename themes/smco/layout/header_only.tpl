@@ -45,25 +45,13 @@ url({NV_BASE_SITEURL}themes/{TEMPLATE}/fonts/fl-icons.svg#fl-icons) format("svg"
 }
 </style>
 
-<script src='//hoangminhoffice.com/wp-content/cache/wpfc-minified/lz3pii4m/8b22g.js' type="text/javascript"></script>
 <script type='text/javascript' id='cactus_lgv_grid_list-js-extra'>
 /* <![CDATA[ */
 var lgv_options = {"use_grid_list":"","default_style":"grid","mobile_default_style":"grid","max_mobile_width":"768","user_func":{"before_style_set":"","after_style_set":"","after_style_list":"","after_style_grid":"","before_get_cookie":"","after_get_cookie":"","before_buttons_reselect":"","after_buttons_reselect":"","before_product_reselect":"","after_product_reselect":"","before_page_reload":"","before_ajax_product_reload":"","after_ajax_product_reload":""},"style_on_pages":{"pages":false,"mobile_pages":false,"desktop_pages":false}};
 /* ]]> */
 </script>
-<script src='//hoangminhoffice.com/wp-content/cache/wpfc-minified/8uy9js0z/8b22g.js' type="text/javascript"></script>
 
-<script data-cfasync="false" data-pagespeed-no-defer type="text/javascript">
-var dataLayer_content = {"pagePostType":"frontpage","pagePostType2":"single-page","pagePostAuthor":"hoangminhoffice","customerTotalOrders":0,"customerTotalOrderValue":"0.00","customerFirstName":"","customerLastName":"","customerBillingFirstName":"","customerBillingLastName":"","customerBillingCompany":"","customerBillingAddress1":"","customerBillingAddress2":"","customerBillingCity":"","customerBillingPostcode":"","customerBillingCountry":"","customerBillingEmail":"","customerBillingEmailHash":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","customerBillingPhone":"","customerShippingFirstName":"","customerShippingLastName":"","customerShippingCompany":"","customerShippingAddress1":"","customerShippingAddress2":"","customerShippingCity":"","customerShippingPostcode":"","customerShippingCountry":"VN"};
-dataLayer.push( dataLayer_content );
-</script>
-<script data-cfasync="false">
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W2LNHSC');
-</script>
+
 <!-- End Google Tag Manager -->
 <!-- End Google Tag Manager for WordPress by gtm4wp.com --><style>.bg{opacity: 0; transition: opacity 1s; -webkit-transition: opacity 1s;} .bg-loaded{opacity: 1;}</style><meta name="google-site-verification" content="mD_0nSeFFhUuOcVjiaxPGFz7KeFf0UGNZMp2lthke6g" />
 <noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
@@ -71,7 +59,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="{NV_BASE_SITEURL}/uploads/cropped-fvicon-192x192.jpg" sizes="192x192" />
 <link rel="apple-touch-icon" href="{NV_BASE_SITEURL}/uploads/cropped-fvicon-180x180.jpg" />
 <meta name="msapplication-TileImage" content="{NV_BASE_SITEURL}/uploads/cropped-fvicon-270x270.jpg" />
-<meta name="generator" content="XforWooCommerce.com - Product Filter for WooCommerce"/><style id="custom-css" type="text/css">:root {--primary-color: #446084;}.container-width, .full-width .ubermenu-nav, .container, .row{max-width: 1640px}.row.row-collapse{max-width: 1610px}.row.row-small{max-width: 1632.5px}.row.row-large{max-width: 1670px}.header-main{height: 90px}#logo img{max-height: 90px}#logo{width:263px;}.header-bottom{min-height: 55px}.header-top{min-height: 30px}.transparent .header-main{height: 90px}.transparent #logo img{max-height: 90px}.has-transparent + .page-title:first-of-type,.has-transparent + #main > .page-title,.has-transparent + #main > div > .page-title,.has-transparent + #main .page-header-wrapper:first-of-type .page-title{padding-top: 170px;}.header.show-on-scroll,.stuck .header-main{height:85px!important}.stuck #logo img{max-height: 85px!important}.search-form{ width: 100%;}.header-bottom {background-color: #f1f1f1}.header-main .nav > li > a{line-height: 16px }.stuck .header-main .nav > li > a{line-height: 50px }@media (max-width: 549px) {.header-main{height: 85px}#logo img{max-height: 85px}}body{font-family: Lato, sans-serif;}body {font-weight: 400;font-style: normal;}.nav > li > a {font-family: Lato, sans-serif;}.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-family: Lato, sans-serif;}.nav > li > a,.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-weight: 700;font-style: normal;}h1,h2,h3,h4,h5,h6,.heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a{font-family: Lato, sans-serif;}h1,h2,h3,h4,h5,h6,.heading-font,.banner h1,.banner h2 {font-weight: 700;font-style: normal;}.alt-font{font-family: "Dancing Script", sans-serif;}.alt-font {font-weight: 400!important;font-style: normal!important;}.breadcrumbs{text-transform: none;}button,.button{text-transform: none;}.nav > li > a, .links > li > a{text-transform: none;}.section-title span{text-transform: none;}h3.widget-title,span.widget-title{text-transform: none;}input[type='submit'], input[type="button"], button:not(.icon), .button:not(.icon){border-radius: 5px!important}@media screen and (min-width: 550px){.products .box-vertical .box-image{min-width: 247px!important;width: 247px!important;}}.footer-1{background-color: #f5f5f5}.footer-2{background-color: #f5f5f5}.absolute-footer, html{background-color: #686868}button[name='update_cart'] { display: none; }.nav-vertical-fly-out > li + li {border-top-width: 1px; border-top-style: solid;}.label-new.menu-item > a:after{content:"New";}.label-hot.menu-item > a:after{content:"Hot";}.label-sale.menu-item > a:after{content:"Sale";}.label-popular.menu-item > a:after{content:"Popular";}</style><style id="kirki-inline-styles">/* latin-ext */
+<meta name="generator" content="XforWooCommerce.com - Product Filter for WooCommerce"/>
+<style id="custom-css" type="text/css">:root {--primary-color: #446084;}.container-width, .full-width .ubermenu-nav, .container, .row{max-width: 1640px}.row.row-collapse{max-width: 1610px}.row.row-small{max-width: 1632.5px}.row.row-large{max-width: 1670px}.header-main{height: 90px}#logo img{max-height: 90px}#logo{width:263px;}.header-bottom{min-height: 55px}.header-top{min-height: 30px}.transparent .header-main{height: 90px}.transparent #logo img{max-height: 90px}.has-transparent + .page-title:first-of-type,.has-transparent + #main > .page-title,.has-transparent + #main > div > .page-title,.has-transparent + #main .page-header-wrapper:first-of-type .page-title{padding-top: 170px;}.header.show-on-scroll,.stuck .header-main{height:85px!important}.stuck #logo img{max-height: 85px!important}.search-form{ width: 100%;}.header-bottom {background-color: #f1f1f1}.header-main .nav > li > a{line-height: 16px }.stuck .header-main .nav > li > a{line-height: 50px }@media (max-width: 549px) {.header-main{height: 85px}#logo img{max-height: 85px}}body{font-family: Lato, sans-serif;}body {font-weight: 400;font-style: normal;}.nav > li > a {font-family: Lato, sans-serif;}.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-family: Lato, sans-serif;}.nav > li > a,.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-weight: 700;font-style: normal;}h1,h2,h3,h4,h5,h6,.heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a{font-family: Lato, sans-serif;}h1,h2,h3,h4,h5,h6,.heading-font,.banner h1,.banner h2 {font-weight: 700;font-style: normal;}.alt-font{font-family: "Dancing Script", sans-serif;}.alt-font {font-weight: 400!important;font-style: normal!important;}.breadcrumbs{text-transform: none;}button,.button{text-transform: none;}.nav > li > a, .links > li > a{text-transform: none;}.section-title span{text-transform: none;}h3.widget-title,span.widget-title{text-transform: none;}input[type='submit'], input[type="button"], button:not(.icon), .button:not(.icon){border-radius: 5px!important}@media screen and (min-width: 550px){.products .box-vertical .box-image{min-width: 247px!important;width: 247px!important;}}.footer-1{background-color: #f5f5f5}.footer-2{background-color: #f5f5f5}.absolute-footer, html{background-color: #686868}button[name='update_cart'] { display: none; }.nav-vertical-fly-out > li + li {border-top-width: 1px; border-top-style: solid;}.label-new.menu-item > a:after{content:"New";}.label-hot.menu-item > a:after{content:"Hot";}.label-sale.menu-item > a:after{content:"Sale";}.label-popular.menu-item > a:after{content:"Popular";}</style><style id="kirki-inline-styles">/* latin-ext */
 @font-face {
 font-family: 'Lato';
 font-style: normal;
@@ -132,7 +121,12 @@ font-weight: 400;
 font-display: swap;
 src: url({NV_BASE_SITEURL}/wp-content/fonts/dancing-script/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3Sup6hNX6pmRM.woff) format('woff');
 unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}</style>
+}
+footer#footer .absolute-footer .footer-menu .container {
+    max-width: 100%;
+}
+</style>
+<script type='text/javascript' src='https://hoangminhoffice.com/wp-includes/js/hoverIntent.js?ver=1.10.2' id='hoverIntent-js'></script>
     </head>
 <body class="home page-template page-template-page-blank page-template-page-blank-php page page-id-1614 theme-flatsome woocommerce-no-js lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
 

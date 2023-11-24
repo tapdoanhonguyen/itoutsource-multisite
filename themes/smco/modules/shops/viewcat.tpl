@@ -15,20 +15,32 @@
     </div>
     <!-- BEGIN: displays -->
     <div class="form-group text-right s-cat-fillter">
-        <select name="sort" id="sort" class="form-control input-sm d-inline-block" onchange="nv_chang_price();">
-            <!-- BEGIN: sorts -->
-            <option value="{key}"{se}>{value}</option>
-            <!-- END: sorts -->
-        </select>
-        <!-- BEGIN: viewtype -->
-        <div class="viewtype d-inline-block">
-            <span class="pointer {VIEWTYPE.active}" onclick="nv_chang_viewtype('{VIEWTYPE.index}');" title="{VIEWTYPE.title}"><i class="fa fa-{VIEWTYPE.icon} fa-lg"></i></span>
-        </div>
-        <!-- END: viewtype -->
-    </div>
+		<div class="css-v6thbz" direction="row">
+			<div height="100%" direction="row" class="css-1k985bk">
+				<div type="subtitle" class="css-1ew3940">Sắp xếp theo</div>
+				<!-- BEGIN: sorts -->
+				<div class="css-1w3mv8m {se}" style="padding: 0.5rem; margin-right: 1rem;">
+					<div type="body" class="css-1lchwqw"  ><span class="pointer " onclick="nv_chang_price('{key}');" title="{value}">{value}</span></div>
+				</div>
+				<!-- END: sorts -->
+				
+			</div>
+		</div>
+	</div>  
+
+	<!-- BEGIN: viewtypes -->
+	<div class="viewtype d-inline-block">
+		<span class="pointer {VIEWTYPE.active}" onclick="nv_chang_viewtype('{VIEWTYPE.index}');" title="{VIEWTYPE.title}"><i class="fa fa-{VIEWTYPE.icon} fa-lg"></i></span>
+	</div>
+	<!-- END: viewtypes -->
+
     <!-- END: displays -->
     <div id="shops-content">
         {CONTENT}
     </div>
 </div>
+
+<style>
+
+</style>
 <!-- END: main -->

@@ -3,7 +3,7 @@
     <!-- BEGIN: bodytext -->
     <div class="well">{CONTENT.bodytext}</div>
     <!-- END: bodytext -->
-    <div class="row">
+    <div class="row2">
         <div class="col-sm-12 col-md-14">
             <!-- BEGIN: dep -->
             <div class="panel panel-default">
@@ -19,12 +19,12 @@
                     <!-- END: note -->
                     <!-- BEGIN: address -->
                     <p>
-                        <em class="fa fa-map-marker fa-horizon margin-right"></em>{LANG.address}: <span>{DEP.address}</span>
+                        <em class="fa fa-map-marker fa-horizon margin-right"></em> {LANG.address}: <span>{DEP.address}</span>
                     </p>
                     <!-- END: address -->
                     <!-- BEGIN: phone -->
                     <p>
-                        <em class="fa fa-phone fa-horizon margin-right"></em>{LANG.phone}: <span>
+                        <em class="fa fa-phone fa-horizon margin-right"></em> {LANG.phone}: <span>
                             <!-- BEGIN: item -->
                             <!-- BEGIN: comma -->&nbsp; <!-- END: comma -->
                             <!-- BEGIN: href -->
@@ -43,7 +43,7 @@
                     <!-- END: fax -->
                     <!-- BEGIN: email -->
                     <p>
-                        <em class="fa fa-envelope fa-horizon margin-right"></em>{LANG.email}: <span>
+                        <em class="fa fa-envelope fa-horizon margin-right"></em> {LANG.email}: <span>
                             <!-- BEGIN: item -->
                             <!-- BEGIN: comma -->&nbsp; <!-- END: comma -->
                             <a href="mailto:{EMAIL}" class="black">{EMAIL}</a>
@@ -53,7 +53,7 @@
                     <!-- END: email -->
                     <!-- BEGIN: yahoo -->
                     <p>
-                        <em class="icon-yahoo fa-horizon margin-right"></em>{YAHOO.name}: <span>
+                        <em class="icon-yahoo fa-horizon margin-right"></em> {YAHOO.name}: <span>
                             <!-- BEGIN: item -->
                             <!-- BEGIN: comma -->&nbsp; <!-- END: comma -->
                             <a href="ymsgr:SendIM?{YAHOO.value}" class="black">{YAHOO.value}</a>
@@ -63,7 +63,7 @@
                     <!-- END: yahoo -->
                     <!-- BEGIN: skype -->
                     <p>
-                        <em class="fa fa-skype fa-horizon margin-right"></em>{SKYPE.name}: <span>
+                        <em class="fa fa-skype fa-horizon margin-right"></em> {SKYPE.name}: <span>
                             <!-- BEGIN: item -->
                             <!-- BEGIN: comma -->&nbsp; <!-- END: comma -->
                             <a href="skype:{SKYPE.value}?call" class="black">{SKYPE.value}</a>
@@ -73,7 +73,7 @@
                     <!-- END: skype -->
                     <!-- BEGIN: viber -->
                     <p>
-                        <em class="icon-viber fa-horizon margin-right"></em>{VIBER.name}: <span>
+                        <em class="icon-viber fa-horizon margin-right"></em> {VIBER.name}: <span>
                             <!-- BEGIN: item -->
                             <!-- BEGIN: comma -->&nbsp; <!-- END: comma -->{VIBER.value}<!-- END: item -->
                         </span>
@@ -81,7 +81,7 @@
                     <!-- END: viber -->
                     <!-- BEGIN: icq -->
                     <p>
-                        <em class="icon-icq fa-horizon margin-right"></em>{ICQ.name}: <span>
+                        <em class="icon-icq fa-horizon margin-right"></em> {ICQ.name}: <span>
                             <!-- BEGIN: item -->
                             <!-- BEGIN: comma -->&nbsp; <!-- END: comma -->
                             <a href="icq:message?uin={ICQ.value}" class="black">{ICQ.value}</a>
@@ -91,7 +91,7 @@
                     <!-- END: icq -->
                     <!-- BEGIN: whatsapp -->
                     <p>
-                        <em class="fa fa-whatsapp fa-horizon margin-right"></em>{WHATSAPP.name}: <span>
+                        <em class="fa fa-whatsapp fa-horizon margin-right"></em> {WHATSAPP.name}: <span>
                             <!-- BEGIN: item -->
                             <!-- BEGIN: comma -->&nbsp; <!-- END: comma -->
                             <a data-android="intent://send/{WHATSAPP.value}#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end" class="black">{WHATSAPP.value}</a>
@@ -105,7 +105,7 @@
                         <span>{OTHER.name}: </span> <span>{OTHER.value}</span>
                         <!-- END: text -->
                         <!-- BEGIN: url -->
-                        <em class="fa fa-globe fa-horizon margin-right"></em>{OTHER.name}: <span><a href="{OTHER.value}" title="">{OTHER.value}</a></span>
+                        <em class="fa fa-globe fa-horizon margin-right"></em> {OTHER.name}: <span><a href="{OTHER.value}" title="">{OTHER.value}</a></span>
                         <!-- END: url -->
                     </p>
                     <!-- END: other -->

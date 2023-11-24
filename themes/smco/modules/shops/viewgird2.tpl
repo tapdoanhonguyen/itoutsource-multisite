@@ -2,12 +2,12 @@
 <div class="row viewgrid shops-viewgrid shops-viewgrid-{MODULE_NAME}">
     <!-- BEGIN: loop -->
     <div class="col-sm-12 col-md-{NUM}">
-        <div class="thumbnail">
-            <div style="height: {HEIGHT}px" class="item-image">
+        <div class="thumbnail" style="height: {HEIGHT2}px;">
+            <div style="height: {HEIGHT}px" class="item-image col-md-8 col-sm-24">
                 <a href="{ROW.link_pro}" title="{ROW.title}"><img src="{ROW.homeimgthumb}" alt="{ROW.title}"
                 <!-- BEGIN: tooltip_js -->data-content='{ROW.hometext}' data-rel="tooltip" data-img="{ROW.homeimgthumb}"<!-- END: tooltip_js -->class="img-thumbnail" style="max-height:{HEIGHT}px;max-width:{WIDTH}px;"></a>
             </div>
-            <div class="info_pro">
+            <div class="info_pro col-md-16 col-sm-24">
                 <!-- BEGIN: new -->
                 <span class="label label-success newday">{LANG.newday}</span>
                 <!-- END: new -->
@@ -22,9 +22,9 @@
                 <!-- END: gift -->
             </div>
             <div class="caption text-center">
-                <h3>
-                    <a href="{ROW.link_pro}" title="{ROW.title}">{ROW.title_0}</a>
-                </h3>
+                
+                    <a href="{ROW.link_pro}" title="{ROW.title}">{PRODUCT_CODE}</a>
+                
                 <!-- BEGIN: product_code -->
                 <p class="label label-default">{PRODUCT_CODE}</p>
                 <!-- END: product_code -->
@@ -34,15 +34,15 @@
                 <!-- BEGIN: price -->
                 <p class="price">
                     <!-- BEGIN: discounts -->
-                    <span class="money">{PRICE.sale_format} {PRICE.unit}</span> <span class="discounts_money">{PRICE.price_format} {PRICE.unit}</span>
+                    <span class="money2">{PRICE.sale_format} {PRICE.unit}</span> <span class="discounts_money">{PRICE.price_format} {PRICE.unit}</span>
                     <!-- END: discounts -->
                     <!-- BEGIN: no_discounts -->
-                    <span class="money">{PRICE.price_format} {PRICE.unit}</span>
+                    <span class="money2">{PRICE.price_format} {PRICE.unit}</span>
                     <!-- END: no_discounts -->
                 </p>
                 <!-- END: price -->
                 <!-- BEGIN: contact -->
-                <p class="price">
+                <p class="">
                     {LANG.detail_pro_price}: <span class="money">{LANG.price_contact}</span>
                 </p>
                 <!-- END: contact -->
@@ -51,22 +51,7 @@
                     <input type="checkbox" value="{ROW.id}" {ch} onclick="nv_compare({ROW.id});" id="compare_{ROW.id}" /><a href="#" onclick="nv_compare_click();">&nbsp;{LANG.compare}</a>
                 </p>
                 <!-- END: compare -->
-                <div class="clearfix">
-                    <!-- BEGIN: order -->
-					<div class="product-loop-action">
-						<div class="add-to-cart-button">
-
-							<a href="javascript:void(0)" id="{ROW.id}" onclick="cartorder(this, {GROUP_REQUIE}, '{ROW.link_pro}'); return !1;" class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-outline" data-product_id="4" data-product_sku="{ROW.title}" aria-label="Thêm “{ROW.title}...” vào giỏ hàng" rel="nofollow"><i class="hoangminh-icon hoangminh-icon-shopping-cart2"></i> {LANG.add_product}</a>
-						</div>	
-					</div>
-					<!-- END: order -->
-                    <!-- BEGIN: product_empty -->
-                    <button class="btn btn-danger disabled btn-xs">{LANG.product_empty}</button>
-                    <!-- END: product_empty -->
-                    <!-- BEGIN: wishlist -->
-                    <a href="javascript:void(0)" title="{ROW.title}"><button type="button" onclick="wishlist({ROW.id}, this)" class="btn btn-primary btn-xs <!-- BEGIN: disabled -->disabled<!-- END: disabled -->">{LANG.wishlist}</button></a>
-                    <!-- END: wishlist -->
-                </div>
+                
             </div>
         </div>
     </div>

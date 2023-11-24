@@ -4,8 +4,6 @@
 	<a href="//smartlineco.com/vi/shops/cart" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-mfp-src="#cart-popup" data-open="#cart-popup" data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">
           				<i class="icon-shopping-cart" data-icon-label="{NUM}" style="opacity: 1;">
 		</i>
-            <span class="header-cart-title">
-       Giỏ hàng                 </span>
   </a>
 
 

@@ -33,6 +33,12 @@
                         <em class="fa fa-fax fa-horizon margin-right"></em>{LANG.fax}: <span>{DEP.fax}</span>
                     </p>
                     <!-- END: fax -->
+					<!-- BEGIN: address -->
+				<p>
+					<em class="fa fa-fax fa-horizon margin-right"></em>{LANG.address}: <span>{DEP.address}</span>
+			
+				</p>
+				<!-- END: address -->
                     <!-- BEGIN: email -->
                     <p>
                         <em class="fa fa-envelope fa-horizon margin-right"></em>{LANG.email}: <span>

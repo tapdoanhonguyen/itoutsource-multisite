@@ -64,7 +64,7 @@ function cartorder(a_ob, popup, url) {
     } else {
         $("#sitemodal").find(".modal-content").addClass('sh-popup-modal');
         $("#sitemodal").find(".modal-title").html('');
-        $("#sitemodal").find(".modal-body").html('<iframe class="popup-product-detail" src="' + url + '&amp;popup=1"></iframe>');
+        $("#sitemodal").find(".modal-body").html('<iframe class="popup-product-detail" src="' + url + '&amp;popup=1" height="1400px" width="100%"></iframe>');
         $("#sitemodal").modal({
             backdrop: "static"
         });
@@ -216,8 +216,8 @@ function onsubmitsearch1() {
     return false;
 }
 
-function nv_chang_price() {
-    var newsort = $("#sort").val();
+function nv_chang_price(newsort) {
+    //var newsort = $("#sort").val();
     $.post(nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=ajax&nocache=' + new Date().getTime(), 'changesprice=1&sort=' + newsort, function(res) {
         if (res != 'OK') {
             alert(res);

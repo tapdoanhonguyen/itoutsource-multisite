@@ -6,7 +6,7 @@
 
 <div class="page panel panel-default" itemtype="http://schema.org/Article" itemscope>
     <div class="panel-body">
-        <h1 class="title margin-bottom-lg" itemprop="headline">{CONTENT.title}</h1>
+        <h1 class="title margin-bottom-lg" style="display:none" itemprop="headline">{CONTENT.title}</h1>
         <div class="hidden hide d-none" itemprop="author" itemtype="http://schema.org/Organization" itemscope>
             <span itemprop="name">{SCHEMA_ORGNAME}</span>
         </div>
@@ -20,15 +20,7 @@
                 <span itemprop="url">{SCHEMA_ORGLOGO}</span>
             </span>
         </div>
-        <!-- BEGIN: socialbutton -->
-        <div class="margin-bottom">
-            <div style="display:flex;align-items:flex-start;">
-                <!-- BEGIN: facebook --><div class="margin-right"><div class="fb-like" style="float:left!important;margin-right:0!important" data-href="{CONTENT.link}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div><!-- END: facebook -->
-                <!-- BEGIN: twitter --><div class="margin-right"><a href="http://twitter.com/share" class="twitter-share-button">Tweet</a></div><!-- END: twitter -->
-                <!-- BEGIN: zalo --><div><div class="zalo-share-button" data-href="" data-oaid="{ZALO_OAID}" data-layout="1" data-color="blue" data-customize=false></div></div><!-- END: zalo -->
-            </div>
-        </div>
-        <!-- END: socialbutton -->
+        
 
         <!-- BEGIN: imageleft -->
         <figure class="article left pointer" onclick="modalShowByObj('#imgpreview');">
@@ -41,7 +33,15 @@
             <p class="text-center"><img alt="{CONTENT.title}" src="{CONTENT.img.src}" srcset="{CONTENT.img.srcset}" class="img-thumbnail"/></p>
         </div>
         <!-- END: imageleft -->
-
+<!-- BEGIN: socialbutton -->
+        <div class="margin-bottom">
+            <div style="display:flex;align-items:flex-start;">
+                <!-- BEGIN: facebook --><div class="margin-right"><div class="fb-like" style="float:left!important;margin-right:0!important" data-href="{CONTENT.link}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div><!-- END: facebook -->
+                <!-- BEGIN: twitter --><div class="margin-right"><a href="http://twitter.com/share" class="twitter-share-button">Tweet</a></div><!-- END: twitter -->
+                <!-- BEGIN: zalo --><div><div class="zalo-share-button" data-href="" data-oaid="{ZALO_OAID}" data-layout="1" data-color="blue" data-customize=false></div></div><!-- END: zalo -->
+            </div>
+        </div>
+        <!-- END: socialbutton -->
         <!-- BEGIN: description -->
         <div class="hometext margin-bottom-lg" itemprop="description">{CONTENT.description}</div>
         <!-- END: description -->

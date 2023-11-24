@@ -1,8 +1,5 @@
 <!-- BEGIN: main -->
-<div class="step_bar alert alert-success clearfix">
-	<a class="step step_current" title="{LANG.cart_check_cart}" href="#"><span>1</span>{LANG.cart_check_cart}</a>
-	<a class="step step_disable" title="{LANG.cart_order}" href="{link_order_all}" id="cart_next"><span>2</span>{LANG.cart_order}</a>
-</div>
+
 
 <!-- BEGIN: errortitle -->
 <ul class="alert alert-danger text-center">
@@ -32,66 +29,138 @@
 	<span class="text-right help-block"><strong>{LANG.product_unit_price}:</strong> {unit_config}</span>
 	<!-- END: price6 -->
 	<div class="table-responsive">
-		<table class="table table-striped table-bordered table-hover">
-			<thead>
-				<tr>
-					<th>{LANG.order_no_products}</th>
-					<th>{LANG.cart_products}</th>
-
-					<!-- BEGIN: main_group -->
-					<th>{MAIN_GROUP.title}</th>
-					<!-- END: main_group -->
-
-					<!-- BEGIN: price1 -->
-					<th class="text-right">
-						{LANG.cart_price}
-						<span class="info_icon" data-toggle="tooltip" title="" data-original-title="{LANG.cart_price_note}">&nbsp;</span>
-					</th>
-					<!-- END: price1 -->
-					<th style="width: 80px">{LANG.cart_numbers}</th>
-					<th>{LANG.cart_unit}</th>
-					<!-- BEGIN: price4 -->
-					<th class="text-right">{LANG.cart_price_total}</th>
-					<!-- END: price4 -->
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- BEGIN: rows -->
-				<tr id="{id}_{list_group_id}">
-					<td align="center">{stt}</td>
-					<td>
-						<a title="{title_pro}" href="{link_pro}">{title_pro}</a>
-						<!-- BEGIN: display_group -->
-						<p>
-							<!-- BEGIN: group -->
-							<span class="show"><span class="text-muted">{group.parent_title}: <strong>{group.title}</strong></span></span>
-							<!-- END: group -->
-						</p>
-						<!-- END: display_group -->
-					</td>
-
-					<!-- BEGIN: sub_group -->
-	    			<td>
-	    				<!-- BEGIN: loop -->
-	    				<a href="{SUB_GROUP.link}" title="{SUB_GROUP.title}">{SUB_GROUP.title}</a>
-	    				<!-- END: loop -->
-	    			</td>
-	    			<!-- END: sub_group -->
-
+		<div class="css-0">
+			<div class="teko-card css-1qlu3d0">
+			<div class="teko-card-body css-0">
+			<div class="css-10osyhh">
+			<label class="check-box css-1arb6mh">
+			<div class="css-l24w9c">
+			<div class="checkbox-inner css-rumpju">
+			<svg fill="none" viewBox="0 0 24 24" size="12" class="css-5ju3er" color="white" height="12" width="12" xmlns="http://www.w3.org/2000/svg">
+			<path d="M5 12.4545L9.375 17L19 7" stroke="#82869E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+			</path>
+			</svg>
+			</div>
+			</div>
+			</label>&nbsp;<div class="css-1pnw1b5">
+			<div class="css-1ezgv1">
+			Đơn đặt hàng
+			</div>
+			</div>
+			<div class="css-1v9kxil">
+			<span class="css-htm2b9">
+			<!-- BEGIN: price3 -->
+			<span id="total"></span> 
+			<!-- END: price3 -->
+			<span class="css-1ul6wk9">
+			{unit_config}
+			</span>
+			</span>
+			</div>
+			</div>
+			<div class="teko-card css-1e0mzos">
+			
+			<div class="teko-card-body css-0">
+			<div class="teko-row main-product-line css-1o3gs9x" style="position: relative;">
+			<div class="teko-col css-t10dgr">
+			<label class="check-box css-vv0yw1">
+			<div class="css-l24w9c">
+			
+			<div class="checkbox-inner css-rumpju">
+			<svg fill="none" viewBox="0 0 24 24" size="12" class="css-5ju3er" color="white" height="12" width="12" xmlns="http://www.w3.org/2000/svg">
+			<path d="M5 12.4545L9.375 17L19 7" stroke="#82869E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+			</path>
+			</svg>
+			</div>
+			</div>
+			</label>
+			</div>
+			<div class="teko-col teko-col-11 css-gr7r8o" style="flex: 1 0 0%;">
+			<!-- BEGIN: rows -->
+			<div class="teko-row teko-row-space-between teko-row-top css-1o3gs9x">
+			<div class="teko-col css-gr7r8o"><div width="100%" class="css-1evxwf1">
+			<!-- BEGIN: image -->
+			<img src="{img_pro}" loading="lazy" decoding="async" alt="product" style="width: 100%; height: auto;">
+			<!-- END: image -->
+			</div>
+			</div>
+			<div class="teko-col css-1p98676" style="flex: 1 0 0%;">
+			<div type="subtitle" href="/dien-thoai-samsung-galaxy-z-flip4-8gb-128gb-light-violet-sm-f721blvaxxv--s221003264?sku=221003264" class="css-1rbwqkp">
+				{title_pro}
+				<!-- BEGIN: display_groups -->
+				<p>
+					<!-- BEGIN: group -->
+					<span class="show"><span class="text-muted">{group.parent_title}: <strong>{group.title}</strong></span></span>
+					<!-- END: group -->
+				</p>
+				<!-- END: display_groups -->
+				<!-- BEGIN: sub_groups -->
+				<p>
+					<!-- BEGIN: loop -->
+					<a href="{SUB_GROUP.link}" title="{SUB_GROUP.title}">{SUB_GROUP.title}</a>
+					<!-- END: loop -->
+				</p>
+				<!-- END: sub_groups -->
+			</div>
+			
+			<div class="teko-row teko-row-space-between teko-row-middle css-1j32n1t">
+			<div class="teko-col css-gr7r8o">
+			<div class="teko-row teko-row-middle css-1o3gs9x">
+				<span class="product-price__price css-1u7nn1v">
 					<!-- BEGIN: price2 -->
-					<td class="money text-right"><strong>{PRICE.sale_format}</strong></td>
+					{PRICE.sale_format}
 					<!-- END: price2 -->
-					<td align="center"><input type="number" size="1" value="{pro_num}" name="listproid[{id}_{list_group}]" id="{id}" class="form-control"/></td>
-					<td>{product_unit}</td>
-					<!-- BEGIN: price5 -->
-					<td class="money text-right">{PRICE_TOTAL.sale_format}</td>
-					<!-- END: price5 -->
-					<td align="center"><a class="remove_cart" title="{LANG.cart_remove_pro}" href="{link_remove}"><em style="color: red" class="fa fa-times-circle">&nbsp;</em></a></td>
-				</tr>
-				<!-- END: rows -->
-			</tbody>
-		</table>
+						
+				</span>
+			</div>
+
+			</div>
+			<div class="css-2c0axb">
+			
+			<div class="css-ktgpr2">
+			<div height="40" class="wrap-input-number css-1d2ixzd">
+			<div class="rc-input-number">
+			<div class="rc-input-number-input-wrap">
+			<input type="number" size="1" value="{pro_num}" name="listproid[{id}_{list_group}]" id="{id}" class="form-control"/>
+			
+			</div>
+			</div>
+			</div>
+			</div>
+			
+			</div>
+			</div>
+			</div>
+			<a class="remove_cart" title="{LANG.cart_remove_pro}" href="{link_remove}">
+			<svg fill="none" viewBox="0 0 24 24" size="20" class=" css-1qzmzas" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M6.81304 5.75263C6.52015 5.45974 6.04528 5.45974 5.75238 5.75263C5.45949 6.04552 5.45949 6.5204 5.75238 6.81329L10.8789 11.9398L5.75241 17.0663C5.45952 17.3592 5.45952 17.8341 5.75241 18.127C6.0453 18.4199 6.52018 18.4199 6.81307 18.127L11.9396 13.0005L17.0661 18.127C17.359 18.4199 17.8339 18.4199 18.1268 18.127C18.4196 17.8341 18.4196 17.3592 18.1268 17.0663L13.0002 11.9398L18.1268 6.81329C18.4197 6.5204 18.4197 6.04552 18.1268 5.75263C17.8339 5.45974 17.359 5.45974 17.0661 5.75263L11.9396 10.8792L6.81304 5.75263Z" fill="#82869E">
+			</path>
+			</svg>
+			</a>
+			</div>
+			<!-- END: rows -->
+			<div class="teko-row css-74gn8o">
+			
+			</div>
+			<div class="css-1x6y1s9">
+			</div>
+			</div>
+			</div>
+			</div>
+			
+			</div>
+			</div>
+			</div>
+			<div class="css-1x6y1s9">
+			</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
 	</div>
 
 	<!-- BEGIN: coupons_code -->
@@ -101,7 +170,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="input-group">
-				<input type="text" name="coupons_code" value="{C_CODE}" id="coupons_code" placeholder="{LANG.coupons_fill}" class="form-control">
+				<input type="text" name="coupons_code" value="{C_CODE}" id="coupons_code" placeholder="{LANG.coupons_fill}" class="form-control" style="width:300px;">
 				<span class="input-group-btn">
 					<input type="button" value="{LANG.coupons_check}" id="coupons_check" class="btn btn-primary">
 				</span>
@@ -114,14 +183,7 @@
 	<!-- END: coupons_code -->
 
 	<div>
-		<!-- BEGIN: price3 -->
-		<div class="clearfix">
-			<div class="pull-left">
-				{LANG.cart_total}: <span id="total"></span> {unit_config}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<!-- END: price3 -->
+		
 
 		<div class="row">
 			<div class="col-md-12 text-left" style="margin-top: 10px;">
@@ -154,6 +216,7 @@
 						$("#" + data).html('');
 						$("#cart_" + nv_module_name).load(urload);
 						$("#total").load(urload + '&t=2');
+						window.location.href=window.location.href;
 					}
 				}
 			});
@@ -186,3 +249,8 @@
 <!-- END: coupons_javascript -->
 
 <!-- END: main -->
+
+<div class="step_bar alert alert-success clearfix">
+	<a class="step step_current" title="{LANG.cart_check_cart}" href="#"><span>1</span>{LANG.cart_check_cart}</a>
+	<a class="step step_disable" title="{LANG.cart_order}" href="{link_order_all}" id="cart_next"><span>2</span>{LANG.cart_order}</a>
+</div>

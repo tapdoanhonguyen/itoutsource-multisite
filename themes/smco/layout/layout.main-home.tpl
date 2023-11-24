@@ -7,114 +7,8 @@
 <div class="bg section-bg fill bg-fill bg-loaded">
 </div>
 <div class="section-content relative">
-<div class="slider-wrapper relative hero-banner-slider" id="slider-1593640961">
-<div class="slider slider-nav-simple slider-nav-large slider-nav-light slider-style-normal slider-show-nav is-draggable flickity-enabled" data-flickity-options="{
-&quot;cellAlign&quot;: &quot;center&quot;,
-&quot;imagesLoaded&quot;: true,
-&quot;lazyLoad&quot;: 1,
-&quot;freeScroll&quot;: false,
-&quot;wrapAround&quot;: true,
-&quot;autoPlay&quot;: 9000,
-&quot;pauseAutoPlayOnHover&quot; : true,
-&quot;prevNextButtons&quot;: false,
-&quot;contain&quot; : true,
-&quot;adaptiveHeight&quot; : true,
-&quot;dragThreshold&quot; : 10,
-&quot;percentPosition&quot;: true,
-&quot;pageDots&quot;: true,
-&quot;rightToLeft&quot;: false,
-&quot;draggable&quot;: true,
-&quot;selectedAttraction&quot;: 0.1,
-&quot;parallax&quot; : 0,
-&quot;friction&quot;: 0.6        }" tabindex="0">
 
-
-
-
-
-
-
-
-<div class="flickity-viewport" style="height: 457.156px; touch-action: pan-y;"><div class="flickity-slider" style="left: 0px; transform: translateX(-400%);"><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_407486236" style="position: absolute; left: 0%;" aria-hidden="true">
-<a class="" href="//smartlineco.com/danh-muc/laptop/">						<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-Laptop.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-Laptop.jpg 1921w, //smartlineco.com/uploads/Banner-Laptop-300x102.jpg 300w, //smartlineco.com/uploads/Banner-Laptop-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-Laptop-768x260.jpg 768w, //smartlineco.com/uploads/Banner-Laptop-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-Laptop-247x84.jpg 247w, //smartlineco.com/uploads/Banner-Laptop-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-</a>		
-<style>
-#image_407486236 {
-width: 100%;
-}
-</style>
-</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_2126346367" style="position: absolute; left: 100%;" aria-hidden="true">
-<a class="" href="//smartlineco.com/danh-muc/man-hinh-may-tinh/">						<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-Man-chinh-hang.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-Man-chinh-hang.jpg 1921w, //smartlineco.com/uploads/Banner-Man-chinh-hang-300x102.jpg 300w, //smartlineco.com/uploads/Banner-Man-chinh-hang-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-Man-chinh-hang-768x260.jpg 768w, //smartlineco.com/uploads/Banner-Man-chinh-hang-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-Man-chinh-hang-247x84.jpg 247w, //smartlineco.com/uploads/Banner-Man-chinh-hang-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-</a>		
-<style>
-#image_2126346367 {
-width: 100%;
-}
-</style>
-</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_685179105" style="position: absolute; left: 200%;" aria-hidden="true">
-<a class="" href="//smartlineco.com/danh-muc/may-in-cac-loai/may-in-mau/">						<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-May-in-mau.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-May-in-mau.jpg 1921w, //smartlineco.com/uploads/Banner-May-in-mau-300x102.jpg 300w, //smartlineco.com/uploads/Banner-May-in-mau-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-May-in-mau-768x260.jpg 768w, //smartlineco.com/uploads/Banner-May-in-mau-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-May-in-mau-247x84.jpg 247w, //smartlineco.com/uploads/Banner-May-in-mau-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-</a>		
-<style>
-#image_685179105 {
-width: 100%;
-}
-</style>
-</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_180364992" style="position: absolute; left: 300%;" aria-hidden="true">
-<a class="" href="//smartlineco.com/danh-muc/may-tinh-dong-bo/">						<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-PC.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-PC.jpg 1921w, //smartlineco.com/uploads/Banner-PC-300x102.jpg 300w, //smartlineco.com/uploads/Banner-PC-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-PC-768x260.jpg 768w, //smartlineco.com/uploads/Banner-PC-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-PC-247x84.jpg 247w, //smartlineco.com/uploads/Banner-PC-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-</a>		
-<style>
-#image_180364992 {
-width: 100%;
-}
-</style>
-</div><div class="img has-hover x md-x lg-x y md-y lg-y is-selected" id="image_1507924871" style="position: absolute; left: 400%;">
-<a class="" href="//smartlineco.com/danh-muc/may-huy-tai-lieu/">						<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-May-Huy-tai-lieu.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-May-Huy-tai-lieu.jpg 1921w, //smartlineco.com/uploads/Banner-May-Huy-tai-lieu-300x102.jpg 300w, //smartlineco.com/uploads/Banner-May-Huy-tai-lieu-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-May-Huy-tai-lieu-768x260.jpg 768w, //smartlineco.com/uploads/Banner-May-Huy-tai-lieu-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-May-Huy-tai-lieu-247x84.jpg 247w, //smartlineco.com/uploads/Banner-May-Huy-tai-lieu-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-</a>		
-<style>
-#image_1507924871 {
-width: 100%;
-}
-</style>
-</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1330324685" aria-hidden="true" style="position: absolute; left: 500%;">
-<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-May-Scan.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-May-Scan.jpg 1921w, //smartlineco.com/uploads/Banner-May-Scan-300x102.jpg 300w, //smartlineco.com/uploads/Banner-May-Scan-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-May-Scan-768x260.jpg 768w, //smartlineco.com/uploads/Banner-May-Scan-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-May-Scan-247x84.jpg 247w, //smartlineco.com/uploads/Banner-May-Scan-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-<style>
-#image_1330324685 {
-width: 100%;
-}
-</style>
-</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_216236348" aria-hidden="true" style="position: absolute; left: 600%;">
-<a class="" href="//smartlineco.com/danh-muc/may-chieu/">						<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-May-chieu.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-May-chieu.jpg 1921w, //smartlineco.com/uploads/Banner-May-chieu-300x102.jpg 300w, //smartlineco.com/uploads/Banner-May-chieu-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-May-chieu-768x260.jpg 768w, //smartlineco.com/uploads/Banner-May-chieu-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-May-chieu-247x84.jpg 247w, //smartlineco.com/uploads/Banner-May-chieu-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-</a>		
-<style>
-#image_216236348 {
-width: 100%;
-}
-</style>
-</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_705207423" aria-hidden="true" style="position: absolute; left: 700%;">
-<a class="" href="//smartlineco.com/danh-muc/muc-in-chinh-hang/">						<div class="img-inner dark">
-<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-Muc-in.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-Muc-in.jpg 1921w, //smartlineco.com/uploads/Banner-Muc-in-300x102.jpg 300w, //smartlineco.com/uploads/Banner-Muc-in-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-Muc-in-768x260.jpg 768w, //smartlineco.com/uploads/Banner-Muc-in-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-Muc-in-247x84.jpg 247w, //smartlineco.com/uploads/Banner-Muc-in-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-</a>		
-<style>
-#image_705207423 {
-width: 100%;
-}
-</style>
-</div></div></div><ol class="flickity-page-dots"><li class="dot" aria-label="Page dot 1"></li><li class="dot" aria-label="Page dot 2"></li><li class="dot" aria-label="Page dot 3"></li><li class="dot" aria-label="Page dot 4"></li><li class="dot is-selected" aria-label="Page dot 5" aria-current="step"></li><li class="dot" aria-label="Page dot 6"></li><li class="dot" aria-label="Page dot 7"></li><li class="dot" aria-label="Page dot 8"></li></ol></div>
+[HEADER]
 <div class="loading-spin dark large centered" style="display: none;"></div>
 </div>
 <div id="gap-396782281" class="gap-element clearfix" style="display:block; height:auto;">
@@ -140,70 +34,7 @@ height: 150px;
 }
 </style>
 </section>
-<section class="section home-call-to-action" id="section_914031603">
 
-<div class="bg section-bg fill bg-fill  bg-loaded">
-</div>
-<div class="section-content relative">
-<div class="row" id="row-1535601009">
-<div id="col-72629583" class="col medium-6 small-6 large-3">
-<div class="col-inner">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
-<i class="hoangminh-icon-free-delivery"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Giao hàng miễn phí</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Đảm bảo, nhanh chóng, an toàn</div>
-</div>         
-</div>
-</a>
-</div>
-</div>
-<div id="col-241078396" class="col medium-6 small-6 large-3">
-<div class="col-inner">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
-<i class="hoangminh-icon-call-center"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Hỗ trợ kỹ thuật 24/7</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Tư vấn viên nhiệt tình, chu đáo</div>
-</div>         
-</div>
-</a>
-</div>
-</div>
-<div id="col-151441112" class="col medium-6 small-6 large-3">
-<div class="col-inner">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
-<i class="hoangminh-icon-best-price"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Giá luôn rẻ nhất</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Giá tốt nhất thị trường</div>
-</div>         
-</div>
-</a>
-</div>
-</div>
-<div id="col-2140654208" class="col medium-6 small-6 large-3">
-<div class="col-inner">
-<a class="hm-custom-icon">
-<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
-<i class="hoangminh-icon-warranty"></i>			</span>
-<div class="content-row   icon-on-top  ">
-<div class="icon-text">
-<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Bảo hành siêu việt</h3>
-<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Khách hàng hài lòng 100%</div>
-</div>         
-</div>
-</a>
-</div>
-</div>
-</div>
-</div>
 <style>
 #section_914031603 {
 padding-top: 10px;
@@ -221,20 +52,12 @@ height: 150px;
 </style>
 </section>
 [TOP]
+
 <section class="section" id="section_577259139">
 <div class="bg section-bg fill bg-fill  bg-loaded">
 </div>
 <div class="section-content relative">
-<div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1593026122">
-<div class="img-inner dark">
-<img width="1921" height="595" src="//smartlineco.com/uploads/Banner-Footer.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-Footer.jpg 1921w, //smartlineco.com/uploads/Banner-Footer-300x93.jpg 300w, //smartlineco.com/uploads/Banner-Footer-1024x317.jpg 1024w, //smartlineco.com/uploads/Banner-Footer-768x238.jpg 768w, //smartlineco.com/uploads/Banner-Footer-1536x476.jpg 1536w, //smartlineco.com/uploads/Banner-Footer-247x77.jpg 247w, //smartlineco.com/uploads/Banner-Footer-510x158.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
-</div>
-<style>
-#image_1593026122 {
-width: 100%;
-}
-</style>
-</div>
+[BANNER2]
 </div>
 <style>
 #section_577259139 {
@@ -255,221 +78,7 @@ height: 150px;
 <div class="bg section-bg fill bg-fill  bg-loaded">
 </div>
 <div class="section-content relative">
-<div class="box  container has-hover blog-section-heading  has-hover box-text-bottom">
-<!-- <div class="box-image" >
-<a href="//smartlineco.com/staging/danh-muc/muc-in-chinh-hang/"  >			<div class="" >
-<img src="//smartlineco.com/wp-content/themes/flatsome/assets/img/missing.jpg" />											</div>
-</a>		</div> -->
-<div class="hm_heading_block text-center content-flex">
-<div class="hm_heading_block-inner">
-<div class="container section-title-container" style="margin-top:0px;"><h3 class="section-title section-title-normal"><b></b><span class="section-title-main" style="font-size:undefined%;">Tin tức &amp; sự kiện nổi bật</span><b></b></h3></div>
-</div>
-<a href="//smartlineco.com/staging/danh-muc/muc-in-chinh-hang/"><span class="main-title">Xem thêm</span><i class="fa-solid fa-angles-right"></i></a>
-</div>
-</div>
-<div class="row blog-carousel large-columns-3 medium-columns-1 small-columns-1 slider row-slider slider-nav-simple slider-nav-outside slider-nav-push" data-flickity-options="{&quot;imagesLoaded&quot;: true, &quot;groupCells&quot;: &quot;100%&quot;, &quot;dragThreshold&quot; : 5, &quot;cellAlign&quot;: &quot;left&quot;,&quot;wrapAround&quot;: true,&quot;prevNextButtons&quot;: true,&quot;percentPosition&quot;: true,&quot;pageDots&quot;: false, &quot;rightToLeft&quot;: false, &quot;autoPlay&quot; : false}">
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/loi-ich-khi-su-dung-muc-in-chinh-hang/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/loi-ich-khi-su-dung-muc-in-chinh-hang/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="400" height="600" src="//smartlineco.com/uploads/19-5-201637-5382-1463629809.jpg" class="attachment-large size-large wp-post-image" alt="" srcset="//smartlineco.com/uploads/19-5-201637-5382-1463629809.jpg 400w, //smartlineco.com/uploads/19-5-201637-5382-1463629809-247x371.jpg 247w, //smartlineco.com/uploads/19-5-201637-5382-1463629809-200x300.jpg 200w" sizes="(max-width: 400px) 100vw, 400px">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/loi-ich-khi-su-dung-muc-in-chinh-hang/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/loi-ich-khi-su-dung-muc-in-chinh-hang/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-24 Tháng Ba, 2021                                    </div>
-</div>
-<h5 class="post-title is-large ">Lợi ích khi sử dụng mực in chính hãng</h5>
-<p class="from_the_blog_excerpt ">
-Mực&nbsp;máy in&nbsp;trên thị trường hiện nay có rất nhiều loại. Muốn&nbsp;mua mực chính hãng&nbsp;đòi hỏi người mua phải tự biết phân biệt được. Bài viết dưới đây sẽ hướng dẫn.                                    </p>
-</a><a href="//smartlineco.com/loi-ich-khi-su-dung-muc-in-chinh-hang/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/nhung-tieu-chi-khi-chon-mua-may-in/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/nhung-tieu-chi-khi-chon-mua-may-in/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="900" height="414" src="//smartlineco.com/uploads/Top-5-m_y-in-duoi-5tr-cho-Gia-Dinh.jpg" class="attachment-large size-large wp-post-image" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Top-5-m_y-in-duoi-5tr-cho-Gia-Dinh.jpg 900w, //smartlineco.com/uploads/Top-5-m_y-in-duoi-5tr-cho-Gia-Dinh-247x114.jpg 247w, //smartlineco.com/uploads/Top-5-m_y-in-duoi-5tr-cho-Gia-Dinh-510x235.jpg 510w, //smartlineco.com/uploads/Top-5-m_y-in-duoi-5tr-cho-Gia-Dinh-300x138.jpg 300w, //smartlineco.com/uploads/Top-5-m_y-in-duoi-5tr-cho-Gia-Dinh-768x353.jpg 768w, //smartlineco.com/uploads/Top-5-m_y-in-duoi-5tr-cho-Gia-Dinh-600x276.jpg 600w" sizes="(max-width: 900px) 100vw, 900px">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/nhung-tieu-chi-khi-chon-mua-may-in/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/nhung-tieu-chi-khi-chon-mua-may-in/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-18 Tháng Sáu, 2017                                    </div>
-</div>
-<h5 class="post-title is-large ">10 tiêu chí hàng đầu khi chọn mua máy in</h5>
-<p class="from_the_blog_excerpt ">
-1. Máy in có giá bán bao nhiêu Qua phân tích ở trên thì bạn có thể thấy trên thị trường hiện nay có nhiều loại máy in khác nhau,.                                    </p>
-</a><a href="//smartlineco.com/nhung-tieu-chi-khi-chon-mua-may-in/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/cach-cai-dat-may-canon-2900-tren-dieu-hanh-windows/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/cach-cai-dat-may-canon-2900-tren-dieu-hanh-windows/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="900" height="414" src="//smartlineco.com/uploads/cach-cai-dat-may-in-canon-2900-tren-windows.jpg" class="attachment-large size-large wp-post-image" alt="" loading="lazy" srcset="//smartlineco.com/uploads/cach-cai-dat-may-in-canon-2900-tren-windows.jpg 900w, //smartlineco.com/uploads/cach-cai-dat-may-in-canon-2900-tren-windows-247x114.jpg 247w, //smartlineco.com/uploads/cach-cai-dat-may-in-canon-2900-tren-windows-510x235.jpg 510w, //smartlineco.com/uploads/cach-cai-dat-may-in-canon-2900-tren-windows-300x138.jpg 300w, //smartlineco.com/uploads/cach-cai-dat-may-in-canon-2900-tren-windows-768x353.jpg 768w, //smartlineco.com/uploads/cach-cai-dat-may-in-canon-2900-tren-windows-600x276.jpg 600w" sizes="(max-width: 900px) 100vw, 900px">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/cach-cai-dat-may-canon-2900-tren-dieu-hanh-windows/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/cach-cai-dat-may-canon-2900-tren-dieu-hanh-windows/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-18 Tháng Sáu, 2017                                    </div>
-</div>
-<h5 class="post-title is-large ">Hướng dẫn cài đặt máy in Canon LBP 2900</h5>
-<p class="from_the_blog_excerpt ">
-Hôm nay, Hoàng Minh Office&nbsp;sẽ hướng dẫn các bạn cách cài đặt máy in trên hệ điều hành Windows. Do máy in có rất nhiều hãng nhưng cách cài đặt.                                    </p>
-</a><a href="//smartlineco.com/cach-cai-dat-may-canon-2900-tren-dieu-hanh-windows/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/may-in-duoc-chia-ra-lam-may-loai/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/may-in-duoc-chia-ra-lam-may-loai/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="900" height="414" src="//smartlineco.com/uploads/Top-10-May-In-Laser-1.jpg" class="attachment-large size-large wp-post-image" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Top-10-May-In-Laser-1.jpg 900w, //smartlineco.com/uploads/Top-10-May-In-Laser-1-247x114.jpg 247w, //smartlineco.com/uploads/Top-10-May-In-Laser-1-510x235.jpg 510w, //smartlineco.com/uploads/Top-10-May-In-Laser-1-300x138.jpg 300w, //smartlineco.com/uploads/Top-10-May-In-Laser-1-768x353.jpg 768w, //smartlineco.com/uploads/Top-10-May-In-Laser-1-600x276.jpg 600w" sizes="(max-width: 900px) 100vw, 900px">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/may-in-duoc-chia-ra-lam-may-loai/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/may-in-duoc-chia-ra-lam-may-loai/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-18 Tháng Sáu, 2017                                    </div>
-</div>
-<h5 class="post-title is-large ">Máy in được chia ra làm mấy loại ?</h5>
-<p class="from_the_blog_excerpt ">
-Trên thị trường hiện nay có nhiều loại máy in khác nhau như máy in phun, máy in laser, máy in kim và máy in hóa đơn…Mỗi một loại máy.                                    </p>
-</a><a href="//smartlineco.com/may-in-duoc-chia-ra-lam-may-loai/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/5-thuong-hieu-may-in-khong-the-bo-qua/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/5-thuong-hieu-may-in-khong-the-bo-qua/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="900" height="414" src="//smartlineco.com/uploads/Top-10-may-in-da-chuc-nang.jpg" class="attachment-large size-large wp-post-image" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Top-10-may-in-da-chuc-nang.jpg 900w, //smartlineco.com/uploads/Top-10-may-in-da-chuc-nang-247x114.jpg 247w, //smartlineco.com/uploads/Top-10-may-in-da-chuc-nang-510x235.jpg 510w, //smartlineco.com/uploads/Top-10-may-in-da-chuc-nang-300x138.jpg 300w, //smartlineco.com/uploads/Top-10-may-in-da-chuc-nang-768x353.jpg 768w, //smartlineco.com/uploads/Top-10-may-in-da-chuc-nang-600x276.jpg 600w" sizes="(max-width: 900px) 100vw, 900px">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/5-thuong-hieu-may-in-khong-the-bo-qua/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/5-thuong-hieu-may-in-khong-the-bo-qua/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-18 Tháng Sáu, 2017                                    </div>
-</div>
-<h5 class="post-title is-large ">Top 5 thương hiệu máy in đình đám 2021</h5>
-<p class="from_the_blog_excerpt ">
-1. Máy in Canon Một thương hiệu cực kỳ nổi tiếng đến từ Nhật Bản được thành lập vào năm 1937, chuyên sản xuất và phân phối các thiết bị.                                    </p>
-</a><a href="//smartlineco.com/5-thuong-hieu-may-in-khong-the-bo-qua/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/sua-chua-may-photocopy/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/sua-chua-may-photocopy/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="100" height="100" src="//smartlineco.com/uploads/2017/05/suachuamayphoto-1.jpg" class="attachment-large size-large wp-post-image" alt="" loading="lazy">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/sua-chua-may-photocopy/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/sua-chua-may-photocopy/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-23 Tháng Năm, 2017                                    </div>
-</div>
-<h5 class="post-title is-large ">Sửa chữa máy photocopy</h5>
-<p class="from_the_blog_excerpt ">
-Bạn đang loay hoay không biết chiếc máy photocopy của mình gặp trục trặc gì? Bạn đang tìm kiếm một dịch vụ sửa chữa máy photocopy&nbsp;tận nơi một cách nhanh.                                    </p>
-</a><a href="//smartlineco.com/sua-chua-may-photocopy/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/sua-chua-may-in-tai-ha-noi/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/sua-chua-may-in-tai-ha-noi/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="100" height="100" src="//smartlineco.com/uploads/2017/05/abc.jpg" class="attachment-large size-large wp-post-image" alt="" loading="lazy">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/sua-chua-may-in-tai-ha-noi/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/sua-chua-may-in-tai-ha-noi/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-22 Tháng Năm, 2017                                    </div>
-</div>
-<h5 class="post-title is-large ">Sửa chữa máy in</h5>
-<p class="from_the_blog_excerpt ">
-Bạn đang loay hoay không biết chiếc máy in của mình gặp trục trặc gì? Bạn đang tìm kiếm một dịch vụ sửa chữa máy in tại nhà một cách.                                    </p>
-</a><a href="//smartlineco.com/sua-chua-may-in-tai-ha-noi/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-<div class="col post-item">
-<div class="col-inner" style="height: 527.875px;">
-<a href="//smartlineco.com/do-muc-may-photocopy-tai-ha-noi/" class="plain">
-</a><div class="box box-default box-text-bottom box-blog-post"><a href="//smartlineco.com/do-muc-may-photocopy-tai-ha-noi/" class="plain">
-<div class="box-image">
-<div class="image-cover" style="padding-top:56.25%;">
-<img width="100" height="100" src="//smartlineco.com/uploads/2017/05/pl18920173-konica_miniolta_bizhub_185_195_tn118_toner_printer_copier_refill_9k_pages_yeild.jpg" class="attachment-large size-large wp-post-image" alt="" loading="lazy">                                                                                                                    </div>
-</div>
-</a><div class="box-text text-left "><a href="//smartlineco.com/do-muc-may-photocopy-tai-ha-noi/" class="plain">
-</a><div class="box-text-inner blog-post-inner"><a href="//smartlineco.com/do-muc-may-photocopy-tai-ha-noi/" class="plain">
-<div class="post-date post-date-outline">
-<div class="post-date-inner">
-10 Tháng Năm, 2017                                    </div>
-</div>
-<h5 class="post-title is-large ">Đổ mực máy photocopy</h5>
-<p class="from_the_blog_excerpt ">
-Công ty TNHH máy văn phòng Hoàng Minh chuyên nhập khẩu và phân phối nguyên vật tư linh kiện máy in, máy photo, máy fax, các loại mực in, mực.                                    </p>
-</a><a href="//smartlineco.com/do-muc-may-photocopy-tai-ha-noi/" class="btn-read-more  is-outline is-small mb-0">
-Xem thêm <i class="hoangminh-icon hoangminh-icon-double-arrow-right"></i>                                    </a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
+[BOTTOM]
 <style>
 #section_637618539 {
 padding-top: 30px;
@@ -488,13 +97,9 @@ height: 150px;
 <section class="section" id="section_565576353">
 <div class="bg section-bg fill bg-fill  bg-loaded">
 </div>
-<div class="section-content relative">
-<div class="hm-title container section-title-container has-hover hm-title-style-normal x md-x lg-x y md-y lg-y">
-<div class="title-content" style="color:rgb(0, 0, 0);text-align:center;">
-<h2 class="hm-title__main">Đối tác của chúng tôi</h2>								
-</div>	
-</div>
-</div>
+
+[BOTTOM-CONTENT]
+
 <style>
 #section_565576353 {
 padding-top: 30px;
@@ -510,6 +115,106 @@ height: 150px;
 }
 </style>
 </section>
+
+</div>
+
+</main>
+  <div class="overlay"></div>
+{FILE "footer_extended.tpl"}
+{FILE "footer_only.tpl"}
+
+<!-- END: main -->
+<section class="section home-call-to-action" id="section_914031603">
+
+<div class="bg section-bg fill bg-fill  bg-loaded">
+</div>
+<div class="section-content relative">
+<div class="row" id="row-1535601009">
+<div id="col-72629583" class="col medium-6 small-6 large-3">
+<div class="col-inner">
+<a class="hm-custom-icon">
+<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
+<i class="hoangminh-icon-free-delivery"></i>			</span>
+<div class="content-row   icon-on-top  ">
+<div class="icon-text" style="text-align:center">
+<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Giao hàng miễn phí</h3>
+<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Đảm bảo, nhanh chóng, an toàn</div>
+</div>         
+</div>
+</a>
+</div>
+</div>
+<div id="col-241078396" class="col medium-6 small-6 large-3">
+<div class="col-inner">
+<a class="hm-custom-icon">
+<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
+<i class="hoangminh-icon-call-center"></i>			</span>
+<div class="content-row   icon-on-top  ">
+<div class="icon-text" style="text-align:center">
+<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Hỗ trợ kỹ thuật 24/7</h3>
+<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Tư vấn viên nhiệt tình, chu đáo</div>
+</div>         
+</div>
+</a>
+</div>
+</div>
+<div id="col-151441112" class="col medium-6 small-6 large-3">
+<div class="col-inner">
+<a class="hm-custom-icon">
+<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
+<i class="hoangminh-icon-best-price"></i>			</span>
+<div class="content-row   icon-on-top  ">
+<div class="icon-text" style="text-align:center">
+<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Giá luôn rẻ nhất</h3>
+<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Giá tốt nhất thị trường</div>
+</div>         
+</div>
+</a>
+</div>
+</div>
+<div id="col-2140654208" class="col medium-6 small-6 large-3">
+<div class="col-inner">
+<a class="hm-custom-icon">
+<span class="icon-top" style="color:rgb(255, 255, 255);font-size:60px;">
+<i class="hoangminh-icon-warranty"></i>			</span>
+<div class="content-row   icon-on-top  ">
+<div class="icon-text" style="text-align:center">
+<h3 class="icon-title uppercase" style="color:rgb(255, 255, 255);text-align:center;">Bảo hành siêu việt</h3>
+<div class="icon-description" style="color:rgb(255, 255, 255);text-align:center;">Khách hàng hài lòng 100%</div>
+</div>         
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+{FILE "header_only.tpl"}
+{FILE "header_extended.tpl"}
+
+<div class="slider-wrapper relative hero-banner-slider" id="slider-1593640961">
+<div class="slider slider-nav-simple slider-nav-large slider-nav-light slider-style-normal slider-show-nav is-draggable flickity-enabled"
+ data-flickity-options='{
+&quot;cellAlign&quot;: &quot;center&quot;,
+&quot;imagesLoaded&quot;: true,
+&quot;lazyLoad&quot;: 1,
+&quot;freeScroll&quot;: true,
+&quot;wrapAround&quot;: true,
+&quot;autoPlay&quot;: 9000,
+&quot;pauseAutoPlayOnHover&quot; : true,
+&quot;prevNextButtons&quot;: true,
+&quot;contain&quot; : true,
+&quot;adaptiveHeight&quot; : true,
+&quot;dragThreshold&quot; : 10,
+&quot;percentPosition&quot;: true,
+&quot;pageDots&quot;: true,
+&quot;rightToLeft&quot;: true,
+&quot;draggable&quot;: true,
+&quot;selectedAttraction&quot;: 0.1,
+&quot;parallax&quot; : 0,
+&quot;friction&quot;: 0.6        }' tabindex="0">
+
+
+
 <section class="section" id="section_936796247">
 <div class="bg section-bg fill bg-fill  bg-loaded">
 </div>
@@ -703,16 +408,115 @@ height: 150px;
 }
 </style>
 </section>
+
+
+
+
+<div class="flickity-viewport" style="height: 700px; touch-action: pan-y;"><div class="flickity-slider" style="left: 0px; transform: translateX(-400%);">
+<div class="img has-hover x md-x lg-x y md-y lg-y" id="image_407486236" style="position: absolute; left: 0%;">
+
+<a class="" href="https://smartlineco.com/vi/shops/laptop/">						
+<div class="img-inner dark">
+<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-Laptop.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-Laptop.jpg 1921w, //smartlineco.com/uploads/Banner-Laptop-300x102.jpg 300w, //smartlineco.com/uploads/Banner-Laptop-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-Laptop-768x260.jpg 768w, //smartlineco.com/uploads/Banner-Laptop-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-Laptop-247x84.jpg 247w, //smartlineco.com/uploads/Banner-Laptop-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+</a>		
+<style>
+#image_407486236 {
+width: 100%;
+}
+</style>
+</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_2126346367" style="position: absolute; left: 100%;" aria-hidden="true">
+<a class="" href="//smartlineco.com/danh-muc/man-hinh-may-tinh/">						<div class="img-inner dark">
+<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-Man-chinh-hang.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-Man-chinh-hang.jpg 1921w, //smartlineco.com/uploads/Banner-Man-chinh-hang-300x102.jpg 300w, //smartlineco.com/uploads/Banner-Man-chinh-hang-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-Man-chinh-hang-768x260.jpg 768w, //smartlineco.com/uploads/Banner-Man-chinh-hang-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-Man-chinh-hang-247x84.jpg 247w, //smartlineco.com/uploads/Banner-Man-chinh-hang-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+</a>		
+<style>
+#image_2126346367 {
+width: 100%;
+}
+</style>
+</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_685179105" style="position: absolute; left: 200%;" aria-hidden="true">
+<a class="" href="//smartlineco.com/danh-muc/may-in-cac-loai/may-in-mau/">						<div class="img-inner dark">
+<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-May-in-mau.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-May-in-mau.jpg 1921w, //smartlineco.com/uploads/Banner-May-in-mau-300x102.jpg 300w, //smartlineco.com/uploads/Banner-May-in-mau-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-May-in-mau-768x260.jpg 768w, //smartlineco.com/uploads/Banner-May-in-mau-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-May-in-mau-247x84.jpg 247w, //smartlineco.com/uploads/Banner-May-in-mau-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+</a>		
+<style>
+#image_685179105 {
+width: 100%;
+}
+</style>
+</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_180364992" style="position: absolute; left: 300%;" aria-hidden="true">
+<a class="" href="//smartlineco.com/danh-muc/may-tinh-dong-bo/">						<div class="img-inner dark">
+<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-PC.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-PC.jpg 1921w, //smartlineco.com/uploads/Banner-PC-300x102.jpg 300w, //smartlineco.com/uploads/Banner-PC-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-PC-768x260.jpg 768w, //smartlineco.com/uploads/Banner-PC-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-PC-247x84.jpg 247w, //smartlineco.com/uploads/Banner-PC-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+</a>		
+<style>
+#image_180364992 {
+width: 100%;
+}
+</style>
+</div><div class="img has-hover x md-x lg-x y md-y lg-y is-selected" id="image_1507924871" style="position: absolute; left: 400%;">
+<a class="" href="//smartlineco.com/vi/shops/thiet-bi-mang/">						<div class="img-inner dark">
+<img width="1921" height="961" src="//smartlineco.com/uploads/electronic-medium-banner.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/electronic-medium-banner.jpg 1921w, //smartlineco.com/uploads/electronic-medium-banner-300x102.jpg 300w, //smartlineco.com/uploads/electronic-medium-banner-1024x347.jpg 1024w, //smartlineco.com/uploads/electronic-medium-banner-768x260.jpg 768w, //smartlineco.com/uploads/electronic-medium-banner-1536x521.jpg 1536w, //smartlineco.com/uploads/electronic-medium-banner-247x84.jpg 247w, //smartlineco.com/uploads/electronic-medium-banner-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+</a>		
+<style>
+#image_1507924871 {
+width: 100%;
+}
+</style>
+</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1330324685" aria-hidden="true" style="position: absolute; left: 500%;">
+<div class="img-inner dark">
+<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-May-Scan.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-May-Scan.jpg 1921w, //smartlineco.com/uploads/Banner-May-Scan-300x102.jpg 300w, //smartlineco.com/uploads/Banner-May-Scan-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-May-Scan-768x260.jpg 768w, //smartlineco.com/uploads/Banner-May-Scan-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-May-Scan-247x84.jpg 247w, //smartlineco.com/uploads/Banner-May-Scan-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+<style>
+#image_1330324685 {
+width: 100%;
+}
+</style>
+</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_216236348" aria-hidden="true" style="position: absolute; left: 600%;">
+<a class="" href="//smartlineco.com/danh-muc/may-chieu/">						<div class="img-inner dark">
+<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-May-chieu.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-May-chieu.jpg 1921w, //smartlineco.com/uploads/Banner-May-chieu-300x102.jpg 300w, //smartlineco.com/uploads/Banner-May-chieu-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-May-chieu-768x260.jpg 768w, //smartlineco.com/uploads/Banner-May-chieu-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-May-chieu-247x84.jpg 247w, //smartlineco.com/uploads/Banner-May-chieu-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+</a>		
+<style>
+#image_216236348 {
+width: 100%;
+}
+</style>
+</div><div class="img has-hover x md-x lg-x y md-y lg-y" id="image_705207423" aria-hidden="true" style="position: absolute; left: 700%;">
+<a class="" href="//smartlineco.com/danh-muc/muc-in-chinh-hang/">						<div class="img-inner dark">
+<img width="1921" height="651" src="//smartlineco.com/uploads/Banner-Muc-in.jpg" class="attachment-original size-original" alt="" loading="lazy" srcset="//smartlineco.com/uploads/Banner-Muc-in.jpg 1921w, //smartlineco.com/uploads/Banner-Muc-in-300x102.jpg 300w, //smartlineco.com/uploads/Banner-Muc-in-1024x347.jpg 1024w, //smartlineco.com/uploads/Banner-Muc-in-768x260.jpg 768w, //smartlineco.com/uploads/Banner-Muc-in-1536x521.jpg 1536w, //smartlineco.com/uploads/Banner-Muc-in-247x84.jpg 247w, //smartlineco.com/uploads/Banner-Muc-in-510x173.jpg 510w" sizes="(max-width: 1921px) 100vw, 1921px">						
+</div>
+</a>		
+<style>
+#image_705207423 {
+width: 100%;
+}
+</style>
+
+</div>
+</div>
+</div>
+<ol class="flickity-page-dots">
+<li class="dot" aria-label="Page dot 1"></li>
+<li class="dot" aria-label="Page dot 2"></li>
+<li class="dot" aria-label="Page dot 3"></li>
+<li class="dot" aria-label="Page dot 4"></li>
+<li class="dot is-selected" aria-label="Page dot 5" aria-current="step"></li>
+<li class="dot" aria-label="Page dot 6"></li>
+<li class="dot" aria-label="Page dot 7"></li>
+<li class="dot" aria-label="Page dot 8"></li>
+</ol>
 </div>
 
-</main>
-{FILE "footer_extended.tpl"}
-{FILE "footer_only.tpl"}
 
-<!-- END: main -->
 
-{FILE "header_only.tpl"}
-{FILE "header_extended.tpl"}
+
+
+
+
+
 <div class="row">
     [HEADER]
 </div>
@@ -728,6 +532,8 @@ height: 150px;
 </div>
 {FILE "footer_extended.tpl"}
 {FILE "footer_only.tpl"}
+
+
 <section class="section" id="section_820132751">
 <div class="bg section-bg fill bg-fill  bg-loaded">
 </div>
