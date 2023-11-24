@@ -53,7 +53,6 @@
             <br/>
             {FLOOD_BLOCKER_INFO1}.
             <br/>
-			{FLOOD_min}/{FLOOD_max}
             <span>{FLOOD_BLOCKER_INFO2} <span id="secField">{FLOOD_BLOCKER_TIME}</span> {FLOOD_BLOCKER_INFO3}...</span>
 
             <!-- BEGIN: captchapass -->
