@@ -1,0 +1,220 @@
+.css-v6thbz {
+    border-style: none none solid;
+    border-width: 1px;
+    border-top-color: unset;
+    border-right-color: unset;
+    border-left-color: unset;
+    opacity: 1;
+    display: flex;
+    flex-flow: row;
+    gap: 0rem;
+    -webkit-box-align: baseline;
+    align-items: baseline;
+    width: 100%;
+    height: 64px;
+    border-bottom-color: rgb(234, 234, 234);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    font-size: 14px;
+	
+}
+.css-1k985bk {
+    border-style: none;
+    border-width: 1px;
+    border-color: unset;
+    opacity: 1;
+    height: 100%;
+    padding-left: 1rem;
+    display: flex;
+    flex-flow: row;
+    gap: 0rem;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+	margin-left:0;
+	margin-right:unset;
+}
+.css-1ew3940 {
+    margin: 0px 2rem 0px 0px;
+    padding: 0px;
+    border-style: none;
+    border-width: 1px;
+    border-color: unset;
+    opacity: 1;
+    color: inherit;
+    font-weight: 500;
+    text-decoration: unset;
+    font-size: 13px;
+    line-height: 24px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: unset;
+    max-width: unset;
+    min-width: unset;
+    transition: color 0.3s ease 0s;
+}
+.css-1w3mv8m {
+    border-radius: 4px;
+    display: inline-block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: solid 1px #e0e0e0;
+    background-color: #fff;
+    padding: 0.5rem 1.25rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.css-1lchwqw {
+    margin: 0px;
+    padding: 0px;
+    border-style: none;
+    border-width: 1px;
+    border-color: unset;
+    opacity: 1;
+    color: inherit;
+    font-weight: 400;
+    text-decoration: unset;
+    font-size: 13px;
+    line-height: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: unset;
+    max-width: unset;
+    min-width: unset;
+    transition: color 0.3s ease 0s;
+}
+.product-detail {
+    max-width: 1640px;
+    margin: auto;
+}
+
+.other-product, .product_info,  .product-info {
+    background: #fff;
+	list-style: none;
+	
+}
+.product_info{
+	height:100%;
+}
+.other-product, .product_info {
+    padding: 5px;
+    border-radius: 15px;
+}  
+
+@media (max-width: 499.98px){
+	.css-v6thbz {
+		display: none;
+	}
+	.container .row:not(.row-collapse), .lightbox-content .row:not(.row-collapse), .row .gallery, .row .row:not(.row-collapse){
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.col-sm-12{
+		width:100%;
+	}
+}
+@media (min-width: 500px) and (max-width: 991.98px) {
+    .css-v6thbz {
+		display: none;
+	}
+}
+@media (min-width: 500px) and (min-height: auto) {
+	.css-v6thbz {
+		display: none;
+	}
+	
+	
+}
+
+
+.row.viewgrid.shops-viewgrid.shops-viewgrid-shops {
+    margin: 0px;
+}
+.group_detail ul.pull-left.list-inline {
+    margin: 0;
+}
+footer#footer .footer_mobile_call {
+display: block;
+visibility: visible;
+-webkit-box-orient: horizontal;
+-webkit-box-direction: normal;
+-ms-flex-direction: row;
+flex-direction: row;
+position: fixed;
+line-height: 26px;
+height: 50px;
+width: 100%;
+left: 0 !important;
+bottom: 0 !important;
+z-index: 26 ;
+}
+footer#footer .footer_mobile_call .call-now {
+background: #0fb3b0;
+color: #fff;
+-webkit-box-flex: 1;
+-ms-flex: 1;
+flex: 1;
+text-align: center;
+padding: 12px;
+display: block;
+height: 100% !important;
+width: 50%;
+height: 30px;
+float: left;
+}
+footer#footer .footer_mobile_call .showroom {
+background: #2b58a3;
+color: #fff;
+-webkit-box-flex: 1;
+-ms-flex: 1;
+flex: 1;
+text-align: center;
+padding: 12px;
+display: block;
+height: 100% !important;
+width: 50%;
+height: 30px;
+float: left;
+}
+footer#footer .footer_mobile_call i {
+font-size: 18px;
+}
+.back-to-top {
+background-color: #fff !important;
+border-radius: 50%;
+min-height: 45px;
+height: 45px !important;
+bottom: 95px;
+right: 5px;
+min-width: 45px !important;
+width: 45px;
+z-index: 10000;
+}
+.back-to-top:hover {
+background-color: #0a569e !important;
+}
+.contact-box-bottom {
+z-index: 10000;
+}
+button.btn.btn-success.btn-order.btn-order-buy {
+    width: 130px;
+}
+
+element.style {
+}
+button.btn.btn-danger.btn-order.btn-order-cart {
+    width: 130px;
+}
+@media (min-width: 992px){
+	.add-to-cart-button a.ajax_add_to_cart {
+		padding-top: 10px !important;
+	}
+}
